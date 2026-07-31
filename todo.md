@@ -58,6 +58,6 @@
   - [ ] Table
 - [x] Everything built to be dark-mode first, with a light mode variant
 - [x] Everything built with semantic HTML elements where possible, aria attributes where not, and using common design patterns over arbitrary class names
-- [x] Everything built to be customizable with utility classes to change colors, paddings, sizes, filled/unfilled, etc
+- [ ] Everything built to be customizable with utility classes to change colors, paddings, sizes, filled/unfilled, etc
 - [x] Everything built to be generative, so I'm not manually creating new derived variables often
 - [x] Everything built to be accessible by default
