@@ -1,0 +1,54 @@
+@use "../utilities/extends";
+
+.icon {
+  --icon-text-strong: var(--color-text-strong);
+  --icon-text-base: var(--color-text-base);
+  --icon-text-weak: var(--color-text-weak);
+  --icon-bg-color: var(--color-bg-color);
+
+  --icon-size: var(--icon-size-base);
+
+  align-items: center;
+  display: inline-flex;
+  flex-shrink: 0;
+  justify-content: center;
+  height: var(--icon-size);
+  width: var(--icon-size);
+  font-size: var(--icon-size);
+  @extend %transitions;
+  transition-property: color;
+  color: inherit;
+
+  &.is-strong {
+    color: var(--icon-text-strong);
+  }
+  &.is-text {
+    color: var(--icon-text-base);
+  }
+  &.is-weak {
+    color: var(--icon-text-weak);
+  }
+  &.is-color {
+    color: var(--icon-bg-color);
+  }
+
+  &.is-small {
+    --icon-size: var(--icon-size-small);
+  }
+
+  &.is-large {
+    --icon-size: var(--icon-size-large);
+  }
+
+  &.is-xl {
+    --icon-size: var(--icon-size-xl);
+  }
+}
+
+.ti-dark::before {
+  content: var(--ti-dark-circle) !important;
+}
+
+.ti-light::before {
+  content: var(--ti-light-circle) !important;
+}

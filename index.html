@@ -1,0 +1,1300 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>Kitchen Sink</title>
+      <link rel="preconnect" href="https://use.typekit.net">
+      <link rel="preload" href="https://use.typekit.net/jfz2jeu.css" as="style">
+      <link rel="stylesheet" href="https://use.typekit.net/jfz2jeu.css">
+      <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
+      <link rel="stylesheet" href="main.css">
+
+      <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </head>
+  <body
+    x-data="{ theme: 'dark', scheme: 'default', sidebarOpen: false, sidebarFull: false }"
+    x-init="sidebarFull = window.innerWidth < 608"
+    @resize.window="sidebarFull = window.innerWidth < 608"
+    :data-theme="theme"
+    :data-scheme="scheme"
+  >
+
+    <!--
+    <ul class="notifications">
+      <li class="notification is-warning" role="alert">
+        <p>Did an uh-oh whoopsie</p>
+      </li>
+      <li class="notification is-info" role="alert">
+        <p>Woah did someone call the whoopsie patrol? Cause we just did more.</p>
+      </li>
+    </ul>
+    -->
+
+    <header class="navbar">
+      <nav class="nav">
+        <div class='nav-item'>
+          <button
+            class="button is-ghost is-icon"
+            aria-label="Toggle Sidebar"
+            @click="sidebarOpen = !sidebarOpen">
+            <span class="icon"><i class="ti ti-layout-sidebar-filled"></i></span></button>
+          <span class="logo">Logo</span>
+        </div>
+        <div class="nav-item">
+          <button 
+            class="button is-ghost is-icon" 
+            aria-label="Toggle Light/Dark Mode" 
+            @click="theme = theme === 'light' ? 'dark' : 'light'">
+            <span class="icon"><i class="ti ti-sun-high-filled"></i></span>
+          </button>
+          <button
+            class="button is-ghost is-icon"
+            aria-label="Toggle Color Scheme" 
+            @click="scheme = scheme === 'default' ? 'olive' : 'default'">
+            <span class="icon"><i class="ti ti-paint-filled"></i></span>
+          </button>
+          <a class="button is-ghost is-icon" href="test.html">
+            <span class="icon"><i class="ti ti-arrow-narrow-right"></i></span>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <div
+      class="has-sidebar"
+      :class="{ 'open': sidebarOpen, 'full': sidebarFull }"
+    >
+      <aside id="main-sidebar" class="sidebar">
+        <p>This is a test of the sidebar feature! This is a test of the sidebar feature! This is a test of the sidebar feature! This is a test of the sidebar feature! This is a test of the sidebar feature! This is a test of the sidebar feature!</p>
+      </aside>
+
+      <main class="main">
+        
+        <section class="section">
+          <div class="container">
+            <h1>Heading 1</h1>
+            <h2>Heading 2</h2>
+            <h3>Heading 3</h3>
+            <h4>Heading 4</h4>
+            <h5>Heading 5</h5>
+            <h6>Heading 6</h6>
+            <p>Paragraph with <strong>bold</strong> and <em>emphasis</em> and <strong><em>bold emphasis</em></strong>.</p>
+            <p><small>Smaller, less important text</small></p>
+            <hr>
+            <p>This paragraph has a <a href="#">Link</a>.</p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container is-large">
+            <h2>Colors</h2>
+            <div style="display:grid; grid-template-columns: repeat(9, 1fr); gap: 5px; overflow-x:auto;">
+              <p class="paint text-base-900 bg-base-100 hover:bg-base-100">base</p>
+              <p class="paint text-base-900 bg-base-200 hover:bg-base-200">base</p>
+              <p class="paint text-base-900 bg-base-300 hover:bg-base-300">base</p>
+              <p class="paint text-base-900 bg-base-400 hover:bg-base-400">base</p>
+              <p class="paint text-base-100 bg-base-500 hover:bg-base-500">base</p>
+              <p class="paint text-base-100 bg-base-600 hover:bg-base-600">base</p>
+              <p class="paint text-base-100 bg-base-700 hover:bg-base-700">base</p>
+              <p class="paint text-base-100 bg-base-800 hover:bg-base-800">base</p>
+              <p class="paint text-base-100 bg-base-900 hover:bg-base-900">base</p>
+
+              <p class="paint text-primary-900 bg-primary-100 hover:bg-primary-100">primary</p>
+              <p class="paint text-primary-900 bg-primary-200 hover:bg-primary-200">primary</p>
+              <p class="paint text-primary-900 bg-primary-300 hover:bg-primary-300">primary</p>
+              <p class="paint text-primary-900 bg-primary-400 hover:bg-primary-400">primary</p>
+              <p class="paint text-primary-100 bg-primary-500 hover:bg-primary-500">primary</p>
+              <p class="paint text-primary-100 bg-primary-600 hover:bg-primary-600">primary</p>
+              <p class="paint text-primary-100 bg-primary-700 hover:bg-primary-700">primary</p>
+              <p class="paint text-primary-100 bg-primary-800 hover:bg-primary-800">primary</p>
+              <p class="paint text-primary-100 bg-primary-900 hover:bg-primary-900">primary</p>
+              
+              <p class="paint text-info-900 bg-info-100 hover:bg-info-100">info</p>
+              <p class="paint text-info-900 bg-info-200 hover:bg-info-200">info</p>
+              <p class="paint text-info-900 bg-info-300 hover:bg-info-300">info</p>
+              <p class="paint text-info-900 bg-info-400 hover:bg-info-400">info</p>
+              <p class="paint text-info-100 bg-info-500 hover:bg-info-500">info</p>
+              <p class="paint text-info-100 bg-info-600 hover:bg-info-600">info</p>
+              <p class="paint text-info-100 bg-info-700 hover:bg-info-700">info</p>
+              <p class="paint text-info-100 bg-info-800 hover:bg-info-800">info</p>
+              <p class="paint text-info-100 bg-info-900 hover:bg-info-900">info</p>
+              
+              <p class="paint text-warning-900 bg-warning-100 hover:bg-warning-100">warning</p>
+              <p class="paint text-warning-900 bg-warning-200 hover:bg-warning-200">warning</p>
+              <p class="paint text-warning-900 bg-warning-300 hover:bg-warning-300">warning</p>
+              <p class="paint text-warning-900 bg-warning-400 hover:bg-warning-400">warning</p>
+              <p class="paint text-warning-100 bg-warning-500 hover:bg-warning-500">warning</p>
+              <p class="paint text-warning-100 bg-warning-600 hover:bg-warning-600">warning</p>
+              <p class="paint text-warning-100 bg-warning-700 hover:bg-warning-700">warning</p>
+              <p class="paint text-warning-100 bg-warning-800 hover:bg-warning-800">warning</p>
+              <p class="paint text-warning-100 bg-warning-900 hover:bg-warning-900">warning</p>
+              
+              <p class="paint text-danger-900 bg-danger-100 hover:bg-danger-100">danger</p>
+              <p class="paint text-danger-900 bg-danger-200 hover:bg-danger-200">danger</p>
+              <p class="paint text-danger-900 bg-danger-300 hover:bg-danger-300">danger</p>
+              <p class="paint text-danger-900 bg-danger-400 hover:bg-danger-400">danger</p>
+              <p class="paint text-danger-100 bg-danger-500 hover:bg-danger-500">danger</p>
+              <p class="paint text-danger-100 bg-danger-600 hover:bg-danger-600">danger</p>
+              <p class="paint text-danger-100 bg-danger-700 hover:bg-danger-700">danger</p>
+              <p class="paint text-danger-100 bg-danger-800 hover:bg-danger-800">danger</p>
+              <p class="paint text-danger-100 bg-danger-900 hover:bg-danger-900">danger</p>
+              
+              <p class="paint text-success-900 bg-success-100 hover:bg-success-100">success</p>
+              <p class="paint text-success-900 bg-success-200 hover:bg-success-200">success</p>
+              <p class="paint text-success-900 bg-success-300 hover:bg-success-300">success</p>
+              <p class="paint text-success-900 bg-success-400 hover:bg-success-400">success</p>
+              <p class="paint text-success-100 bg-success-500 hover:bg-success-500">success</p>
+              <p class="paint text-success-100 bg-success-600 hover:bg-success-600">success</p>
+              <p class="paint text-success-100 bg-success-700 hover:bg-success-700">success</p>
+              <p class="paint text-success-100 bg-success-800 hover:bg-success-800">success</p>
+              <p class="paint text-success-100 bg-success-900 hover:bg-success-900">success</p>
+              
+              <p class="paint text-greyscale-900 bg-greyscale-100 hover:bg-greyscale-100">greyscale</p>
+              <p class="paint text-greyscale-900 bg-greyscale-200 hover:bg-greyscale-200">greyscale</p>
+              <p class="paint text-greyscale-900 bg-greyscale-300 hover:bg-greyscale-300">greyscale</p>
+              <p class="paint text-greyscale-900 bg-greyscale-400 hover:bg-greyscale-400">greyscale</p>
+              <p class="paint text-greyscale-100 bg-greyscale-500 hover:bg-greyscale-500">greyscale</p>
+              <p class="paint text-greyscale-100 bg-greyscale-600 hover:bg-greyscale-600">greyscale</p>
+              <p class="paint text-greyscale-100 bg-greyscale-700 hover:bg-greyscale-700">greyscale</p>
+              <p class="paint text-greyscale-100 bg-greyscale-800 hover:bg-greyscale-800">greyscale</p>
+              <p class="paint text-greyscale-100 bg-greyscale-900 hover:bg-greyscale-900">greyscale</p>
+
+              <p class="paint text-white bg-black hover:bg-black">black</p>
+              <p class="paint text-black bg-white hover:bg-white">white</p>
+            </div>
+          </div>
+        </section>
+        
+        <section class="section">
+          <h2>Components</h2>
+        </section>
+
+        <section class="section is-small">
+          <h3>Cards</h3>
+          <div class="container">
+            <h4>Colored</h4>
+            <div class="columns">
+              <div class="card">
+                <p>This is a card</p>
+              </div>
+              <div class="card is-top">
+                <p>This is a card</p>
+              </div>
+              <div class="card is-primary">
+                <p>This is a card</p>
+              </div>
+              <div class="card is-primary is-top">
+                <p>This is a card</p>
+              </div>
+              <div class="card is-info">
+                <p>This is a card</p>
+              </div>
+              <div class="card is-info is-top">
+                <p>This is a card</p>
+              </div>
+              <div class="card is-warning">
+                <p>This is a card</p>
+              </div>
+              <div class="card is-warning is-top">
+                <p>This is a card</p>
+              </div>
+              <div class="card is-danger">
+                <p>This is a card</p>
+              </div>
+              <div class="card is-danger is-top">
+                <p>This is a card</p>
+              </div>
+              <div class="card is-success">
+                <p>This is a card</p>
+              </div>
+              <div class="card is-success is-top">
+                <p>This is a card</p>
+              </div>
+              <div class="card is-greyscale">
+                <p>This is a card</p>
+              </div>
+              <div class="card is-greyscale is-top">
+                <p>This is a card</p>
+              </div>
+            </div>
+            <h4>XS Padding</h4>
+            <div class="card is-info is-top is-padding-xs">
+              <p>A card can have any element inside of it</p>
+            </div>
+            <h4>Small Padding</h4>
+            <div class="card is-success is-padding-small group is-centered">
+              <p>Including a </p> <button class="button">Button</button>
+            </div>
+            <h4>Large Padding</h4>
+            <div class="card is-warning is-top is-padding-large group">
+              <p>Or a </p> <span class="chip is-danger">Chip</span>
+            </div>
+            <h4>XL Padding</h4>
+            <div class="card is-primary is-padding-xl">
+              <p>Or whatever else!</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section is-small">
+          <h3>Icons</h3>
+          <div class="container is-min">
+            <h4>Inherit/Strong/Text/Weak/Color</h4>
+            <div class="group">
+              <div class="icon"><i class="ti ti-user-filled"></i></div>
+              <div class="icon is-strong"><i class="ti ti-user-filled"></i></div>
+              <div class="icon is-text"><i class="ti ti-user-filled"></i></div>
+              <div class="icon is-weak"><i class="ti ti-user-filled"></i></div>
+              <div class="icon is-color"><i class="ti ti-user-filled"></i></div>
+            </div>
+            <h4>Colors</h4>
+            <div class="group">
+              <div class="icon is-info is-weak"><i class="ti ti-user-filled"></i></div>
+              <div class="icon is-primary is-strong"><i class="ti ti-user-filled"></i></div>
+              <div class="icon is-warning is-text"><i class="ti ti-user-filled"></i></div>
+              <div class="icon is-danger is-weak"><i class="ti ti-user-filled"></i></div>
+              <div class="icon is-success is-color"><i class="ti ti-user-filled"></i></div>
+            </div>
+            <h4>Small</h4>
+            <div class="group">
+              <div class="icon is-primary is-color is-small"><i class="ti ti-user-filled"></i></div>
+              <div class="icon is-warning is-text is-small"><i class="ti ti-user-filled"></i></div>
+              <div class="icon is-success is-weak is-small"><i class="ti ti-user-filled"></i></div>
+              <div class="icon is-info is-color is-small"><i class="ti ti-user-filled"></i></div>
+            </div>
+            <h4>Large</h4>
+            <div class="group">
+              <div class="icon is-primary is-color is-large"><i class="ti ti-user-filled"></i></div>
+              <div class="icon is-warning is-text is-large"><i class="ti ti-user-filled"></i></div>
+              <div class="icon is-success is-weak is-large"><i class="ti ti-user-filled"></i></div>
+              <div class="icon is-info is-color is-large"><i class="ti ti-user-filled"></i></div>
+            </div>
+            <h4>XL</h4>
+            <div class="group">
+              <div class="icon is-primary is-color is-xl"><i class="ti ti-user-filled"></i></div>
+              <div class="icon is-warning is-text is-xl"><i class="ti ti-user-filled"></i></div>
+              <div class="icon is-success is-weak is-xl"><i class="ti ti-user-filled"></i></div>
+              <div class="icon is-info is-color is-xl"><i class="ti ti-user-filled"></i></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section is-small">
+          <h3>Buttons</h3>
+          <div class="container">
+            <h4>Colored</h4>
+            <div class="group">
+              <button class="button">Button</button>
+              <button class="button" disabled>Button</button>
+
+              <button class="button is-primary">Button</button>
+              <button class="button is-primary" disabled>Button</button>
+
+              <button class="button is-info">Button</button>
+              <button class="button is-info" disabled>Button</button>
+
+              <button class="button is-warning">Button</button>
+              <button class="button is-warning" disabled>Button</button>
+
+              <button class="button is-danger">Button</button>
+              <button class="button is-danger" disabled>Button</button>
+
+              <button class="button is-success">Button</button>
+              <button class="button is-success" disabled>Button</button>
+
+              <button class="button is-greyscale">Button</button>
+              <button class="button is-greyscale" disabled>Button</button>
+            </div>
+            <h4>Ghost</h4>
+            <div class="group">
+              <button class="button is-ghost">Button</button>
+              <button class="button is-ghost" disabled>Button</button>
+              <button class="button is-ghost is-info">Button</button>
+            </div>
+            <h4>Hoverable</h4>
+            <div class="group">
+              <button class="button is-hoverable">Button</button>
+              <button class="button is-hoverable is-info" disabled>Button</button>
+              <button class="button is-hoverable is-primary">Button</button>
+            </div>
+            <h4>Active</h4>
+            <div class="group">
+              <button class="button is-active">Button</button>
+              <button class="button is-active is-warning" disabled>Button</button>
+              <button class="button is-active is-success">Button</button>
+              <button class="button is-ghost is-info is-active">Button</button>
+            </div>
+            <h4>Small</h4>
+            <div class="group">
+              <button class="button is-small">Button</button>
+              <button class="button is-small" disabled>Button</button>
+              <button class="button is-small is-primary">Button</button>
+              <button class="button is-small is-ghost is-danger">Button</button>
+              <button class="button is-small is-hoverable is-greyscale">Button</button>
+              <button class="button is-small is-active is-success">Button</button>
+            </div>
+            <h4>Large</h4>
+            <div class="group">
+              <button class="button is-large">Button</button>
+              <button class="button is-large" disabled>Button</button>
+              <button class="button is-large is-primary">Button</button>
+              <button class="button is-large is-ghost is-danger">Button</button>
+              <button class="button is-large is-hoverable is-greyscale">Button</button>
+              <button class="button is-large is-active is-success">Button</button>
+            </div>
+            <h4>XL</h4>
+            <div class="group">
+              <button class="button is-xl">Button</button>
+              <button class="button is-xl" disabled>Button</button>
+              <button class="button is-xl is-primary">Button</button>
+              <button class="button is-xl is-ghost is-danger">Button</button>
+              <button class="button is-xl is-hoverable is-greyscale">Button</button>
+              <button class="button is-xl is-active is-success">Button</button>
+            </div>
+            <h4>Addons</h4>
+            <div class="group has-addons">
+              <button class="button">Button</button>
+              <button class="button is-primary">Button</button>
+              <button class="button is-warning" disabled>Button</button>
+              <button class="button is-info is-ghost">Button</button>
+              <button class="button is-success light">Button</button>
+            </div>
+            <h4>With Icon</h4>
+            <div class="group">
+              <button class="button"><span class=""><i class="ti ti-info-circle"></i></span> No .icon</button>
+              <button class="button is-warning"><span class="icon"><i class="ti ti-info-circle"></i></span> No .group</button>
+              <button class="button is-info"><span class="group"><span class="icon"><i class="ti ti-info-circle"></i></span>Has both!</span></button>
+              <button class="button">
+                <span class="group">
+                  <span class="icon text-warning-500"><i class="ti ti-info-circle"></i>
+                  </span>
+                  <span>Custom Color</span>
+                </span>
+              </button>
+            </div>
+            <h4>Dark/Light Mode Switcher</h4>
+            <div class="group has-addons"> <!-- figure out fa-dark/light replacement -->
+              <button class="button is-small is-active"><span class="icon"><i class="ti ti-circle ti-dark"></i></span></button>
+              <button class="button is-small is-hoverable"><span class="icon"><i class="ti ti-brightness-filled"></i></span></button>
+              <button class="button is-small is-hoverable"><span class="icon"><i class="ti ti-circle-filled ti-light"></i></span></button>
+            </div>
+          </div>
+        </section>
+
+        <section class="section is-small">
+          <h3>Inputs</h3>
+          <div class="container is-small">
+            <div class="field">
+              <label for="example1" class="label">Default</label>
+              <input id="example1" class="input">
+            </div>
+            <div class="field">
+              <label for="example2" class="label">Disabled</label>
+              <input id="example2" class="input" disabled>
+            </div>
+            <div class="field is-info">
+              <label for="example3" class="label">Colored</label>
+              <input id="example3" class="input">
+            </div>
+            <div class="field is-warning">
+              <label for="example4" class="label">Notification</label>
+              <input id="example4" class="input">
+              <div class="notification quiet">
+                <p>Some Warning</p>
+              </div>
+            </div>
+            <div class="field is-primary">
+              <label for="example5" class="label">Small</label>
+              <input id="example5" class="input is-small">
+            </div>
+            <div class="field">
+              <label for="example6" class="label">Password</label>
+              <input id="example6" class="input" type="password">
+            </div>
+            <div class="field">
+              <label for="example7" class="label">Addons</label>
+              <div class="group has-addons no-wrap">
+                <input id="example7" class="input" placeholder="First Name">
+                <input id="example7" class="input" placeholder="Last Name">
+                <button class="button is-info is-hoverable">Submit</button>
+              </div>
+            </div>
+            <div class="field">
+              <label for="ta-example-1" class="label">Textarea</label>
+              <textarea id="ta-example-1" class="textarea"></textarea>
+            </div>
+            <div class="field is-info">
+              <label for="ta-example-2" class="label">Textarea Small</label>
+              <textarea id="ta-example-2" class="textarea is-small" placeholder="Placeholder Text"></textarea>
+            </div>
+            <div class="field">
+              <label for="ta-example-3" class="label">Textarea Large</label>
+              <textarea id="ta-example-3" class="textarea is-large" disabled>Already filled in text</textarea>
+            </div>
+            <div class="field">
+              <label class="label" for="choices-multiple-remove-button">With remove button</label>
+              <select
+                class="form-control"
+                name="choices-multiple-remove-button"
+                id="choices-multiple-remove-button"
+                placeholder="This is a placeholder"
+                multiple
+              >
+                <option value="Choice 1" selected>Choice 1</option>
+                <option value="Choice 2">Choice 2</option>
+                <option value="Choice 3">Choice 3</option>
+                <option value="Choice 4">Choice 4</option>
+              </select>
+            </div>
+            <div class="field is-info">
+              <label class="label" for="choices-multiple-groups">Option groups</label>
+              <select
+                class="form-control"
+                name="choices-multiple-groups"
+                id="choices-multiple-groups"
+                placeholder="This is a placeholder"
+                multiple
+              >
+                <option value="">Choose a city</option>
+                <optgroup label="UK">
+                  <option value="London">London</option>
+                  <option value="Manchester">Manchester</option>
+                  <option value="Liverpool">Liverpool</option>
+                </optgroup>
+                <optgroup label="FR">
+                  <option value="Paris">Paris</option>
+                  <option value="Lyon">Lyon</option>
+                  <option value="Marseille">Marseille</option>
+                </optgroup>
+                <optgroup label="DE" disabled>
+                  <option value="Hamburg">Hamburg</option>
+                  <option value="Munich">Munich</option>
+                  <option value="Berlin">Berlin</option>
+                </optgroup>
+                <optgroup label="US">
+                  <option value="New York">New York</option>
+                  <option value="Washington" disabled>Washington</option>
+                  <option value="Michigan">Michigan</option>
+                </optgroup>
+                <optgroup label="SP">
+                  <option value="Madrid">Madrid</option>
+                  <option value="Barcelona">Barcelona</option>
+                  <option value="Malaga">Malaga</option>
+                </optgroup>
+                <optgroup label="CA">
+                  <option value="Montreal">Montreal</option>
+                  <option value="Toronto">Toronto</option>
+                  <option value="Vancouver">Vancouver</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="field">
+              <label class="label" id="choices-single-default-label" for="choices-single-default">Default</label>
+              <select
+                class="form-control"
+                data-trigger
+                name="choices-single-default"
+                id="choices-single-default"
+                placeholder="This is a search placeholder"
+              >
+                <option value="">This is a placeholder</option>
+                <option value="Choice 1">Choice 1</option>
+                <option value="Choice 2">Choice 2</option>
+                <option value="Choice 3">Choice 3</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="checkbox">
+                <input type="checkbox" />
+                Remember me
+              </label>
+            </div>
+            <div class="field">
+              <label class="radio">
+                <input type="radio" />
+                Don't Remember Me
+              </label>
+            </div>
+            <div class="field">
+              <div class="group is-large-gap">
+                <label class="checkbox is-primary">
+                  <input type="checkbox" checked/>
+                  Checkbox 1
+                </label>
+                <label class="checkbox" disabled>
+                  <input type="checkbox" checked disabled />
+                  Checkbox 2
+                </label>
+                <label class="checkbox is-info">
+                  <input type="checkbox" checked />
+                  Checkbox 3
+                </label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="group is-large-gap">
+                <label class="radio is-primary">
+                  <input type="radio" name="barfoo" checked />
+                  Radio 1
+                </label>
+                <label class="radio" disabled>
+                  <input type="radio" name="barfoo" disabled />
+                  Radio 2
+                </label>
+                <label class="radio is-info">
+                  <input type="radio" name="barfoo" />
+                  Radio 3
+                </label>
+              </div>
+            </div>
+          </div>
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              var genericExamples = document.querySelectorAll('[data-trigger]');
+              for (i = 0; i < genericExamples.length; ++i) {
+                var element = genericExamples[i];
+                new Choices(element, {
+                  allowHTML: true,
+                  placeholderValue: 'This is a placeholder set in the config',
+                  searchPlaceholderValue: 'This is a search placeholder',
+                });
+              }
+
+              var multipleDefault = new Choices(
+                document.getElementById('choices-multiple-groups'),
+                { allowHTML: true }
+              );
+
+              var multipleCancelButton = new Choices(
+                '#choices-multiple-remove-button',
+                {
+                  allowHTML: true,
+                  removeItemButton: true,
+                }
+              );
+            });
+          </script>
+        </section>
+
+        <section class="section is-small">
+          <h3>Dropdowns</h3>
+          <div class="container">
+            <h4>Colored</h4>
+            <div class="group">
+
+              <div
+                class="dropdown"
+                x-data="{ active: false }"
+                :class="{ 'is-active' : active }"
+              >
+                <button
+                  class="dropdown-btn button"
+                  aria-haspopup="menu"
+                  aria-controls="drop-1"
+                  @click="active = !active"
+                  :class="{ 'is-active' : active }"
+                >
+                  <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
+                </button>
+                <div class="dropdown-menu" role="menu" id="drop-1">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item">Simple Dropdown</div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="dropdown is-primary"
+                x-data="{ active: false }"
+                :class="{ 'is-active' : active }"
+              >
+                <button
+                  class="dropdown-btn button"
+                  aria-haspopup="menu"
+                  aria-controls="drop-2"
+                  @click="active = !active"
+                  :class="{ 'is-active' : active }"
+                >
+                  <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
+                </button>
+                <div class="dropdown-menu" role="menu" id="drop-2">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item">Simple Dropdown</div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="dropdown is-info"
+                x-data="{ active: false }"
+                :class="{ 'is-active' : active }"
+              >
+                <button
+                  class="dropdown-btn button"
+                  aria-haspopup="menu"
+                  aria-controls="drop-3"
+                  @click="active = !active"
+                  :class="{ 'is-active' : active }"
+                >
+                  <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
+                </button>
+                <div class="dropdown-menu" role="menu" id="drop-3">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item">Simple Dropdown</div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="dropdown is-warning"
+                x-data="{ active: false }"
+                :class="{ 'is-active' : active }"
+              >
+                <button
+                  class="dropdown-btn button"
+                  aria-haspopup="menu"
+                  aria-controls="drop-4"
+                  @click="active = !active"
+                  :class="{ 'is-active' : active }"
+                >
+                  <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
+                </button>
+                <div class="dropdown-menu" role="menu" id="drop-4">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item">Simple Dropdown</div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="dropdown is-danger"
+                x-data="{ active: false }"
+                :class="{ 'is-active' : active }"
+              >
+                <button
+                  class="dropdown-btn button"
+                  aria-haspopup="menu"
+                  aria-controls="drop-5"
+                  @click="active = !active"
+                  :class="{ 'is-active' : active }"
+                >
+                  <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
+                </button>
+                <div class="dropdown-menu" role="menu" id="drop-5">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item">Simple Dropdown</div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="dropdown is-success"
+                x-data="{ active: false }"
+                :class="{ 'is-active' : active }"
+              >
+                <button
+                  class="dropdown-btn button"
+                  aria-haspopup="menu"
+                  aria-controls="drop-6"
+                  @click="active = !active"
+                  :class="{ 'is-active' : active }"
+                >
+                  <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
+                </button>
+                <div class="dropdown-menu" role="menu" id="drop-6">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item">Simple Dropdown</div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="dropdown is-greyscale"
+                x-data="{ active: false }"
+                :class="{ 'is-active' : active }"
+              >
+                <button
+                  class="dropdown-btn button"
+                  aria-haspopup="menu"
+                  aria-controls="drop-7"
+                  @click="active = !active"
+                  :class="{ 'is-active' : active }"
+                >
+                  <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
+                </button>
+                <div class="dropdown-menu" role="menu" id="drop-7">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item">Simple Dropdown</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <h4>Hoverable</h4>
+
+            <div
+              class="dropdown is-hoverable is-success block"
+              x-data="{ active: false }"
+              :class="{ 'is-active' : active }"
+            >
+              <button
+                class="dropdown-btn button is-hoverable"
+                aria-haspopup="menu"
+                aria-controls="drop-8"
+                @click="active = !active"
+                :class="{ 'is-active' : active }"
+              >
+                <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
+              </button>
+              <div class="dropdown-menu" role="menu" id="drop-8">
+                <div class="dropdown-content">
+                  <div class="dropdown-item">Hoverable Dropdown</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-left: auto;">
+              <h4>Is Right</h4>
+
+              <div
+                class="dropdown is-hoverable is-right is-warning block"
+                x-data="{ active: false }"
+                :class="{ 'is-active' : active }"
+              >
+                <button
+                  class="dropdown-btn button is-hoverable"
+                  aria-haspopup="menu"
+                  aria-controls="drop-9"
+                  @click="active = !active"
+                  :class="{ 'is-active' : active }"
+                >
+                  <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
+                </button>
+                <div class="dropdown-menu" role="menu" id="drop-9">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item">Right aligned dropdown!</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h4>Is Up</h4>
+
+            <div
+              class="dropdown is-hoverable is-up is-primary block"
+              x-data="{ active: false }"
+              :class="{ 'is-active' : active }"
+            >
+              <button
+                class="dropdown-btn button is-hoverable"
+                aria-haspopup="menu"
+                aria-controls="drop-10"
+                @click="active = !active"
+                :class="{ 'is-active' : active }"
+              >
+                <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
+              </button>
+              <div class="dropdown-menu" role="menu" id="drop-10">
+                <div class="dropdown-content">
+                  <div class="dropdown-item">Up aligned dropdown!</div>
+                </div>
+              </div>
+            </div>
+
+            <h4>Can be filled with whatever</h4>
+
+            <div
+              class="dropdown is-hoverable is-info block"
+              x-data="{ active: false }"
+              :class="{ 'is-active' : active }"
+            >
+              <button
+                class="dropdown-btn button is-hoverable"
+                aria-haspopup="menu"
+                aria-controls="drop-11"
+                @click="active = !active"
+                :class="{ 'is-active' : active }"
+              >
+                <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
+              </button>
+              <div class="dropdown-menu" role="menu" id="drop-11">
+                <div class="dropdown-content">
+                  <a class="dropdown-item" href="#">1 Link</a>
+                  <a class="dropdown-item" href="#">2 Link</a>
+                  <a class="dropdown-item" href="#"><small>Small link?</small></a>
+                  <hr>
+                  <p class="dropdown-item">And a bunch of text!</p>
+                  <img src="https://www.perfect-fit.co.uk/sites/g/files/fnmzdf6431/files/2024-10/kitten-sitting-on-sofa_1685973713762.png">
+                  <h4 class="dropdown-item">Was that a picture?!</h4>
+                  <a class="dropdown-item" href="#">Link to the picture :)</a>
+                </div>
+              </div>
+            </div>
+
+            <h4>Small</h4>
+
+            <div
+              class="dropdown is-small is-danger block"
+              x-data="{ active: false }"
+              :class="{ 'is-active' : active }"
+            >
+              <button
+                class="dropdown-btn button is-small"
+                aria-haspopup="menu"
+                aria-controls="drop-12"
+                @click="active = !active"
+                :class="{ 'is-active' : active }"
+              >
+                <span class="group">Test<span class="icon is-small"><i class="ti ti-chevron-down"></i></span></span>
+              </button>
+              <div class="dropdown-menu" role="menu" id="drop-12">
+                <div class="dropdown-content">
+                  <div class="dropdown-item">Small Dropdown</div>
+                </div>
+              </div>
+            </div>
+
+            <h4>Different trigger</h4>
+
+            <div class="dropdown is-tooltip block">
+              <p aria-haspopup="menu" id="drop-13">
+              Doesn't have to be a button
+              </p>
+              <div class="dropdown-menu" role="menu" id="drop-13">
+                <div class="dropdown-content">
+                  <div class="dropdown-item">Take away the javascript and this is a hoverable and interactive tooltip you can place any element inside of!</div>
+                  <hr>
+                  <div class="dropdown-item"><span class="group align-start"><span class="icon is-warning is-weak"><i class="ti ti-exclamation-circle"></i></span>If there are any interactive elements including links or buttons, this is not a true "tooltip" for accessibility, and should still be considered an aria menu.</span></div>
+                </div>
+              </div>
+            </div>
+
+            <h4>Hamburger Menu</h4>
+
+            <div
+              class="dropdown block"
+              style="color: var(--color-text-strong);"
+              x-data="{ active: false }"
+              :class="{ 'is-active' : active }"
+            >
+              <button
+                class="dropdown-btn button is-ghost is-icon"
+                aria-haspopup="menu"
+                aria-controls="drop-14"
+                @click="active = !active"
+                :class="{ 'is-active' : active }"
+              >
+                <span class="icon is-large"><i class="ti ti-menu-2"></i></span>
+              </button>
+              <div class="dropdown-menu" role="menu" id="drop-14">
+                <div class="dropdown-content">
+                  <a class="dropdown-item" href="#">Whatever links are necessary!</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="section is-small">
+          <h3>Chips</h3>
+          <div class="container is-small">
+            <h4>Colored</h4>
+            <div class="group">
+              <span class="chip">Chip</span>
+              <span class="chip quiet">Chip</span>
+
+              <span class="chip is-primary">Chip</span>
+              <span class="chip is-primary quiet">Chip</span>
+
+              <span class="chip is-info">Chip</span>
+              <span class="chip is-info quiet">Chip</span>
+
+              <span class="chip is-warning">Chip</span>
+              <span class="chip is-warning quiet">Chip</span>
+
+              <span class="chip is-danger">Chip</span>
+              <span class="chip is-danger quiet">Chip</span>
+
+              <span class="chip is-success">Chip</span>
+              <span class="chip is-success quiet">Chip</span>
+
+              <span class="chip is-greyscale">Chip</span>
+              <span class="chip is-greyscale quiet">Chip</span>
+            </div>
+            <h4>Links</h4>
+            <div class="group">
+              <a href="#" class="chip">Chip</a>
+              <a href="#" class="chip is-primary quiet">Chip</a>
+              <a href="#" class="chip is-info disabled">Chip</a>
+            </div>
+            <h4>Addons</h4>
+            <div class="group has-addons">
+              <span href="#" class="chip">This Chip</span>
+              <span href="#" class="chip is-primary">Has Addons</span>
+              <a href="#" class="chip is-info quiet">Some are links</a>
+              <span href="#" class="chip is-success disabled">Some are disabled</span>
+            </div>
+            <h4>With Icon</h4>
+            <div class="group">
+              <span href="#" class="chip"><i class="ti ti-info-circle-filled"></i> No .icon</span>
+              <span href="#" class="chip is-warning"><span class="icon"><i class="ti ti-info-circle-filled"></i></span> No .group</span>
+              <a href="#" class="chip is-info quiet"><span class="group"><span class="icon"><i class="ti ti-info-circle-filled"></i></span>Has Both!</span></a>
+              <span href="#" class="chip"><span class="group"><span class="icon text-warning-500"><i class="ti ti-info-circle-filled"></i></span>Custom Color</span></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section is-small">
+          <h3>Notifications</h3>
+          <div class="container">
+            <h4>Colored</h4>
+            <div class="columns">
+              <div>
+                <div class="notification">
+                  <p>Base</p>
+                </div>
+                <div class="notification is-primary">
+                  <p>primary</p>
+                </div>
+                <div class="notification is-info">
+                  <p>info</p>
+                </div>
+                <div class="notification is-warning">
+                  <p>warning</p>
+                </div>
+                <div class="notification is-danger">
+                  <p>danger</p>
+                </div>
+                <div class="notification is-success">
+                  <p>success</p>
+                </div>
+                <div class="notification is-greyscale">
+                  <p>greyscale</p>
+                </div>
+              </div>
+              <div>
+                <div class="notification quiet">
+                  <p>Base</p>
+                </div>
+                <div class="notification quiet is-primary">
+                  <p>primary</p>
+                </div>
+                <div class="notification quiet is-info">
+                  <p>info</p>
+                </div>
+                <div class="notification quiet is-warning">
+                  <p>warning</p>
+                </div>
+                <div class="notification quiet is-danger">
+                  <p>danger</p>
+                </div>
+                <div class="notification quiet is-success">
+                  <p>success</p>
+                </div>
+                <div class="notification quiet is-greyscale">
+                  <p>greyscale</p>
+                </div>
+              </div>
+            </div>
+            <h4>With Icon</h4>
+            <div class="columns">
+              <div>
+                <div class="notification">
+                  <i class="ti ti-info-circle-filled"></i> No .icon
+                </div>
+                <div class="notification is-warning">
+                  <span class="icon"><i class="ti ti-info-circle-filled"></i></span> No .group
+                </div>
+                <div class="notification is-info">
+                  <span class="group"><span class="icon"><i class="ti ti-info-circle-filled"></i></span>Has Both!</span>
+                </div>
+                <div class="notification">
+                  <span class="group"><span class="icon text-warning-500"><i class="ti ti-info-circle-filled"></i></span>Custom Color</span>
+                </div>
+              </div>
+              <div>
+                <div class="notification quiet">
+                  <i class="ti ti-info-circle-filled"></i> No .icon
+                </div>
+                <div class="notification quiet is-warning">
+                  <span class="icon"><i class="ti ti-info-circle-filled"></i></span> No .group
+                </div>
+                <div class="notification quiet is-info">
+                  <span class="group"><span class="icon"><i class="ti ti-info-circle-filled"></i></span>Has Both!</span>
+                </div>
+                <div class="notification quiet">
+                  <span class="group"><span class="icon text-warning-500"><i class="ti ti-info-circle-filled"></i></span>Custom Color</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Layout</h2>
+        </section>
+
+        <section class="section">
+          <h3>Sections (Top/Bottom Spacing) & Containers (Side Spacing)</h3>
+          <div class="section is-min light">
+            <div class="container is-min">
+              <h4>Min</h4>
+              <img src="https://www.perfect-fit.co.uk/sites/g/files/fnmzdf6431/files/2024-10/kitten-sitting-on-sofa_1685973713762.png">
+            </div>
+          </div>
+          <div class="section is-small dark">
+            <div class="container is-small">
+              <h4>Small</h4>
+              <img src="https://www.perfect-fit.co.uk/sites/g/files/fnmzdf6431/files/2024-10/kitten-sitting-on-sofa_1685973713762.png">
+            </div>
+          </div>
+          <div class="section light">
+            <div class="container">
+              <h4>Medium / Default</h4>
+              <img src="https://www.perfect-fit.co.uk/sites/g/files/fnmzdf6431/files/2024-10/kitten-sitting-on-sofa_1685973713762.png">
+            </div>
+          </div>
+          <div class="section is-large dark">
+            <div class="container is-large">
+              <h4>Large</h4>
+              <img src="https://www.perfect-fit.co.uk/sites/g/files/fnmzdf6431/files/2024-10/kitten-sitting-on-sofa_1685973713762.png">
+            </div>
+          </div>
+          <div class="section is-full light">
+            <div class="container is-full">
+              <h4>Full</h4>
+              <img src="https://www.perfect-fit.co.uk/sites/g/files/fnmzdf6431/files/2024-10/kitten-sitting-on-sofa_1685973713762.png">
+            </div>
+          </div>
+        </section>
+
+        <section class="section is-small">
+          <h3>Section/Container Colors</h3>
+          <div class="section columns gap-0">
+            <div class="section is-small is-base">
+              <hgroup class="block">
+                <h4>base</h4>
+                <p>base base</p>
+                <p><small>Quiet Text</small></p>
+              </hgroup>
+              <button class="button">Button</button>
+            </div>
+            <div class="section is-small is-base is-element">
+              <hgroup class="block">
+                <h4>base</h4>
+                <p>base element</p>
+                <p><small>Quiet Text</small></p>
+              </hgroup>
+              <button class="button">Button</button>
+            </div>
+
+            <div class="section is-small is-primary">
+              <hgroup class="block">
+                <h4>primary</h4>
+                <p>primary base</p>
+                <p><small>Quiet Text</small></p>
+              </hgroup>
+              <button class="button">Button</button>
+            </div>
+            <div class="section is-small is-primary is-element">
+              <hgroup class="block">
+                <h4>primary</h4>
+                <p>primary element</p>
+                <p><small>Quiet Text</small></p>
+              </hgroup>
+              <button class="button">Button</button>
+            </div>
+
+            <div class="section is-small is-info">
+              <hgroup class="block">
+                <h4>info</h4>
+                <p>info base</p>
+                <p><small>Quiet Text</small></p>
+              </hgroup>
+              <button class="button">Button</button>
+            </div>
+            <div class="section is-small is-info is-element">
+              <hgroup class="block">
+                <h4>info</h4>
+                <p>info element</p>
+                <p><small>Quiet Text</small></p>
+              </hgroup>
+              <button class="button">Button</button>
+            </div>
+
+            <div class="section is-small is-warning">
+              <hgroup class="block">
+                <h4>warning</h4>
+                <p>warning base</p>
+                <p><small>Quiet Text</small></p>
+              </hgroup>
+              <button class="button">Button</button>
+            </div>
+            <div class="section is-small is-warning is-element">
+              <hgroup class="block">
+                <h4>warning</h4>
+                <p>warning element</p>
+                <p><small>Quiet Text</small></p>
+              </hgroup>
+              <button class="button">Button</button>
+            </div>
+
+            <div class="section is-small is-danger">
+              <hgroup class="block">
+                <h4>danger</h4>
+                <p>danger base</p>
+                <p><small>Quiet Text</small></p>
+              </hgroup>
+              <button class="button">Button</button>
+            </div>
+            <div class="section is-small is-danger is-element">
+              <hgroup class="block">
+                <h4>danger</h4>
+                <p>danger element</p>
+                <p><small>Quiet Text</small></p>
+              </hgroup>
+              <button class="button">Button</button>
+            </div>
+
+            <div class="section is-small is-success">
+              <hgroup class="block">
+                <h4>success</h4>
+                <p>success base</p>
+                <p><small>Quiet Text</small></p>
+              </hgroup>
+              <button class="button">Button</button>
+            </div>
+            <div class="section is-small is-success is-element">
+              <hgroup class="block">
+                <h4>success</h4>
+                <p>success element</p>
+                <p><small>Quiet Text</small></p>
+              </hgroup>
+              <button class="button">Button</button>
+            </div>
+
+            <div class="section is-small is-greyscale">
+              <hgroup class="block">
+                <h4>greyscale</h4>
+                <p>greyscale base</p>
+                <p><small>Quiet Text</small></p>
+              </hgroup>
+              <button class="button">Button</button>
+            </div>
+            <div class="section is-small is-greyscale is-element">
+              <hgroup class="block">
+                <h4>greyscale</h4>
+                <p>greyscale element</p>
+                <p><small>Quiet Text</small></p>
+              </hgroup>
+              <button class="button">Button</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="section is-small">
+          <h3>Columns</h3>
+          <div class="container is-full">
+            
+            <h4>Default</h4>
+            <div class="columns">
+              <div class="section is-small is-radius-small is-primary is-element">
+                <strong>Default Column Settings</strong>
+              </div>
+              <div class="section is-small is-radius-small is-info is-element">
+                <strong>Default Column Settings</strong>
+              </div>
+              <div class="section is-small is-radius-small is-success is-element">
+                <strong>Default Column Settings</strong>
+              </div>
+            </div>
+
+            <h4>Small Min & Gap</h4>
+            <div class="columns min-small gap-small">
+              <div class="section is-small is-radius-small is-primary is-element">
+                <strong>Small Column Settings</strong>
+              </div>
+              <div class="section is-small is-radius-small is-info is-element">
+                <strong>Small Column Settings</strong>
+              </div>
+              <div class="section is-small is-radius-small is-success is-element">
+                <strong>Small Column Settings</strong>
+              </div>
+            </div>
+
+            <h4>Large Min & Gap</h4>
+            <div class="columns min-large gap-large">
+              <div class="section is-small is-radius-small is-primary is-element">
+                <strong>Large Column Settings</strong>
+              </div>
+              <div class="section is-small is-radius-small is-info is-element">
+                <strong>Large Column Settings</strong>
+              </div>
+              <div class="section is-small is-radius-small is-success is-element">
+                <strong>Large Column Settings</strong>
+              </div>
+            </div>
+
+            <h4>No Min & Gap</h4>
+            <div class="columns min-0 gap-0">
+              <div class="section is-small is-radius-small is-primary is-element">
+                <strong>0 Column Settings</strong>
+              </div>
+              <div class="section is-small is-radius-small is-info is-element">
+                <strong>0 Column Settings</strong>
+              </div>
+              <div class="section is-small is-radius-small is-success is-element">
+                <strong>0 Column Settings</strong>
+              </div>
+            </div>
+
+            <h4>Align Start</h4>
+            <div class="columns align-start">
+              <div class="section is-small is-radius-small is-primary is-element">
+                <strong>Not the same height, align start</strong>
+              </div>
+              <div class="section is-info is-radius-small is-element">
+                <strong>Not the same height, align start</strong>
+              </div>
+              <div class="section is-large is-radius-small is-success is-element">
+                <strong>Not the same height, align start</strong>
+              </div>
+            </div>
+
+            <h4>Align Center</h4>
+            <div class="columns align-center">
+              <div class="section is-small is-radius-small is-primary is-element">
+                <strong>Not the same height, align center</strong>
+              </div>
+              <div class="section is-info is-radius-small is-element">
+                <strong>Not the same height, align center</strong>
+              </div>
+              <div class="section is-large is-radius-small is-success is-element">
+                <strong>Not the same height, align center</strong>
+              </div>
+            </div>
+
+            <h4>Align End</h4>
+            <div class="columns align-end">
+              <div class="section is-small is-radius-small is-primary is-element">
+                <strong>Not the same height, align end</strong>
+              </div>
+              <div class="section is-info is-radius-small is-element">
+                <strong>Not the same height, align end</strong>
+              </div>
+              <div class="section is-large is-radius-small is-success is-element">
+                <strong>Not the same height, align end</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

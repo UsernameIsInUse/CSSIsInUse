@@ -1,0 +1,76 @@
+@use '../utilities/functions' as f;
+@use "../utilities/extends";
+@use "../utilities/mixins" as m;
+
+.notifications {
+  position:fixed;
+  z-index: var(--z-index-notifications);
+  top: f.fluid_clamp(4.5rem,5rem);
+  padding-left:1rem;
+  padding-right:f.fluid-clamp(1rem,2rem);
+  right: 0;
+  display:flex;
+  flex-direction: column;
+  align-items: end;
+  width: min(100%, 30rem);
+  pointer-events: none;
+  list-style-type: none;
+
+  li {
+    pointer-events: auto;
+  }
+
+  a {
+    pointer-events: auto;
+  }
+
+  &.bottom{
+    top:auto;
+    bottom:f.fluid_clamp(2rem,4rem);
+  }
+
+  &.left{
+    right:auto;
+    left:0;
+    padding-left:f.fluid-clamp(1rem,2rem);
+    padding-right:1rem;
+  }
+}
+
+.notification {
+  @extend %block;
+  --notif-padding: var(--padding-base);
+  --notif-radius: var(--border-radius-base);
+
+  --notif-base: var(--color-bg-base);
+  --notif-text: var(--color-text-strong);
+  --notif-weak: var(--color-text-weak);
+  --notif-color: var(--color-bg-color);
+  --notif-top: var(--color-bg-top);
+
+  --notif-glow-size: 1.5rem;
+  --notif-glow-alpha: 0.5;
+
+  padding: var(--notif-padding);
+  background-color: var(--notif-base);
+  color: var(--notif-text);
+  border: 2px solid var(--notif-color);
+  width: 100%;
+  border-radius: var(--notif-radius);
+  position: relative;
+  @include m.glow(var(--notif-glow-size), var(--notif-color), var(--notif-glow-alpha));
+
+  &:hover {
+    @extend %transitions;
+    --notif-glow-alpha: 1;
+  }
+
+  &.quiet {
+    --notif-text: var(--notif-weak);
+    --notif-color: var(--notif-top);
+    --notif-padding: var(--padding-small);
+    --notif-radius: var(--border-radius-small);
+    --notif-glow-alpha: 0;
+    font-size: var(--text-size-7);
+  }
+}

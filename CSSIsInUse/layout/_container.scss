@@ -1,0 +1,36 @@
+.container {
+  --container-bg-base: var(--color-bg-base);
+  --container-bg-element: var(--color-bg-element);
+  --container-text-strong: var(--color-text-strong);
+
+  background-color: var(--container-bg-base);
+  color: var(--container-text-base);
+  padding-left: var(--padding-base);
+  padding-right: var(--padding-base);
+  display: flex;
+  flex-direction: column;
+  overflow-wrap: break-word;
+  width: 100%;
+  margin:auto;
+  max-width: var(--breakpoint-md);
+
+  &.is-min {
+    max-width: var(--breakpoint-min);
+  }
+
+  &.is-small {
+    max-width: var(--breakpoint-sm);
+  }
+
+  &.is-large {
+    max-width: var(--breakpoint-max);
+  }
+
+  &.is-full {
+    max-width: 100%;
+  }
+
+  &.is-element {
+    background-color: var(--section-bg-element);
+  }
+}

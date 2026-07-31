@@ -1,0 +1,79 @@
+@use '../utilities/functions' as f;
+
+:root {
+  $text-size-1-max: 4rem;
+  $text-size-1-min: 2rem;
+  $text-size-2-max: 3rem;
+  $text-size-2-min: 1.75rem;
+  $text-size-3-max: 2.5rem;
+  $text-size-3-min: 1.5rem;
+  $text-size-4-max: 2rem;
+  $text-size-4-min: 1.25rem;
+  $text-size-5-max: 1.5rem;
+  $text-size-5-min: 1rem;
+  $text-size-logo-min: 1.75rem;
+  $text-size-logo-max: 2rem;
+
+  --text-size-1: #{f.fluid-clamp($text-size-1-min, $text-size-1-max)};
+  --text-size-2: #{f.fluid-clamp($text-size-2-min, $text-size-2-max)};
+  --text-size-3: #{f.fluid-clamp($text-size-3-min, $text-size-3-max)};
+  --text-size-4: #{f.fluid-clamp($text-size-4-min, $text-size-4-max)};
+  --text-size-5: #{f.fluid-clamp($text-size-5-min, $text-size-5-max)};
+  --text-size-6: 1rem;
+  --text-size-7: 0.8rem;
+  --text-size-logo: #{f.fluid-clamp($text-size-logo-min, $text-size-logo-max)};
+
+  --breakpoint-min: 20rem; //320px
+  --breakpoint-sm: 30rem; //480px
+  --breakpoint-md: 60rem; //960px
+  --breakpoint-max: 90rem; //1440px
+
+  --padding-base: 1rem;
+  --padding-xs: calc(var(--padding-base) * 0.25);
+  --padding-small: calc(var(--padding-base) * 0.5);
+  --padding-large: calc(var(--padding-base) * 1.5);
+  --padding-xl: calc(var(--padding-base) * 2);
+  --padding-section: calc(var(--padding-base) * 4);
+  --padding-section-large: calc(var(--padding-base) * 8);
+
+  --input-padding-base: var(--padding-small) var(--padding-base);
+  --input-padding-small: var(--padding-xs) var(--padding-small);
+
+  --sidebar-width: var(--breakpoint-min);
+  --navbar-height: 4rem;
+
+  --icon-size-base: 1.25rem;
+  --icon-size-small: calc(var(--icon-size-base) * 0.8);
+  --icon-size-large: calc(var(--icon-size-base) * 1.5);
+  --icon-size-xl: calc(var(--icon-size-base) * 2);
+  
+  --icon-text-spacing: var(--padding-xs);
+
+  --weight-light: 300;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+  --weight-heavy: 900;
+
+  --border-radius-base: 1rem;
+  --border-radius-small: calc(var(--border-radius-base) * 0.5);
+  --border-radius-rounded: 999px;
+
+  --opacity-base: 1;
+  --opacity-light: calc(var(--opacity-base) * 0.25);
+  --opacity-disabled: calc(var(--opacity-base) * 0.5);
+  --opacity-dark: calc(var(--opacity-base) * 0.8);
+
+  --border-thickness-base: 2px;
+  --border-thickness-light: calc(var(--border-thickness-base) * 0.5);
+  --border-thickness-heavy: calc(var(--border-thickness-base) * 2);
+
+  --glow-size-base: 1rem;
+  --glow-size-xl: calc(var(--glow-size-base) * 2);
+  --glow-size-large: calc(var(--glow-size-base) * 1.5);
+  --glow-size-small: calc(var(--glow-size-base) * 0.8);
+  --glow-size-xs: calc(var(--glow-size-base) * 0.5);
+
+}

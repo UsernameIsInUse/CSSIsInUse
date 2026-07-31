@@ -1,0 +1,39 @@
+.section {
+  --section-bg-base: var(--color-bg-base);
+  --section-bg-element: var(--color-bg-element);
+  --section-text-base: var(--color-text-base);
+
+  background-color: var(--section-bg-base);
+  color: var(--section-text-base);
+  padding-top: var(--padding-section);
+  padding-bottom: var(--padding-section);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+  overflow-wrap: break-word;
+
+  &.is-min {
+    padding-top: var(--padding-base);
+    padding-bottom: var(--padding-base);
+  }
+
+  &.is-small {
+    padding-top: var(--padding-xl);
+    padding-bottom: var(--padding-xl);
+  }
+
+  &.is-large {
+    padding-top: var(--padding-section-large);
+    padding-bottom: var(--padding-section-large);
+  }
+
+  &.is-full {
+    min-height:100vh;
+  }
+
+  &.is-element {
+    background-color: var(--section-bg-element);
+  }
+}

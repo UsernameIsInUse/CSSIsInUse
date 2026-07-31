@@ -1,0 +1,123 @@
+@use "../utilities/extends";
+@use "../utilities/mixins" as m;
+
+.dropdown{
+  --dropdown-bg-base: var(--color-bg-base);
+  --dropdown-bg-element: var(--color-bg-element);
+  --dropdown-bg-top: var(--color-bg-top);
+  --dropdown-bg-color: var(--color-bg-color);
+  --dropdown-text-base: var(--color-text-base);
+  --dropdown-text-strong: var(--color-text-strong);
+
+  display: inline-flex;
+  position: relative;
+  vertical-align: top;
+  width: fit-content;
+
+  &.is-active, &.is-hoverable:hover {
+    .dropdown-menu {
+      display:block;
+    }
+  }
+
+  &.is-right {
+    .dropdown-menu {
+      left:auto;
+      right:0;
+    }
+  }
+  &.is-up {
+    .dropdown-menu {
+      bottom: 100%;
+      padding-bottom: var(--padding-small);
+      padding-top: initial;
+      top: auto;
+    }
+  }
+
+  .dropdown-btn {
+    &.button {
+      --btn-radius: var(--border-radius-small);
+    }
+  }
+
+  .dropdown-menu {
+    display:none;
+    padding-top: var(--padding-small);
+    position: absolute;
+    top: 100%;
+    z-index: var(--z-index-dropdown);
+    min-width: calc(var(--breakpoint-min) / 2);
+    max-width: var(--breakpoint-min);
+    width: max-content;
+  }
+
+  .dropdown-content {
+    --dropdown-glow-size: var(--glow-size-large);
+    --dropdown-glow-alpha: 1;
+
+    background-color: var(--dropdown-bg-element);
+    border-radius: var(--border-radius-small);
+    padding: var(--padding-small) 0;
+
+    border: 2px solid var(--dropdown-bg-top);
+
+    @include m.glow(var(--dropdown-glow-size), var(--dropdown-bg-base), var(--dropdown-glow-alpha));
+
+    hr {
+      background-color: var(--dropdown-bg-top);
+      margin: var(--padding-small) 0;
+    }
+  }
+
+  .dropdown-item {
+    color: var(--dropdown-text-base);
+    display: block;
+    padding: var(--padding-xs) var(--padding-small);
+  }
+
+  a.dropdown-item, button.dropdown-item {
+    color: var(--dropdown-text-strong);
+    @extend %transitions;
+    transition-property: background-color;
+
+    &:hover, &:active {
+      background-color: var(--dropdown-bg-top);
+    }
+
+    &.is-active {
+      background-color: var(--dropdown-bg-top);
+
+      &:hover, &:active {
+        background-color: var(--dropdown-bg-element);
+      }
+    }
+  }
+
+  &.is-small {
+    font-size: var(--text-size-7);
+
+    .dropdown-content{
+      padding: var(--padding-xs) 0;
+    }
+    
+  }
+
+  &.is-tooltip {
+
+    &:hover {
+      .dropdown-menu {
+        display:block;
+      }
+    }
+    .dropdown-content {
+      padding: var(--padding-xs) 0;
+    }
+  }
+}
+
+
+
+
+
+  

@@ -1,0 +1,38 @@
+@mixin block {
+  &:not(:last-child) {
+    margin-bottom: var(--padding-base);
+  }
+}
+
+@mixin block-small {
+  &:not(:last-child) {
+    margin-bottom: var(--padding-small);
+  }
+}
+
+@mixin block-large {
+  &:not(:last-child) {
+    margin-bottom: var(--padding-large);
+  }
+}
+
+@mixin block-xl {
+  &:not(:last-child) {
+    margin-bottom: var(--padding-xl);
+  }
+}
+
+@mixin transitions {
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
+}
+
+@mixin no-transitions {
+  -webkit-transition-duration: 0s;
+  transition-duration: 0s;
+}
+
+@mixin glow($size, $color, $alpha) {
+  box-shadow: 0 0 #{$size} oklch(from #{$color} l c h / #{$alpha});
+}

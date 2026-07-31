@@ -1,0 +1,56 @@
+@use "../utilities/extends";
+
+.has-sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.sidebar {
+  --sb-bg-menu: var(--color-bg-menu);
+  --sb-height: calc(100vh - var(--navbar-height));
+  --sb-width: var(--sidebar-width);
+
+  position:fixed;
+  background-color: var(--sb-bg-menu);
+  max-height: var(--sb-height);
+  height: var(--sb-height);
+  z-index: var(--z-index-sidebar);;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  width: var(--sb-width);
+  padding: var(--padding-base);
+  transition: margin-left 0.2s;
+  @extend %transitions;
+
+  margin-left: calc(0px - var(--sb-width));
+
+  .has-sidebar.open & {
+    margin-left: 0px;
+  }
+
+  .has-sidebar.full & {
+    --sb-width: 100vw;
+    transition: none;
+  }
+  
+}
+.main {
+  width:100%;
+  min-inline-size: var(--sidebar-width);
+  margin-left: 0;
+  transition: margin-left 0.2s;
+  @extend %transitions;
+
+  .has-sidebar.open & {
+    margin-left: var(--sidebar-width);
+  }
+
+  .has-sidebar.full & {
+    transition: none;
+  }
+}
+
+// YOU CAN USE THE NAVBAR TO SCROLL, SHOULD BE FIXED
+// MENU DESIGN COMPONENT

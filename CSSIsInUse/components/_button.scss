@@ -1,0 +1,109 @@
+@use "../utilities/extends";
+@use "../utilities/mixins" as m;
+
+.button {
+  --btn-bg-base: var(--color-bg-base);
+  --btn-bg-element: var(--color-bg-element);
+  --btn-bg-top: var(--color-bg-top);
+  --btn-bg-color: var(--color-bg-color);
+  --btn-text-strong: var(--color-text-strong);
+
+  --btn-glow-size: var(--glow-size-large);
+  --btn-glow-alpha: var(--opacity-disabled);
+  
+  @extend %transitions;
+  transition-property: background-color, box-shadow;
+  
+  padding: var(--input-padding-base);
+  background-color: var(--btn-bg-base);
+  color: var(--btn-text-strong);
+  border: var(--border-thickness-base) solid var(--btn-bg-color);
+  width: fit-content;
+  border-radius: var(--border-radius-rounded);
+  position: relative;
+  cursor: pointer;
+  display:block;
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  
+  @include m.glow(var(--btn-glow-size), var(--btn-bg-color), var(--btn-glow-alpha));
+
+  &:hover {
+    --btn-glow-alpha: 1;
+  }
+
+  &:focus {
+    offset: 2px;
+  }
+
+  &.is-hoverable:hover {
+    background-color: var(--btn-bg-element);
+
+    &:disabled, &.disabled {
+      background-color: var(--btn-bg-base);
+    }
+  }
+
+  &.is-small {
+    padding: var(--input-padding-small);
+    font-size: var(--text-size-7);
+    --btn-glow-size: var(--glow-size-small);
+  }
+
+  &.is-large {
+    font-size: var(--text-size-large);
+  }
+
+  &.is-xl {
+    font-size: var(--text-size-xl);
+  }
+
+  &.is-ghost {
+    @extend %transitions;
+    --btn-bg-color: transparent;
+    background-color: transparent;
+    --btn-glow-alpha: 0;
+
+    &:hover {
+      background-color: var(--btn-bg-element);
+    }
+
+    &:disabled, &.disabled {
+      background-color: transparent
+    }
+  }
+
+  &.is-active {
+    background-color: var(--btn-bg-element);
+
+    &:hover {
+      background-color: var(--btn-bg-base);
+
+      &:disabled, &.disabled {
+        background-color: var(--btn-bg-element);
+      }
+    }
+  }
+
+  &:disabled, &.disabled {
+    --btn-glow-alpha: 0;
+    opacity: var(--opacity-disabled);
+    cursor: not-allowed;
+  }
+
+  &.is-icon {
+    padding: var(--padding-xs);
+    border-radius: var(--border-radius-small);
+    --btn-glow-size: var(--glow-size-small);
+
+    .icon {
+      display: flex;
+    }
+
+    &:has(.svg) {
+      padding: 0;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+@use "../utilities/extends";
+
+.menu {
+  --menu-bg-base: var(--color-bg-base);
+  --menu-bg-element: var(--color-bg-element);
+  --menu-bg-top: var(--color-bg-top);
+  --menu-text-strong: var(--color-text-strong);
+
+  @extend %block-small;
+
+  list-style: none;
+
+  a, button, .menu-item {
+    @extend %transitions;
+    transition-property: background-color;
+    background-color: var(--menu-bg-element);
+    color: var(--menu-text-strong);
+    border-radius: var(--border-radius-small);
+    width: 100%;
+    padding: var(--input-padding-small);
+    text-align: justify;
+
+    &:hover {
+      background-color: var(--menu-bg-top);
+    }
+
+    &.is-active {
+      background-color: var(--menu-bg-top);
+    }
+  }
+
+  li ul {
+    margin-left: var(--padding-base);
+    list-style: none;
+  }
+}

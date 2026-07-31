@@ -1,0 +1,57 @@
+@use "../utilities/extends";
+
+.columns {
+  --column-flex-basis: var(--breakpoint-min);
+
+  @extend %block-xl;
+
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--padding-base);
+
+  &.min-small {
+    --column-flex-basis: var(--padding-section-large);
+  }
+  &.min-large {
+    --column-flex-basis: var(--breakpoint-sm);
+  }
+  &.min-0 {
+    --column-flex-basis: 0%;
+  }
+
+  &.gap-small {
+    gap: var(--padding-small);
+  }
+  &.gap-large {
+    gap: var(--padding-large);
+  }
+  &.gap-0 {
+    gap: 0;
+  }
+
+  &.align-start {
+    align-items: start;
+  }
+  &.align-center {
+    align-items: center;
+  }
+  &.align-end {
+    align-items: end;
+  }
+
+  & > * {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: var(--column-flex-basis);
+    
+    @for $i from 0 through 10 {
+      &.flex-#{$i} {
+        flex-grow: #{$i};
+      }
+    }
+
+  }
+
+}
+

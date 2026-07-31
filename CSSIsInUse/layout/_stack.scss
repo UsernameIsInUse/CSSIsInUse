@@ -1,0 +1,11 @@
+// z-index helpers
+
+$stacks: "dropdown","sidebar","navbar","version","modal","notifications";
+$i: 0;
+
+:root {
+  @each $stack in $stacks {
+    $i: $i + 1;
+    --z-index-#{$stack}: #{$i};
+  }
+}

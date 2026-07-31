@@ -1,0 +1,133 @@
+@use '../utilities/functions' as f;
+@use "../utilities/extends";
+
+* {
+  color: inherit;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+html {
+  display:block;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden; 
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg-base);
+  color: var(--color-text-base);
+}
+
+.block-xl {
+  @extend %block-xl;
+}
+
+.block-large {
+  @extend %block-large;
+}
+
+.block {
+  @extend %block;
+}
+
+.block-small {
+  @extend %block-small;
+}
+
+h1, h2, h3, h4, h5, h6, button, input[type="submit"], .button, a {
+  --element-text-strong: var(--color-text-strong);
+  color: var(--element-text-strong);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-header);
+  margin-bottom: var(--padding-base);
+}
+
+hgroup {
+  h1, h2, h3, h4, h5, h6 {
+    margin-bottom: var(--padding-xs);
+  }
+}
+
+h1 {
+  font-size: var(--text-size-1);
+}
+
+h2 {
+  font-size: var(--text-size-2);
+}
+
+h3 {
+  font-size: var(--text-size-3);
+}
+
+h4 {
+  font-size: var(--text-size-4);
+}
+
+h5 {
+  font-size: var(--text-size-5);
+}
+
+h6 {
+  font-size: var(--text-size-6);
+}
+
+small {
+  --small-color: var(--color-text-weak);
+  font-size: var(--text-size-7);
+  color:var(--small-color);
+}
+
+code {
+  font-family: var(--font-monospace);
+}
+
+a {
+  text-decoration: none;
+  --element-text-strong: var(--info-text-base);
+}
+
+img {
+  width: 100%;
+}
+
+input,
+textarea,
+button,
+select,
+a,
+label {
+  -webkit-tap-highlight-color: transparent;
+}
+
+hr{
+  background-color: var(--color-bg-top);
+  border: none;
+  display: block;
+  height: var(--border-thickness-base);
+  margin: var(--padding-large) 0;
+}
+
+.is-radius-small {
+  border-radius: var(--border-radius-small);
+}
+
+.is-radius-base {
+  border-radius: var(--border-radius-base);
+}
+
+.is-radius-rounded {
+  border-radius: var(--border-radius-rounded);
+}
+
+//https://github.com/frontaid/natural-selection/blob/main/boilerplate.css

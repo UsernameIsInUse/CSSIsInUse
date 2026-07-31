@@ -1,0 +1,82 @@
+// IMPORT YOUR scheme HERE:
+@forward 'default';
+@forward 'olive';
+
+// THEN ADD IT TO THIS LIST:
+$schemes: default, olive;
+
+// THE REST IS HANDLED AUTOMATICALLY
+// This includes light and dark mode, you do not need to make a separate light and dark mode for your scheme.
+
+@use '../utilities/functions' as f;
+@use '../utilities/mixins' as m;
+@use 'sass:list';
+
+// If you want to make a custom color, eg secondary, add it to this list and add --secondary-l, secondary-c, secondary-h, and secondary-falloff to the default scheme and custom variations to any other scheme.
+// Any colors you create will automatically be an option in all colored components attribute.
+$color-groups: 'base', 'primary', 'info', 'warning', 'danger', 'success', 'greyscale';
+
+$scheme-selectors: ();
+$scheme-classes: ();
+
+@mixin generate-all-scales {
+  @each $group in $color-groups {
+    @include f.generate-color-scale($group);
+  }
+}
+
+@mixin color-util {
+
+  --color-bg-base: var(--base-bg-base);
+  --color-bg-menu: var(--base-bg-menu);
+  --color-bg-element: var(--base-bg-element);
+  --color-bg-top: var(--base-bg-top);
+  --color-bg-color: var(--base-bg-color);
+  --color-text-strong: var(--base-text-strong);
+  --color-text-base: var(--base-text-base);
+  --color-text-weak: var(--base-text-weak);
+
+  @each $color in $color-groups {
+    --#{$color}-bg-base: light-dark(var(--#{$color}-900), var(--#{$color}-100));
+    --#{$color}-bg-menu: light-dark(var(--#{$color}-875), var(--#{$color}-125));
+    --#{$color}-bg-element: light-dark(var(--#{$color}-800), var(--#{$color}-200));
+    --#{$color}-bg-top: light-dark(var(--#{$color}-700), var(--#{$color}-300));
+    --#{$color}-bg-color: var(--#{$color}-500);
+    --#{$color}-text-strong: light-dark(var(--#{$color}-100), var(--#{$color}-900));
+    --#{$color}-text-base: light-dark(var(--#{$color}-200), var(--#{$color}-800));
+    --#{$color}-text-weak: light-dark(var(--#{$color}-300), var(--#{$color}-700));
+  }
+
+  @each $color in $color-groups {
+    .is-#{$color} {
+      --color-bg-base: var(--#{$color}-bg-base);
+      --color-bg-menu: var(--#{$color}-bg-menu);
+      --color-bg-element: var(--#{$color}-bg-element);
+      --color-bg-top: var(--#{$color}-bg-top);
+      --color-bg-color: var(--#{$color}-bg-color);
+      --color-text-strong: var(--#{$color}-text-strong);
+      --color-text-base: var(--#{$color}-text-base);
+      --color-text-weak: var(--#{$color}-text-weak);
+    }
+  }
+}
+
+@each $scheme in $schemes {
+  $scheme-selectors: list.append(
+    $scheme-selectors,
+    "[data-scheme=#{$scheme}]",
+    "comma"
+  );
+  $scheme-classes: list.append(
+    $scheme-classes,
+    ".#{$scheme}",
+    "comma"
+  );
+}
+
+:root, #{$scheme-selectors}, #{$scheme-classes} {
+  @include generate-all-scales;
+  @include color-util;
+}
+@include f.generate-color-utilities($color-groups);
+@include f.generate-single-color-utilities('black' 'white');

@@ -1,0 +1,30 @@
+.card {
+  --card-bg-element: var(--color-bg-element);
+  --card-bg-top: var(--color-bg-top);
+  --card-text-base: var(--color-text-base);
+  --card-text-strong: var(--color-text-strong);
+
+  background-color: var(--card-bg-element);
+  color: var(--card-text-base);
+  padding: var(--padding-base);
+  width:100%;
+  border-radius: var(--border-radius-small);
+
+  &.is-padding-xs {
+    padding: var(--padding-xs);
+  }
+  &.is-padding-small {
+    padding: var(--padding-small);
+  }
+  &.is-padding-large {
+    padding: var(--padding-large);
+  }
+  &.is-padding-xl {
+    padding: var(--padding-xl);
+  }
+
+  &.is-top {
+    background-color: var(--card-bg-top);
+    color: var(--card-text-strong);
+  }
+}

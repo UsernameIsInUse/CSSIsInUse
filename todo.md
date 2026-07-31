@@ -1,0 +1,63 @@
+# Todo
+
+- Tokens
+  - Color system (100-900)
+    - [x] Base palette
+    - [x] Automatic semantic token generation
+  - Typography (100-900)
+    - [x] Font families (base, heading, monospace)
+    - [x] Font sizes (100-700, 600 being base normal size)
+    - [x] Transform (bold, italics, etc)
+  - Spacing (xs-xl)
+    - [x] Spacing scale (margins, padding, etc)
+    - [x] Basic block extend for universal padding (thanks bulma)
+  - Misc (xs-xl)
+    - [x] Border radius
+    - [x] Transition durations
+- Base Styles
+  - [x] CSS Reset
+  - [x] Default typography styles
+  - [x] Link styles
+  - [x] Selection styles
+  - [x] Focus-visible defaults
+- Layout system
+  - Container
+    - [x] Max widths
+    - [x] Responsive padding
+    - [x] Fluid container option
+  - Grid
+    - [ ] CSS grid abstraction
+    - [ ] Responsive columns
+    - [ ] Gap utilities
+  - [ ] Flex utilities (direction, wrap, alignment, etc)
+- Utility classes
+  - [ ] Display (block, inline, inline-block, flex, grid, none)
+  - [ ] Position (relative, absolute, fixed, sticky)
+  - [ ] Overflow (hidden, auto, scroll)
+  - [ ] Spacing (margin, padding, gap)
+  - [ ] Text (align, weight, transform, truncate, wrap)
+  - [x] Color (background, text, border)
+  - [ ] Cursor (pointed, not-allowed, etc)
+  - [ ] Width/Height (100%, auto, min/max variants, vh, etc)
+  - [ ] Misc (z-index, shadows, transitions, etc etc)
+- Components
+  - https://www.w3.org/WAI/ARIA/apg/patterns/
+  - https://open-ui.org/
+  - [x] Forms (Input, textaera, select, checkbox, radio, label, field wrapper, help text, error message, and validation/disabled/focus states + size variants)
+  - [x] Buttons (Solid, outline, ghost, link, and hover/active/disabled/loading states + size variants)
+  - [x] Dropdown Select -- choices.js
+  - [x] Chip
+  - [x] Icons
+  - [x] Sidebar
+  - [x] Navbar
+  - [x] Dropdown
+  - [x] Menu
+  - [x] Tooltips
+  - [x] Card
+  - [ ] Modal
+  - [ ] Table
+- [x] Everything built to be dark-mode first, with a light mode variant
+- [x] Everything built with semantic HTML elements where possible, aria attributes where not, and using common design patterns over arbitrary class names
+- [x] Everything built to be customizable with utility classes to change colors, paddings, sizes, filled/unfilled, etc
+- [x] Everything built to be generative, so I'm not manually creating new derived variables often
+- [x] Everything built to be accessible by default

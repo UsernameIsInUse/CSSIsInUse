@@ -1,0 +1,56 @@
+@use '../utilities/functions' as f;
+@use "../utilities/extends";
+
+.navbar {
+  --nav-bg-base: var(--color-bg-base);
+  --nav-text-strong: var(--color-text-strong);
+
+  background-color: var(--nav-bg-base);
+  color: var(--nav-text-strong);
+  display: flex;
+  flex-direction: row;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: var(--navbar-height);
+  z-index: var(--z-index-navbar);;
+  padding-left: f.fluid_clamp(1rem, 2rem);
+  padding-right: f.fluid_clamp(1rem, 2rem);
+  padding-top: var(--padding-small);
+  padding-bottom: var(--padding-small);
+  gap: var(--padding-base);
+  align-items: center;
+
+  .nav {
+    display: flex;
+    flex-direction: row;
+    gap: var(--padding-base);
+    align-items: center;
+    justify-content: space-between;
+    width:100%;
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: row;
+    gap: var(--padding-base);
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    @extend %transitions;
+    transition-property: opacity;
+    font-size: var(--text-size-logo);
+    color: var(--nav-text-strong);
+
+    &:hover {
+      opacity: var(--opacity-dark);
+    }
+  }
+}
+
+.logo {
+  font-family: var(--font-logo);
+  font-weight: var(--weight-extrabold);
+}

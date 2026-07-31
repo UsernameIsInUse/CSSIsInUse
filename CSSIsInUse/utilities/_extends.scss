@@ -1,0 +1,25 @@
+@use "mixins";
+
+%block-xl {
+  @include mixins.block-xl;
+}
+
+%block-large {
+  @include mixins.block-large;
+}
+
+%block {
+  @include mixins.block;
+}
+
+%block-small {
+  @include mixins.block-small;
+}
+
+%transitions {
+  @include mixins.transitions;
+}
+
+%no-transitions {
+  @include mixins.no-transitions;
+}

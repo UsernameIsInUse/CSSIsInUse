@@ -1,0 +1,58 @@
+// Defines the base scheme for the website. If you create a new scheme, define it's data-scheme and class name (ignoring root), and anything from this file you override will be overriden when you apply the class or data-scheme attribute. For example, if I make a scheme that only changes the primary hue, when I apply that class that is the only thing that will change. This will also work if you compile the SCSS, and then create a new .CSS scheme after it.
+
+:root, .default, [data-scheme=default] {
+  // defines how light and dark each color is permitted to go.
+  --light: 0.98;
+  --dark: 0.15;
+
+  // the base color should be something fairly desaturated and it should share the same brightness as the rest of the theme. the darkest and lightest versions will be used for ui elements. All colors are in OKLCH.
+  --base-l: 0.6;
+  --base-c: 0.0337;
+  --base-h: 200;
+  --base-falloff: 0.5;
+
+  --primary-l: var(--base-l);
+  --primary-c: 0.27;
+  --primary-h: 15;
+  --primary-falloff: 0.7;
+
+  --info-l: var(--base-l);
+  --info-c: 0.1784;
+  --info-h: 240;
+  --info-falloff: 0.7;
+
+  --success-l: var(--base-l);
+  --success-c: 0.2263;
+  --success-h: 140;
+  --success-falloff: 0.7;
+
+  --warning-l: 0.7;
+  --warning-c: 0.1664;
+  --warning-h: 80;
+  --warning-falloff: 0.7;
+
+  --danger-l: var(--base-l);
+  --danger-c: 0.2122;
+  --danger-h: 40;
+  --danger-falloff: 0.7;
+
+  --greyscale-l: var(--base-l);
+  --greyscale-c: 0;
+  --greyscale-h: 0;
+  --greyscale-falloff: 0;
+
+  --black: black;
+  --white: white;
+
+  --font-body: proxima-nova, sans-serif;
+  --font-header: proxima-nova, sans-serif;
+  --font-monospace: source-code-pro, monospace;
+  --font-logo: ofelia-display, proxima-nova, sans-serif;
+
+  // temp
+
+  .paint {
+    padding: var(--padding-base);
+    font-weight: bold;
+  }
+}

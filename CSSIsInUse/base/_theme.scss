@@ -1,0 +1,31 @@
+@mixin light-mode {
+  color-scheme: only light;
+  --ti-dark-circle: "\f671";
+  --ti-light-circle: "\ea6b";
+  --ch-x: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iaWNvbiBpY29uLXRhYmxlciBpY29ucy10YWJsZXItb3V0bGluZSBpY29uLXRhYmxlci14Ij4KCTxwYXRoIHN0cm9rZT0ibm9uZSIgZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIgLz4KCTxwYXRoIGQ9Ik0xOCA2bC0xMiAxMiIgLz4KCTxwYXRoIGQ9Ik02IDZsMTIgMTIiIC8+Cjwvc3ZnPg==");
+}
+
+@mixin dark-mode {
+  color-scheme: only dark;
+  --ti-dark-circle: "\ea6b";
+  --ti-light-circle: "\f671";
+  --ch-x: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iaWNvbiBpY29uLXRhYmxlciBpY29ucy10YWJsZXItb3V0bGluZSBpY29uLXRhYmxlci14Ij4KCTxwYXRoIHN0cm9rZT0ibm9uZSIgZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIgLz4KCTxwYXRoIGQ9Ik0xOCA2bC0xMiAxMiIgLz4KCTxwYXRoIGQ9Ik02IDZsMTIgMTIiIC8+Cjwvc3ZnPg==");
+}
+
+
+@media (prefers-color-scheme: light) {
+  :root {
+    @include light-mode;
+  }
+}
+:root,
+:root [data-theme=dark],
+:root .dark {
+  @include dark-mode;
+}
+
+:root [data-theme=light],
+:root .light {
+  @include light-mode;
+}
+

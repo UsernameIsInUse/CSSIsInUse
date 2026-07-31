@@ -1,0 +1,112 @@
+@use '../utilities/functions' as f;
+@use "../utilities/extends";
+
+.field {
+  @extend %block-large;
+  display: flex;
+  width: 100%;
+
+  & > *:not(:last-child) {
+    margin-bottom: var(--padding-small);
+  }
+}
+
+.label {
+  @extend %block-small;
+  --label-text-strong: var(--color-text-strong);
+  --label-text-base: var(--color-text-base);
+  --label-text-weak: var(--color-text-weak);
+  --label-bg-color: var(--color-bg-color);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-strong);;
+
+  &.is-strong {
+    color: var(--label-text-strong);
+  }
+  &.is-text {
+    color: var(--label-text-base);
+  }
+  &.is-weak {
+    color: var(--label-text-weak);
+  }
+  &.is-color {
+    color: var(--label-bg-color);
+  }
+}
+
+.input, .textarea {
+  --input-bg-base: var(--color-bg-base);
+  --input-bg-element: var(--color-bg-element);
+  --input-bg-top: var(--color-bg-top);
+  --input-text-strong: var(--color-text-strong);
+  --input-bg-color: var(--color-bg-color);
+    
+  padding: var(--input-padding-base);
+  background-color: var(--input-bg-base);
+  color: var(--input-text);
+  border: 2px solid var(--input-bg-color);
+  width: 100%;
+  border-radius: var(--border-radius-small);
+  position: relative;
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+
+  &:focus {
+    @extend %no-transitions;
+    outline: solid 2px var(--input-bg-top);
+    offset: 2px;
+  }
+
+  &.is-small {
+    padding: var(--input-padding-small);
+    font-size: var(--text-size-7);
+  }
+
+  &:disabled, &.disabled {
+    opacity: var(--opacity-disabled);
+    cursor: not-allowed;
+  }
+}
+
+.textarea{
+  --ta-height: calc(var(--padding-base) * 6);
+  min-height: var(--ta-height);
+  height: var(--ta-height);
+
+  &.is-small {
+    --ta-height: 2.625rem;
+    padding: var(--input-padding-base);
+    font-size: var(--text-size-base);
+  }
+
+  &.is-large {
+    --ta-height: 12rem;
+  }
+}
+
+.checkbox, .radio {
+  --cb-text-strong: var(--color-text-strong);
+  --cb-bg-color: var(--color-bg-color);
+  --cb-text-weak: var(--color-text-weak);
+
+  color: var(--cb-text-strong);
+  accent-color: var(--cb-bg-color);
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1.25;
+  position: relative;
+
+  input {
+    cursor: pointer;
+  }
+
+  &[disabled],
+  fieldset[disabled] &,
+  input[disabled] {
+    color: var(--cb-text-weak);
+    cursor: not-allowed;
+  }
+
+}
