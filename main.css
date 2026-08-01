@@ -322,6 +322,7 @@ progress {
   --padding-section-large: calc(var(--padding-base) * 8);
   --input-padding-base: var(--padding-small) var(--padding-base);
   --input-padding-small: var(--padding-xs) var(--padding-small);
+  --input-padding-large: var(--padding-base) var(--padding-large);
   --sidebar-width: var(--breakpoint-min);
   --navbar-height: 4rem;
   --icon-size-base: 1.25rem;
@@ -361,7 +362,7 @@ progress {
   margin-bottom: var(--padding-large);
 }
 
-.group:not(:last-child), .notification:not(:last-child), .block:not(:last-child) {
+table:not(:last-child), .group:not(:last-child), .notification:not(:last-child), .block:not(:last-child) {
   margin-bottom: var(--padding-base);
 }
 
@@ -3173,6 +3174,7 @@ hr {
 .button.is-icon {
   padding: var(--padding-xs);
   border-radius: var(--border-radius-small);
+  --btn-glow-size: var(--glow-size-small);
 }
 .button.is-icon .icon {
   display: flex;
@@ -3503,6 +3505,58 @@ a.chip:disabled, a.chip.disabled {
 .menu li ul {
   margin-left: var(--padding-base);
   list-style: none;
+}
+
+table {
+  --table-cell-padding: var(--input-padding-base);
+  width: 100%;
+  border-spacing: 0;
+  text-align: left;
+}
+table, table th, table td, table tr, table thead, table tbody, table tfoot, table .is-color, table .is-active {
+  --table-bg-base: var(--color-bg-base);
+  --table-bg-element: var(--color-bg-element);
+  --table-bg-top: var(--color-bg-top);
+  --table-bg-color: var(--color-bg-color);
+  --table-text-strong: var(--color-text-strong);
+  height: fit-content;
+}
+table.is-small {
+  --table-cell-padding: var(--input-padding-small);
+}
+table.is-large {
+  --table-cell-padding: var(--input-padding-large);
+}
+table th, table td {
+  padding: var(--table-cell-padding);
+  color: var(--table-text-strong);
+  background-color: var(--table-bg-base);
+}
+table th, table tfoot td {
+  font-weight: var(--weight-bold);
+}
+table th {
+  border-bottom: var(--border-thickness-base) solid var(--table-bg-top);
+}
+table tfoot tr:first-child td {
+  border-top: var(--border-thickness-base) solid var(--table-bg-top);
+}
+table td {
+  border-bottom: var(--border-thickness-light) solid var(--table-bg-top);
+}
+table tbody tr:last-child td, table tfoot tr:last-child td {
+  border-bottom: none;
+}
+table.is-striped tbody tr:nth-child(odd) td {
+  background-color: var(--table-bg-element);
+}
+table .is-color, table .is-active {
+  background-color: var(--table-bg-color) !important;
+  border-color: var(--table-bg-top);
+}
+table .is-color td, table .is-active td {
+  background-color: var(--table-bg-color) !important;
+  border-color: var(--table-bg-top);
 }
 
 /* ===============================

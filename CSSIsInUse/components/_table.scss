@@ -1,27 +1,68 @@
 @use "../utilities/extends";
 
 table {
-  --table-bg-element: var(--color-bg-element);
-  --table-bg-top: var(--color-bg-top);
-  --table-bg-color: var(--color-bg-color);
-  --table-text-strong: var(--color-text-strong);
-  --table-text-base: var(--color-text-base);
-  --table-text-weak: var(--color-text-weal);
+  &,th,td,tr,thead,tbody,tfoot,.is-color,.is-active {
+    --table-bg-base: var(--color-bg-base);
+    --table-bg-element: var(--color-bg-element);
+    --table-bg-top: var(--color-bg-top);
+    --table-bg-color: var(--color-bg-color);
+    --table-text-strong: var(--color-text-strong);
+    height: fit-content;
+  }
+
+  --table-cell-padding: var(--input-padding-base);
 
   @extend %block;
   width: 100%;
+  border-spacing: 0;
+  text-align: left;
 
-  color: var(--table-text-base);
+  &.is-small {
+    --table-cell-padding: var(--input-padding-small);
+  }
+  &.is-large {
+    --table-cell-padding: var(--input-padding-large);
+  }
 
   th, td {
-    padding: var(--input-padding-small);
+    padding: var(--table-cell-padding);
     color: var(--table-text-strong);
+    background-color: var(--table-bg-base);
   }
+
+  th, tfoot td {
+    font-weight: var(--weight-bold);
+  }
+
   th {
-    border: var(--border-thickness-base) solid var(--table-text-strong); // not working
+    border-bottom: var(--border-thickness-base) solid var(--table-bg-top);
+  }
+
+  tfoot tr:first-child td {
+    border-top: var(--border-thickness-base) solid var(--table-bg-top);
   }
 
   td {
-    border-bottom: var(--border-thickness-light) solid var(--table-text-weak);
+    border-bottom: var(--border-thickness-light) solid var(--table-bg-top);
   }
+
+  tbody tr:last-child td, tfoot tr:last-child td {
+    border-bottom: none;
+  }
+
+  &.is-striped {
+    tbody tr:nth-child(odd) td {
+      background-color: var(--table-bg-element);
+    }
+  }
+
+  .is-color, .is-active {
+    background-color: var(--table-bg-color) !important;
+    border-color: var(--table-bg-top);
+    td {
+      background-color: var(--table-bg-color) !important;
+      border-color: var(--table-bg-top);
+    }
+  }
+
 }
