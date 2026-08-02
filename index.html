@@ -219,19 +219,19 @@
               </div>
             </div>
             <h4>XS Padding</h4>
-            <div class="card is-info is-top is-padding-xs">
+            <div class="card is-info is-top is-xs">
               <p>A card can have any element inside of it</p>
             </div>
             <h4>Small Padding</h4>
-            <div class="card is-success is-padding-small group is-centered">
+            <div class="card is-success is-small group is-centered">
               <p>Including a </p> <button class="button">Button</button>
             </div>
             <h4>Large Padding</h4>
-            <div class="card is-warning is-top is-padding-large group">
+            <div class="card is-warning is-top is-large group">
               <p>Or a </p> <span class="chip is-danger">Chip</span>
             </div>
             <h4>XL Padding</h4>
-            <div class="card is-primary is-padding-xl">
+            <div class="card is-primary is-xl">
               <p>Or whatever else!</p>
             </div>
           </div>
@@ -997,6 +997,96 @@
                 </tr>
               </tfoot>
             </table>
+          </div>
+        </section>
+
+        <section class="section is-small">
+          <h3>Modals</h3>
+          <div class="container is-small">
+            <div class="group">
+              <div x-data="{ active: false }">
+                <button
+                  class="button"
+                  @click="active = !active">
+                  Launch Modal</button>
+                <div class="modal" :class="{ 'is-active' : active }">
+                  <section class="section container is-element is-small">
+                    <h2>Modal!</h2>
+                    <button
+                      class="button"
+                      @click="active = !active">
+                      Close Modal</button>
+                  </section>
+                </div>
+              </div>
+              <div x-data="{ active: false }">
+                <button
+                  class="button"
+                  @click="active = !active">
+                  Nothing in it except for close button</button>
+                <div class="modal is-centered" :class="{ 'is-active' : active }">
+                  <button
+                    class="button is-icon is-primary is-active"
+                    aria-label="Close Modal"
+                    @click="active = !active">
+                    <i class="ti ti-x"></i></button>
+                </div>
+              </div>
+              <div x-data="{ active: false }">
+                <button
+                  class="button"
+                  @click="active = !active">
+                  Really long modal</button>
+                <div class="modal" :class="{ 'is-active' : active }">
+                  <section class="section container is-element is-small">
+                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h2>
+                    <button
+                      class="button is-icon is-primary is-active"
+                      aria-label="Close Modal"
+                      @click="active = !active">
+                      <i class="ti ti-x"></i></button>
+                  </section>
+                </div>
+              </div>
+
+              <div x-data="{ active: false }">
+                <button
+                  class="button"
+                  @click="active = !active">
+                  Pretty modal</button>
+                <div class="modal" :class="{ 'is-active' : active }">
+                  <section class="section container is-small is-transparent">
+                    <div class="card is-xl">
+                      <div class="group is-space-between is-aligned-start">
+                        <h3>Login</h3>
+                        <button
+                          class="button is-icon is-primary is-active"
+                          aria-label="Close Modal"
+                          @click="active = !active">
+                          <i class="ti ti-x"></i></button>
+                      </div>
+                      <form>
+                        <div class="field">
+                          <label for="username" class="label">Username</label>
+                          <input id="username" class="input">
+                        </div>
+                        <div class="field">
+                          <label for="password" class="label">Username</label>
+                          <input id="password" class="input" type="password">
+                        </div>
+                        <div class="field">
+                          <label class="checkbox">
+                            <input type="checkbox" />
+                            Remember me
+                          </label>
+                        </div>
+                        <input type="submit" class="button is-info" value="Login">
+                      </form>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 

@@ -1,6 +1,13 @@
 @use "../utilities/extends";
 
 table {
+  --table-cell-padding: var(--input-padding-base);
+
+  @extend %block;
+  width: 100%;
+  border-spacing: 0;
+  text-align: left;
+
   &,th,td,tr,thead,tbody,tfoot,.is-color,.is-active {
     --table-bg-base: var(--color-bg-base);
     --table-bg-element: var(--color-bg-element);
@@ -9,13 +16,6 @@ table {
     --table-text-strong: var(--color-text-strong);
     height: fit-content;
   }
-
-  --table-cell-padding: var(--input-padding-base);
-
-  @extend %block;
-  width: 100%;
-  border-spacing: 0;
-  text-align: left;
 
   &.is-small {
     --table-cell-padding: var(--input-padding-small);

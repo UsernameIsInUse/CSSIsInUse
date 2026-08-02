@@ -39,5 +39,16 @@
     justify-content: flex-end;
   }
 
+  &.is-space-between {
+    justify-content: space-between;
+  }
+
+  &.is-aligned-start {
+    align-items: flex-start;
+  }
+
+  &.is-aligned-end {
+    align-items: flex-end;
+  }
   
 }

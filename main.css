@@ -358,11 +358,11 @@ progress {
   margin-bottom: var(--padding-xl);
 }
 
-.field:not(:last-child), .block-large:not(:last-child) {
+.block-large:not(:last-child) {
   margin-bottom: var(--padding-large);
 }
 
-table:not(:last-child), .group:not(:last-child), .notification:not(:last-child), .block:not(:last-child) {
+table:not(:last-child), .group:not(:last-child), .field:not(:last-child), .notification:not(:last-child), .block:not(:last-child) {
   margin-bottom: var(--padding-base);
 }
 
@@ -2812,6 +2812,9 @@ hr {
 .section.is-element {
   background-color: var(--section-bg-element);
 }
+.section.is-transparent {
+  background-color: transparent;
+}
 
 .container {
   --container-bg-base: var(--color-bg-base);
@@ -2842,6 +2845,9 @@ hr {
 }
 .container.is-element {
   background-color: var(--section-bg-element);
+}
+.container.is-transparent {
+  background-color: transparent;
 }
 
 .columns {
@@ -3020,16 +3026,16 @@ hr {
   width: 100%;
   border-radius: var(--border-radius-small);
 }
-.card.is-padding-xs {
+.card.is-xs {
   padding: var(--padding-xs);
 }
-.card.is-padding-small {
+.card.is-small {
   padding: var(--padding-small);
 }
-.card.is-padding-large {
+.card.is-large {
   padding: var(--padding-large);
 }
-.card.is-padding-xl {
+.card.is-xl {
   padding: var(--padding-xl);
 }
 .card.is-top {
@@ -3175,6 +3181,7 @@ hr {
   padding: var(--padding-xs);
   border-radius: var(--border-radius-small);
   --btn-glow-size: var(--glow-size-small);
+  line-height: 1;
 }
 .button.is-icon .icon {
   display: flex;
@@ -3479,6 +3486,15 @@ a.chip:disabled, a.chip.disabled {
 .group.is-end {
   justify-content: flex-end;
 }
+.group.is-space-between {
+  justify-content: space-between;
+}
+.group.is-aligned-start {
+  align-items: flex-start;
+}
+.group.is-aligned-end {
+  align-items: flex-end;
+}
 
 .menu {
   --menu-bg-base: var(--color-bg-base);
@@ -3557,6 +3573,29 @@ table .is-color, table .is-active {
 table .is-color td, table .is-active td {
   background-color: var(--table-bg-color) !important;
   border-color: var(--table-bg-top);
+}
+
+.modal {
+  --modal-bg-base: var(--color-bg-base);
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: oklch(from var(--modal-bg-base) l c h/var(--opacity-dark));
+  z-index: var(--z-index-modal);
+  align-items: center;
+  flex-direction: column;
+  overflow-y: auto;
+  display: none;
+  padding: var(--padding-xl) 0;
+}
+.modal.is-active {
+  display: flex;
+}
+.modal.is-centered {
+  justify-content: center;
 }
 
 /* ===============================

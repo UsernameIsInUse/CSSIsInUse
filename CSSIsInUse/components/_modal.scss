@@ -1,0 +1,28 @@
+.modal {
+  --modal-bg-base: var(--color-bg-base);
+
+  display:none;
+  position: fixed;
+  left:0;
+  top:0;
+  right:0;
+  bottom:0;
+
+  background-color: oklch(from var(--modal-bg-base) l c h / var(--opacity-dark));
+  
+  z-index: var(--z-index-modal);
+  align-items: center;
+  flex-direction: column;
+  overflow-y: auto;
+  display:none;
+  padding: var(--padding-xl) 0;
+
+  &.is-active {
+    display:flex;
+  }
+
+  &.is-centered {
+    justify-content: center;
+  }
+  
+}

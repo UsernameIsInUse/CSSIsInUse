@@ -36,4 +36,8 @@
   &.is-element {
     background-color: var(--section-bg-element);
   }
+
+  &.is-transparent {
+    background-color: transparent;
+  }
 }

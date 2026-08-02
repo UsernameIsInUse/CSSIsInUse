@@ -51,7 +51,7 @@
   - [x] Sidebar
   - [x] Navbar
   - [x] Dropdown
-  - [x] Menu
+  - [ ] Menu
   - [x] Tooltips
   - [x] Card
   - [ ] Modal

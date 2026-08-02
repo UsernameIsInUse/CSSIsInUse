@@ -2,7 +2,7 @@
 @use "../utilities/extends";
 
 .field {
-  @extend %block-large;
+  @extend %block;
   display: flex;
   width: 100%;
 
