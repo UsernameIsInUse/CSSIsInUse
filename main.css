@@ -3502,6 +3502,8 @@ a.chip:disabled, a.chip.disabled {
   --menu-bg-top: var(--color-bg-top);
   --menu-text-strong: var(--color-text-strong);
   list-style: none;
+  width: calc(100% + 1rem);
+  margin-left: -0.5rem;
 }
 .menu a, .menu button, .menu .menu-item {
   transition-property: background-color;
@@ -3518,9 +3520,19 @@ a.chip:disabled, a.chip.disabled {
 .menu a.is-active, .menu button.is-active, .menu .menu-item.is-active {
   background-color: var(--menu-bg-top);
 }
+.menu ul {
+  margin-left: -0.5rem;
+  width: calc(100% + 1rem);
+}
+.menu li {
+  margin-bottom: 0.25rem;
+}
 .menu li ul {
   margin-left: var(--padding-base);
   list-style: none;
+  width: auto;
+  border-left: var(--border-thickness-base) solid var(--menu-bg-top);
+  padding-left: var(--padding-small);
 }
 
 table {

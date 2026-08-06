@@ -9,6 +9,8 @@
   @extend %block-small;
 
   list-style: none;
+  width: calc(100% + 1rem);
+  margin-left: -0.5rem;
 
   a, button, .menu-item {
     @extend %transitions;
@@ -29,8 +31,20 @@
     }
   }
 
+  ul {
+    margin-left: -0.5rem;
+    width: calc(100% + 1rem);
+  }
+
+  li {
+    margin-bottom: 0.25rem;
+  }
+
   li ul {
     margin-left: var(--padding-base);
     list-style: none;
+    width: auto;
+    border-left: var(--border-thickness-base) solid var(--menu-bg-top);
+    padding-left: var(--padding-small);
   }
 }

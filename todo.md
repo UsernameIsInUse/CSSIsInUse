@@ -51,10 +51,10 @@
   - [x] Sidebar
   - [x] Navbar
   - [x] Dropdown
-  - [ ] Menu
+  - [x] Menu
   - [x] Tooltips
   - [x] Card
-  - [ ] Modal
+  - [x] Modal
   - [x] Table
 - [x] Everything built to be dark-mode first, with a light mode variant
 - [x] Everything built with semantic HTML elements where possible, aria attributes where not, and using common design patterns over arbitrary class names
