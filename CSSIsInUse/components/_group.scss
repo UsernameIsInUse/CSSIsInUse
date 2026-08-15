@@ -1,7 +1,7 @@
-@use "../utilities/extends";
+@use "../utilities/mixins" as m;
 
 .group {
-  @extend %block;
+  @include m.block("base");
   align-items: center;
   display:flex;
   flex-flow: wrap;

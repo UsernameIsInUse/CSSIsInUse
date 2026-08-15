@@ -1,5 +1,4 @@
 @use '../utilities/functions' as f;
-@use "../utilities/extends";
 @use "../utilities/mixins" as m;
 
 .notifications {
@@ -38,7 +37,7 @@
 }
 
 .notification {
-  @extend %block;
+  @include m.block("base");
   --notif-padding: var(--padding-base);
   --notif-radius: var(--border-radius-base);
 
@@ -61,7 +60,7 @@
   @include m.glow(var(--notif-glow-size), var(--notif-color), var(--notif-glow-alpha));
 
   &:hover {
-    @extend %transitions;
+    @include m.transitions;
     --notif-glow-alpha: 1;
   }
 

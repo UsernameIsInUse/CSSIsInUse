@@ -41,18 +41,9 @@
   --greyscale-h: 0;
   --greyscale-falloff: 0;
 
-  --black: black;
-  --white: white;
-
-  --font-body: proxima-nova, sans-serif;
-  --font-header: proxima-nova, sans-serif;
-  --font-monospace: source-code-pro, monospace;
-  --font-logo: ofelia-display, proxima-nova, sans-serif;
-
-  // temp
-
-  .paint {
-    padding: var(--padding-base);
-    font-weight: bold;
-  }
+  // You can override anything from tokens. For example;
+  // --font-header: serif;
+  // --breakpoint-max: 91rem;
+  // --padding-base: 1.5rem;
+  // etc.
 }

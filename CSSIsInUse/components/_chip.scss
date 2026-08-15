@@ -1,5 +1,4 @@
 @use '../utilities/functions' as f;
-@use "../utilities/extends";
 @use "../utilities/mixins" as m;
 
 .chip {
@@ -37,12 +36,12 @@ a.chip {
   @include m.glow(var(--chip-glow-size), var(--chip-bg-top), var(--chip-glow-alpha));
 
   &:hover {
-    @extend %transitions;
+    @include m.transitions;
     --chip-glow-alpha: 1;
   }
 
   &:focus {
-    @extend %no-transitions;
+    @include m.no-transitions;
     outline: solid var(--border-thickness-base) var(--chip-bg-element);
     offset: var(--border-thickness-base);
   }

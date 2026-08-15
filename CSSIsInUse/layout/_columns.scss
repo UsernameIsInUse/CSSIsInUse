@@ -1,9 +1,9 @@
-@use "../utilities/extends";
+@use "../utilities/mixins" as m;
 
 .columns {
   --column-flex-basis: var(--breakpoint-min);
 
-  @extend %block-xl;
+  @include m.block("xl");
 
   display:flex;
   flex-direction: row;

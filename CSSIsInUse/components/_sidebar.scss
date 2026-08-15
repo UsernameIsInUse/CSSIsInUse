@@ -1,4 +1,4 @@
-@use "../utilities/extends";
+@use "../utilities/mixins" as m;
 
 .has-sidebar {
   display: flex;
@@ -22,7 +22,7 @@
   width: var(--sb-width);
   padding: var(--padding-base);
   transition: margin-left 0.2s;
-  @extend %transitions;
+  @include m.transitions;
 
   margin-left: calc(0px - var(--sb-width));
 
@@ -41,7 +41,7 @@
   min-inline-size: var(--sidebar-width);
   margin-left: 0;
   transition: margin-left 0.2s;
-  @extend %transitions;
+  @include m.transitions;
 
   .has-sidebar.open & {
     margin-left: var(--sidebar-width);

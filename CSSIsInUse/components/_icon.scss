@@ -1,4 +1,4 @@
-@use "../utilities/extends";
+@use "../utilities/mixins" as m;
 
 .icon {
   --icon-text-strong: var(--color-text-strong);
@@ -15,7 +15,7 @@
   height: var(--icon-size);
   width: var(--icon-size);
   font-size: var(--icon-size);
-  @extend %transitions;
+  @include m.transitions;
   transition-property: color;
   color: inherit;
 

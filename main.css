@@ -309,6 +309,8 @@ progress {
   --text-size-6: 1rem;
   --text-size-7: 0.8rem;
   --text-size-logo: clamp(1.75rem, 0.3571428571vw + 1.6785714286rem, 2rem);
+  --text-size-large: 1.25rem;
+  --text-size-xl: 1.5rem;
   --breakpoint-min: 20rem;
   --breakpoint-sm: 30rem;
   --breakpoint-md: 60rem;
@@ -352,33 +354,12 @@ progress {
   --glow-size-large: calc(var(--glow-size-base) * 1.5);
   --glow-size-small: calc(var(--glow-size-base) * 0.8);
   --glow-size-xs: calc(var(--glow-size-base) * 0.5);
-}
-
-.columns:not(:last-child), .block-xl:not(:last-child) {
-  margin-bottom: var(--padding-xl);
-}
-
-.block-large:not(:last-child) {
-  margin-bottom: var(--padding-large);
-}
-
-table:not(:last-child), .group:not(:last-child), .field:not(:last-child), .notification:not(:last-child), .block:not(:last-child) {
-  margin-bottom: var(--padding-base);
-}
-
-.menu:not(:last-child), .label:not(:last-child), .block-small:not(:last-child) {
-  margin-bottom: var(--padding-small);
-}
-
-.menu a, .menu button, .menu .menu-item, .dropdown a.dropdown-item, .dropdown button.dropdown-item, a.chip:hover, .icon, .button, .button.is-ghost, .notification:hover, .sidebar, .main, .navbar .logo {
-  -webkit-transition-duration: 0.2s;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-out;
-}
-
-a.chip:focus, .input:focus, .textarea:focus {
-  -webkit-transition-duration: 0s;
-  transition-duration: 0s;
+  --black: black;
+  --white: white;
+  --font-header: proxima-nova, sans-serif;
+  --font-body: var(--font-header);
+  --font-monospace: source-code-pro, monospace;
+  --font-logo: ofelia-display, proxima-nova, sans-serif;
 }
 
 * {
@@ -404,6 +385,22 @@ body {
   font-family: var(--font-body);
   background: var(--color-bg-base);
   color: var(--color-text-base);
+}
+
+.block-xl:not(:last-child) {
+  margin-bottom: var(--padding-xl);
+}
+
+.block-large:not(:last-child) {
+  margin-bottom: var(--padding-large);
+}
+
+.block:not(:last-child) {
+  margin-bottom: var(--padding-base);
+}
+
+.block-small:not(:last-child) {
+  margin-bottom: var(--padding-small);
 }
 
 h1, h2, h3, h4, h5, h6, button, input[type=submit], .button, a {
@@ -445,9 +442,9 @@ h6 {
 }
 
 small {
-  --small-color: var(--color-text-weak);
+  --small-text-weak: var(--color-text-weak);
   font-size: var(--text-size-7);
-  color: var(--small-color);
+  color: var(--small-text-weak);
 }
 
 code {
@@ -523,16 +520,6 @@ hr {
   --greyscale-c: 0;
   --greyscale-h: 0;
   --greyscale-falloff: 0;
-  --black: black;
-  --white: white;
-  --font-body: proxima-nova, sans-serif;
-  --font-header: proxima-nova, sans-serif;
-  --font-monospace: source-code-pro, monospace;
-  --font-logo: ofelia-display, proxima-nova, sans-serif;
-}
-:root .paint, .default .paint, [data-scheme=default] .paint {
-  padding: var(--padding-base);
-  font-weight: bold;
 }
 
 .olive, [data-scheme=olive] {
@@ -2857,6 +2844,9 @@ hr {
   flex-wrap: wrap;
   gap: var(--padding-base);
 }
+.columns:not(:last-child) {
+  margin-bottom: var(--padding-xl);
+}
 .columns.min-small {
   --column-flex-basis: var(--padding-section-large);
 }
@@ -2958,6 +2948,9 @@ hr {
   justify-content: space-between;
 }
 .navbar .logo {
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
   transition-property: opacity;
   font-size: var(--text-size-logo);
   color: var(--nav-text-strong);
@@ -2992,6 +2985,9 @@ hr {
   width: var(--sb-width);
   padding: var(--padding-base);
   transition: margin-left 0.2s;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
   margin-left: calc(0px - var(--sb-width));
 }
 .has-sidebar.open .sidebar {
@@ -3007,6 +3003,9 @@ hr {
   min-inline-size: var(--sidebar-width);
   margin-left: 0;
   transition: margin-left 0.2s;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
 }
 .has-sidebar.open .main {
   margin-left: var(--sidebar-width);
@@ -3093,7 +3092,13 @@ hr {
   position: relative;
   box-shadow: 0 0 var(--notif-glow-size) oklch(from var(--notif-color) l c h/var(--notif-glow-alpha));
 }
+.notification:not(:last-child) {
+  margin-bottom: var(--padding-base);
+}
 .notification:hover {
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
   --notif-glow-alpha: 1;
 }
 .notification.quiet {
@@ -3113,6 +3118,9 @@ hr {
   --btn-text-strong: var(--color-text-strong);
   --btn-glow-size: var(--glow-size-large);
   --btn-glow-alpha: var(--opacity-disabled);
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
   transition-property: background-color, box-shadow;
   padding: var(--input-padding-base);
   background-color: var(--btn-bg-base);
@@ -3153,6 +3161,9 @@ hr {
   font-size: var(--text-size-xl);
 }
 .button.is-ghost {
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
   --btn-bg-color: transparent;
   background-color: transparent;
   --btn-glow-alpha: 0;
@@ -3203,6 +3214,9 @@ hr {
   height: var(--icon-size);
   width: var(--icon-size);
   font-size: var(--icon-size);
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
   transition-property: color;
   color: inherit;
 }
@@ -3240,6 +3254,9 @@ hr {
   display: flex;
   width: 100%;
 }
+.field:not(:last-child) {
+  margin-bottom: var(--padding-base);
+}
 .field > *:not(:last-child) {
   margin-bottom: var(--padding-small);
 }
@@ -3251,6 +3268,9 @@ hr {
   --label-bg-color: var(--color-bg-color);
   font-weight: var(--weight-bold);
   color: var(--color-text-strong);
+}
+.label:not(:last-child) {
+  margin-bottom: var(--padding-small);
 }
 .label.is-strong {
   color: var(--label-text-strong);
@@ -3284,6 +3304,8 @@ hr {
   user-select: none; /* Standard */
 }
 .input:focus, .textarea:focus {
+  -webkit-transition-duration: 0s;
+  transition-duration: 0s;
   outline: solid 2px var(--input-bg-top);
   offset: 2px;
 }
@@ -3304,7 +3326,7 @@ hr {
 .textarea.is-small {
   --ta-height: 2.625rem;
   padding: var(--input-padding-base);
-  font-size: var(--text-size-base);
+  font-size: var(--text-size-6);
 }
 .textarea.is-large {
   --ta-height: 12rem;
@@ -3362,9 +3384,14 @@ a.chip {
   box-shadow: 0 0 var(--chip-glow-size) oklch(from var(--chip-bg-top) l c h/var(--chip-glow-alpha));
 }
 a.chip:hover {
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
   --chip-glow-alpha: 1;
 }
 a.chip:focus {
+  -webkit-transition-duration: 0s;
+  transition-duration: 0s;
   outline: solid var(--border-thickness-base) var(--chip-bg-element);
   offset: var(--border-thickness-base);
 }
@@ -3431,6 +3458,9 @@ a.chip:disabled, a.chip.disabled {
 }
 .dropdown a.dropdown-item, .dropdown button.dropdown-item {
   color: var(--dropdown-text-strong);
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
   transition-property: background-color;
 }
 .dropdown a.dropdown-item:hover, .dropdown a.dropdown-item:active, .dropdown button.dropdown-item:hover, .dropdown button.dropdown-item:active {
@@ -3461,6 +3491,9 @@ a.chip:disabled, a.chip.disabled {
   flex-flow: wrap;
   gap: var(--padding-small);
   justify-content: flex-start;
+}
+.group:not(:last-child) {
+  margin-bottom: var(--padding-base);
 }
 .group.is-large-gap {
   gap: var(--padding-base);
@@ -3505,7 +3538,13 @@ a.chip:disabled, a.chip.disabled {
   width: calc(100% + 1rem);
   margin-left: -0.5rem;
 }
+.menu:not(:last-child) {
+  margin-bottom: var(--padding-small);
+}
 .menu a, .menu button, .menu .menu-item {
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
   transition-property: background-color;
   background-color: var(--menu-bg-element);
   color: var(--menu-text-strong);
@@ -3540,6 +3579,9 @@ table {
   width: 100%;
   border-spacing: 0;
   text-align: left;
+}
+table:not(:last-child) {
+  margin-bottom: var(--padding-base);
 }
 table, table th, table td, table tr, table thead, table tbody, table tfoot, table .is-color, table .is-active {
   --table-bg-base: var(--color-bg-base);

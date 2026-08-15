@@ -1,24 +1,6 @@
-@mixin block {
+@mixin block($size) {
   &:not(:last-child) {
-    margin-bottom: var(--padding-base);
-  }
-}
-
-@mixin block-small {
-  &:not(:last-child) {
-    margin-bottom: var(--padding-small);
-  }
-}
-
-@mixin block-large {
-  &:not(:last-child) {
-    margin-bottom: var(--padding-large);
-  }
-}
-
-@mixin block-xl {
-  &:not(:last-child) {
-    margin-bottom: var(--padding-xl);
+    margin-bottom: var(--padding-#{$size});
   }
 }
 

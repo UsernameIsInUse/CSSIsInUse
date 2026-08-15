@@ -1,8 +1,8 @@
 @use '../utilities/functions' as f;
-@use "../utilities/extends";
+@use "../utilities/mixins" as m;
 
 .field {
-  @extend %block;
+  @include m.block("base");
   display: flex;
   width: 100%;
 
@@ -12,7 +12,7 @@
 }
 
 .label {
-  @extend %block-small;
+  @include m.block("small");
   --label-text-strong: var(--color-text-strong);
   --label-text-base: var(--color-text-base);
   --label-text-weak: var(--color-text-weak);
@@ -54,7 +54,7 @@
   user-select: none; /* Standard */
 
   &:focus {
-    @extend %no-transitions;
+    @include m.no-transitions;
     outline: solid 2px var(--input-bg-top);
     offset: 2px;
   }
@@ -78,7 +78,7 @@
   &.is-small {
     --ta-height: 2.625rem;
     padding: var(--input-padding-base);
-    font-size: var(--text-size-base);
+    font-size: var(--text-size-6);
   }
 
   &.is-large {

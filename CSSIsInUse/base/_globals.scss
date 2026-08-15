@@ -1,5 +1,4 @@
-@use '../utilities/functions' as f;
-@use "../utilities/extends";
+@use "../utilities/mixins" as m;
 
 * {
   color: inherit;
@@ -27,19 +26,19 @@ body {
 }
 
 .block-xl {
-  @extend %block-xl;
+  @include m.block("xl");
 }
 
 .block-large {
-  @extend %block-large;
+  @include m.block("large");
 }
 
 .block {
-  @extend %block;
+  @include m.block("base");
 }
 
 .block-small {
-  @extend %block-small;
+  @include m.block("small");
 }
 
 h1, h2, h3, h4, h5, h6, button, input[type="submit"], .button, a {
@@ -83,9 +82,9 @@ h6 {
 }
 
 small {
-  --small-color: var(--color-text-weak);
+  --small-text-weak: var(--color-text-weak);
   font-size: var(--text-size-7);
-  color:var(--small-color);
+  color:var(--small-text-weak);
 }
 
 code {
@@ -129,5 +128,3 @@ hr{
 .is-radius-rounded {
   border-radius: var(--border-radius-rounded);
 }
-
-//https://github.com/frontaid/natural-selection/blob/main/boilerplate.css

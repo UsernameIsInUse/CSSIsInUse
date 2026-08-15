@@ -1,9 +1,9 @@
-@use "../utilities/extends";
+@use "../utilities/mixins" as m;
 
 table {
   --table-cell-padding: var(--input-padding-base);
 
-  @extend %block;
+  @include m.block("base");
   width: 100%;
   border-spacing: 0;
   text-align: left;

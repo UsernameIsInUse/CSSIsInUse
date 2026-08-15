@@ -22,6 +22,8 @@
   --text-size-6: 1rem;
   --text-size-7: 0.8rem;
   --text-size-logo: #{f.fluid-clamp($text-size-logo-min, $text-size-logo-max)};
+  --text-size-large: #{$text-size-4-min};
+  --text-size-xl: #{$text-size-5-max};
 
   --breakpoint-min: 20rem; //320px
   --breakpoint-sm: 30rem; //480px
@@ -77,4 +79,11 @@
   --glow-size-small: calc(var(--glow-size-base) * 0.8);
   --glow-size-xs: calc(var(--glow-size-base) * 0.5);
 
+  --black: black;
+  --white: white;
+
+  --font-header: proxima-nova, sans-serif;
+  --font-body: var(--font-header);
+  --font-monospace: source-code-pro, monospace;
+  --font-logo: ofelia-display, proxima-nova, sans-serif;
 }

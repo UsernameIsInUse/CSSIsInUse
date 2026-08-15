@@ -1,5 +1,5 @@
 @use '../utilities/functions' as f;
-@use "../utilities/extends";
+@use "../utilities/mixins" as m;
 
 .navbar {
   --nav-bg-base: var(--color-bg-base);
@@ -39,7 +39,7 @@
   }
 
   .logo {
-    @extend %transitions;
+    @include m.transitions;
     transition-property: opacity;
     font-size: var(--text-size-logo);
     color: var(--nav-text-strong);

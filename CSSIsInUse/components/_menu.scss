@@ -1,4 +1,4 @@
-@use "../utilities/extends";
+@use "../utilities/mixins" as m;
 
 .menu {
   --menu-bg-base: var(--color-bg-base);
@@ -6,14 +6,14 @@
   --menu-bg-top: var(--color-bg-top);
   --menu-text-strong: var(--color-text-strong);
 
-  @extend %block-small;
+  @include m.block("small");
 
   list-style: none;
   width: calc(100% + 1rem);
   margin-left: -0.5rem;
 
   a, button, .menu-item {
-    @extend %transitions;
+    @include m.transitions;
     transition-property: background-color;
     background-color: var(--menu-bg-element);
     color: var(--menu-text-strong);
