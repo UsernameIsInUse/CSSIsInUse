@@ -1,11 +1,7 @@
 @use "../utilities/mixins" as m;
 
 .button {
-  --btn-bg-base: var(--color-bg-base);
-  --btn-bg-element: var(--color-bg-element);
-  --btn-bg-top: var(--color-bg-top);
-  --btn-bg-color: var(--color-bg-color);
-  --btn-text-strong: var(--color-text-strong);
+  @include m.colors("btn","base","element","top","color","strong");
 
   --btn-glow-size: var(--glow-size-large);
   --btn-glow-alpha: var(--opacity-disabled);
@@ -14,9 +10,9 @@
   transition-property: background-color, box-shadow;
   
   padding: var(--input-padding-base);
-  background-color: var(--btn-bg-base);
-  color: var(--btn-text-strong);
-  border: var(--border-thickness-base) solid var(--btn-bg-color);
+  background-color: var(--btn-color-base);
+  color: var(--btn-color-strong);
+  border: var(--border-thickness-base) solid var(--btn-color-color);
   width: fit-content;
   border-radius: var(--border-radius-rounded);
   position: relative;
@@ -27,7 +23,7 @@
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
   
-  @include m.glow(var(--btn-glow-size), var(--btn-bg-color), var(--btn-glow-alpha));
+  @include m.glow(var(--btn-glow-size), var(--btn-color-color), var(--btn-glow-alpha));
 
   &:hover {
     --btn-glow-alpha: 1;
@@ -38,10 +34,10 @@
   }
 
   &.is-hoverable:hover {
-    background-color: var(--btn-bg-element);
+    background-color: var(--btn-color-element);
 
     &:disabled, &.disabled {
-      background-color: var(--btn-bg-base);
+      background-color: var(--btn-color-base);
     }
   }
 
@@ -61,12 +57,12 @@
 
   &.is-ghost {
     @include m.transitions;
-    --btn-bg-color: transparent;
+    --btn-color-color: transparent;
     background-color: transparent;
     --btn-glow-alpha: 0;
 
     &:hover {
-      background-color: var(--btn-bg-element);
+      background-color: var(--btn-color-element);
     }
 
     &:disabled, &.disabled {
@@ -75,13 +71,13 @@
   }
 
   &.is-active {
-    background-color: var(--btn-bg-element);
+    background-color: var(--btn-color-element);
 
     &:hover {
-      background-color: var(--btn-bg-base);
+      background-color: var(--btn-color-base);
 
       &:disabled, &.disabled {
-        background-color: var(--btn-bg-element);
+        background-color: var(--btn-color-element);
       }
     }
   }

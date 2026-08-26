@@ -13,38 +13,32 @@
 
 .label {
   @include m.block("small");
-  --label-text-strong: var(--color-text-strong);
-  --label-text-base: var(--color-text-base);
-  --label-text-weak: var(--color-text-weak);
-  --label-bg-color: var(--color-bg-color);
+  @include m.colors("label","color","weak","text","strong");
+
   font-weight: var(--weight-bold);
-  color: var(--color-text-strong);;
+  color: var(--label-color-strong);;
 
   &.is-strong {
-    color: var(--label-text-strong);
+    color: var(--label-color-strong);
   }
   &.is-text {
-    color: var(--label-text-base);
+    color: var(--label-color-text);
   }
   &.is-weak {
-    color: var(--label-text-weak);
+    color: var(--label-color-weak);
   }
   &.is-color {
-    color: var(--label-bg-color);
+    color: var(--label-color-color);
   }
 }
 
 .input, .textarea {
-  --input-bg-base: var(--color-bg-base);
-  --input-bg-element: var(--color-bg-element);
-  --input-bg-top: var(--color-bg-top);
-  --input-text-strong: var(--color-text-strong);
-  --input-bg-color: var(--color-bg-color);
+  @include m.colors("input","base","top","color","text");
     
   padding: var(--input-padding-base);
-  background-color: var(--input-bg-base);
-  color: var(--input-text);
-  border: 2px solid var(--input-bg-color);
+  background-color: var(--input-color-base);
+  color: var(--input-color-text);
+  border: 2px solid var(--input-color-color);
   width: 100%;
   border-radius: var(--border-radius-small);
   position: relative;
@@ -55,7 +49,7 @@
 
   &:focus {
     @include m.no-transitions;
-    outline: solid 2px var(--input-bg-top);
+    outline: solid 2px var(--input-color-top);
     offset: 2px;
   }
 
@@ -87,12 +81,10 @@
 }
 
 .checkbox, .radio {
-  --cb-text-strong: var(--color-text-strong);
-  --cb-bg-color: var(--color-bg-color);
-  --cb-text-weak: var(--color-text-weak);
+  @include m.colors("cb","color","weak","strong");
 
-  color: var(--cb-text-strong);
-  accent-color: var(--cb-bg-color);
+  color: var(--cb-color-strong);
+  accent-color: var(--cb-color-color);
   cursor: pointer;
   display: inline-block;
   line-height: 1.25;
@@ -105,7 +97,7 @@
   &[disabled],
   fieldset[disabled] &,
   input[disabled] {
-    color: var(--cb-text-weak);
+    color: var(--cb-color-weak);
     cursor: not-allowed;
   }
 

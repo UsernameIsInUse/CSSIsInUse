@@ -1,4 +1,7 @@
+@use "../utilities/mixins" as m;
+
 .modal {
+  @include m.colors("modal","base");
   --modal-bg-base: var(--color-bg-base);
 
   display:none;
@@ -8,7 +11,7 @@
   right:0;
   bottom:0;
 
-  background-color: oklch(from var(--modal-bg-base) l c h / var(--opacity-dark));
+  background-color: oklch(from var(--modal-color-base) l c h / var(--opacity-dark));
   
   z-index: var(--z-index-modal);
   align-items: center;

@@ -1,3 +1,5 @@
+@use 'sass:list';
+
 @mixin block($size) {
   &:not(:last-child) {
     margin-bottom: var(--padding-#{$size});
@@ -17,4 +19,10 @@
 
 @mixin glow($size, $color, $alpha) {
   box-shadow: 0 0 #{$size} oklch(from #{$color} l c h / #{$alpha});
+}
+
+@mixin colors($prefix, $colors...) {
+  @for $i from 0 to list.length($colors) {
+    --#{$prefix}-color-#{list.nth($colors, $i + 1)}: var(--color-#{list.nth($colors, $i + 1)});
+  }
 }

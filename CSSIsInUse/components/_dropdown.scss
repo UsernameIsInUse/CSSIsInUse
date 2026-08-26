@@ -1,12 +1,7 @@
 @use "../utilities/mixins" as m;
 
 .dropdown{
-  --dropdown-bg-base: var(--color-bg-base);
-  --dropdown-bg-element: var(--color-bg-element);
-  --dropdown-bg-top: var(--color-bg-top);
-  --dropdown-bg-color: var(--color-bg-color);
-  --dropdown-text-base: var(--color-text-base);
-  --dropdown-text-strong: var(--color-text-strong);
+  @include m.colors("dropdown","base","element","top","text","strong");
 
   display: inline-flex;
   position: relative;
@@ -55,40 +50,40 @@
     --dropdown-glow-size: var(--glow-size-large);
     --dropdown-glow-alpha: 1;
 
-    background-color: var(--dropdown-bg-element);
+    background-color: var(--dropdown-color-element);
     border-radius: var(--border-radius-small);
     padding: var(--padding-small) 0;
 
-    border: 2px solid var(--dropdown-bg-top);
+    border: 2px solid var(--dropdown-color-top);
 
-    @include m.glow(var(--dropdown-glow-size), var(--dropdown-bg-base), var(--dropdown-glow-alpha));
+    @include m.glow(var(--dropdown-glow-size), var(--dropdown-color-base), var(--dropdown-glow-alpha));
 
     hr {
-      background-color: var(--dropdown-bg-top);
+      background-color: var(--dropdown-color-top);
       margin: var(--padding-small) 0;
     }
   }
 
   .dropdown-item {
-    color: var(--dropdown-text-base);
+    color: var(--dropdown-color-text);
     display: block;
     padding: var(--padding-xs) var(--padding-small);
   }
 
   a.dropdown-item, button.dropdown-item {
-    color: var(--dropdown-text-strong);
+    color: var(--dropdown-color-strong);
     @include m.transitions;
     transition-property: background-color;
 
     &:hover, &:active {
-      background-color: var(--dropdown-bg-top);
+      background-color: var(--dropdown-color-top);
     }
 
     &.is-active {
-      background-color: var(--dropdown-bg-top);
+      background-color: var(--dropdown-color-top);
 
       &:hover, &:active {
-        background-color: var(--dropdown-bg-element);
+        background-color: var(--dropdown-color-element);
       }
     }
   }

@@ -8,12 +8,13 @@
 }
 
 .sidebar {
-  --sb-bg-menu: var(--color-bg-menu);
+  @include m.colors("sb","menu");
+
   --sb-height: calc(100vh - var(--navbar-height));
   --sb-width: var(--sidebar-width);
 
   position:fixed;
-  background-color: var(--sb-bg-menu);
+  background-color: var(--sb-color-menu);
   max-height: var(--sb-height);
   height: var(--sb-height);
   z-index: var(--z-index-sidebar);;

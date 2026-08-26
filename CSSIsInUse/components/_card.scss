@@ -1,11 +1,10 @@
-.card {
-  --card-bg-element: var(--color-bg-element);
-  --card-bg-top: var(--color-bg-top);
-  --card-text-base: var(--color-text-base);
-  --card-text-strong: var(--color-text-strong);
+@use "../utilities/mixins" as m;
 
-  background-color: var(--card-bg-element);
-  color: var(--card-text-base);
+.card {
+  @include m.colors("card","element","top","text","strong");
+
+  background-color: var(--card-color-element);
+  color: var(--card-color-text);
   padding: var(--padding-base);
   width:100%;
   border-radius: var(--border-radius-small);
@@ -24,7 +23,7 @@
   }
 
   &.is-top {
-    background-color: var(--card-bg-top);
-    color: var(--card-text-strong);
+    background-color: var(--card-color-top);
+    color: var(--card-color-strong);
   }
 }

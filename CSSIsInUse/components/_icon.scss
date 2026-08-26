@@ -1,10 +1,7 @@
 @use "../utilities/mixins" as m;
 
 .icon {
-  --icon-text-strong: var(--color-text-strong);
-  --icon-text-base: var(--color-text-base);
-  --icon-text-weak: var(--color-text-weak);
-  --icon-bg-color: var(--color-bg-color);
+  @include m.colors("icon","color","weak","text","strong");
 
   --icon-size: var(--icon-size-base);
 
@@ -20,16 +17,16 @@
   color: inherit;
 
   &.is-strong {
-    color: var(--icon-text-strong);
+    color: var(--icon-color-strong);
   }
   &.is-text {
-    color: var(--icon-text-base);
+    color: var(--icon-color-text);
   }
   &.is-weak {
-    color: var(--icon-text-weak);
+    color: var(--icon-color-weak);
   }
   &.is-color {
-    color: var(--icon-bg-color);
+    color: var(--icon-color-color);
   }
 
   &.is-small {

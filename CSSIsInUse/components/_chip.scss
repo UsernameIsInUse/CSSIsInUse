@@ -2,25 +2,20 @@
 @use "../utilities/mixins" as m;
 
 .chip {
-  --chip-bg-base: var(--color-bg-base);
-  --chip-bg-element: var(--color-bg-element);
-  --chip-bg-top: var(--color-bg-top);
-  --chip-text-strong: var(--color-text-strong);
-  --chip-text-weak: var(--color-text-weak);
-  --chip-color: var(--color-bg-color);
+  @include m.colors("chip","base","element","top","weak","strong");
 
   padding: var(--input-padding-small);;
   font-size: var(--text-size-7);
-  background-color: var(--chip-bg-top);
-  color: var(--chip-text-strong);
-  border: 2px solid var(--chip-bg-top);
+  background-color: var(--chip-color-top);
+  color: var(--chip-color-strong);
+  border: 2px solid var(--chip-color-top);
   width: fit-content;
   border-radius: var(--border-radius-small);
   position: relative;
 
   &.quiet {
-    color: var(--chip-text-weak);
-    background-color: var(--chip-bg-base);
+    color: var(--chip-color-weak);
+    background-color: var(--chip-color-base);
   }
 
   &:disabled, &.disabled {
@@ -33,7 +28,7 @@ a.chip {
   --chip-glow-alpha: var(--opacity-disabled);
   
   cursor: pointer;
-  @include m.glow(var(--chip-glow-size), var(--chip-bg-top), var(--chip-glow-alpha));
+  @include m.glow(var(--chip-glow-size), var(--chip-color-top), var(--chip-glow-alpha));
 
   &:hover {
     @include m.transitions;
@@ -42,7 +37,7 @@ a.chip {
 
   &:focus {
     @include m.no-transitions;
-    outline: solid var(--border-thickness-base) var(--chip-bg-element);
+    outline: solid var(--border-thickness-base) var(--chip-color-element);
     offset: var(--border-thickness-base);
   }
 

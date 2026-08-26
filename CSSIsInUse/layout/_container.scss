@@ -1,10 +1,10 @@
-.container {
-  --container-bg-base: var(--color-bg-base);
-  --container-bg-element: var(--color-bg-element);
-  --container-text-strong: var(--color-text-strong);
+@use "../utilities/mixins" as m;
 
-  background-color: var(--container-bg-base);
-  color: var(--container-text-base);
+.container {
+  @include m.colors("container","base","element","text");
+
+  background-color: var(--container-color-base);
+  color: var(--container-color-text);
   padding-left: var(--padding-base);
   padding-right: var(--padding-base);
   display: flex;
@@ -31,7 +31,7 @@
   }
 
   &.is-element {
-    background-color: var(--section-bg-element);
+    background-color: var(--section-color-element);
   }
 
   &.is-transparent {

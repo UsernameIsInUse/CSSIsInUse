@@ -1,24 +1,20 @@
-.choices {
-  --choices-bg-base: var(--color-bg-base);
-  --choices-bg-element: var(--color-bg-element);
-  --choices-bg-top: var(--color-bg-top);
-  --choices-color: var(--color-bg-color);
-  --choices-text-strong: var(--color-text-strong);
-  --choices-text-base: var(--color-text-base);
-  --choices-text-weak: var(--color-text-weak);
+@use "../../utilities/mixins" as m;
 
-  --choices-bg-color: var(--choices-bg-base);
-  --choices-bg-color-disabled: var(--choices-bg-base);
-  --choices-bg-color-dropdown: var(--choices-bg-base);
-  --choices-text-color: var(--choices-text-strong);
-  --choices-item-color: var(--choices-text-strong);
-  --choices-keyline-color: var(--choices-color);
-  --choices-primary-color: var(--choices-bg-top);
-  --choices-disabled-color: var(--choices-bg-element);
-  --choices-item-disabled-color: var(--choices-text-weak);
-  --choices-invalid-color: var(--danger-bg-color);
-  --choices-highlighted-color: var(--choices-bg-element);
-  --choices-highlight-color: var(--choices-primary-color);
+.choices {
+  @include m.colors("choices","base","element","top","color","weak","text","strong");
+
+  --choices-bg-color: var(--choices-color-base);
+  --choices-bg-color-disabled: var(--choices-color-base);
+  --choices-bg-color-dropdown: var(--choices-color-base);
+  --choices-text-color: var(--choices-color-strong);
+  --choices-item-color: var(--choices-color-strong);
+  --choices-keyline-color: var(--choices-color-color);
+  --choices-primary-color: var(--choices-color-top);
+  --choices-disabled-color: var(--choices-color-element);
+  --choices-item-disabled-color: var(--choices-color-weak);
+  --choices-invalid-color: var(--danger-color-color);
+  --choices-highlighted-color: var(--choices-color-element);
+  --choices-highlight-color: var(--choices-color-color);
 
   --choices-font-size-lg: var(--text-size-6);
   --choices-font-size-md: var(--text-size-6);

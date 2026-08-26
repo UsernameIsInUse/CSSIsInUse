@@ -2,11 +2,10 @@
 @use "../utilities/mixins" as m;
 
 .navbar {
-  --nav-bg-base: var(--color-bg-base);
-  --nav-text-strong: var(--color-text-strong);
+  @include m.colors("nav","base","strong");
 
-  background-color: var(--nav-bg-base);
-  color: var(--nav-text-strong);
+  background-color: var(--nav-color-base);
+  color: var(--nav-color-strong);
   display: flex;
   flex-direction: row;
   position: sticky;
@@ -42,7 +41,7 @@
     @include m.transitions;
     transition-property: opacity;
     font-size: var(--text-size-logo);
-    color: var(--nav-text-strong);
+    color: var(--nav-color-strong);
 
     &:hover {
       opacity: var(--opacity-dark);

@@ -1,10 +1,7 @@
 @use "../utilities/mixins" as m;
 
 .menu {
-  --menu-bg-base: var(--color-bg-base);
-  --menu-bg-element: var(--color-bg-element);
-  --menu-bg-top: var(--color-bg-top);
-  --menu-text-strong: var(--color-text-strong);
+  @include m.colors("menu","element","top","strong");
 
   @include m.block("small");
 
@@ -15,19 +12,19 @@
   a, button, .menu-item {
     @include m.transitions;
     transition-property: background-color;
-    background-color: var(--menu-bg-element);
-    color: var(--menu-text-strong);
+    background-color: var(--menu-color-element);
+    color: var(--menu-color-strong);
     border-radius: var(--border-radius-small);
     width: 100%;
     padding: var(--input-padding-small);
     text-align: justify;
 
     &:hover {
-      background-color: var(--menu-bg-top);
+      background-color: var(--menu-color-top);
     }
 
     &.is-active {
-      background-color: var(--menu-bg-top);
+      background-color: var(--menu-color-top);
     }
   }
 
@@ -44,7 +41,7 @@
     margin-left: var(--padding-base);
     list-style: none;
     width: auto;
-    border-left: var(--border-thickness-base) solid var(--menu-bg-top);
+    border-left: var(--border-thickness-base) solid var(--menu-color-top);
     padding-left: var(--padding-small);
   }
 }

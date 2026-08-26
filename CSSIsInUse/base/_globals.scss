@@ -20,9 +20,11 @@ body {
 }
 
 body {
+  --body-color-base: var(--color-base);
+  --body-color-text: var(--color-text);
   font-family: var(--font-body);
-  background: var(--color-bg-base);
-  color: var(--color-text-base);
+  background: var(--body-color-base);
+  color: var(--body-color-text);
 }
 
 .block-xl {
@@ -42,8 +44,8 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, button, input[type="submit"], .button, a {
-  --element-text-strong: var(--color-text-strong);
-  color: var(--element-text-strong);
+  --element-color-strong: var(--color-strong);
+  color: var(--element-color-strong);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -82,9 +84,9 @@ h6 {
 }
 
 small {
-  --small-text-weak: var(--color-text-weak);
+  --small-color-weak: var(--color-weak);
   font-size: var(--text-size-7);
-  color:var(--small-text-weak);
+  color:var(--small-color-weak);
 }
 
 code {
@@ -93,7 +95,7 @@ code {
 
 a {
   text-decoration: none;
-  --element-text-strong: var(--info-text-base);
+  --element-color-strong: var(--info-weak);
 }
 
 img {
@@ -110,7 +112,8 @@ label {
 }
 
 hr{
-  background-color: var(--color-bg-top);
+  --hr-color-top: var(--color-top);
+  background-color: var(--hr-color-top);
   border: none;
   display: block;
   height: var(--border-thickness-base);

@@ -1,6 +1,7 @@
 @use "../utilities/mixins" as m;
 
 table {
+
   --table-cell-padding: var(--input-padding-base);
 
   @include m.block("base");
@@ -9,11 +10,7 @@ table {
   text-align: left;
 
   &,th,td,tr,thead,tbody,tfoot,.is-color,.is-active {
-    --table-bg-base: var(--color-bg-base);
-    --table-bg-element: var(--color-bg-element);
-    --table-bg-top: var(--color-bg-top);
-    --table-bg-color: var(--color-bg-color);
-    --table-text-strong: var(--color-text-strong);
+    @include m.colors("table","base","element","top","color","strong");
     height: fit-content;
   }
 
@@ -26,8 +23,8 @@ table {
 
   th, td {
     padding: var(--table-cell-padding);
-    color: var(--table-text-strong);
-    background-color: var(--table-bg-base);
+    color: var(--table-color-strong);
+    background-color: var(--table-color-base);
   }
 
   th, tfoot td {
@@ -35,15 +32,15 @@ table {
   }
 
   th {
-    border-bottom: var(--border-thickness-base) solid var(--table-bg-top);
+    border-bottom: var(--border-thickness-base) solid var(--table-color-top);
   }
 
   tfoot tr:first-child td {
-    border-top: var(--border-thickness-base) solid var(--table-bg-top);
+    border-top: var(--border-thickness-base) solid var(--table-color-top);
   }
 
   td {
-    border-bottom: var(--border-thickness-light) solid var(--table-bg-top);
+    border-bottom: var(--border-thickness-light) solid var(--table-color-top);
   }
 
   tbody tr:last-child td, tfoot tr:last-child td {
@@ -52,16 +49,16 @@ table {
 
   &.is-striped {
     tbody tr:nth-child(odd) td {
-      background-color: var(--table-bg-element);
+      background-color: var(--table-color-element);
     }
   }
 
   .is-color, .is-active {
-    background-color: var(--table-bg-color) !important;
-    border-color: var(--table-bg-top);
+    background-color: var(--table-color-color) !important;
+    border-color: var(--table-color-top);
     td {
-      background-color: var(--table-bg-color) !important;
-      border-color: var(--table-bg-top);
+      background-color: var(--table-color-color) !important;
+      border-color: var(--table-color-top);
     }
   }
 

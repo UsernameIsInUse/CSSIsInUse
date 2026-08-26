@@ -26,37 +26,82 @@ $scheme-classes: ();
 }
 
 @mixin color-util {
+  --color-base: var(--base-base);
+  --color-menu: var(--base-menu);
+  --color-element: var(--base-element);
+  --color-top: var(--base-top);
+  --color-color: var(--base-color);
+  --color-weak: var(--base-weak);
+  --color-text: var(--base-text);
+  --color-strong: var(--base-strong);
 
-  --color-bg-base: var(--base-bg-base);
-  --color-bg-menu: var(--base-bg-menu);
-  --color-bg-element: var(--base-bg-element);
-  --color-bg-top: var(--base-bg-top);
-  --color-bg-color: var(--base-bg-color);
-  --color-text-strong: var(--base-text-strong);
-  --color-text-base: var(--base-text-base);
-  --color-text-weak: var(--base-text-weak);
+  /*
+
+  --color-base-hover: var(--base-element);
+  --color-menu-hover: var(--base-element);
+  --color-element-hover: var(--base-top);
+  --color-top-hover: var(--base-temp);
+  --color-color-hover: var(--base-temp-too);
+  --color-weak-hover: var(--base-text);
+  --color-text-hover: var(--base-strong);
+  --color-strong-hover: light-dark(var(--black), var(--white));
+
+  --color-base-depress: light-dark(var(--white), var(--black));
+  --color-menu-depress: var(--base-base);
+  --color-element-depress: var(--base-base);
+  --color-top-depress: var(--base-element);
+  --color-color-depress: var(--base-temp);
+  --color-weak-depress: var(--base-temp-too);
+  --color-text-depress: var(--base-weak);
+  --color-strong-depress: var(--base-text);
+
+  */
 
   @each $color in $color-groups {
-    --#{$color}-bg-base: light-dark(var(--#{$color}-900), var(--#{$color}-100));
-    --#{$color}-bg-menu: light-dark(var(--#{$color}-875), var(--#{$color}-125));
-    --#{$color}-bg-element: light-dark(var(--#{$color}-800), var(--#{$color}-200));
-    --#{$color}-bg-top: light-dark(var(--#{$color}-700), var(--#{$color}-300));
-    --#{$color}-bg-color: var(--#{$color}-500);
-    --#{$color}-text-strong: light-dark(var(--#{$color}-100), var(--#{$color}-900));
-    --#{$color}-text-base: light-dark(var(--#{$color}-200), var(--#{$color}-800));
-    --#{$color}-text-weak: light-dark(var(--#{$color}-300), var(--#{$color}-700));
+    --#{$color}-base: light-dark(var(--#{$color}-900), var(--#{$color}-100));
+    --#{$color}-menu: light-dark(var(--#{$color}-875), var(--#{$color}-125));
+    --#{$color}-element: light-dark(var(--#{$color}-800), var(--#{$color}-200));
+    --#{$color}-top: light-dark(var(--#{$color}-700), var(--#{$color}-300));
+    --#{$color}-temp: light-dark(var(--#{$color}-600), var(--#{$color}-400));
+    --#{$color}-color: var(--#{$color}-500);
+    --#{$color}-temp-too: light-dark(var(--#{$color}-400), var(--#{$color}-600));
+    --#{$color}-weak: light-dark(var(--#{$color}-300), var(--#{$color}-700));
+    --#{$color}-text: light-dark(var(--#{$color}-200), var(--#{$color}-800));
+    --#{$color}-strong: light-dark(var(--#{$color}-100), var(--#{$color}-900));
   }
 
   @each $color in $color-groups {
     .is-#{$color} {
-      --color-bg-base: var(--#{$color}-bg-base);
-      --color-bg-menu: var(--#{$color}-bg-menu);
-      --color-bg-element: var(--#{$color}-bg-element);
-      --color-bg-top: var(--#{$color}-bg-top);
-      --color-bg-color: var(--#{$color}-bg-color);
-      --color-text-strong: var(--#{$color}-text-strong);
-      --color-text-base: var(--#{$color}-text-base);
-      --color-text-weak: var(--#{$color}-text-weak);
+      --color-base: var(--#{$color}-base);
+      --color-menu: var(--#{$color}-menu);
+      --color-element: var(--#{$color}-element);
+      --color-top: var(--#{$color}-top);
+      --color-temp: var(--#{$color}-temp);
+      --color-color: var(--#{$color}-color);
+      --color-temp-too: var(--#{$color}-temp-too);
+      --color-weak: var(--#{$color}-weak);
+      --color-text: var(--#{$color}-text);
+      --color-strong: var(--#{$color}-strong);
+
+      /*
+
+      --color-base-hover: var(--#{$color}-element);
+      --color-menu-hover: var(--#{$color}-element);
+      --color-element-hover: var(--#{$color}-top);
+      --color-top-hover: var(--#{$color}-temp);
+      --color-color-hover: var(--#{$color}-temp-too);
+      --color-weak-hover: var(--#{$color}-text);
+      --color-text-hover: var(--#{$color}-strong);
+
+      --color-menu-depress: var(--#{$color}-base);
+      --color-element-depress: var(--#{$color}-base);
+      --color-top-depress: var(--#{$color}-element);
+      --color-color-depress: var(--#{$color}-temp);
+      --color-weak-depress: var(--#{$color}-temp-too);
+      --color-text-depress: var(--#{$color}-weak);
+      --color-strong-depress: var(--#{$color}-text);
+
+      */
     }
   }
 }

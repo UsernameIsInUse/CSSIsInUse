@@ -37,27 +37,23 @@
 }
 
 .notification {
+  @include m.colors("notif","base","top","color","weak","text");
+
   @include m.block("base");
   --notif-padding: var(--padding-base);
   --notif-radius: var(--border-radius-base);
-
-  --notif-base: var(--color-bg-base);
-  --notif-text: var(--color-text-strong);
-  --notif-weak: var(--color-text-weak);
-  --notif-color: var(--color-bg-color);
-  --notif-top: var(--color-bg-top);
 
   --notif-glow-size: 1.5rem;
   --notif-glow-alpha: 0.5;
 
   padding: var(--notif-padding);
-  background-color: var(--notif-base);
-  color: var(--notif-text);
-  border: 2px solid var(--notif-color);
+  background-color: var(--notif-color-base);
+  color: var(--notif-color-text);
+  border: 2px solid var(--notif-color-color);
   width: 100%;
   border-radius: var(--notif-radius);
   position: relative;
-  @include m.glow(var(--notif-glow-size), var(--notif-color), var(--notif-glow-alpha));
+  @include m.glow(var(--notif-glow-size), var(--notif-color-color), var(--notif-glow-alpha));
 
   &:hover {
     @include m.transitions;
@@ -65,11 +61,11 @@
   }
 
   &.quiet {
-    --notif-text: var(--notif-weak);
-    --notif-color: var(--notif-top);
     --notif-padding: var(--padding-small);
     --notif-radius: var(--border-radius-small);
     --notif-glow-alpha: 0;
+    color: var(--notif-color-weak);
+    border-color: var(--notif-color-top);
     font-size: var(--text-size-7);
   }
 }
