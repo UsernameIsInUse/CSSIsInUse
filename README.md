@@ -24,7 +24,7 @@ Everything in CSSIsInUse, including all colors, sizes, paddings, corner-roundnes
 
 ## What does accessible-by-default mean?
 
-By default, if you just plug in CSSIsInUse, contrast ratios should be more than met by default. If you follow the structure of the kitchen sink, it should encourage correct usage of semantic HTML and aria attributes.
+By default, if you just plug in CSSIsInUse, contrast ratios should be more than met by default. If you follow the structure of the kitchen sink, it should encourage correct usage of semantic HTML and aria attributes. It also has built in accessibility preferences functionality, including prefers-light/dark, prefers-reduced-motion to turn all transition durations to 0s, prefers-reduced-transparency, and prefers-contrst more/less to shift the color scheme.
 
 ## What does infinite themability mean?
 
