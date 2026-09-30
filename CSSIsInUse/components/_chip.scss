@@ -35,6 +35,7 @@ a.chip {
   @include m.glow(var(--glow-size-small), var(--chip-color), var(--chip-glow-alpha));
 
   cursor: pointer;
+  text-decoration: none;
 
   &:hover {
     @include m.transitions("box-shadow");

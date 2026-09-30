@@ -94,8 +94,20 @@ code {
 }
 
 a {
-  text-decoration: none;
   --element-color-strong: var(--info-weak);
+
+  &:hover {
+    --element-color-strong: var(--info-strong);
+  }
+
+  &.is-quiet {
+    --element-color-strong: var(--color-strong);
+    text-decoration: none;
+
+    &:hover {
+      --element-color-strong: var(--color-weak);
+    }
+  }
 }
 
 img {

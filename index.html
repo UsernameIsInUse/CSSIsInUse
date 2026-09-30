@@ -97,80 +97,92 @@
 
         <section class="section">
           <div class="container is-large">
-            <h2>Colors</h2>
-            <div style="display:grid; grid-template-columns: repeat(9, 1fr); gap: 5px; overflow-x:auto;">
-              <p class="paint text-base-900 bg-base-100 hover:bg-base-100">base</p>
-              <p class="paint text-base-900 bg-base-200 hover:bg-base-200">base</p>
-              <p class="paint text-base-900 bg-base-300 hover:bg-base-300">base</p>
-              <p class="paint text-base-900 bg-base-400 hover:bg-base-400">base</p>
-              <p class="paint text-base-100 bg-base-500 hover:bg-base-500">base</p>
-              <p class="paint text-base-100 bg-base-600 hover:bg-base-600">base</p>
-              <p class="paint text-base-100 bg-base-700 hover:bg-base-700">base</p>
-              <p class="paint text-base-100 bg-base-800 hover:bg-base-800">base</p>
-              <p class="paint text-base-100 bg-base-900 hover:bg-base-900">base</p>
+            <h3>Generated Color Groups</h3>
+            <div class="block" style="display:grid; grid-template-columns: repeat(8, 1fr); gap: var(--padding-xs); overflow-x:auto;">
+              <p class="paint" style="background-color: var(--base-base); color: var(--base-strong);">Base Base</p>
+              <p class="paint" style="background-color: var(--base-menu); color: var(--base-strong);">Base Menu</p>
+              <p class="paint" style="background-color: var(--base-element); color: var(--base-strong);">Base Element</p>
+              <p class="paint" style="background-color: var(--base-top); color: var(--base-strong);">Base Top</p>
+              <p class="paint" style="background-color: var(--base-color); color: var(--base-100);">Base Color</p>
+              <p class="paint" style="background-color: var(--base-weak); color: var(--base-base);">Base Weak</p>
+              <p class="paint" style="background-color: var(--base-text); color: var(--base-base);">Base Text</p>
+              <p class="paint" style="background-color: var(--base-strong); color: var(--base-base);">Base Strong</p>
 
-              <p class="paint text-primary-900 bg-primary-100 hover:bg-primary-100">primary</p>
-              <p class="paint text-primary-900 bg-primary-200 hover:bg-primary-200">primary</p>
-              <p class="paint text-primary-900 bg-primary-300 hover:bg-primary-300">primary</p>
-              <p class="paint text-primary-900 bg-primary-400 hover:bg-primary-400">primary</p>
-              <p class="paint text-primary-100 bg-primary-500 hover:bg-primary-500">primary</p>
-              <p class="paint text-primary-100 bg-primary-600 hover:bg-primary-600">primary</p>
-              <p class="paint text-primary-100 bg-primary-700 hover:bg-primary-700">primary</p>
-              <p class="paint text-primary-100 bg-primary-800 hover:bg-primary-800">primary</p>
-              <p class="paint text-primary-100 bg-primary-900 hover:bg-primary-900">primary</p>
-              
-              <p class="paint text-info-900 bg-info-100 hover:bg-info-100">info</p>
-              <p class="paint text-info-900 bg-info-200 hover:bg-info-200">info</p>
-              <p class="paint text-info-900 bg-info-300 hover:bg-info-300">info</p>
-              <p class="paint text-info-900 bg-info-400 hover:bg-info-400">info</p>
-              <p class="paint text-info-100 bg-info-500 hover:bg-info-500">info</p>
-              <p class="paint text-info-100 bg-info-600 hover:bg-info-600">info</p>
-              <p class="paint text-info-100 bg-info-700 hover:bg-info-700">info</p>
-              <p class="paint text-info-100 bg-info-800 hover:bg-info-800">info</p>
-              <p class="paint text-info-100 bg-info-900 hover:bg-info-900">info</p>
-              
-              <p class="paint text-warning-900 bg-warning-100 hover:bg-warning-100">warning</p>
-              <p class="paint text-warning-900 bg-warning-200 hover:bg-warning-200">warning</p>
-              <p class="paint text-warning-900 bg-warning-300 hover:bg-warning-300">warning</p>
-              <p class="paint text-warning-900 bg-warning-400 hover:bg-warning-400">warning</p>
-              <p class="paint text-warning-100 bg-warning-500 hover:bg-warning-500">warning</p>
-              <p class="paint text-warning-100 bg-warning-600 hover:bg-warning-600">warning</p>
-              <p class="paint text-warning-100 bg-warning-700 hover:bg-warning-700">warning</p>
-              <p class="paint text-warning-100 bg-warning-800 hover:bg-warning-800">warning</p>
-              <p class="paint text-warning-100 bg-warning-900 hover:bg-warning-900">warning</p>
-              
-              <p class="paint text-danger-900 bg-danger-100 hover:bg-danger-100">danger</p>
-              <p class="paint text-danger-900 bg-danger-200 hover:bg-danger-200">danger</p>
-              <p class="paint text-danger-900 bg-danger-300 hover:bg-danger-300">danger</p>
-              <p class="paint text-danger-900 bg-danger-400 hover:bg-danger-400">danger</p>
-              <p class="paint text-danger-100 bg-danger-500 hover:bg-danger-500">danger</p>
-              <p class="paint text-danger-100 bg-danger-600 hover:bg-danger-600">danger</p>
-              <p class="paint text-danger-100 bg-danger-700 hover:bg-danger-700">danger</p>
-              <p class="paint text-danger-100 bg-danger-800 hover:bg-danger-800">danger</p>
-              <p class="paint text-danger-100 bg-danger-900 hover:bg-danger-900">danger</p>
-              
-              <p class="paint text-success-900 bg-success-100 hover:bg-success-100">success</p>
-              <p class="paint text-success-900 bg-success-200 hover:bg-success-200">success</p>
-              <p class="paint text-success-900 bg-success-300 hover:bg-success-300">success</p>
-              <p class="paint text-success-900 bg-success-400 hover:bg-success-400">success</p>
-              <p class="paint text-success-100 bg-success-500 hover:bg-success-500">success</p>
-              <p class="paint text-success-100 bg-success-600 hover:bg-success-600">success</p>
-              <p class="paint text-success-100 bg-success-700 hover:bg-success-700">success</p>
-              <p class="paint text-success-100 bg-success-800 hover:bg-success-800">success</p>
-              <p class="paint text-success-100 bg-success-900 hover:bg-success-900">success</p>
-              
-              <p class="paint text-greyscale-900 bg-greyscale-100 hover:bg-greyscale-100">greyscale</p>
-              <p class="paint text-greyscale-900 bg-greyscale-200 hover:bg-greyscale-200">greyscale</p>
-              <p class="paint text-greyscale-900 bg-greyscale-300 hover:bg-greyscale-300">greyscale</p>
-              <p class="paint text-greyscale-900 bg-greyscale-400 hover:bg-greyscale-400">greyscale</p>
-              <p class="paint text-greyscale-100 bg-greyscale-500 hover:bg-greyscale-500">greyscale</p>
-              <p class="paint text-greyscale-100 bg-greyscale-600 hover:bg-greyscale-600">greyscale</p>
-              <p class="paint text-greyscale-100 bg-greyscale-700 hover:bg-greyscale-700">greyscale</p>
-              <p class="paint text-greyscale-100 bg-greyscale-800 hover:bg-greyscale-800">greyscale</p>
-              <p class="paint text-greyscale-100 bg-greyscale-900 hover:bg-greyscale-900">greyscale</p>
+              <p class="paint" style="background-color: var(--primary-base); color: var(--primary-strong);">Primary Base</p>
+              <p class="paint" style="background-color: var(--primary-menu); color: var(--primary-strong);">Primary Menu</p>
+              <p class="paint" style="background-color: var(--primary-element); color: var(--primary-strong);">Primary Element</p>
+              <p class="paint" style="background-color: var(--primary-top); color: var(--primary-strong);">Primary Top</p>
+              <p class="paint" style="background-color: var(--primary-color); color: var(--primary-100);">Primary Color</p>
+              <p class="paint" style="background-color: var(--primary-weak); color: var(--primary-base);">Primary Weak</p>
+              <p class="paint" style="background-color: var(--primary-text); color: var(--primary-base);">Primary Text</p>
+              <p class="paint" style="background-color: var(--primary-strong); color: var(--primary-base);">Primary Strong</p>
 
-              <p class="paint text-white bg-black hover:bg-black">black</p>
-              <p class="paint text-black bg-white hover:bg-white">white</p>
+              <p class="paint" style="background-color: var(--info-base); color: var(--info-strong);">Info Base</p>
+              <p class="paint" style="background-color: var(--info-menu); color: var(--info-strong);">Info Menu</p>
+              <p class="paint" style="background-color: var(--info-element); color: var(--info-strong);">Info Element</p>
+              <p class="paint" style="background-color: var(--info-top); color: var(--info-strong);">Info Top</p>
+              <p class="paint" style="background-color: var(--info-color); color: var(--info-100);">Info Color</p>
+              <p class="paint" style="background-color: var(--info-weak); color: var(--info-base);">Info Weak</p>
+              <p class="paint" style="background-color: var(--info-text); color: var(--info-base);">Info Text</p>
+              <p class="paint" style="background-color: var(--info-strong); color: var(--info-base);">Info Strong</p>
+
+              <p class="paint" style="background-color: var(--warning-base); color: var(--warning-strong);">Warning Base</p>
+              <p class="paint" style="background-color: var(--warning-menu); color: var(--warning-strong);">Warning Menu</p>
+              <p class="paint" style="background-color: var(--warning-element); color: var(--warning-strong);">Warning Element</p>
+              <p class="paint" style="background-color: var(--warning-top); color: var(--warning-strong);">Warning Top</p>
+              <p class="paint" style="background-color: var(--warning-color); color: var(--warning-100);">Warning Color</p>
+              <p class="paint" style="background-color: var(--warning-weak); color: var(--warning-base);">Warning Weak</p>
+              <p class="paint" style="background-color: var(--warning-text); color: var(--warning-base);">Warning Text</p>
+              <p class="paint" style="background-color: var(--warning-strong); color: var(--warning-base);">Warning Strong</p>
+
+              <p class="paint" style="background-color: var(--danger-base); color: var(--danger-strong);">Danger Base</p>
+              <p class="paint" style="background-color: var(--danger-menu); color: var(--danger-strong);">Danger Menu</p>
+              <p class="paint" style="background-color: var(--danger-element); color: var(--danger-strong);">Danger Element</p>
+              <p class="paint" style="background-color: var(--danger-top); color: var(--danger-strong);">Danger Top</p>
+              <p class="paint" style="background-color: var(--danger-color); color: var(--danger-100);">Danger Color</p>
+              <p class="paint" style="background-color: var(--danger-weak); color: var(--danger-base);">Danger Weak</p>
+              <p class="paint" style="background-color: var(--danger-text); color: var(--danger-base);">Danger Text</p>
+              <p class="paint" style="background-color: var(--danger-strong); color: var(--danger-base);">Danger Strong</p>
+
+              <p class="paint" style="background-color: var(--success-base); color: var(--success-strong);">Success Base</p>
+              <p class="paint" style="background-color: var(--success-menu); color: var(--success-strong);">Success Menu</p>
+              <p class="paint" style="background-color: var(--success-element); color: var(--success-strong);">Success Element</p>
+              <p class="paint" style="background-color: var(--success-top); color: var(--success-strong);">Success Top</p>
+              <p class="paint" style="background-color: var(--success-color); color: var(--success-100);">Success Color</p>
+              <p class="paint" style="background-color: var(--success-weak); color: var(--success-base);">Success Weak</p>
+              <p class="paint" style="background-color: var(--success-text); color: var(--success-base);">Success Text</p>
+              <p class="paint" style="background-color: var(--success-strong); color: var(--success-base);">Success Strong</p>
+
+              <p class="paint" style="background-color: var(--greyscale-base); color: var(--greyscale-strong);">Greyscale Base</p>
+              <p class="paint" style="background-color: var(--greyscale-menu); color: var(--greyscale-strong);">Greyscale Menu</p>
+              <p class="paint" style="background-color: var(--greyscale-element); color: var(--greyscale-strong);">Greyscale Element</p>
+              <p class="paint" style="background-color: var(--greyscale-top); color: var(--greyscale-strong);">Greyscale Top</p>
+              <p class="paint" style="background-color: var(--greyscale-color); color: var(--greyscale-100);">Greyscale Color</p>
+              <p class="paint" style="background-color: var(--greyscale-weak); color: var(--greyscale-base);">Greyscale Weak</p>
+              <p class="paint" style="background-color: var(--greyscale-text); color: var(--greyscale-base);">Greyscale Text</p>
+              <p class="paint" style="background-color: var(--greyscale-strong); color: var(--greyscale-base);">Greyscale Strong</p>
+            </div>
+            <h3>Hardcoded Variable Colors</h3>
+            <div class="block" style="display:grid; grid-template-columns: repeat(8, 1fr); gap: var(--padding-xs); overflow-x:auto;">
+              <p class="paint" style="background-color: var(--black); color: var(--white);">Black</p>
+              <p class="paint" style="background-color: var(--white); color: var(--black);">White</p>
+            </div>
+            <h3>Unused Generated Colors</h3>
+            <div class="block" style="display:grid; grid-template-columns: repeat(8, 1fr); gap: var(--padding-xs); overflow-x:auto;">
+              <p class="paint" style="background-color: var(--base-muted); color: var(--base-strong);">Base Muted</p>
+              <p class="paint" style="background-color: var(--base-vivid); color: var(--base-base);">Base Vivid</p>
+              <p class="paint" style="background-color: var(--primary-muted); color: var(--primary-strong);">Primary Muted</p>
+              <p class="paint" style="background-color: var(--primary-vivid); color: var(--primary-base);">Primary Vivid</p>
+              <p class="paint" style="background-color: var(--info-muted); color: var(--info-strong);">Info Muted</p>
+              <p class="paint" style="background-color: var(--info-vivid); color: var(--info-base);">Info Vivid</p>
+              <p class="paint" style="background-color: var(--warning-muted); color: var(--warning-strong);">Warning Muted</p>
+              <p class="paint" style="background-color: var(--warning-vivid); color: var(--warning-base);">Warning Vivid</p>
+              <p class="paint" style="background-color: var(--danger-muted); color: var(--danger-strong);">Danger Muted</p>
+              <p class="paint" style="background-color: var(--danger-vivid); color: var(--danger-base);">Danger Vivid</p>
+              <p class="paint" style="background-color: var(--success-muted); color: var(--success-strong);">Success Muted</p>
+              <p class="paint" style="background-color: var(--success-vivid); color: var(--success-base);">Success Vivid</p>
+              <p class="paint" style="background-color: var(--greyscale-muted); color: var(--greyscale-strong);">Greyscale Muted</p>
+              <p class="paint" style="background-color: var(--greyscale-vivid); color: var(--greyscale-base);">Greyscale Vivid</p>
             </div>
           </div>
         </section>

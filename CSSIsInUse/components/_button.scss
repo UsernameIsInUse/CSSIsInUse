@@ -29,6 +29,7 @@
   border: var(--border-thickness-base) solid var(--btn-color);
   border-radius: var(--btn-size-radius);
   cursor: pointer;
+  text-decoration: none;
   
   &:hover {
     --btn-glow-alpha: var(--opacity-base);

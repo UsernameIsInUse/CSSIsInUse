@@ -30,7 +30,9 @@ $scheme-classes: ();
   --color-menu: var(--base-menu);
   --color-element: var(--base-element);
   --color-top: var(--base-top);
+  --color-muted: var(--base-muted);
   --color-color: var(--base-color);
+  --color-vivid: var(--base-vivid);
   --color-weak: var(--base-weak);
   --color-text: var(--base-text);
   --color-strong: var(--base-strong);
@@ -40,7 +42,9 @@ $scheme-classes: ();
     --#{$color}-menu: light-dark(var(--#{$color}-875), var(--#{$color}-125));
     --#{$color}-element: light-dark(var(--#{$color}-800), var(--#{$color}-200));
     --#{$color}-top: light-dark(var(--#{$color}-700), var(--#{$color}-300));
+    --#{$color}-muted: light-dark(var(--#{$color}-600), var(--#{$color}-400));
     --#{$color}-color: var(--#{$color}-500);
+    --#{$color}-vivid: light-dark(var(--#{$color}-400), var(--#{$color}-600));
     --#{$color}-weak: light-dark(var(--#{$color}-300), var(--#{$color}-700));
     --#{$color}-text: light-dark(var(--#{$color}-200), var(--#{$color}-800));
     --#{$color}-strong: light-dark(var(--#{$color}-100), var(--#{$color}-900));
@@ -52,7 +56,9 @@ $scheme-classes: ();
       --color-menu: var(--#{$color}-menu);
       --color-element: var(--#{$color}-element);
       --color-top: var(--#{$color}-top);
+      --color-muted: var(--#{$color}-muted);
       --color-color: var(--#{$color}-color);
+      --color-vivid: var(--#{$color}-vivid);
       --color-weak: var(--#{$color}-weak);
       --color-text: var(--#{$color}-text);
       --color-strong: var(--#{$color}-strong);
@@ -65,11 +71,10 @@ $scheme-classes: ();
     --#{$color}-base: light-dark(var(--#{$color}-900), var(--#{$color}-100));
     --#{$color}-menu: var(--#{$color}-base);
     --#{$color}-element: var(--#{$color}-top);
-    --#{$color}-top: light-dark(var(--#{$color}-700), var(--#{$color}-300));
-    --#{$color}-color: var(--#{$color}-500);
+    --#{$color}-muted: var(--#{$color}-color);
+    --#{$color}-vivid: var(--#{$color}-color);
     --#{$color}-weak: var(--#{$color}-strong);
     --#{$color}-text: var(--#{$color}-strong);
-    --#{$color}-strong: light-dark(var(--#{$color}-100), var(--#{$color}-900));
   }
   --base-base: light-dark(white,black);
   --base-strong: light-dark(black,white);
@@ -78,11 +83,9 @@ $scheme-classes: ();
 @mixin low-contrast-color-util {
   @each $color in $color-groups {
     --#{$color}-base: var(--#{$color}-menu);
-    --#{$color}-menu: light-dark(var(--#{$color}-875), var(--#{$color}-125));
     --#{$color}-element: light-dark(var(--#{$color}-700), var(--#{$color}-300));
-    --#{$color}-top: light-dark(var(--#{$color}-600), var(--#{$color}-400));
-    --#{$color}-color: var(--#{$color}-500);
-    --#{$color}-weak: light-dark(var(--#{$color}-400), var(--#{$color}-600));
+    --#{$color}-top: var(--#{$color}-muted);
+    --#{$color}-weak: var(--#{$color}-vivid);
     --#{$color}-text: light-dark(var(--#{$color}-300), var(--#{$color}-700));
     --#{$color}-strong: light-dark(var(--#{$color}-200), var(--#{$color}-800));
   }
@@ -115,5 +118,5 @@ $scheme-classes: ();
     @include low-contrast-color-util;
   }
 }
-@include f.generate-color-utilities($color-groups);
-@include f.generate-single-color-utilities('black' 'white');
+//@include f.generate-color-utilities($color-groups);
+//@include f.generate-single-color-utilities('black' 'white');
