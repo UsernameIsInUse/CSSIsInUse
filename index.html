@@ -1109,6 +1109,8 @@
                 class="dropdown"
                 x-data="{ active: false }"
                 :class="{ 'is-active' : active }"
+                @click.outside="active = false"
+                @keydown.escape.window="active = false"
               >
                 <button
                   class="dropdown-btn button"
@@ -1130,6 +1132,8 @@
                 class="dropdown is-primary"
                 x-data="{ active: false }"
                 :class="{ 'is-active' : active }"
+                @click.outside="active = false"
+                @keydown.escape.window="active = false"
               >
                 <button
                   class="dropdown-btn button"
@@ -1151,6 +1155,8 @@
                 class="dropdown is-info"
                 x-data="{ active: false }"
                 :class="{ 'is-active' : active }"
+                @click.outside="active = false"
+                @keydown.escape.window="active = false"
               >
                 <button
                   class="dropdown-btn button"
@@ -1172,6 +1178,8 @@
                 class="dropdown is-warning"
                 x-data="{ active: false }"
                 :class="{ 'is-active' : active }"
+                @click.outside="active = false"
+                @keydown.escape.window="active = false"
               >
                 <button
                   class="dropdown-btn button"
@@ -1193,6 +1201,8 @@
                 class="dropdown is-danger"
                 x-data="{ active: false }"
                 :class="{ 'is-active' : active }"
+                @click.outside="active = false"
+                @keydown.escape.window="active = false"
               >
                 <button
                   class="dropdown-btn button"
@@ -1214,6 +1224,8 @@
                 class="dropdown is-success"
                 x-data="{ active: false }"
                 :class="{ 'is-active' : active }"
+                @click.outside="active = false"
+                @keydown.escape.window="active = false"
               >
                 <button
                   class="dropdown-btn button"
@@ -1235,6 +1247,8 @@
                 class="dropdown is-greyscale"
                 x-data="{ active: false }"
                 :class="{ 'is-active' : active }"
+                @click.outside="active = false"
+                @keydown.escape.window="active = false"
               >
                 <button
                   class="dropdown-btn button"
@@ -1260,6 +1274,8 @@
               class="dropdown is-hoverable is-success block"
               x-data="{ active: false }"
               :class="{ 'is-active' : active }"
+              @click.outside="active = false"
+                @keydown.escape.window="active = false"
             >
               <button
                 class="dropdown-btn button is-hoverable"
@@ -1284,6 +1300,8 @@
                 class="dropdown is-hoverable is-right is-warning block"
                 x-data="{ active: false }"
                 :class="{ 'is-active' : active }"
+                @click.outside="active = false"
+                @keydown.escape.window="active = false"
               >
                 <button
                   class="dropdown-btn button is-hoverable"
@@ -1308,6 +1326,8 @@
               class="dropdown is-hoverable is-up is-primary block"
               x-data="{ active: false }"
               :class="{ 'is-active' : active }"
+              @click.outside="active = false"
+              @keydown.escape.window="active = false"
             >
               <button
                 class="dropdown-btn button is-hoverable"
@@ -1331,6 +1351,8 @@
               class="dropdown is-hoverable is-info block"
               x-data="{ active: false }"
               :class="{ 'is-active' : active }"
+              @click.outside="active = false"
+              @keydown.escape.window="active = false"
             >
               <button
                 class="dropdown-btn button is-hoverable"
@@ -1361,6 +1383,8 @@
               class="dropdown is-small is-danger block"
               x-data="{ active: false }"
               :class="{ 'is-active' : active }"
+              @click.outside="active = false"
+              @keydown.escape.window="active = false"
             >
               <button
                 class="dropdown-btn button is-small"
@@ -1400,6 +1424,8 @@
               style="color: var(--color-text-strong);"
               x-data="{ active: false }"
               :class="{ 'is-active' : active }"
+              @click.outside="active = false"
+              @keydown.escape.window="active = false"
             >
               <button
                 class="dropdown-btn button is-ghost is-icon"
