@@ -12,6 +12,7 @@
       <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
       <link rel="stylesheet" href="main.css">
+      <link rel="stylesheet" href="integrations.css">
 
       <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
       <style>
@@ -40,7 +41,7 @@
     </ul>
     -->
 
-    <header class="navbar">
+    <header class="header">
       <nav class="nav">
         <div class='nav-item'>
           <button
@@ -55,7 +56,9 @@
             class="button is-ghost is-icon" 
             aria-label="Toggle Light/Dark Mode" 
             @click="theme = theme === 'light' ? 'dark' : 'light'">
-            <span class="icon"><i class="ti ti-sun-high-filled"></i></span>
+            <span class="icon">
+              <i :class="theme === 'light' ? 'ti ti-moon-filled' : 'ti ti-sun-high-filled'"></i>
+            </span>
           </button>
           <button
             class="button is-ghost is-icon"
@@ -67,7 +70,7 @@
       </nav>
     </header>
 
-    <div
+    <main
       class="has-sidebar"
       :class="{ 'open': sidebarOpen, 'full': sidebarFull }"
     >
@@ -75,7 +78,7 @@
         <p>This is a test of the sidebar feature! This is a test of the sidebar feature! This is a test of the sidebar feature! This is a test of the sidebar feature! This is a test of the sidebar feature! This is a test of the sidebar feature!</p>
       </aside>
 
-      <main class="main">
+      <div class="main">
         
         <section class="section">
           <div class="container">
@@ -1423,44 +1426,44 @@
             <h4>Colored</h4>
             <div class="group">
               <span class="chip">Chip</span>
-              <span class="chip quiet">Chip</span>
+              <span class="chip is-quiet">Chip</span>
 
               <span class="chip is-primary">Chip</span>
-              <span class="chip is-primary quiet">Chip</span>
+              <span class="chip is-primary is-quiet">Chip</span>
 
               <span class="chip is-info">Chip</span>
-              <span class="chip is-info quiet">Chip</span>
+              <span class="chip is-info is-quiet">Chip</span>
 
               <span class="chip is-warning">Chip</span>
-              <span class="chip is-warning quiet">Chip</span>
+              <span class="chip is-warning is-quiet">Chip</span>
 
               <span class="chip is-danger">Chip</span>
-              <span class="chip is-danger quiet">Chip</span>
+              <span class="chip is-danger is-quiet">Chip</span>
 
               <span class="chip is-success">Chip</span>
-              <span class="chip is-success quiet">Chip</span>
+              <span class="chip is-success is-quiet">Chip</span>
 
               <span class="chip is-greyscale">Chip</span>
-              <span class="chip is-greyscale quiet">Chip</span>
+              <span class="chip is-greyscale is-quiet">Chip</span>
             </div>
             <h4>Links</h4>
             <div class="group">
               <a href="#" class="chip">Chip</a>
-              <a href="#" class="chip is-primary quiet">Chip</a>
+              <a href="#" class="chip is-primary is-quiet">Chip</a>
               <a href="#" class="chip is-info disabled">Chip</a>
             </div>
             <h4>Addons</h4>
             <div class="group has-addons">
               <span href="#" class="chip">This Chip</span>
               <span href="#" class="chip is-primary">Has Addons</span>
-              <a href="#" class="chip is-info quiet">Some are links</a>
+              <a href="#" class="chip is-info is-quiet">Some are links</a>
               <span href="#" class="chip is-success disabled">Some are disabled</span>
             </div>
             <h4>With Icon</h4>
             <div class="group">
               <span href="#" class="chip"><i class="ti ti-info-circle-filled"></i> No .icon</span>
               <span href="#" class="chip is-warning"><span class="icon"><i class="ti ti-info-circle-filled"></i></span> No .group</span>
-              <a href="#" class="chip is-info quiet"><span class="group"><span class="icon"><i class="ti ti-info-circle-filled"></i></span>Has Both!</span></a>
+              <a href="#" class="chip is-info is-quiet"><span class="group"><span class="icon"><i class="ti ti-info-circle-filled"></i></span>Has Both!</span></a>
               <span href="#" class="chip"><span class="group"><span class="icon text-warning-500"><i class="ti ti-info-circle-filled"></i></span>Custom Color</span></span>
             </div>
           </div>
@@ -1495,25 +1498,25 @@
                 </div>
               </div>
               <div>
-                <div class="notification quiet">
+                <div class="notification is-quiet">
                   <p>Base</p>
                 </div>
-                <div class="notification quiet is-primary">
+                <div class="notification is-quiet is-primary">
                   <p>primary</p>
                 </div>
-                <div class="notification quiet is-info">
+                <div class="notification is-quiet is-info">
                   <p>info</p>
                 </div>
-                <div class="notification quiet is-warning">
+                <div class="notification is-quiet is-warning">
                   <p>warning</p>
                 </div>
-                <div class="notification quiet is-danger">
+                <div class="notification is-quiet is-danger">
                   <p>danger</p>
                 </div>
-                <div class="notification quiet is-success">
+                <div class="notification is-quiet is-success">
                   <p>success</p>
                 </div>
-                <div class="notification quiet is-greyscale">
+                <div class="notification is-quiet is-greyscale">
                   <p>greyscale</p>
                 </div>
               </div>
@@ -1935,7 +1938,7 @@
             </div>
           </div>
         </section>
-      </main>
-    </div>
+      </div>
+    </main>
   </body>
 </html>

@@ -1,33 +1,34 @@
 @use '../utilities/functions' as f;
 @use "../utilities/mixins" as m;
 
-.navbar {
-  @include m.colors("nav","base","strong");
+.header {
+  @include m.colors("header","base","strong");
 
-  background-color: var(--nav-color-base);
-  color: var(--nav-color-strong);
-  display: flex;
-  flex-direction: row;
+  --header-background: var(--header-color-base);
+
   position: sticky;
   top: 0;
+  background-color: var(--header-background);
+  z-index: var(--z-index-header);
+}
+
+.nav {
+  @include m.colors("nav","strong");
+
+  --nav-text: var(--nav-color-strong);
+
+  display: flex;
   width: 100%;
   height: var(--navbar-height);
-  z-index: var(--z-index-navbar);;
   padding-left: f.fluid_clamp(1rem, 2rem);
   padding-right: f.fluid_clamp(1rem, 2rem);
   padding-top: var(--padding-small);
   padding-bottom: var(--padding-small);
+  color: var(--nav-text);
+  flex-direction: row;
   gap: var(--padding-base);
   align-items: center;
-
-  .nav {
-    display: flex;
-    flex-direction: row;
-    gap: var(--padding-base);
-    align-items: center;
-    justify-content: space-between;
-    width:100%;
-  }
+  justify-content: space-between;
 
   .nav-item {
     display: flex;
@@ -38,8 +39,7 @@
   }
 
   .logo {
-    @include m.transitions;
-    transition-property: opacity;
+    @include m.transitions("opacity");
     font-size: var(--text-size-logo);
     color: var(--nav-color-strong);
 

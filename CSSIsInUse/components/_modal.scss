@@ -2,23 +2,24 @@
 
 .modal {
   @include m.colors("modal","base");
-  --modal-bg-base: var(--color-bg-base);
+
+  --modal-background: var(--modal-color-base);
+
+  --modal-backdrop-filter: blur(var(--blur-size-small));
 
   display:none;
   position: fixed;
+  padding: var(--padding-xl) 0;
   left:0;
   top:0;
   right:0;
   bottom:0;
-
-  background-color: oklch(from var(--modal-color-base) l c h / var(--opacity-dark));
-  
+  background-color: oklch(from var(--modal-background) l c h / var(--opacity-dark));
   z-index: var(--z-index-modal);
   align-items: center;
   flex-direction: column;
   overflow-y: auto;
-  display:none;
-  padding: var(--padding-xl) 0;
+  backdrop-filter: var(--modal-backdrop-filter);
 
   &.is-active {
     display:flex;
@@ -26,6 +27,10 @@
 
   &.is-centered {
     justify-content: center;
+  }
+
+  &.no-blur {
+    --modal-backdrop-filter: none;
   }
   
 }

@@ -3,41 +3,42 @@
 .section {
   @include m.colors("section","base","element","text");
 
-  background-color: var(--section-color-base);
-  color: var(--section-color-text);
-  padding-top: var(--padding-section);
-  padding-bottom: var(--padding-section);
+  --section-background: var(--section-color-base);
+  --section-text: var(--section-color-text);
+
+  --section-padding: var(--padding-section) 0;
+
   display: flex;
+  width:100%;
+  padding: var(--section-padding);
+  background-color: var(--section-background);
+  color: var(--section-text);
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width:100%;
   overflow-wrap: break-word;
 
+  &.is-element {
+    --section-background: var(--section-color-element);
+  }
+
+  &.is-transparent {
+    --section-background: transparent;
+  }
+
   &.is-min {
-    padding-top: var(--padding-base);
-    padding-bottom: var(--padding-base);
+    --section-padding: var(--padding-base) 0;
   }
 
   &.is-small {
-    padding-top: var(--padding-xl);
-    padding-bottom: var(--padding-xl);
+    --section-padding: var(--padding-xl) 0;
   }
 
   &.is-large {
-    padding-top: var(--padding-section-large);
-    padding-bottom: var(--padding-section-large);
+    --section-padding: var(--padding-section-large) 0;
   }
 
   &.is-full {
     min-height:100vh;
-  }
-
-  &.is-element {
-    background-color: var(--section-color-element);
-  }
-
-  &.is-transparent {
-    background-color: transparent;
   }
 }

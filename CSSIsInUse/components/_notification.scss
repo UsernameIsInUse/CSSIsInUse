@@ -56,11 +56,11 @@
   @include m.glow(var(--notif-glow-size), var(--notif-color-color), var(--notif-glow-alpha));
 
   &:hover {
-    @include m.transitions;
+    @include m.transitions("box-shadow");
     --notif-glow-alpha: 1;
   }
 
-  &.quiet {
+  &.is-quiet {
     --notif-padding: var(--padding-small);
     --notif-radius: var(--border-radius-small);
     --notif-glow-alpha: 0;

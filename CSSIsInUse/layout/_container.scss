@@ -3,38 +3,43 @@
 .container {
   @include m.colors("container","base","element","text");
 
-  background-color: var(--container-color-base);
-  color: var(--container-color-text);
+  --container-background: var(--container-color-base);
+  --container-text: var(--container-color-text);
+
+  --container-max: var(--breakpoint-md);
+
+  display: flex;
+  width: 100%;
+  max-width: var(--container-max);
+  margin:auto;
   padding-left: var(--padding-base);
   padding-right: var(--padding-base);
-  display: flex;
+  background-color: var(--container-background);
+  color: var(--container-text);
   flex-direction: column;
   overflow-wrap: break-word;
-  width: 100%;
-  margin:auto;
-  max-width: var(--breakpoint-md);
-
-  &.is-min {
-    max-width: var(--breakpoint-min);
-  }
-
-  &.is-small {
-    max-width: var(--breakpoint-sm);
-  }
-
-  &.is-large {
-    max-width: var(--breakpoint-max);
-  }
-
-  &.is-full {
-    max-width: 100%;
-  }
 
   &.is-element {
-    background-color: var(--section-color-element);
+    --container-background: var(--container-color-element);
   }
 
   &.is-transparent {
-    background-color: transparent;
+    --container-background: transparent;
+  }
+
+  &.is-min {
+    --container-max: var(--breakpoint-min);
+  }
+
+  &.is-small {
+    --container-max: var(--breakpoint-sm);
+  }
+
+  &.is-large {
+    --container-max: var(--breakpoint-max);
+  }
+
+  &.is-full {
+    --container-max: 100%;
   }
 }

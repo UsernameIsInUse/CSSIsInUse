@@ -1,0 +1,18 @@
+@media (prefers-color-scheme: light) {
+  :root {
+    --ti-dark-circle: "\f671";
+  --ti-light-circle: "\ea6b";
+  }
+}
+:root,
+:root [data-theme=dark],
+:root .dark {
+  --ti-dark-circle: "\ea6b";
+  --ti-light-circle: "\f671";
+}
+
+:root [data-theme=light],
+:root .light {
+  --ti-dark-circle: "\f671";
+  --ti-light-circle: "\ea6b";
+}

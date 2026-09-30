@@ -3,34 +3,38 @@
 .menu {
   @include m.colors("menu","element","top","strong");
 
+  --menu-background: var(--menu-color-element);
+  --menu-text: var(--menu-color-strong);
+  --menu-color: var(--menu-color-top);
+
   @include m.block("small");
 
-  list-style: none;
   width: calc(100% + 1rem);
   margin-left: -0.5rem;
+  list-style: none;
 
   a, button, .menu-item {
-    @include m.transitions;
-    transition-property: background-color;
-    background-color: var(--menu-color-element);
-    color: var(--menu-color-strong);
-    border-radius: var(--border-radius-small);
+    @include m.transitions("background-color");
+
     width: 100%;
     padding: var(--input-padding-small);
+    background-color: var(--menu-background);
+    color: var(--menu-text);
+    border-radius: var(--border-radius-small);
     text-align: justify;
 
     &:hover {
-      background-color: var(--menu-color-top);
+      --menu-background: var(--menu-color-top);
     }
 
     &.is-active {
-      background-color: var(--menu-color-top);
+      --menu-background: var(--menu-color-top);
     }
   }
 
   ul {
-    margin-left: -0.5rem;
     width: calc(100% + 1rem);
+    margin-left: -0.5rem;
   }
 
   li {
@@ -38,10 +42,10 @@
   }
 
   li ul {
-    margin-left: var(--padding-base);
-    list-style: none;
     width: auto;
-    border-left: var(--border-thickness-base) solid var(--menu-color-top);
+    margin-left: var(--padding-base);
+    border-left: var(--border-thickness-base) solid var(--menu-color);
     padding-left: var(--padding-small);
+    list-style: none;
   }
 }

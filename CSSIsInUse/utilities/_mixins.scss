@@ -6,10 +6,11 @@
   }
 }
 
-@mixin transitions {
-  -webkit-transition-duration: 0.2s;
-  transition-duration: 0.2s;
+@mixin transitions($properties...) {
+  -webkit-transition-duration: var(--transition-duration-base);
+  transition-duration: var(--transition-duration-base);
   transition-timing-function: ease-out;
+  transition-property: #{$properties};
 }
 
 @mixin no-transitions {
@@ -22,7 +23,32 @@
 }
 
 @mixin colors($prefix, $colors...) {
-  @for $i from 0 to list.length($colors) {
-    --#{$prefix}-color-#{list.nth($colors, $i + 1)}: var(--color-#{list.nth($colors, $i + 1)});
+  @each $color in $colors {
+    --#{$prefix}-color-#{$color}: var(--color-#{$color});
+  }
+}
+
+@mixin no-select {
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+@mixin focus{
+  &:focus-visible {
+    outline: solid var(--border-thickness-base) currentColor;
+  }
+}
+
+@mixin scrollable {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+
+  &:hover{
+    @include colors("scrollbar","weak");
+    scrollbar-color: var(--scrollbar-color-weak) transparent;
   }
 }

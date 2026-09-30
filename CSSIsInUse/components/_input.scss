@@ -1,4 +1,3 @@
-@use '../utilities/functions' as f;
 @use "../utilities/mixins" as m;
 
 .field {
@@ -15,90 +14,99 @@
   @include m.block("small");
   @include m.colors("label","color","weak","text","strong");
 
+  --label-text: var(--label-color-strong);
+
+  color: var(--label-text);
   font-weight: var(--weight-bold);
-  color: var(--label-color-strong);;
 
   &.is-strong {
-    color: var(--label-color-strong);
+    --label-text: var(--label-color-strong);
   }
   &.is-text {
-    color: var(--label-color-text);
+    --label-text: var(--label-color-text);
   }
   &.is-weak {
-    color: var(--label-color-weak);
+    --label-text: var(--label-color-weak);
   }
   &.is-color {
-    color: var(--label-color-color);
+    --label-text: var(--label-color-color);
   }
 }
 
 .input, .textarea {
   @include m.colors("input","base","top","color","text");
-    
-  padding: var(--input-padding-base);
-  background-color: var(--input-color-base);
-  color: var(--input-color-text);
-  border: 2px solid var(--input-color-color);
-  width: 100%;
-  border-radius: var(--border-radius-small);
+
+  --input-background: var(--input-color-base);
+  --input-text: var(--input-color-text);
+  --input-color: var(--input-color-color);
+
+  --input-size-text: var(--text-size-6);
+  --input-size-padding: var(--input-padding-base);
+  --input-size-height: calc(var(--padding-base) * 6);
+  
+  @include m.no-select;
+
   position: relative;
-  -webkit-user-select: none; /* Safari */        
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+/Edge */
-  user-select: none; /* Standard */
+  width: 100%;
+  padding: var(--input-size-padding);
+  background-color: var(--input-background);
+  color: var(--input-text);
+  border: var(--border-thickness-base) solid var(--input-color);
+  border-radius: var(--border-radius-small);
+  font-size: var(--input-size-text);
 
   &:focus {
-    @include m.no-transitions;
-    outline: solid 2px var(--input-color-top);
-    offset: 2px;
+    @include m.focus;
   }
 
   &.is-small {
-    padding: var(--input-padding-small);
-    font-size: var(--text-size-7);
+    --input-size-text: var(--text-size-7);
+    --input-size-padding: var(--input-padding-small);
   }
 
-  &:disabled, &.disabled {
+  &[disabled], &.disabled {
     opacity: var(--opacity-disabled);
     cursor: not-allowed;
   }
 }
 
 .textarea{
-  --ta-height: calc(var(--padding-base) * 6);
-  min-height: var(--ta-height);
-  height: var(--ta-height);
+  height: var(--input-size-height);
+  min-height: var(--input-size-height);
 
   &.is-small {
-    --ta-height: 2.625rem;
-    padding: var(--input-padding-base);
-    font-size: var(--text-size-6);
+    --input-size-height: 2.625rem;
+    --input-size-padding: var(--input-padding-base);
+    --input-size-text: var(--text-size-6);
   }
 
   &.is-large {
-    --ta-height: 12rem;
+    --input-size-height: 12rem;
   }
 }
 
 .checkbox, .radio {
-  @include m.colors("cb","color","weak","strong");
+  @include m.colors("cb","color","strong");
 
-  color: var(--cb-color-strong);
-  accent-color: var(--cb-color-color);
-  cursor: pointer;
+  --cb-text: var(--cb-color-strong);
+  --cb-color: var(--cb-color-color);
+
   display: inline-block;
-  line-height: 1.25;
   position: relative;
+  color: var(--cb-text);
+  accent-color: var(--cb-color);
+  line-height: 1.25;
+  cursor: pointer;
 
   input {
     cursor: pointer;
   }
 
+  &:disabled, &.disabled,
   &[disabled],
   fieldset[disabled] &,
   input[disabled] {
-    color: var(--cb-color-weak);
+    opacity: var(--opacity-disabled);
     cursor: not-allowed;
   }
-
 }

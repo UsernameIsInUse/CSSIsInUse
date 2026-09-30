@@ -1,0 +1,50 @@
+/*
+// SCSS Tools
+@use "../utilities/mixins" as m;
+
+// Main Element
+.component {
+  // Color References
+  @include m.colors('component', 'base', 'element',  ...);
+
+  // All Component Color Semantics / Defaults
+  --component-background: var(--component-color-base);
+
+  // Modifiable Component Size/Misc Semantics / Defaults
+  --component-size-text: var(--text-size-6);
+  --component-size-padding: var(--padding-base);
+
+  // Mixins
+  @include m.glow(...)
+
+  // Consume Semantic Tokens + Misc CSS (display/position/width/padding/etc -> colors -> sizes/borders/radius/etc -> Misc)
+  display: block;
+  padding: var(--component-size-padding);
+  background-color: var(--component-background);
+  font-size: var(--component-size-text);
+  
+  // Misc Variants
+  &:hover {
+    ...
+  }
+
+  // Sub-elements
+  .component-element {
+    ...
+  }
+
+  // is-* Variants Modify Semantics (Color -> Size -> Misc)
+  &.is-element {
+    --component-background: var(--component-color-element);
+  }
+  
+  &.is-small {
+    --component-size-text: var(--text-size-7);
+    --component-size-padding: var(--padding-small);
+  }
+
+}
+
+// Other Elements As Neccessary
+
+*/

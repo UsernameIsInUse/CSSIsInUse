@@ -3,27 +3,33 @@
 .card {
   @include m.colors("card","element","top","text","strong");
 
-  background-color: var(--card-color-element);
-  color: var(--card-color-text);
-  padding: var(--padding-base);
+  --card-background: var(--card-color-element);
+  --card-text: var(--card-color-text);
+
+  --card-size-padding: var(--padding-base);
+
   width:100%;
+  padding: var(--card-size-padding);
+  background-color: var(--card-background);
+  color: var(--card-text);
   border-radius: var(--border-radius-small);
 
-  &.is-xs {
-    padding: var(--padding-xs);
-  }
-  &.is-small {
-    padding: var(--padding-small);
-  }
-  &.is-large {
-    padding: var(--padding-large);
-  }
-  &.is-xl {
-    padding: var(--padding-xl);
+  &.is-top {
+    --card-background: var(--card-color-top);
+    --card-text: var(--card-color-strong);
   }
 
-  &.is-top {
-    background-color: var(--card-color-top);
-    color: var(--card-color-strong);
+  &.is-xs {
+    --card-size-padding: var(--padding-xs);
   }
+  &.is-small {
+    --card-size-padding: var(--padding-small);
+  }
+  &.is-large {
+    --card-size-padding: var(--padding-large);
+  }
+  &.is-xl {
+    --card-size-padding: var(--padding-xl);
+  }
+
 }

@@ -1,22 +1,24 @@
 @use "../utilities/mixins" as m;
 
 .group {
-  @include m.block("base");
-  align-items: center;
-  display:flex;
-  flex-flow: wrap;
-  gap: var(--padding-small);
-  justify-content: flex-start;
+  --group-size-gap: var(--padding-small);
+  --group-flex-flow: wrap;
+  --group-justify-content: flex-start;
+  --group-align-items: center;
+  --group-addons-inline-end: var(--border-thickness-base);
 
-  &.is-large-gap {
-    gap: var(--padding-base);
-  }
+  @include m.block("base");
+  align-items: var(--group-align-items);
+  display:flex;
+  flex-flow: var(--group-flex-flow);
+  gap: var(--group-size-gap);
+  justify-content: var(--group-justify-content);
 
   &.has-addons{
-    gap: 0;
+    --group-size-gap: 0;
 
     &.no-wrap {
-      flex-flow:initial;
+      --group-flex-flow: initial;
     }
 
     & > *:not(:first-child) {
@@ -27,28 +29,31 @@
     & > *:not(:last-child) {
       border-end-end-radius: 0;
       border-start-end-radius: 0;
-      margin-inline-end: calc(0px - var(--border-thickness-base));
+      margin-inline-end: calc(0px - var(--group-addons-inline-end));
     }
   }
 
+  &.is-large-gap {
+    --group-size-gap: var(--padding-base);
+  }
+
   &.is-centered {
-    justify-content: center;
+    --group-justify-content: center;
   }
 
   &.is-end {
-    justify-content: flex-end;
+    --group-justify-content: flex-end;
   }
 
   &.is-space-between {
-    justify-content: space-between;
+    --group-justify-content: space-between;
   }
 
   &.is-aligned-start {
-    align-items: flex-start;
+    --group-align-items: flex-start;
   }
 
   &.is-aligned-end {
-    align-items: flex-end;
+    --group-align-items: flex-end;
   }
-  
 }

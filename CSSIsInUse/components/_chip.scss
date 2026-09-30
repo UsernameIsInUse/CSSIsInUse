@@ -1,48 +1,49 @@
-@use '../utilities/functions' as f;
 @use "../utilities/mixins" as m;
 
 .chip {
   @include m.colors("chip","base","element","top","weak","strong");
 
-  padding: var(--input-padding-small);;
-  font-size: var(--text-size-7);
-  background-color: var(--chip-color-top);
-  color: var(--chip-color-strong);
-  border: 2px solid var(--chip-color-top);
-  width: fit-content;
-  border-radius: var(--border-radius-small);
-  position: relative;
+  --chip-background: var(--chip-color-top);
+  --chip-text: var(--chip-color-strong);
+  --chip-color: var(--chip-color-top);
 
-  &.quiet {
-    color: var(--chip-color-weak);
-    background-color: var(--chip-color-base);
-  }
-
-  &:disabled, &.disabled {
-    opacity: var(--opacity-disabled);
-  }
-}
-
-a.chip {
-  --chip-glow-size: var(--glow-size-small);
   --chip-glow-alpha: var(--opacity-disabled);
-  
-  cursor: pointer;
-  @include m.glow(var(--chip-glow-size), var(--chip-color-top), var(--chip-glow-alpha));
 
-  &:hover {
-    @include m.transitions;
-    --chip-glow-alpha: 1;
-  }
+  position: relative;
+  width: fit-content;
+  padding: var(--input-padding-small);
+  background-color: var(--chip-background);
+  color: var(--chip-text);
+  font-size: var(--text-size-7);
+  border: var(--border-thickness-base) solid var(--chip-color);
+  border-radius: var(--border-radius-small);
 
-  &:focus {
-    @include m.no-transitions;
-    outline: solid var(--border-thickness-base) var(--chip-color-element);
-    offset: var(--border-thickness-base);
+  &.is-quiet {
+    --chip-text: var(--chip-color-weak);
+    --chip-background: var(--chip-color-base);
   }
 
   &:disabled, &.disabled {
     --chip-glow-alpha: 0;
+    opacity: var(--opacity-disabled);
     cursor: not-allowed;
+  }
+}
+
+a.chip {
+  @include m.focus;
+  @include m.glow(var(--glow-size-small), var(--chip-color), var(--chip-glow-alpha));
+
+  cursor: pointer;
+
+  &:hover {
+    @include m.transitions("box-shadow");
+    --chip-glow-alpha: 1;
+  }
+
+  &:disabled, &.disabled {
+    --chip-glow-alpha: 0;
+    opacity: var(--opacity-disabled);
+    cursor: not-allowed;    
   }
 }

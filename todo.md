@@ -61,3 +61,13 @@
 - [ ] Everything built to be customizable with utility classes to change colors, paddings, sizes, filled/unfilled, etc
 - [x] Everything built to be generative, so I'm not manually creating new derived variables often
 - [x] Everything built to be accessible by default
+
+you already applied the style guide to the components, do it to the layouts and clean up choices/tabler/schemes/utilities before doing the following and then calling it good:
+
+global is-element/top/etc system so that things like menus don't only have to be on element backgrounds.
+global sizing system? is-xs, is-small, etc?
+global positional system? is-centered, is-end, is-aligned-end, etc?
+blur navbar bg?
+more usage of fluid-clamp, especially for positioning?
+decouple tabler/choices / generate separate css files including them?
+create more default schemes

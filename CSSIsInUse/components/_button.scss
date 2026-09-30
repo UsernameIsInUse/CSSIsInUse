@@ -3,83 +3,35 @@
 .button {
   @include m.colors("btn","base","element","top","color","strong");
 
-  --btn-glow-size: var(--glow-size-large);
+  --btn-background: var(--btn-color-base);
+  --btn-text: var(--btn-color-strong);
+  --btn-color: var(--btn-color-color);
+  --btn-outline: var(--btn-color-weak);
+
+  --btn-size-text: var(--text-size-6);
+  --btn-size-padding: var(--input-padding-base);
+  --btn-size-radius: var(--border-radius-rounded);
+  --btn-size-glow: var(--glow-size-large);
   --btn-glow-alpha: var(--opacity-disabled);
   
-  @include m.transitions;
-  transition-property: background-color, box-shadow;
-  
-  padding: var(--input-padding-base);
-  background-color: var(--btn-color-base);
-  color: var(--btn-color-strong);
-  border: var(--border-thickness-base) solid var(--btn-color-color);
-  width: fit-content;
-  border-radius: var(--border-radius-rounded);
+  @include m.transitions("background-color", "box-shadow");
+  @include m.no-select;
+  @include m.glow(var(--btn-size-glow), var(--btn-color), var(--btn-glow-alpha));
+  @include m.focus;
+
+  display: block;
   position: relative;
+  width: fit-content;
+  padding: var(--btn-size-padding);
+  background-color: var(--btn-background);
+  color: var(--btn-text);
+  font-size: var(--btn-size-text);
+  border: var(--border-thickness-base) solid var(--btn-color);
+  border-radius: var(--btn-size-radius);
   cursor: pointer;
-  display:block;
-  -webkit-user-select: none; /* Safari */        
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+/Edge */
-  user-select: none; /* Standard */
   
-  @include m.glow(var(--btn-glow-size), var(--btn-color-color), var(--btn-glow-alpha));
-
   &:hover {
-    --btn-glow-alpha: 1;
-  }
-
-  &:focus {
-    offset: 2px;
-  }
-
-  &.is-hoverable:hover {
-    background-color: var(--btn-color-element);
-
-    &:disabled, &.disabled {
-      background-color: var(--btn-color-base);
-    }
-  }
-
-  &.is-small {
-    padding: var(--input-padding-small);
-    font-size: var(--text-size-7);
-    --btn-glow-size: var(--glow-size-small);
-  }
-
-  &.is-large {
-    font-size: var(--text-size-large);
-  }
-
-  &.is-xl {
-    font-size: var(--text-size-xl);
-  }
-
-  &.is-ghost {
-    @include m.transitions;
-    --btn-color-color: transparent;
-    background-color: transparent;
-    --btn-glow-alpha: 0;
-
-    &:hover {
-      background-color: var(--btn-color-element);
-    }
-
-    &:disabled, &.disabled {
-      background-color: transparent
-    }
-  }
-
-  &.is-active {
-    background-color: var(--btn-color-element);
-
-    &:hover {
-      background-color: var(--btn-color-base);
-
-      &:disabled, &.disabled {
-        background-color: var(--btn-color-element);
-      }
-    }
+    --btn-glow-alpha: var(--opacity-base);
   }
 
   &:disabled, &.disabled {
@@ -88,10 +40,62 @@
     cursor: not-allowed;
   }
 
+  &.is-hoverable:hover {
+    --btn-background: var(--btn-color-element);
+
+    &:disabled, &.disabled {
+      --btn-background: var(--btn-color-base);
+    }
+  }
+
+  &.is-ghost {
+    --btn-color: transparent;
+    --btn-background: transparent;
+    --btn-glow-alpha: 0;
+
+    &:hover {
+      --btn-background: var(--btn-color-element);
+    }
+
+    &:disabled, &.disabled {
+      --btn-background: transparent
+    }
+  }
+
+  &.is-active {
+    --btn-background: var(--btn-color-element);
+
+    &:hover {
+      --btn-background: var(--btn-color-base);
+    }
+
+    &:disabled, &.disabled {
+      --btn-background: var(--btn-color-element);
+    }
+  }
+
+  &.is-ghost.is-active:hover {
+    --btn-background: transparent;
+  }
+
+  &.is-small {
+    --btn-size-padding: var(--input-padding-small);
+    --btn-size-text: var(--text-size-7);
+    --btn-size-glow: var(--glow-size-small);
+  }
+
+  &.is-large {
+    --btn-size-text: var(--text-size-large);
+  }
+
+  &.is-xl {
+    --btn-size-text: var(--text-size-xl);
+  }
+
   &.is-icon {
-    padding: var(--padding-xs);
-    border-radius: var(--border-radius-small);
-    --btn-glow-size: var(--glow-size-small);
+    --btn-size-padding: var(--padding-xs);
+    --btn-size-radius: var(--border-radius-small);
+    --btn-size-glow: var(--glow-size-small);
     line-height: 1;
 
     .icon {

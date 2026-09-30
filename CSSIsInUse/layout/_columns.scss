@@ -2,13 +2,16 @@
 
 .columns {
   --column-flex-basis: var(--breakpoint-min);
+  --column-gap: var(--padding-base);
+  --column-align-items: initial;
 
   @include m.block("xl");
 
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: var(--padding-base);
+  gap: var(--column-gap);
+  align-items: var(--column-align-items);
 
   &.min-small {
     --column-flex-basis: var(--padding-section-large);
@@ -21,23 +24,23 @@
   }
 
   &.gap-small {
-    gap: var(--padding-small);
+    --column-gap: var(--padding-small);
   }
   &.gap-large {
-    gap: var(--padding-large);
+    --column-gap: var(--padding-large);
   }
   &.gap-0 {
-    gap: 0;
+    --column-gap: 0;
   }
 
   &.align-start {
-    align-items: start;
+    --column-align-items: start;
   }
   &.align-center {
-    align-items: center;
+    --column-align-items: center;
   }
   &.align-end {
-    align-items: end;
+    --column-align-items: end;
   }
 
   & > * {

@@ -10,48 +10,49 @@
 .sidebar {
   @include m.colors("sb","menu");
 
+  --sb-background: var(--sb-color-menu);
+
   --sb-height: calc(100vh - var(--navbar-height));
   --sb-width: var(--sidebar-width);
 
+  @include m.transitions("margin-left");
+  @include m.scrollable;
+
   position:fixed;
-  background-color: var(--sb-color-menu);
-  max-height: var(--sb-height);
-  height: var(--sb-height);
-  z-index: var(--z-index-sidebar);;
-  overflow-y: auto;
-  overscroll-behavior: contain;
   width: var(--sb-width);
-  padding: var(--padding-base);
-  transition: margin-left 0.2s;
-  @include m.transitions;
-
+  height: var(--sb-height);
+  max-height: var(--sb-height);
   margin-left: calc(0px - var(--sb-width));
-
+  padding: var(--padding-base);
+  background-color: var(--sb-background);
+  z-index: var(--z-index-sidebar);;
+  
   .has-sidebar.open & {
     margin-left: 0px;
   }
 
   .has-sidebar.full & {
     --sb-width: 100vw;
-    transition: none;
+    @include m.no-transitions;
   }
   
 }
 .main {
+  @include m.transitions("margin-left");
+  
   width:100%;
   min-inline-size: var(--sidebar-width);
   margin-left: 0;
-  transition: margin-left 0.2s;
-  @include m.transitions;
 
   .has-sidebar.open & {
     margin-left: var(--sidebar-width);
   }
 
   .has-sidebar.full & {
-    transition: none;
+    @include m.no-transitions;
   }
 }
 
-// YOU CAN USE THE NAVBAR TO SCROLL, SHOULD BE FIXED
-// MENU DESIGN COMPONENT
+body:has(.has-sidebar.open.full) {
+  overflow: hidden;
+}

@@ -3,30 +3,33 @@
 .icon {
   @include m.colors("icon","color","weak","text","strong");
 
+  --icon-color: inherit;
+
   --icon-size: var(--icon-size-base);
 
-  align-items: center;
+  @include m.transitions("color");
+  @include m.no-select;
+
   display: inline-flex;
-  flex-shrink: 0;
-  justify-content: center;
   height: var(--icon-size);
   width: var(--icon-size);
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--icon-color);
   font-size: var(--icon-size);
-  @include m.transitions;
-  transition-property: color;
-  color: inherit;
 
   &.is-strong {
-    color: var(--icon-color-strong);
+    --icon-color: var(--icon-color-strong);
   }
   &.is-text {
-    color: var(--icon-color-text);
+    --icon-color: var(--icon-color-text);
   }
   &.is-weak {
-    color: var(--icon-color-weak);
+    --icon-color: var(--icon-color-weak);
   }
   &.is-color {
-    color: var(--icon-color-color);
+    --icon-color: var(--icon-color-color);
   }
 
   &.is-small {
@@ -41,6 +44,8 @@
     --icon-size: var(--icon-size-xl);
   }
 }
+
+// Tabler Icons Integration
 
 .ti-dark::before {
   content: var(--ti-dark-circle) !important;

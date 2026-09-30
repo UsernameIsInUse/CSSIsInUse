@@ -20,11 +20,11 @@ body {
 }
 
 body {
-  --body-color-base: var(--color-base);
-  --body-color-text: var(--color-text);
+  @include m.colors("body","base","text","weak");
   font-family: var(--font-body);
   background: var(--body-color-base);
   color: var(--body-color-text);
+  scrollbar-color: var(--body-color-weak) transparent;
 }
 
 .block-xl {
