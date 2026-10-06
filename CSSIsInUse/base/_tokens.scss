@@ -32,6 +32,10 @@
   --icon-size-large: calc(var(--icon-size-base) * 1.5);
   --icon-size-xl: calc(var(--icon-size-base) * 2);
 
+  --line-height-base: 1.5;
+  --line-height-small: 1.25;
+  --line-height-large: 2;
+
   --icon-size-base: #{$text-size-4-min};
   --icon-size-small: #{$text-size-6};
   --icon-size-large: var(--text-size-4);
@@ -45,10 +49,11 @@
   --padding-base: 1rem;
   --padding-xs: calc(var(--padding-base) * 0.25);
   --padding-small: calc(var(--padding-base) * 0.5);
-  --padding-large: calc(var(--padding-base) * 1.5);
-  --padding-xl: calc(var(--padding-base) * 2);
+  --padding-large: calc(var(--padding-base) * 2);
+  --padding-xl: calc(var(--padding-base) * 3);
   --padding-section: calc(var(--padding-base) * 4);
   --padding-section-large: calc(var(--padding-base) * 8);
+  --padding-edge: #{f.fluid_clamp(1rem, 2rem)};
 
   --input-padding-base: var(--padding-small) var(--padding-base);
   --input-padding-small: var(--padding-xs) var(--padding-small);
@@ -66,6 +71,7 @@
   --weight-bold: 700;
   --weight-extrabold: 800;
   --weight-heavy: 900;
+  --weight-logo: var(--weight-semibold);
 
   --border-radius-base: 1rem;
   --border-radius-small: calc(var(--border-radius-base) * 0.5);
@@ -95,8 +101,8 @@
 
   --font-header: proxima-nova, sans-serif;
   --font-body: var(--font-header);
-  --font-monospace: source-code-pro, monospace;
-  --font-logo: ofelia-display, proxima-nova, sans-serif;
+  --font-monospace: monospace;
+  --font-logo: var(--font-header);
 
   --transition-duration-base: 0.2s;
 }

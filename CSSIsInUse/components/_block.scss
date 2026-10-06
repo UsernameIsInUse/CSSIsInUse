@@ -1,0 +1,49 @@
+@use "../utilities/mixins" as m;
+
+.block-xl {
+  @include m.block("xl");
+}
+
+.block-large {
+  @include m.block("large");
+}
+
+.block {
+  @include m.block("base");
+}
+
+.block-small {
+  @include m.block("small");
+}
+
+.block-xs {
+  @include m.block("xs");
+}
+
+.block-none {
+  @include m.block($size: false);
+}
+
+.pre-xl {
+  @include m.pre("xl");
+}
+
+.pre-large {
+  @include m.pre("large");
+}
+
+.pre {
+  @include m.pre("base");
+}
+
+.pre-small {
+  @include m.pre("small");
+}
+
+.pre-xs {
+  @include m.pre("xs");
+}
+
+.pre-none {
+  @include m.pre($size: false);
+}

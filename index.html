@@ -15,6 +15,11 @@
       <link rel="stylesheet" href="integrations.css">
 
       <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+      <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.12.0/build/highlight.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.12.0/build/languages/xml.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.12.0/build/languages/scss.min.js"></script>
+      <script>hljs.highlightAll();</script>
       <style>
         .paint {
           padding: var(--padding-base);
@@ -23,23 +28,12 @@
       </style>
   </head>
   <body
-    x-data="{ theme: 'dark', scheme: 'default', sidebarOpen: false, sidebarFull: false }"
-    x-init="sidebarFull = window.innerWidth < 608"
+    x-data="{ theme: 'dark', scheme: 'default', sidebarOpen: true, sidebarFull: false, current: window.location.hash.substring(1) || 'home' }"
+    x-init="sidebarFull = window.innerWidth < 608; if ( sidebarOpen && window.innerWidth < 608 ) { sidebarOpen = false }"
     @resize.window="sidebarFull = window.innerWidth < 608"
     :data-theme="theme"
     :data-scheme="scheme"
   >
-
-    <!--
-    <ul class="notifications">
-      <li class="notification is-warning" role="alert">
-        <p>Did an uh-oh whoopsie</p>
-      </li>
-      <li class="notification is-info" role="alert">
-        <p>Woah did someone call the whoopsie patrol? Cause we just did more.</p>
-      </li>
-    </ul>
-    -->
 
     <header class="header">
       <nav class="nav">
@@ -49,7 +43,7 @@
             aria-label="Toggle Sidebar"
             @click="sidebarOpen = !sidebarOpen">
             <span class="icon"><i class="ti ti-layout-sidebar-filled"></i></span></button>
-          <span class="logo">Logo</span>
+          <button class="logo" @click="current = 'home'">CSSIsInUse</button>
         </div>
         <div class="nav-item">
           <button 
@@ -75,10 +69,417 @@
       :class="{ 'open': sidebarOpen, 'full': sidebarFull }"
     >
       <aside id="main-sidebar" class="sidebar">
-        <p>This is a test of the sidebar feature! This is a test of the sidebar feature! This is a test of the sidebar feature! This is a test of the sidebar feature! This is a test of the sidebar feature! This is a test of the sidebar feature!</p>
+        <nav>
+
+          <h5 class="label is-primary is-text"><span class="group"><span class="icon"><i class="ti ti-click-filled"></i></span><span>CSSIsInUse</span></span></h5>
+          <ul class="menu is-menu">
+            <li><ul>
+              <li><a href="#home" @click="current = 'home'" :class="{ 'is-active' : current === 'home' }">Home</a></li>
+              <li><a href="#overview" @click="current = 'overview'" :class="{ 'is-active' : current === 'overview' }">Overview</a></li>
+              <li><a href="#about" @click="current = 'about'" :class="{ 'is-active' : current === 'about' }">About</a></li>
+              <li><a href="#installation" @click="current = 'installation'" :class="{ 'is-active' : current === 'installation' }">Installation</a></li>
+              <li><a href="#kitchen" @click="current = 'kitchen'" :class="{ 'is-active' : current === 'kitchen' }">Kitchen Sink</a></li>
+            </ul></li>
+          </ul>
+
+          <h5 class="label is-info is-text"><span class="group"><span class="icon"><i class="ti ti-list-details-filled"></i></span><span>Features</span></span></h5>
+          <ul class="menu is-menu">
+            <li><ul>
+              <li><a href="#tokens" @click="current = 'tokens'" :class="{ 'is-active' : current === 'tokens' }">Tokens</a></li>
+              <li><a href="#base" @click="current = 'base'" :class="{ 'is-active' : current === 'base' }">Base Styles</a></li>
+              <li><a href="#color" @click="current = 'color'" :class="{ 'is-active' : current === 'color' }">Color System</a></li>
+              <li><a href="#accessibility" @click="current = 'accessibility'" :class="{ 'is-active' : current === 'accessibility' }">Accessibility & Preferences</a></li>
+              <li><a href="#mixins" @click="current = 'mixins'" :class="{ 'is-active' : current === 'mixins' }">Utilities & Mixins</a></li>
+            </ul></li>
+          </ul>
+
+          <h5 class="label is-success is-text"><span class="group"><span class="icon"><i class="ti ti-layout-filled"></i></span><span>Layout</span></span></h5>
+          <ul class="menu is-menu">
+            <li><ul>
+              <li><a href="#stack" @click="current = 'stack'" :class="{ 'is-active' : current === 'stack' }">Stack</a></li>
+              <li><a href="#sidebar" @click="current = 'sidebar'" :class="{ 'is-active' : current === 'sidebar' }">Main & Sidebar</a></li>
+              <li><a href="#section" @click="current = 'section'" :class="{ 'is-active' : current === 'section' }">Section</a></li>
+              <li><a href="#container" @click="current = 'container'" :class="{ 'is-active' : current === 'container' }">Container</a></li>
+              <li><a href="#columns" @click="current = 'columns'" :class="{ 'is-active' : current === 'columns' }">Columns</a></li>
+              <li><a href="#grid" @click="current = 'grid'" :class="{ 'is-active' : current === 'grid' }">Grid</a></li>
+            </ul></li>
+          </ul>
+
+          <h5 class="label is-warning is-text"><span class="group"><span class="icon"><i class="ti ti-icons-filled"></i></span><span>Primitives</span></span></h5>
+          <ul class="menu is-menu">
+            <li><ul>
+              <li><a href="#block" @click="current = 'block'" :class="{ 'is-active' : current === 'block' }">Block</a></li>
+              <li><a href="#group" @click="current = 'group'" :class="{ 'is-active' : current === 'group' }">Group</a></li>
+              <li><a href="#icon" @click="current = 'icon'" :class="{ 'is-active' : current === 'icon' }">Icon</a></li>
+              <li><a href="#card" @click="current = 'card'" :class="{ 'is-active' : current === 'card' }">Card</a></li>
+              <li><a href="#button" @click="current = 'button'" :class="{ 'is-active' : current === 'button' }">Button</a></li>
+              <li><a href="#chip" @click="current = 'chip'" :class="{ 'is-active' : current === 'chip' }">Chip</a></li>
+              <li><a href="#form" @click="current = 'form'" :class="{ 'is-active' : current === 'form' }">Form</a></li>
+              <li><ul>
+                <li><a href="#input" @click="current = 'input'" :class="{ 'is-active' : current === 'input' }">Input</a></li>
+                <li><a href="#textarea" @click="current = 'textarea'" :class="{ 'is-active' : current === 'textarea' }">Textarea</a></li>
+                <li><a href="#select" @click="current = 'select'" :class="{ 'is-active' : current === 'select' }">Select</a></li>
+                <li><a href="#checkbox" @click="current = 'checkbox'" :class="{ 'is-active' : current === 'checkbox' }">Checkbox</a></li>
+                <li><a href="#radio" @click="current = 'radio'" :class="{ 'is-active' : current === 'radio' }">Radio</a></li>
+                <li><a href="#file" @click="current = 'file'" :class="{ 'is-active' : current === 'file' }">File</a></li>
+              </ul></li>
+              <li><a href="#table" @click="current = 'table'" :class="{ 'is-active' : current === 'table' }">Table</a></li>
+            </ul></li>
+          </ul>
+
+          <h5 class="label is-warning is-text"><span class="group"><span class="icon"><i class="ti ti-template-filled"></i></span><span>Components</span></span></h5>
+          <ul class="menu is-menu">
+            <li><ul>
+              <li><a href="#dropdown" @click="current = 'dropdown'" :class="{ 'is-active' : current === 'dropdown' }">Dropdown</a></li>
+              <li><a href="#menu" @click="current = 'menu'" :class="{ 'is-active' : current === 'menu' }">Menu</a></li>
+              <li><a href="#modal" @click="current = 'modal'" :class="{ 'is-active' : current === 'modal' }">Modal</a></li>
+              <li><a href="#notification" @click="current = 'notification'" :class="{ 'is-active' : current === 'notification' }">Notification</a></li>
+            </ul></li>
+          </ul>
+
+          <h5 class="label is-danger is-text"><span class="group"><span class="icon"><i class="ti ti-puzzle-filled"></i></span><span>Integrations</span></span></h5>
+          <ul class="menu is-menu">
+            <li><ul>
+              <li><a href="#tabler" @click="current = 'tabler'" :class="{ 'is-active' : current === 'tabler' }">Tabler</a></li>
+              <li><a href="#choices" @click="current = 'choices'" :class="{ 'is-active' : current === 'choices' }">Choices</a></li>
+            </ul></li>
+          </ul>
+
+        </nav>
       </aside>
 
       <div class="main">
+
+        <section id="home" class="section container content" x-show="current === 'home'">
+          <h1>Test</h1>
+        </section>
+
+        <section id="about" class="section container content" x-show="current === 'about'">
+          <hgroup>
+            <h1>About</h1>
+            <h5>aka, Why did you build a CSS framework in 2026?</h5>
+          </hgroup>
+          <p>In a world filled with new technologies and frameworks like <a href="https://tailwindcss.com" target="_blank">Tailwind</a>, the existence of many other feature-complete CSS frameworks like <a href="https://bulma.io" target="_blank">Bulma</a> and <a href="https://getbootstrap.com" target="_blank">Bootstrap</a>, and the ever-increasing popularity of making robots do all of the creative thinking for you, who in their right mind would make a whole new CSS framework by hand?</p>
+          <p>CSSIsInUse was created for a few reasons:</p>
+          <ol>
+            <li>I liked other frameworks, but they didn't quite have all the features I wanted.</li>
+            <li>Writing a bespoke CSS file by hand for every project was grating.</li>
+            <li>Tailwind makes my head hurt.</li>
+            <li>I like making stuff.</li>
+          </ol>
+          <h5>So what makes it unique?</h5>
+          <p>CSSIsInUse is a semantic-where-possible, genetic, accessible-by-default framework with infinite themability.</p>
+          <h6>Semantic-Where-Possible</h6>
+          <p>In cases where CSSIsInUse can <em>gently suggest</em> that you use the correct semantic HTML elements when possible, it will do so. Sometimes that means it simply styles that element without an option for a class and expects you to just use it, and othertimes when the element itself is generic enough that it can be used in different ways, it uses the element's name to suggest when to use it.</p>
+          <p>A good example of this are tables. There is no class for a table, you just make it and it's there.</p>
+          <h6>Genetic</h6>
+          <p>All variables, numbers, colors, paddings, corner-roundednesses are all derived from a few common ancestor variables. The base padding is 1rem, and all paddings are multiples of that base, so if you create a theme that sets the base to 2rem, all padding sizes are changed accordingly. This doesn't mean you can't override variables when needed, but the entire site will scale and change as you change base values.</p>
+          <h6>Accessible-By-Default</h6>
+          <p>Surprisingly, a lot of frameworks I've looked through are not accessible-by-default. They'll (sometimes) respect the user's dark/light mode preference, but haven't set up prefers-contrast, reduced-motion, or reduced-transparency features. In CSSIsInUse, those are built in. A CSS framework can't make your site accessible, but all of the default values should be accessible from a visual standpoint.</p>
+          <h6>Infinite Themability</h6>
+          <p>This is the biggest difference between CSSIsInUse and other frameworks. Because of all of the above rules, creating new color schemes is simple and easy. You just create a new class / data-scheme by setting a few variables, register it in the SCSS color system, and all elements will be derived from that changing the entire look and feel of the site. Apply it to the body tag to apply the theme to the entire site, apply it to an element to change the look of that element and all child elements. Each theme automatically includes a light and dark mode, based on user preference or through the data-theme attribute.</p>
+          <p>Themes simply override the existing variables, so if you want each theme to change fonts, padding sizes, outline thicknesses, etc, that's no problem at all.</p>
+          <h5>Okay, and?</h5>
+          <p>So, because of all of the above rules, you have a simple to use but visually powerful framework that handles the boring stuff and lets you paint it however you want.</p>
+          <p>Light/dark mode built in, make as many themes as you want your users can apply, a fluid structure that doesn't really rely on breakpoints, and built-in accessibility features.</p>
+          <p>Even if you hate how this site looks, because you can change it fairly quickly by just modifying a few base variables, it's a great starting point for any project.</p>
+        </section>
+
+        <section id="components" class="section content is-min align-center" x-show="['components', 'kitchen'].includes(current)">
+          <h1>Components</h1>
+        </section>
+
+        <section id="block" class="section container content" x-show="['block', 'kitchen'].includes(current)">
+          <hgroup>
+            <h2>Block</h2>
+            <h5>A basic spacing tool</h5>
+          </hgroup>
+          <p>The <code class="chip is-warning is-quiet">block</code> is a basic spacing tool that allows sibling HTML elements to be spaced apart.</p>
+          <p>If it is not the final sibling element, it gives the element a <code class="chip is-danger is-quiet">margin-bottom</code>.</p>
+
+          <div class="columns gap-large">
+            <div>
+              <p class="chip">Example</p>
+              <div class="block">This top text is in a block.</div>
+              <div class="block">This middle text is also in a block, which you can see there is a gap between this text and the text below.</div>
+              <div class="block">This final text is also in a block, but because it's the final sibling, there is no additional margin below it.</div>
+            </div>
+            <div>
+              <pre><code class="language-html">&lt;div class=&quot;block&quot;&gt;
+  This top text is in a block.
+&lt;/div&gt;
+&lt;div class=&quot;block&quot;&gt;
+  This middle text is also in a block, which you can see there is a gap between this text and the text below.
+&lt;/div&gt;
+&lt;div class=&quot;block&quot;&gt;
+  This final text is also in a block, but because it&#39;s the final sibling, there is no additional margin below it.
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+
+          <p>Without a <code class="chip is-warning is-quiet">block</code>, there would be no margin between the text.</p>
+          
+          <div class="columns gap-large">
+            <div>
+              <p class="chip">Example</p>
+              <div>This top text is not in a block.</div>
+              <div>This middle text is also not in a block, which you can see because it's touching the text above and below.</div>
+              <div>This final text is also not in a block, but because it's the final sibling, there is no difference visually.</div>
+            </div>
+            <div>
+              <pre><code class="language-html">&lt;div&gt;
+  This top text is not in a block.
+&lt;/div&gt;
+&lt;div&gt;
+  This middle text is also not in a block, which you can see because it&#39;s touching the text above and below.
+&lt;/div&gt;
+&lt;div&gt;
+  This final text is also not in a block, but because it&#39;s the final sibling, there is no difference visually.
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+
+          <p>Because the <code class="chip is-warning is-quiet">block</code> component is an SCSS mixin, it is built into many components and elements by default, but also is available as a set of classes which can be applied to any of them to override their default values. Below, you can see the difference between a design with and without block included.</p>
+
+          <div class="columns gap-large">
+            <div>
+              <h5 class="block-none">Form Without Block</h5>
+              <div class="field block-none">
+                <label for="noblock1" class="label block-none">Username</label>
+                <input id="noblock1" class="input block-none">
+              </div>
+              <div class="field block-none">
+                <label for="noblock2" class="label block-none">Password</label>
+                <input id="noblock2" class="input block-none" type="password">
+              </div>
+              <div class="field block-none">
+                <label class="checkbox block-none">
+                  <input type="checkbox" class="block-none" />
+                  Remember me
+                </label>
+              </div>
+              <input type="submit" class="button is-info block-none" value="Login">
+            </div>
+
+            <div>
+              <h5>Form With Block</h5>
+              <div class="field">
+                <label for="noblock1" class="label">Username</label>
+                <input id="noblock1" class="input">
+              </div>
+              <div class="field">
+                <label for="noblock2" class="label">Password</label>
+                <input id="noblock2" class="input" type="password">
+              </div>
+              <div class="field">
+                <label class="checkbox">
+                  <input type="checkbox" />
+                  Remember me
+                </label>
+              </div>
+              <input type="submit" class="button is-info block-none" value="Login">
+            </div>
+          </div>
+
+          <p>Because this is a spacing tool, and we are designers, the spacing is not necessarily consistent. Some elements and components want more space away from other elements than others. To that end, there are multiple <code class="chip is-warning is-quiet">block</code> sizes available, shown below.</p>
+
+          <div class="columns gap-large">
+            <div>
+              <p class="chip">Example</p>
+              <div class="card block-none">block-none (0)</div>
+              <div class="card block-xs">block-xs <code class="dropdown is-tooltip">
+                <span>(0.25rem)</span>
+                <div class="dropdown-menu">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item">--padding-xs: calc(var(--padding-base) * 0.25);</div>
+                  </div>
+                </div>
+              </code></div>
+              <div class="card block-small">block-small <code class="dropdown is-tooltip">
+                <span>(0.5rem)</span>
+                <div class="dropdown-menu">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item">--padding-small: calc(var(--padding-base) * 0.5);</div>
+                  </div>
+                </div>
+              </code></div>
+              <div class="card block">block <code class="dropdown is-tooltip">
+                <span>(1rem)</span>
+                <div class="dropdown-menu">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item">--padding-base: 1rem;</div>
+                  </div>
+                </div>
+              </code></div>
+              <div class="card block-large">block-large <code class="dropdown is-tooltip">
+                <span>(2rem)</span>
+                <div class="dropdown-menu">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item">--padding-large: calc(var(--padding-base) * 2);</div>
+                  </div>
+                </div>
+              </code></div>
+              <div class="card block-xl">block-xl <code class="dropdown is-tooltip">
+                <span>(3rem)</span>
+                <div class="dropdown-menu">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item">--padding-xl: calc(var(--padding-base) * 3);</div>
+                  </div>
+                </div>
+              </code></div>
+              <div class="card">Just here to show the XL block above it.</div>
+            </div>
+            <div>
+              <pre><code class="language-html">&lt;div class=&quot;card block-none&quot;&gt;
+  block-none (0)
+&lt;/div&gt;
+&lt;div class=&quot;card block-xs&quot;&gt;
+  block-xs (0.25rem)
+&lt;/div&gt;
+&lt;div class=&quot;card block-small&quot;&gt;
+  block-small (0.5rem)
+&lt;/div&gt;
+&lt;div class=&quot;card block&quot;&gt;
+  block (1rem)
+&lt;/div&gt;
+&lt;div class=&quot;card block-large&quot;&gt;
+  block-large (2rem)
+&lt;/div&gt;
+&lt;div class=&quot;card block-xl&quot;&gt;
+  block-xl (3rem)
+&lt;/div&gt;
+&lt;div class=&quot;card&quot;&gt;
+  Just here to show the XL block above it.
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+
+          <p>Finally, there is the sister tool <code class="chip is-warning is-quiet">pre</code> which functions exactly the same way, except it uses <code class="chip is-danger is-quiet">margin-top</code> instead if it is not the first sibling element. Only a few elements and components use it by default, usually subtly, but it is another spacing tool in your arsenal.</p>
+
+          <div class="columns gap-large">
+            <div>
+              <p class="chip">Example</p>
+              <div class="card block-none">Just here to show the none pre below it.</div>
+              <div class="card block-none pre-none">pre-none (0)</div>
+              <div class="card block-none pre-xs">pre-xs <code class="dropdown is-tooltip">
+                <span>(0.25rem)</span>
+                <div class="dropdown-menu">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item">--padding-xs: calc(var(--padding-base) * 0.25);</div>
+                  </div>
+                </div>
+              </code></div>
+              <div class="card block-none pre-small">pre-small <code class="dropdown is-tooltip">
+                <span>(0.5rem)</span>
+                <div class="dropdown-menu">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item">--padding-small: calc(var(--padding-base) * 0.5);</div>
+                  </div>
+                </div>
+              </code></div>
+              <div class="card block-none pre">pre <code class="dropdown is-tooltip">
+                <span>(1rem)</span>
+                <div class="dropdown-menu">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item">--padding-base: 1rem;</div>
+                  </div>
+                </div>
+              </code></div>
+              <div class="card block-none pre-large">pre-large <code class="dropdown is-tooltip">
+                <span>(2rem)</span>
+                <div class="dropdown-menu">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item">--padding-large: calc(var(--padding-base) * 2);</div>
+                  </div>
+                </div>
+              </code></div>
+              <div class="card block-none pre-xl">pre-xl <code class="dropdown is-tooltip">
+                <span>(3rem)</span>
+                <div class="dropdown-menu">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item">--padding-xl: calc(var(--padding-base) * 3);</div>
+                  </div>
+                </div>
+              </code></div>
+              
+            </div>
+            <div>
+              <pre><code class="language-html">&lt;div class=&quot;card block-none&quot;&gt;
+  Just here to show the none pre below it.
+&lt;/div&gt;
+&lt;div class=&quot;card block-none pre-none&quot;&gt;
+  pre-none (0)
+&lt;/div&gt;
+&lt;div class=&quot;card block-none pre-xs&quot;&gt;
+  pre-xs (0.25rem)
+&lt;/div&gt;
+&lt;div class=&quot;card block-none pre-small&quot;&gt;
+  pre-small (0.5rem)
+&lt;/div&gt;
+&lt;div class=&quot;card block-none pre&quot;&gt;
+  pre (1rem)
+&lt;/div&gt;
+&lt;div class=&quot;card block-none pre-large&quot;&gt;
+  pre-large (2rem)
+&lt;/div&gt;
+&lt;div class=&quot;card block-none pre-xl&quot;&gt;
+  pre-xl (3rem)
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!--
+
+        <section id="template" class="section container content" x-show="['template', 'kitchen'].includes(current)">
+          <hgroup>
+            <h2>Block</h2>
+            <h5>A basic spacing tool</h5>
+          </hgroup>
+          <p>The <code class="chip is-warning is-quiet">block</code> is a basic spacing tool that allows sibling HTML elements to be spaced apart.</p>
+          <p>If it is not the final sibling element, it gives the element a <code class="chip is-danger is-quiet">margin-bottom</code>.</p>
+
+          <div class="columns gap-large">
+            <div>
+              <p class="chip">Example</p>
+              <div class="block">This top text is in a block.</div>
+              <div class="block">This middle text is also in a block, which you can see there is a gap between this text and the text below.</div>
+              <div class="block">This final text is also in a block, but because it's the final sibling, there is no additional margin below it.</div>
+            </div>
+            <div>
+              <pre><code class="language-html">&lt;div class=&quot;block&quot;&gt;
+  This top text is in a block.
+&lt;/div&gt;
+&lt;div class=&quot;block&quot;&gt;
+  This middle text is also in a block, which you can see there is a gap between this text and the text below.
+&lt;/div&gt;
+&lt;div class=&quot;block&quot;&gt;
+  This final text is also in a block, but because it&#39;s the final sibling, there is no additional margin below it.
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="input" class="section container content" x-show="['input', 'form', 'kitchen'].includes(current)">
+          <h1>Input</h1>
+          <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;title&gt;Title&lt;/title&gt;
+
+&lt;style&gt;body {width: 500px;}&lt;/style&gt;
+
+&lt;script type=&quot;application/javascript&quot;&gt;
+  function $init() {return true;}
+&lt;/script&gt;
+
+&lt;body&gt;
+  &lt;p checked class=&quot;title&quot; id=&#39;title&#39;&gt;Title&lt;/p&gt;
+  &lt;!-- here goes the rest of the page --&gt;
+&lt;/body&gt;</code></pre>
+        </section>
+
+        <section id="textarea" class="section container content" x-show="['textarea', 'form', 'kitchen'].includes(current)">
+          <h1>Textarea</h1>
+        </section>
         
         <section class="section">
           <div class="container">
@@ -90,8 +491,10 @@
             <h6>Heading 6</h6>
             <p>Paragraph with <strong>bold</strong> and <em>emphasis</em> and <strong><em>bold emphasis</em></strong>.</p>
             <p><small>Smaller, less important text</small></p>
-            <hr>
             <p>This paragraph has a <a href="#">Link</a>.</p>
+            <hr>
+            <p>This documentation site was built with raw CSSIsInUse, with <a href="alpinejs.dev/" target="_blank">apline.js</a> for interactivity and <a href="https://highlightjs.org" target="_blank">highlight.js</a> for displaying code blocks.</p>
+            <p>Everything you see comes without any modifications. If you like the way it looks, awesome. If you don't, it's highly customizable, and I think you'll still like some of the features.
           </div>
         </section>
 
@@ -99,97 +502,95 @@
           <div class="container is-large">
             <h3>Generated Color Groups</h3>
             <div class="block" style="display:grid; grid-template-columns: repeat(8, 1fr); gap: var(--padding-xs); overflow-x:auto;">
-              <p class="paint" style="background-color: var(--base-base); color: var(--base-strong);">Base Base</p>
-              <p class="paint" style="background-color: var(--base-menu); color: var(--base-strong);">Base Menu</p>
-              <p class="paint" style="background-color: var(--base-element); color: var(--base-strong);">Base Element</p>
-              <p class="paint" style="background-color: var(--base-top); color: var(--base-strong);">Base Top</p>
-              <p class="paint" style="background-color: var(--base-color); color: var(--base-100);">Base Color</p>
-              <p class="paint" style="background-color: var(--base-weak); color: var(--base-base);">Base Weak</p>
-              <p class="paint" style="background-color: var(--base-text); color: var(--base-base);">Base Text</p>
-              <p class="paint" style="background-color: var(--base-strong); color: var(--base-base);">Base Strong</p>
+              <span class="paint" style="background-color: var(--base-base); color: var(--base-strong);">Base Base</span>
+              <span class="paint" style="background-color: var(--base-menu); color: var(--base-strong);">Base Menu</span>
+              <span class="paint" style="background-color: var(--base-element); color: var(--base-strong);">Base Element</span>
+              <span class="paint" style="background-color: var(--base-top); color: var(--base-strong);">Base Top</span>
+              <span class="paint" style="background-color: var(--base-color); color: var(--base-100);">Base Color</span>
+              <span class="paint" style="background-color: var(--base-weak); color: var(--base-base);">Base Weak</span>
+              <span class="paint" style="background-color: var(--base-text); color: var(--base-base);">Base Text</span>
+              <span class="paint" style="background-color: var(--base-strong); color: var(--base-base);">Base Strong</span>
 
-              <p class="paint" style="background-color: var(--primary-base); color: var(--primary-strong);">Primary Base</p>
-              <p class="paint" style="background-color: var(--primary-menu); color: var(--primary-strong);">Primary Menu</p>
-              <p class="paint" style="background-color: var(--primary-element); color: var(--primary-strong);">Primary Element</p>
-              <p class="paint" style="background-color: var(--primary-top); color: var(--primary-strong);">Primary Top</p>
-              <p class="paint" style="background-color: var(--primary-color); color: var(--primary-100);">Primary Color</p>
-              <p class="paint" style="background-color: var(--primary-weak); color: var(--primary-base);">Primary Weak</p>
-              <p class="paint" style="background-color: var(--primary-text); color: var(--primary-base);">Primary Text</p>
-              <p class="paint" style="background-color: var(--primary-strong); color: var(--primary-base);">Primary Strong</p>
+              <span class="paint" style="background-color: var(--primary-base); color: var(--primary-strong);">Primary Base</span>
+              <span class="paint" style="background-color: var(--primary-menu); color: var(--primary-strong);">Primary Menu</span>
+              <span class="paint" style="background-color: var(--primary-element); color: var(--primary-strong);">Primary Element</span>
+              <span class="paint" style="background-color: var(--primary-top); color: var(--primary-strong);">Primary Top</span>
+              <span class="paint" style="background-color: var(--primary-color); color: var(--primary-100);">Primary Color</span>
+              <span class="paint" style="background-color: var(--primary-weak); color: var(--primary-base);">Primary Weak</span>
+              <span class="paint" style="background-color: var(--primary-text); color: var(--primary-base);">Primary Text</span>
+              <span class="paint" style="background-color: var(--primary-strong); color: var(--primary-base);">Primary Strong</span>
 
-              <p class="paint" style="background-color: var(--info-base); color: var(--info-strong);">Info Base</p>
-              <p class="paint" style="background-color: var(--info-menu); color: var(--info-strong);">Info Menu</p>
-              <p class="paint" style="background-color: var(--info-element); color: var(--info-strong);">Info Element</p>
-              <p class="paint" style="background-color: var(--info-top); color: var(--info-strong);">Info Top</p>
-              <p class="paint" style="background-color: var(--info-color); color: var(--info-100);">Info Color</p>
-              <p class="paint" style="background-color: var(--info-weak); color: var(--info-base);">Info Weak</p>
-              <p class="paint" style="background-color: var(--info-text); color: var(--info-base);">Info Text</p>
-              <p class="paint" style="background-color: var(--info-strong); color: var(--info-base);">Info Strong</p>
+              <span class="paint" style="background-color: var(--info-base); color: var(--info-strong);">Info Base</span>
+              <span class="paint" style="background-color: var(--info-menu); color: var(--info-strong);">Info Menu</span>
+              <span class="paint" style="background-color: var(--info-element); color: var(--info-strong);">Info Element</span>
+              <span class="paint" style="background-color: var(--info-top); color: var(--info-strong);">Info Top</span>
+              <span class="paint" style="background-color: var(--info-color); color: var(--info-100);">Info Color</span>
+              <span class="paint" style="background-color: var(--info-weak); color: var(--info-base);">Info Weak</span>
+              <span class="paint" style="background-color: var(--info-text); color: var(--info-base);">Info Text</span>
+              <span class="paint" style="background-color: var(--info-strong); color: var(--info-base);">Info Strong</span>
 
-              <p class="paint" style="background-color: var(--warning-base); color: var(--warning-strong);">Warning Base</p>
-              <p class="paint" style="background-color: var(--warning-menu); color: var(--warning-strong);">Warning Menu</p>
-              <p class="paint" style="background-color: var(--warning-element); color: var(--warning-strong);">Warning Element</p>
-              <p class="paint" style="background-color: var(--warning-top); color: var(--warning-strong);">Warning Top</p>
-              <p class="paint" style="background-color: var(--warning-color); color: var(--warning-100);">Warning Color</p>
-              <p class="paint" style="background-color: var(--warning-weak); color: var(--warning-base);">Warning Weak</p>
-              <p class="paint" style="background-color: var(--warning-text); color: var(--warning-base);">Warning Text</p>
-              <p class="paint" style="background-color: var(--warning-strong); color: var(--warning-base);">Warning Strong</p>
+              <span class="paint" style="background-color: var(--warning-base); color: var(--warning-strong);">Warning Base</span>
+              <span class="paint" style="background-color: var(--warning-menu); color: var(--warning-strong);">Warning Menu</span>
+              <span class="paint" style="background-color: var(--warning-element); color: var(--warning-strong);">Warning Element</span>
+              <span class="paint" style="background-color: var(--warning-top); color: var(--warning-strong);">Warning Top</span>
+              <span class="paint" style="background-color: var(--warning-color); color: var(--warning-100);">Warning Color</span>
+              <span class="paint" style="background-color: var(--warning-weak); color: var(--warning-base);">Warning Weak</span>
+              <span class="paint" style="background-color: var(--warning-text); color: var(--warning-base);">Warning Text</span>
+              <span class="paint" style="background-color: var(--warning-strong); color: var(--warning-base);">Warning Strong</span>
 
-              <p class="paint" style="background-color: var(--danger-base); color: var(--danger-strong);">Danger Base</p>
-              <p class="paint" style="background-color: var(--danger-menu); color: var(--danger-strong);">Danger Menu</p>
-              <p class="paint" style="background-color: var(--danger-element); color: var(--danger-strong);">Danger Element</p>
-              <p class="paint" style="background-color: var(--danger-top); color: var(--danger-strong);">Danger Top</p>
-              <p class="paint" style="background-color: var(--danger-color); color: var(--danger-100);">Danger Color</p>
-              <p class="paint" style="background-color: var(--danger-weak); color: var(--danger-base);">Danger Weak</p>
-              <p class="paint" style="background-color: var(--danger-text); color: var(--danger-base);">Danger Text</p>
-              <p class="paint" style="background-color: var(--danger-strong); color: var(--danger-base);">Danger Strong</p>
+              <span class="paint" style="background-color: var(--danger-base); color: var(--danger-strong);">Danger Base</span>
+              <span class="paint" style="background-color: var(--danger-menu); color: var(--danger-strong);">Danger Menu</span>
+              <span class="paint" style="background-color: var(--danger-element); color: var(--danger-strong);">Danger Element</span>
+              <span class="paint" style="background-color: var(--danger-top); color: var(--danger-strong);">Danger Top</span>
+              <span class="paint" style="background-color: var(--danger-color); color: var(--danger-100);">Danger Color</span>
+              <span class="paint" style="background-color: var(--danger-weak); color: var(--danger-base);">Danger Weak</span>
+              <span class="paint" style="background-color: var(--danger-text); color: var(--danger-base);">Danger Text</span>
+              <span class="paint" style="background-color: var(--danger-strong); color: var(--danger-base);">Danger Strong</span>
 
-              <p class="paint" style="background-color: var(--success-base); color: var(--success-strong);">Success Base</p>
-              <p class="paint" style="background-color: var(--success-menu); color: var(--success-strong);">Success Menu</p>
-              <p class="paint" style="background-color: var(--success-element); color: var(--success-strong);">Success Element</p>
-              <p class="paint" style="background-color: var(--success-top); color: var(--success-strong);">Success Top</p>
-              <p class="paint" style="background-color: var(--success-color); color: var(--success-100);">Success Color</p>
-              <p class="paint" style="background-color: var(--success-weak); color: var(--success-base);">Success Weak</p>
-              <p class="paint" style="background-color: var(--success-text); color: var(--success-base);">Success Text</p>
-              <p class="paint" style="background-color: var(--success-strong); color: var(--success-base);">Success Strong</p>
+              <span class="paint" style="background-color: var(--success-base); color: var(--success-strong);">Success Base</span>
+              <span class="paint" style="background-color: var(--success-menu); color: var(--success-strong);">Success Menu</span>
+              <span class="paint" style="background-color: var(--success-element); color: var(--success-strong);">Success Element</span>
+              <span class="paint" style="background-color: var(--success-top); color: var(--success-strong);">Success Top</span>
+              <span class="paint" style="background-color: var(--success-color); color: var(--success-100);">Success Color</span>
+              <span class="paint" style="background-color: var(--success-weak); color: var(--success-base);">Success Weak</span>
+              <span class="paint" style="background-color: var(--success-text); color: var(--success-base);">Success Text</span>
+              <span class="paint" style="background-color: var(--success-strong); color: var(--success-base);">Success Strong</span>
 
-              <p class="paint" style="background-color: var(--greyscale-base); color: var(--greyscale-strong);">Greyscale Base</p>
-              <p class="paint" style="background-color: var(--greyscale-menu); color: var(--greyscale-strong);">Greyscale Menu</p>
-              <p class="paint" style="background-color: var(--greyscale-element); color: var(--greyscale-strong);">Greyscale Element</p>
-              <p class="paint" style="background-color: var(--greyscale-top); color: var(--greyscale-strong);">Greyscale Top</p>
-              <p class="paint" style="background-color: var(--greyscale-color); color: var(--greyscale-100);">Greyscale Color</p>
-              <p class="paint" style="background-color: var(--greyscale-weak); color: var(--greyscale-base);">Greyscale Weak</p>
-              <p class="paint" style="background-color: var(--greyscale-text); color: var(--greyscale-base);">Greyscale Text</p>
-              <p class="paint" style="background-color: var(--greyscale-strong); color: var(--greyscale-base);">Greyscale Strong</p>
+              <span class="paint" style="background-color: var(--greyscale-base); color: var(--greyscale-strong);">Greyscale Base</span>
+              <span class="paint" style="background-color: var(--greyscale-menu); color: var(--greyscale-strong);">Greyscale Menu</span>
+              <span class="paint" style="background-color: var(--greyscale-element); color: var(--greyscale-strong);">Greyscale Element</span>
+              <span class="paint" style="background-color: var(--greyscale-top); color: var(--greyscale-strong);">Greyscale Top</span>
+              <span class="paint" style="background-color: var(--greyscale-color); color: var(--greyscale-100);">Greyscale Color</span>
+              <span class="paint" style="background-color: var(--greyscale-weak); color: var(--greyscale-base);">Greyscale Weak</span>
+              <span class="paint" style="background-color: var(--greyscale-text); color: var(--greyscale-base);">Greyscale Text</span>
+              <span class="paint" style="background-color: var(--greyscale-strong); color: var(--greyscale-base);">Greyscale Strong</span>
             </div>
             <h3>Hardcoded Variable Colors</h3>
             <div class="block" style="display:grid; grid-template-columns: repeat(8, 1fr); gap: var(--padding-xs); overflow-x:auto;">
-              <p class="paint" style="background-color: var(--black); color: var(--white);">Black</p>
-              <p class="paint" style="background-color: var(--white); color: var(--black);">White</p>
+              <span class="paint" style="background-color: var(--black); color: var(--white);">Black</span>
+              <span class="paint" style="background-color: var(--white); color: var(--black);">White</span>
             </div>
             <h3>Unused Generated Colors</h3>
             <div class="block" style="display:grid; grid-template-columns: repeat(8, 1fr); gap: var(--padding-xs); overflow-x:auto;">
-              <p class="paint" style="background-color: var(--base-muted); color: var(--base-strong);">Base Muted</p>
-              <p class="paint" style="background-color: var(--base-vivid); color: var(--base-base);">Base Vivid</p>
-              <p class="paint" style="background-color: var(--primary-muted); color: var(--primary-strong);">Primary Muted</p>
-              <p class="paint" style="background-color: var(--primary-vivid); color: var(--primary-base);">Primary Vivid</p>
-              <p class="paint" style="background-color: var(--info-muted); color: var(--info-strong);">Info Muted</p>
-              <p class="paint" style="background-color: var(--info-vivid); color: var(--info-base);">Info Vivid</p>
-              <p class="paint" style="background-color: var(--warning-muted); color: var(--warning-strong);">Warning Muted</p>
-              <p class="paint" style="background-color: var(--warning-vivid); color: var(--warning-base);">Warning Vivid</p>
-              <p class="paint" style="background-color: var(--danger-muted); color: var(--danger-strong);">Danger Muted</p>
-              <p class="paint" style="background-color: var(--danger-vivid); color: var(--danger-base);">Danger Vivid</p>
-              <p class="paint" style="background-color: var(--success-muted); color: var(--success-strong);">Success Muted</p>
-              <p class="paint" style="background-color: var(--success-vivid); color: var(--success-base);">Success Vivid</p>
-              <p class="paint" style="background-color: var(--greyscale-muted); color: var(--greyscale-strong);">Greyscale Muted</p>
-              <p class="paint" style="background-color: var(--greyscale-vivid); color: var(--greyscale-base);">Greyscale Vivid</p>
+              <span class="paint" style="background-color: var(--base-muted); color: var(--base-strong);">Base Muted</span>
+              <span class="paint" style="background-color: var(--base-vivid); color: var(--base-base);">Base Vivid</span>
+              <span class="paint" style="background-color: var(--primary-muted); color: var(--primary-strong);">Primary Muted</span>
+              <span class="paint" style="background-color: var(--primary-vivid); color: var(--primary-base);">Primary Vivid</span>
+              <span class="paint" style="background-color: var(--info-muted); color: var(--info-strong);">Info Muted</span>
+              <span class="paint" style="background-color: var(--info-vivid); color: var(--info-base);">Info Vivid</span>
+              <span class="paint" style="background-color: var(--warning-muted); color: var(--warning-strong);">Warning Muted</span>
+              <span class="paint" style="background-color: var(--warning-vivid); color: var(--warning-base);">Warning Vivid</span>
+              <span class="paint" style="background-color: var(--danger-muted); color: var(--danger-strong);">Danger Muted</span>
+              <span class="paint" style="background-color: var(--danger-vivid); color: var(--danger-base);">Danger Vivid</span>
+              <span class="paint" style="background-color: var(--success-muted); color: var(--success-strong);">Success Muted</span>
+              <span class="paint" style="background-color: var(--success-vivid); color: var(--success-base);">Success Vivid</span>
+              <span class="paint" style="background-color: var(--greyscale-muted); color: var(--greyscale-strong);">Greyscale Muted</span>
+              <span class="paint" style="background-color: var(--greyscale-vivid); color: var(--greyscale-base);">Greyscale Vivid</span>
             </div>
           </div>
         </section>
         
-        <section class="section">
-          <h2>Components</h2>
-        </section>
+        
 
         <section class="section is-small">
           <h3>Cards</h3>
@@ -395,7 +796,7 @@
               </button>
             </div>
             <h4>Dark/Light Mode Switcher</h4>
-            <div class="group has-addons"> <!-- figure out fa-dark/light replacement -->
+            <div class="group has-addons">
               <button class="button is-small is-active"><span class="icon"><i class="ti ti-circle ti-dark"></i></span></button>
               <button class="button is-small is-hoverable"><span class="icon"><i class="ti ti-brightness-filled"></i></span></button>
               <button class="button is-small is-hoverable"><span class="icon"><i class="ti ti-circle-filled ti-light"></i></span></button>
@@ -1417,10 +1818,10 @@
             <h4>Different trigger</h4>
 
             <div class="dropdown is-tooltip block">
-              <p aria-haspopup="menu" id="drop-13">
+              <p id="drop-13">
               Doesn't have to be a button
               </p>
-              <div class="dropdown-menu" role="menu" id="drop-13">
+              <div class="dropdown-menu" id="drop-13">
                 <div class="dropdown-content">
                   <div class="dropdown-item">Take away the javascript and this is a hoverable and interactive tooltip you can place any element inside of!</div>
                   <hr>
@@ -1662,7 +2063,7 @@
                 <li><button>These are</button></li>
                 <li><button>Some cool</button></li>
                 <li>
-                  <ul >
+                  <ul>
                     <li><button>Multi-layered</button></li>
                     <li><button class="is-active">buttons!</button></li>
                   </ul>
@@ -1976,6 +2377,8 @@
             </div>
           </div>
         </section>
+
+        -->
       </div>
     </main>
   </body>

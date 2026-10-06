@@ -7,16 +7,16 @@
   --container-text: var(--container-color-text);
 
   --container-max: var(--breakpoint-md);
+  --container-align-items: initial;
 
   display: flex;
   width: 100%;
   max-width: var(--container-max);
   margin:auto;
-  padding-left: var(--padding-base);
-  padding-right: var(--padding-base);
   background-color: var(--container-background);
   color: var(--container-text);
   flex-direction: column;
+  align-items: var(--container-align-items);
   overflow-wrap: break-word;
 
   &.is-element {
@@ -38,8 +38,14 @@
   &.is-large {
     --container-max: var(--breakpoint-max);
   }
-
-  &.is-full {
-    --container-max: 100%;
+  
+  &.align-start {
+    --container-align-items: start;
+  }
+  &.align-center {
+    --container-align-items: center;
+  }
+  &.align-end {
+    --container-align-items: end;
   }
 }

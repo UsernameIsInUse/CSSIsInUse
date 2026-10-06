@@ -6,7 +6,8 @@
   --section-background: var(--section-color-base);
   --section-text: var(--section-color-text);
 
-  --section-padding: var(--padding-section) 0;
+  --section-padding: var(--padding-section) var(--padding-edge);
+  --section-align-items: initial;
 
   display: flex;
   width:100%;
@@ -14,8 +15,7 @@
   background-color: var(--section-background);
   color: var(--section-text);
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: var(--section-align-items);
   overflow-wrap: break-word;
 
   &.is-element {
@@ -27,18 +27,28 @@
   }
 
   &.is-min {
-    --section-padding: var(--padding-base) 0;
+    --section-padding: var(--padding-base) var(--padding-base);
   }
 
   &.is-small {
-    --section-padding: var(--padding-xl) 0;
+    --section-padding: var(--padding-xl) var(--padding-base);
   }
 
   &.is-large {
-    --section-padding: var(--padding-section-large) 0;
+    --section-padding: var(--padding-section-large) var(--padding-base);
   }
 
   &.is-full {
     min-height:100vh;
+  }
+
+  &.align-start {
+    --section-align-items: start;
+  }
+  &.align-center {
+    --section-align-items: center;
+  }
+  &.align-end {
+    --section-align-items: end;
   }
 }

@@ -25386,3 +25386,82 @@
   --ti-dark-circle: "";
   --ti-light-circle: "";
 }
+
+pre code.hljs {
+  --code-background: var(--base-element);
+  --code-text: var(--base-text);
+  overflow-x: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  display: block;
+  padding: var(--padding-base);
+  font-family: var(--font-monospace);
+  font-size: var(--text-size-6);
+  border-radius: var(--border-radius-small);
+}
+pre code.hljs:hover {
+  --scrollbar-color-weak: var(--color-weak);
+  scrollbar-color: var(--scrollbar-color-weak) transparent;
+}
+
+code.hljs {
+  padding: var(--padding-xs);
+}
+
+.hljs {
+  background: var(--code-background);
+  color: var(--code-text);
+}
+
+.hljs-comment,
+.hljs-doctag,
+.hljs-quote,
+.hljs-variable {
+  color: var(--success-weak);
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-name,
+.hljs-tag {
+  color: var(--info-weak);
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-section,
+.hljs-attribute,
+.hljs-literal,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-addition {
+  color: var(--danger-weak);
+}
+
+.hljs-deletion,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-meta {
+  color: var(--base-weak);
+}
+
+.hljs-attr {
+  color: var(--info-text);
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link {
+  color: var(--info-color);
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}

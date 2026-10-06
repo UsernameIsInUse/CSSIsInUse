@@ -64,6 +64,9 @@ $scheme-classes: ();
       --color-strong: var(--#{$color}-strong);
     }
   }
+
+  --contrast-base: light-dark(var(--white),var(--black));
+  --contrast-text: light-dark(var(--black),var(--white));
 }
 
 @mixin high-contrast-color-util {

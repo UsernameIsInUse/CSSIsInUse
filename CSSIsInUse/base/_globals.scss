@@ -27,35 +27,28 @@ body {
   scrollbar-color: var(--body-color-weak) transparent;
 }
 
-.block-xl {
-  @include m.block("xl");
-}
-
-.block-large {
-  @include m.block("large");
-}
-
-.block {
-  @include m.block("base");
-}
-
-.block-small {
-  @include m.block("small");
-}
-
 h1, h2, h3, h4, h5, h6, button, input[type="submit"], .button, a {
   --element-color-strong: var(--color-strong);
   color: var(--element-color-strong);
 }
 
+.content p {
+  @include m.block('base');
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-header);
-  margin-bottom: var(--padding-base);
+  @include m.block('base');
+  @include m.pre('base');
 }
 
 hgroup {
+  line-height: var(--line-height-small);
+  @include m.block('xl');
+
   h1, h2, h3, h4, h5, h6 {
-    margin-bottom: var(--padding-xs);
+    @include m.block('xs');
+    @include m.pre('xs');
   }
 }
 
@@ -81,6 +74,20 @@ h5 {
 
 h6 {
   font-size: var(--text-size-6);
+}
+
+p {
+  font-size: var(--text-size-6);
+  line-height: var(--line-height-base);
+}
+
+ol, ul {
+  padding-left: var(--padding-xl);
+  @include m.block('base');
+}
+
+li {
+  @include m.block('small');
 }
 
 small {
@@ -142,4 +149,8 @@ hr{
 
 .is-radius-rounded {
   border-radius: var(--border-radius-rounded);
+}
+
+.is-hidden {
+  display:none !important;
 }

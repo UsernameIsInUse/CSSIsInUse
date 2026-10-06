@@ -2,7 +2,21 @@
 
 @mixin block($size) {
   &:not(:last-child) {
-    margin-bottom: var(--padding-#{$size});
+    @if $size {
+      margin-bottom: var(--padding-#{$size});
+    } @else {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@mixin pre($size) {
+  &:not(:first-child) {
+    @if $size {
+      margin-top: var(--padding-#{$size});
+    } @else {
+      margin-top: 0;
+    }
   }
 }
 
@@ -41,8 +55,13 @@
   }
 }
 
-@mixin scrollable {
-  overflow-y: auto;
+@mixin scrollable($y: true, $x: false) {
+  @if $y{
+    overflow-y: auto;
+  }
+  @if $x{
+    overflow-x: auto;
+  }
   overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;

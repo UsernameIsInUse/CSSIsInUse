@@ -1,7 +1,7 @@
 @use "../utilities/mixins" as m;
 
 .menu {
-  @include m.colors("menu","element","top","strong");
+  @include m.colors("menu","menu","element","top","strong");
 
   --menu-background: var(--menu-color-element);
   --menu-text: var(--menu-color-strong);
@@ -12,24 +12,33 @@
   width: calc(100% + 1rem);
   margin-left: -0.5rem;
   list-style: none;
+  padding: 0;
 
   a, button, .menu-item {
-    @include m.transitions("background-color");
-
+    
+    display: block;
     width: 100%;
     padding: var(--input-padding-small);
     background-color: var(--menu-background);
     color: var(--menu-text);
     border-radius: var(--border-radius-small);
     text-align: justify;
+    text-decoration: none;
 
     &:hover {
-      --menu-background: var(--menu-color-top);
+      @include m.transitions("background-color");
+      --menu-background: var(--menu-color);
     }
 
     &.is-active {
-      --menu-background: var(--menu-color-top);
+      @include m.transitions("background-color");
+      --menu-background: var(--menu-color);
     }
+  }
+
+  &.is-menu {
+    --menu-background: var(--menu-color-menu);
+    --menu-color: var(--menu-color-element);
   }
 
   ul {

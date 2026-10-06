@@ -20,10 +20,7 @@
   display: flex;
   width: 100%;
   height: var(--navbar-height);
-  padding-left: f.fluid_clamp(1rem, 2rem);
-  padding-right: f.fluid_clamp(1rem, 2rem);
-  padding-top: var(--padding-small);
-  padding-bottom: var(--padding-small);
+  padding: var(--padding-small) var(--padding-edge);
   color: var(--nav-text);
   flex-direction: row;
   gap: var(--padding-base);
@@ -51,5 +48,5 @@
 
 .logo {
   font-family: var(--font-logo);
-  font-weight: var(--weight-extrabold);
+  font-weight: var(--weight-logo);
 }

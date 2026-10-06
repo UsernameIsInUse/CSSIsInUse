@@ -6,6 +6,7 @@
   --column-align-items: initial;
 
   @include m.block("xl");
+  @include m.pre("base");
 
   display:flex;
   flex-direction: row;
@@ -47,6 +48,7 @@
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: var(--column-flex-basis);
+    min-width: 0;
     
     @for $i from 0 through 10 {
       &.flex-#{$i} {
