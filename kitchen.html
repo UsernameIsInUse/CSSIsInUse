@@ -59,12 +59,32 @@
               <i :class="theme === 'light' ? 'ti ti-moon-filled' : 'ti ti-sun-high-filled'"></i>
             </span>
           </button>
-          <button
-            class="button is-ghost is-icon"
-            aria-label="Toggle Color Scheme" 
-            @click="scheme = scheme === 'default' ? 'olive' : 'default'">
-            <span class="icon"><i class="ti ti-paint-filled"></i></span>
-          </button>
+          <div
+            class="dropdown is-hoverable is-right"
+            x-data="{ active: false, schemes: { default: 'Default', olive: 'Olive', slate: 'Slate'} }"
+            :class="{ 'is-active' : active }"
+            @click.outside="active = false"
+            @keydown.escape.window="active = false"
+          >
+            <button
+              class="dropdown-btn button is-ghost is-hoverable is-icon"
+              aria-haspopup="menu"
+              aria-controls="scheme-select"
+              aria-label="Open Color Scheme Menu"
+              @click="active = !active"
+              :class="{ 'is-active' : active }"
+            >
+              <span class="icon" ><i class="ti ti-paint-filled"></i></span>
+            </button>
+            <div class="dropdown-menu" role="menu" id="scheme-select">
+              <div class="dropdown-content">
+                <template x-for="(value, index) in schemes">
+                  <button class="dropdown-item" :class="{ 'is-active' : scheme === index }" @click="scheme = index" x-text="value"></button>
+                </template>
+                
+              </div>
+            </div>
+          </div>
         </div>
       </nav>
     </header>
