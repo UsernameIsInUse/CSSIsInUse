@@ -1,20 +1,23 @@
-// IMPORT YOUR scheme HERE:
+// IMPORT YOUR SCHEME HERE:
 @forward 'default';
 @forward 'olive';
+@forward 'slate';
 
 // THEN ADD IT TO THIS LIST:
-$schemes: default, olive;
+$schemes: default, olive, slate;
 
 // THE REST IS HANDLED AUTOMATICALLY
 // This includes light and dark mode, you do not need to make a separate light and dark mode for your scheme.
 
-@use '../utilities/functions' as f;
-@use '../utilities/mixins' as m;
+@use 'functions' as f;
+@use '../tools/mixins' as m;
 @use 'sass:list';
 
 // If you want to make a custom color, eg secondary, add it to this list and add --secondary-l, secondary-c, secondary-h, and secondary-falloff to the default scheme and custom variations to any other scheme.
 // Any colors you create will automatically be an option in all colored components attribute.
-$color-groups: 'base', 'primary', 'info', 'warning', 'danger', 'success', 'greyscale';
+$color-groups: 'neutral', 'primary', 'info', 'warning', 'danger', 'success', 'greyscale';
+
+$color-semantics: 'base', 'menu', 'element', 'top', 'muted', 'color', 'vivid', 'weak', 'text', 'strong';
 
 $scheme-selectors: ();
 $scheme-classes: ();
@@ -25,18 +28,7 @@ $scheme-classes: ();
   }
 }
 
-@mixin color-util {
-  --color-base: var(--base-base);
-  --color-menu: var(--base-menu);
-  --color-element: var(--base-element);
-  --color-top: var(--base-top);
-  --color-muted: var(--base-muted);
-  --color-color: var(--base-color);
-  --color-vivid: var(--base-vivid);
-  --color-weak: var(--base-weak);
-  --color-text: var(--base-text);
-  --color-strong: var(--base-strong);
-
+@mixin color-tokens {
   @each $color in $color-groups {
     --#{$color}-base: light-dark(var(--#{$color}-900), var(--#{$color}-100));
     --#{$color}-menu: light-dark(var(--#{$color}-875), var(--#{$color}-125));
@@ -49,6 +41,19 @@ $scheme-classes: ();
     --#{$color}-text: light-dark(var(--#{$color}-200), var(--#{$color}-800));
     --#{$color}-strong: light-dark(var(--#{$color}-100), var(--#{$color}-900));
   }
+
+  --color-base: var(--neutral-base);
+  --color-menu: var(--neutral-menu);
+  --color-element: var(--neutral-element);
+  --color-top: var(--neutral-top);
+  --color-muted: var(--neutral-muted);
+  --color-color: var(--neutral-color);
+  --color-vivid: var(--neutral-vivid);
+  --color-weak: var(--neutral-weak);
+  --color-text: var(--neutral-text);
+  --color-strong: var(--neutral-strong);
+
+  // technically should be in utilities
 
   @each $color in $color-groups {
     .is-#{$color} {
@@ -69,21 +74,20 @@ $scheme-classes: ();
   --contrast-text: light-dark(var(--black),var(--white));
 }
 
-@mixin high-contrast-color-util {
+@mixin high-contrast-color-tokens {
   @each $color in $color-groups {
-    --#{$color}-base: light-dark(var(--#{$color}-900), var(--#{$color}-100));
+    --#{$color}-base: light-dark(white,black);
     --#{$color}-menu: var(--#{$color}-base);
     --#{$color}-element: var(--#{$color}-top);
     --#{$color}-muted: var(--#{$color}-color);
     --#{$color}-vivid: var(--#{$color}-color);
     --#{$color}-weak: var(--#{$color}-strong);
     --#{$color}-text: var(--#{$color}-strong);
+    --#{$color}-strong: light-dark(black,white);
   }
-  --base-base: light-dark(white,black);
-  --base-strong: light-dark(black,white);
 }
 
-@mixin low-contrast-color-util {
+@mixin low-contrast-color-tokens {
   @each $color in $color-groups {
     --#{$color}-base: var(--#{$color}-menu);
     --#{$color}-element: light-dark(var(--#{$color}-700), var(--#{$color}-300));
@@ -109,16 +113,16 @@ $scheme-classes: ();
 
 :root, #{$scheme-selectors}, #{$scheme-classes} {
   @include generate-all-scales;
-  @include color-util;
+  @include color-tokens;
 }
 @media (prefers-contrast: more) {
   :root, #{$scheme-selectors}, #{$scheme-classes} {
-    @include high-contrast-color-util;
+    @include high-contrast-color-tokens;
   }
 }
 @media (prefers-contrast: less) {
   :root, #{$scheme-selectors}, #{$scheme-classes} {
-    @include low-contrast-color-util;
+    @include low-contrast-color-tokens;
   }
 }
 //@include f.generate-color-utilities($color-groups);

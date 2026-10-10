@@ -1,4 +1,4 @@
-@use "../utilities/mixins" as m;
+@use "../tools/mixins" as m;
 
 .has-sidebar {
   display: flex;
@@ -8,7 +8,7 @@
 }
 
 .sidebar {
-  @include m.colors("sb","menu");
+  @include m.colors("sb","base","menu","element","top");
 
   --sb-background: var(--sb-color-menu);
 
@@ -25,7 +25,23 @@
   margin-left: calc(0px - var(--sb-width));
   padding: var(--padding-base);
   background-color: var(--sb-background);
-  z-index: var(--z-index-sidebar);;
+  z-index: var(--z-index-sidebar);
+
+  &.is-base {
+    --sb-background: var(--sb-color-base);
+  }
+
+  &.is-menu {
+    --sb-background: var(--sb-color-menu);
+  }
+
+  &.is-element {
+    --sb-background: var(--sb-color-element);
+  }
+
+  &.is-top {
+    --sb-background: var(--sb-color-top);
+  }
   
   .has-sidebar.open & {
     margin-left: 0px;
@@ -38,6 +54,8 @@
   
 }
 .main {
+  @include m.colors("main","base","menu","element","top");
+
   @include m.transitions("margin-left");
   
   width:100%;

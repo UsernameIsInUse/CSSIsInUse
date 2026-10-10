@@ -1,10 +1,10 @@
-@use "../utilities/mixins" as m;
+@use "../tools/mixins" as m;
 
 pre code.hljs {
-  --code-background: var(--base-element);
-  --code-text: var(--base-text);
+  --code-background: var(--neutral-element);
+  --code-text: var(--neutral-text);
 
-  @include m.scrollable($y: false, $x: true);
+  @include m.scrollable($y: false, $x: true, $overscroll: false);
 
   display: block;
   padding: var(--padding-base);

@@ -1,31 +1,51 @@
-@use '../utilities/functions' as f;
-@use "../utilities/mixins" as m;
+@use '../tools/functions' as f;
+@use "../tools/mixins" as m;
 
 .header {
-  @include m.colors("header","base","strong");
-
-  --header-background: var(--header-color-base);
-
   position: sticky;
   top: 0;
-  background-color: var(--header-background);
   z-index: var(--z-index-header);
 }
 
 .nav {
-  @include m.colors("nav","strong");
+  @include m.colors("nav","base","menu","element","top","strong");
 
+  --nav-background: var(--nav-color-base);
   --nav-text: var(--nav-color-strong);
+
+  --nav-opacity: var(--opacity-base);
 
   display: flex;
   width: 100%;
   height: var(--navbar-height);
   padding: var(--padding-small) var(--padding-edge);
+  background-color: oklch(from var(--nav-background) l c h / var(--nav-opacity));
   color: var(--nav-text);
   flex-direction: row;
   gap: var(--padding-base);
   align-items: center;
   justify-content: space-between;
+
+  &.is-base {
+    --nav-background: var(--nav-color-base);
+  }
+
+  &.is-menu {
+    --nav-background: var(--nav-color-menu);
+  }
+
+  &.is-element {
+    --nav-background: var(--nav-color-element);
+  }
+
+  &.is-top {
+    --nav-background: var(--nav-color-top);
+  }
+
+  &.is-translucent {
+    --nav-opacity: var(--opacity-dark);
+    backdrop-filter: blur(var(--blur-size-small));
+  }
 
   .nav-item {
     display: flex;

@@ -1,4 +1,4 @@
-@use "../utilities/mixins" as m;
+@use "../tools/mixins" as m;
 
 .modal {
   @include m.colors("modal","base");
@@ -23,10 +23,6 @@
 
   &.is-active {
     display:flex;
-  }
-
-  &.is-centered {
-    justify-content: center;
   }
 
   &.no-blur {

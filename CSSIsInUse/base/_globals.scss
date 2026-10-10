@@ -1,4 +1,4 @@
-@use "../utilities/mixins" as m;
+@use "../tools/mixins" as m;
 
 * {
   color: inherit;
@@ -21,30 +21,37 @@ body {
 
 body {
   @include m.colors("body","base","text","weak");
+
+  --body-background: var(--body-color-base);
+  --body-text: var(--body-color-text);
+  --body-scrollbar: var(--body-color-weak);
+
   font-family: var(--font-body);
-  background: var(--body-color-base);
-  color: var(--body-color-text);
-  scrollbar-color: var(--body-color-weak) transparent;
+  background: var(--body-background);
+  color: var(--body-text);
+  font-size: var(--text-size-6);
+  scrollbar-color: var(--body-scrollbar) transparent;
 }
 
 h1, h2, h3, h4, h5, h6, button, input[type="submit"], .button, a {
-  --element-color-strong: var(--color-strong);
-  color: var(--element-color-strong);
-}
+  @include m.colors("element","strong");
 
-.content p {
-  @include m.block('base');
+  --element-text: var(--element-color-strong);
+  
+  color: var(--element-text);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-header);
   @include m.block('base');
-  @include m.pre('base');
+
+  font-family: var(--font-header);
+  font-weight: var(--weight-bold);
 }
 
 hgroup {
-  line-height: var(--line-height-small);
   @include m.block('xl');
+
+  line-height: var(--line-height-small);
 
   h1, h2, h3, h4, h5, h6 {
     @include m.block('xs');
@@ -82,8 +89,9 @@ p {
 }
 
 ol, ul {
-  padding-left: var(--padding-xl);
   @include m.block('base');
+
+  padding-left: var(--padding-xl);
 }
 
 li {
@@ -91,9 +99,12 @@ li {
 }
 
 small {
-  --small-color-weak: var(--color-weak);
+  @include m.colors("small","weak");
+  
+  --small-text: var(--small-color-weak);
+
   font-size: var(--text-size-7);
-  color:var(--small-color-weak);
+  color:var(--small-text);
 }
 
 code {
@@ -101,18 +112,24 @@ code {
 }
 
 a {
-  --element-color-strong: var(--info-weak);
+  --element-text: var(--info-weak);
+
+  &[href] {
+    @include m.focus;
+  }
 
   &:hover {
-    --element-color-strong: var(--info-strong);
+    --element-text: var(--info-strong);
   }
 
   &.is-quiet {
-    --element-color-strong: var(--color-strong);
+    @include m.colors("a","weak","strong");
+
+    --element-text: var(--a-color-strong);
     text-decoration: none;
 
     &:hover {
-      --element-color-strong: var(--color-weak);
+      --element-text: var(--a-color-weak);
     }
   }
 }
@@ -131,26 +148,13 @@ label {
 }
 
 hr{
-  --hr-color-top: var(--color-top);
-  background-color: var(--hr-color-top);
+  @include m.colors("hr","top");
+
+  --hr-background: var(--hr-color-top);
+
+  background-color: var(--hr-background);
   border: none;
   display: block;
   height: var(--border-thickness-base);
   margin: var(--padding-large) 0;
-}
-
-.is-radius-small {
-  border-radius: var(--border-radius-small);
-}
-
-.is-radius-base {
-  border-radius: var(--border-radius-base);
-}
-
-.is-radius-rounded {
-  border-radius: var(--border-radius-rounded);
-}
-
-.is-hidden {
-  display:none !important;
 }

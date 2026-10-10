@@ -1,13 +1,14 @@
-@use "../utilities/mixins" as m;
+@use "../tools/mixins" as m;
 
 .section {
-  @include m.colors("section","base","element","text");
+  @include m.colors("section","base","menu","element","top","text");
 
   --section-background: var(--section-color-base);
   --section-text: var(--section-color-text);
 
-  --section-padding: var(--padding-section) var(--padding-edge);
-  --section-align-items: initial;
+  --section-padding-vertical: var(--padding-section);
+  --section-padding-horizontal: var(--padding-edge);
+  --section-padding: var(--section-padding-vertical) var(--section-padding-horizontal);
 
   display: flex;
   width:100%;
@@ -15,40 +16,47 @@
   background-color: var(--section-background);
   color: var(--section-text);
   flex-direction: column;
-  align-items: var(--section-align-items);
   overflow-wrap: break-word;
+
+  &.is-base {
+    --section-background: var(--section-color-base);
+  }
+
+  &.is-menu {
+    --section-background: var(--section-color-menu);
+  }
 
   &.is-element {
     --section-background: var(--section-color-element);
   }
 
-  &.is-transparent {
+  &.is-top {
+    --section-background: var(--section-color-top);
+  }
+
+  &.is-ghost {
     --section-background: transparent;
   }
 
-  &.is-min {
-    --section-padding: var(--padding-base) var(--padding-base);
+  &.is-xs {
+    --section-padding-vertical: var(--padding-base);
   }
 
   &.is-small {
-    --section-padding: var(--padding-xl) var(--padding-base);
+    --section-padding-vertical: var(--padding-large);
   }
 
   &.is-large {
-    --section-padding: var(--padding-section-large) var(--padding-base);
+    --section-padding-vertical: var(--padding-section-large);
   }
 
-  &.is-full {
+  &.is-xl {
+    --section-padding-vertical: var(--padding-section-large);
+
     min-height:100vh;
   }
 
-  &.align-start {
-    --section-align-items: start;
-  }
-  &.align-center {
-    --section-align-items: center;
-  }
-  &.align-end {
-    --section-align-items: end;
+  &.is-full-width, &.is-full {
+    --section-padding-horizontal: 0;
   }
 }

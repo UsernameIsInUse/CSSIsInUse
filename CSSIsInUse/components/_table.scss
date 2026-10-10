@@ -1,6 +1,13 @@
-@use "../utilities/mixins" as m;
+@use "../tools/mixins" as m;
 
 table {
+  @include m.colors("table","base","menu","element","top","color","strong");
+
+  --table-background: var(--table-color-base);
+  --table-background-striped: var(--table-color-element);
+  --table-text: var(--table-color-strong);
+  --table-border: var(--table-color-top);
+
   --table-cell-padding: var(--input-padding-base);
 
   @include m.block("base");
@@ -9,9 +16,36 @@ table {
   border-spacing: 0;
   text-align: left;
 
-  &,th,td,tr,thead,tbody,tfoot,.is-color,.is-active {
-    @include m.colors("table","base","element","top","color","strong");
+  &.is-striped {
+    tbody tr:nth-child(odd) td {
+      --table-background: var(--table-background-striped);
+    }
+  }
+
+  &,th,td,tr,thead,tbody,tfoot {
     height: fit-content;
+
+    &.is-base {
+      --table-background: var(--table-color-base);
+      --table-background-striped: var(--table-color-element);
+      --table-border: var(--table-color-top);
+    }
+    &.is-menu {
+      --table-background: var(--table-color-menu);
+      --table-background-striped: var(--table-color-element);
+      --table-border: var(--table-color-top);
+    }
+    &.is-element {
+      --table-background: var(--table-color-element);
+      --table-background-striped: var(--table-color-top);
+      --table-border: var(--table-color-color);
+    }
+    &.is-top, &.is-active {
+      --table-background: var(--table-color-top);
+      --table-background-striped: var(--table-color-element);
+      --table-border: var(--table-color-color);
+    }
+
   }
 
   &.is-small {
@@ -23,8 +57,8 @@ table {
 
   th, td {
     padding: var(--table-cell-padding);
-    color: var(--table-color-strong);
-    background-color: var(--table-color-base);
+    color: var(--table-text);
+    background-color: var(--table-background);
   }
 
   th, tfoot td {
@@ -32,34 +66,19 @@ table {
   }
 
   th {
-    border-bottom: var(--border-thickness-base) solid var(--table-color-top);
+    border-bottom: var(--border-thickness-base) solid var(--table-border);
   }
 
   tfoot tr:first-child td {
-    border-top: var(--border-thickness-base) solid var(--table-color-top);
+    border-top: var(--border-thickness-base) solid var(--table-border);
   }
 
   td {
-    border-bottom: var(--border-thickness-light) solid var(--table-color-top);
+    border-bottom: var(--border-thickness-light) solid var(--table-border);
   }
 
   tbody tr:last-child td, tfoot tr:last-child td {
     border-bottom: none;
-  }
-
-  &.is-striped {
-    tbody tr:nth-child(odd) td {
-      background-color: var(--table-color-element);
-    }
-  }
-
-  .is-color, .is-active {
-    background-color: var(--table-color-color) !important;
-    border-color: var(--table-color-top);
-    td {
-      background-color: var(--table-color-color) !important;
-      border-color: var(--table-color-top);
-    }
   }
 
 }

@@ -5,14 +5,18 @@
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Kitchen Sink</title>
-      <link rel="preconnect" href="https://use.typekit.net">
-      <link rel="preload" href="https://use.typekit.net/jfz2jeu.css" as="style">
-      <link rel="stylesheet" href="https://use.typekit.net/jfz2jeu.css">
-      <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+      <title>CSSIsInUse</title>
 
       <link rel="stylesheet" href="main.css">
       <link rel="stylesheet" href="integrations.css">
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+
+      <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
       <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -20,23 +24,19 @@
       <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.12.0/build/languages/xml.min.js"></script>
       <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.12.0/build/languages/scss.min.js"></script>
       <script>hljs.highlightAll();</script>
-      <style>
-        .paint {
-          padding: var(--padding-base);
-          font-weight: bold;
-        }
-      </style>
   </head>
   <body
-    x-data="{ theme: 'dark', scheme: 'default', sidebarOpen: true, sidebarFull: false, current: window.location.hash.substring(1) || 'home' }"
-    x-init="sidebarFull = window.innerWidth < 608; if ( sidebarOpen && window.innerWidth < 608 ) { sidebarOpen = false }"
+    x-data="{ theme: '', scheme: 'default', sidebarOpen: true, sidebarFull: false, current: window.location.hash.substring(1) || 'home' }"
+    x-init="sidebarFull = window.innerWidth < 608;
+            if ( sidebarOpen && window.innerWidth < 608 ) { sidebarOpen = false };
+            if (theme === '') { theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }"
     @resize.window="sidebarFull = window.innerWidth < 608"
     :data-theme="theme"
     :data-scheme="scheme"
   >
 
     <header class="header">
-      <nav class="nav">
+      <nav class="nav is-translucent">
         <div class='nav-item'>
           <button
             class="button is-ghost is-icon"
@@ -54,11 +54,36 @@
               <i :class="theme === 'light' ? 'ti ti-moon-filled' : 'ti ti-sun-high-filled'"></i>
             </span>
           </button>
+
+          <div
+            class="dropdown is-hoverable is-right"
+            x-data="{ active: false, schemes: { default: 'Default', olive: 'Olive', slate: 'Slate'} }"
+            :class="{ 'is-active' : active }"
+            @click.outside="active = false"
+            @keydown.escape.window="active = false"
+          >
+            <button
+              class="dropdown-btn button is-ghost is-hoverable is-icon"
+              aria-haspopup="menu"
+              aria-controls="scheme-select"
+              @click="active = !active"
+              :class="{ 'is-active' : active }"
+            >
+              <span class="icon" ><i class="ti ti-paint-filled"></i></span>
+            </button>
+            <div class="dropdown-menu" role="menu" id="scheme-select">
+              <div class="dropdown-content">
+                <template x-for="(value, index) in schemes">
+                  <button class="dropdown-item" :class="{ 'is-active' : scheme === index }" @click="scheme = index" x-text="value"></button>
+                </template>
+                
+              </div>
+            </div>
+          </div>
+
           <button
             class="button is-ghost is-icon"
-            aria-label="Toggle Color Scheme" 
-            @click="scheme = scheme === 'default' ? 'olive' : 'default'">
-            <span class="icon"><i class="ti ti-paint-filled"></i></span>
+            aria-label="Open Color Scheme Menu" >
           </button>
         </div>
       </nav>
@@ -71,8 +96,8 @@
       <aside id="main-sidebar" class="sidebar">
         <nav>
 
-          <h5 class="label is-primary is-text"><span class="group"><span class="icon"><i class="ti ti-click-filled"></i></span><span>CSSIsInUse</span></span></h5>
-          <ul class="menu is-menu">
+          <h5 class="text-primary-vivid"><span class="group"><span class="icon"><i class="ti ti-click-filled"></i></span><span>CSSIsInUse</span></span></h5>
+          <ul class="menu is-primary is-ghost">
             <li><ul>
               <li><a href="#home" @click="current = 'home'" :class="{ 'is-active' : current === 'home' }">Home</a></li>
               <li><a href="#overview" @click="current = 'overview'" :class="{ 'is-active' : current === 'overview' }">Overview</a></li>
@@ -82,33 +107,32 @@
             </ul></li>
           </ul>
 
-          <h5 class="label is-info is-text"><span class="group"><span class="icon"><i class="ti ti-list-details-filled"></i></span><span>Features</span></span></h5>
-          <ul class="menu is-menu">
+          <h5 class="text-info-vivid"><span class="group"><span class="icon"><i class="ti ti-list-details-filled"></i></span><span>Features</span></span></h5>
+          <ul class="menu is-info is-ghost">
             <li><ul>
               <li><a href="#tokens" @click="current = 'tokens'" :class="{ 'is-active' : current === 'tokens' }">Tokens</a></li>
               <li><a href="#base" @click="current = 'base'" :class="{ 'is-active' : current === 'base' }">Base Styles</a></li>
               <li><a href="#color" @click="current = 'color'" :class="{ 'is-active' : current === 'color' }">Color System</a></li>
               <li><a href="#accessibility" @click="current = 'accessibility'" :class="{ 'is-active' : current === 'accessibility' }">Accessibility & Preferences</a></li>
-              <li><a href="#mixins" @click="current = 'mixins'" :class="{ 'is-active' : current === 'mixins' }">Utilities & Mixins</a></li>
+              <li><a href="#tools" @click="current = 'tools'" :class="{ 'is-active' : current === 'tools' }">Tools</a></li>
             </ul></li>
           </ul>
 
-          <h5 class="label is-success is-text"><span class="group"><span class="icon"><i class="ti ti-layout-filled"></i></span><span>Layout</span></span></h5>
-          <ul class="menu is-menu">
+          <h5 class="text-success-vivid"><span class="group"><span class="icon"><i class="ti ti-layout-filled"></i></span><span>Layout</span></span></h5>
+          <ul class="menu is-success is-ghost">
             <li><ul>
               <li><a href="#stack" @click="current = 'stack'" :class="{ 'is-active' : current === 'stack' }">Stack</a></li>
               <li><a href="#sidebar" @click="current = 'sidebar'" :class="{ 'is-active' : current === 'sidebar' }">Main & Sidebar</a></li>
-              <li><a href="#section" @click="current = 'section'" :class="{ 'is-active' : current === 'section' }">Section</a></li>
-              <li><a href="#container" @click="current = 'container'" :class="{ 'is-active' : current === 'container' }">Container</a></li>
+              <li><a href="#section" @click="current = 'section'" :class="{ 'is-active' : current === 'section' }">Section & Container</a></li>
               <li><a href="#columns" @click="current = 'columns'" :class="{ 'is-active' : current === 'columns' }">Columns</a></li>
               <li><a href="#grid" @click="current = 'grid'" :class="{ 'is-active' : current === 'grid' }">Grid</a></li>
             </ul></li>
           </ul>
 
-          <h5 class="label is-warning is-text"><span class="group"><span class="icon"><i class="ti ti-icons-filled"></i></span><span>Primitives</span></span></h5>
-          <ul class="menu is-menu">
+          <h5 class="text-warning-vivid"><span class="group"><span class="icon"><i class="ti ti-icons-filled"></i></span><span>Components</span></span></h5>
+          <ul class="menu is-warning is-ghost">
             <li><ul>
-              <li><a href="#block" @click="current = 'block'" :class="{ 'is-active' : current === 'block' }">Block</a></li>
+              
               <li><a href="#group" @click="current = 'group'" :class="{ 'is-active' : current === 'group' }">Group</a></li>
               <li><a href="#icon" @click="current = 'icon'" :class="{ 'is-active' : current === 'icon' }">Icon</a></li>
               <li><a href="#card" @click="current = 'card'" :class="{ 'is-active' : current === 'card' }">Card</a></li>
@@ -119,29 +143,31 @@
                 <li><a href="#input" @click="current = 'input'" :class="{ 'is-active' : current === 'input' }">Input</a></li>
                 <li><a href="#textarea" @click="current = 'textarea'" :class="{ 'is-active' : current === 'textarea' }">Textarea</a></li>
                 <li><a href="#select" @click="current = 'select'" :class="{ 'is-active' : current === 'select' }">Select</a></li>
-                <li><a href="#checkbox" @click="current = 'checkbox'" :class="{ 'is-active' : current === 'checkbox' }">Checkbox</a></li>
-                <li><a href="#radio" @click="current = 'radio'" :class="{ 'is-active' : current === 'radio' }">Radio</a></li>
+                <li><a href="#checkbox" @click="current = 'checkbox'" :class="{ 'is-active' : current === 'checkbox' }">Checkbox & Radio</a></li>
                 <li><a href="#file" @click="current = 'file'" :class="{ 'is-active' : current === 'file' }">File</a></li>
               </ul></li>
               <li><a href="#table" @click="current = 'table'" :class="{ 'is-active' : current === 'table' }">Table</a></li>
-            </ul></li>
-          </ul>
-
-          <h5 class="label is-warning is-text"><span class="group"><span class="icon"><i class="ti ti-template-filled"></i></span><span>Components</span></span></h5>
-          <ul class="menu is-menu">
-            <li><ul>
               <li><a href="#dropdown" @click="current = 'dropdown'" :class="{ 'is-active' : current === 'dropdown' }">Dropdown</a></li>
               <li><a href="#menu" @click="current = 'menu'" :class="{ 'is-active' : current === 'menu' }">Menu</a></li>
+              <li><a href="#accordion" @click="current = 'accordion'" :class="{ 'is-active' : current === 'accordion' }">Accordion</a></li>
               <li><a href="#modal" @click="current = 'modal'" :class="{ 'is-active' : current === 'modal' }">Modal</a></li>
               <li><a href="#notification" @click="current = 'notification'" :class="{ 'is-active' : current === 'notification' }">Notification</a></li>
             </ul></li>
           </ul>
 
-          <h5 class="label is-danger is-text"><span class="group"><span class="icon"><i class="ti ti-puzzle-filled"></i></span><span>Integrations</span></span></h5>
-          <ul class="menu is-menu">
+          <h5 class="text-info-vivid"><span class="group"><span class="icon"><i class="ti ti-list-details-filled"></i></span><span>Utilities</span></span></h5>
+          <ul class="menu is-info is-ghost">
+            <li><ul>
+              <li><a href="#block" @click="current = 'block'" :class="{ 'is-active' : current === 'block' }">Block</a></li>
+            </ul></li>
+          </ul>
+
+          <h5 class="text-danger-vivid"><span class="group"><span class="icon"><i class="ti ti-puzzle-filled"></i></span><span>Integrations</span></span></h5>
+          <ul class="menu is-danger is-ghost">
             <li><ul>
               <li><a href="#tabler" @click="current = 'tabler'" :class="{ 'is-active' : current === 'tabler' }">Tabler</a></li>
               <li><a href="#choices" @click="current = 'choices'" :class="{ 'is-active' : current === 'choices' }">Choices</a></li>
+              <li><a href="#highlight" @click="current = 'highlight'" :class="{ 'is-active' : current === 'highlight' }">Highlight.js</a></li>
             </ul></li>
           </ul>
 
@@ -152,6 +178,10 @@
 
         <section id="home" class="section container content" x-show="current === 'home'">
           <h1>Test</h1>
+        </section>
+
+        <section id="overview" class="section container content" x-show="current === 'overview'">
+          <h1>Overview</h1>
         </section>
 
         <section id="about" class="section container content" x-show="current === 'about'">
@@ -167,45 +197,146 @@
             <li>Tailwind makes my head hurt.</li>
             <li>I like making stuff.</li>
           </ol>
-          <h5>So what makes it unique?</h5>
+          <h4>So what makes it unique?</h4>
           <p>CSSIsInUse is a semantic-where-possible, genetic, accessible-by-default framework with infinite themability.</p>
-          <h6>Semantic-Where-Possible</h6>
+          <h5>Semantic-Where-Possible</h5>
           <p>In cases where CSSIsInUse can <em>gently suggest</em> that you use the correct semantic HTML elements when possible, it will do so. Sometimes that means it simply styles that element without an option for a class and expects you to just use it, and othertimes when the element itself is generic enough that it can be used in different ways, it uses the element's name to suggest when to use it.</p>
           <p>A good example of this are tables. There is no class for a table, you just make it and it's there.</p>
-          <h6>Genetic</h6>
+          <h5>Genetic</h5>
           <p>All variables, numbers, colors, paddings, corner-roundednesses are all derived from a few common ancestor variables. The base padding is 1rem, and all paddings are multiples of that base, so if you create a theme that sets the base to 2rem, all padding sizes are changed accordingly. This doesn't mean you can't override variables when needed, but the entire site will scale and change as you change base values.</p>
-          <h6>Accessible-By-Default</h6>
+          <h5>Accessible-By-Default</h5>
           <p>Surprisingly, a lot of frameworks I've looked through are not accessible-by-default. They'll (sometimes) respect the user's dark/light mode preference, but haven't set up prefers-contrast, reduced-motion, or reduced-transparency features. In CSSIsInUse, those are built in. A CSS framework can't make your site accessible, but all of the default values should be accessible from a visual standpoint.</p>
-          <h6>Infinite Themability</h6>
+          <h5>Infinite Themability</h5>
           <p>This is the biggest difference between CSSIsInUse and other frameworks. Because of all of the above rules, creating new color schemes is simple and easy. You just create a new class / data-scheme by setting a few variables, register it in the SCSS color system, and all elements will be derived from that changing the entire look and feel of the site. Apply it to the body tag to apply the theme to the entire site, apply it to an element to change the look of that element and all child elements. Each theme automatically includes a light and dark mode, based on user preference or through the data-theme attribute.</p>
           <p>Themes simply override the existing variables, so if you want each theme to change fonts, padding sizes, outline thicknesses, etc, that's no problem at all.</p>
-          <h5>Okay, and?</h5>
+          <h4>Okay, and?</h4>
           <p>So, because of all of the above rules, you have a simple to use but visually powerful framework that handles the boring stuff and lets you paint it however you want.</p>
           <p>Light/dark mode built in, make as many themes as you want your users can apply, a fluid structure that doesn't really rely on breakpoints, and built-in accessibility features.</p>
           <p>Even if you hate how this site looks, because you can change it fairly quickly by just modifying a few base variables, it's a great starting point for any project.</p>
         </section>
 
-        <section id="components" class="section content is-min align-center" x-show="['components', 'kitchen'].includes(current)">
+        <section id="installation" class="section container content" x-show="current === 'installation'">
+          <h1>Installation</h1>
+        </section>
+
+        <section id="features" class="section content is-xs is-align-center" x-show="['features', 'kitchen'].includes(current)">
+          <h1>Features</h1>
+        </section>
+
+        <!-- #region Tokens -->
+
+        <section id="tokens" class="section container content" x-show="['tokens', 'kitchen'].includes(current)">
+          <hgroup>
+            <h2>Tokens</h2>
+            <h5></h5>
+          </hgroup>
+          <p><code class="chip is-info is-quiet">tokens</code> are the variables of CSSIsInUse, and determine the look of every component and color in the framework.</p>
+          <p>They are defined as CSS variables, </p>
+
+          <div class="columns gap-large">
+            <div>
+              <p class="chip is-element">Example</p>
+              <div class="block">This top text is in a block.</div>
+              <div class="block">This middle text is also in a block, which you can see there is a gap between this text and the text below.</div>
+              <div class="block">This final text is also in a block, but because it's the final sibling, there is no additional margin below it.</div>
+            </div>
+            <div>
+              <pre><code class="language-html dark">&lt;div class=&quot;block&quot;&gt;
+  This top text is in a block.
+&lt;/div&gt;
+&lt;div class=&quot;block&quot;&gt;
+  This middle text is also in a block, which you can see there is a gap between this text and the text below.
+&lt;/div&gt;
+&lt;div class=&quot;block&quot;&gt;
+  This final text is also in a block, but because it&#39;s the final sibling, there is no additional margin below it.
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- #endregion -->
+
+        <!-- #region Base -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Color -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Accessibility -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Tools -->
+
+        
+
+        <!-- #endregion -->
+
+        <section id="features" class="section content is-xs is-align-center" x-show="['features', 'kitchen'].includes(current)">
+          <h1>Layout</h1>
+        </section>
+
+        <!-- #region Stack -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Main -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Section & Container -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Columns -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Grid -->
+
+        
+
+        <!-- #endregion -->
+
+        <section id="components" class="section content is-xs is-align-center" x-show="['components', 'kitchen'].includes(current)">
           <h1>Components</h1>
         </section>
+
+        <!-- #region Block -->
 
         <section id="block" class="section container content" x-show="['block', 'kitchen'].includes(current)">
           <hgroup>
             <h2>Block</h2>
             <h5>A basic spacing tool</h5>
           </hgroup>
-          <p>The <code class="chip is-warning is-quiet">block</code> is a basic spacing tool that allows sibling HTML elements to be spaced apart.</p>
+          <p>The <code class="chip is-info is-quiet">block</code> is a basic spacing tool that allows sibling HTML elements to be spaced apart.</p>
           <p>If it is not the final sibling element, it gives the element a <code class="chip is-danger is-quiet">margin-bottom</code>.</p>
 
           <div class="columns gap-large">
             <div>
-              <p class="chip">Example</p>
+              <p class="chip is-element">Example</p>
               <div class="block">This top text is in a block.</div>
               <div class="block">This middle text is also in a block, which you can see there is a gap between this text and the text below.</div>
               <div class="block">This final text is also in a block, but because it's the final sibling, there is no additional margin below it.</div>
             </div>
             <div>
-              <pre><code class="language-html">&lt;div class=&quot;block&quot;&gt;
+              <pre><code class="language-html dark">&lt;div class=&quot;block&quot;&gt;
   This top text is in a block.
 &lt;/div&gt;
 &lt;div class=&quot;block&quot;&gt;
@@ -217,17 +348,17 @@
             </div>
           </div>
 
-          <p>Without a <code class="chip is-warning is-quiet">block</code>, there would be no margin between the text.</p>
+          <p>Without a <code class="chip is-info is-quiet">block</code>, there would be no margin between the text.</p>
           
           <div class="columns gap-large">
             <div>
-              <p class="chip">Example</p>
+              <p class="chip is-element">Example</p>
               <div>This top text is not in a block.</div>
               <div>This middle text is also not in a block, which you can see because it's touching the text above and below.</div>
               <div>This final text is also not in a block, but because it's the final sibling, there is no difference visually.</div>
             </div>
             <div>
-              <pre><code class="language-html">&lt;div&gt;
+              <pre><code class="language-html dark">&lt;div&gt;
   This top text is not in a block.
 &lt;/div&gt;
 &lt;div&gt;
@@ -239,7 +370,7 @@
             </div>
           </div>
 
-          <p>Because the <code class="chip is-warning is-quiet">block</code> component is an SCSS mixin, it is built into many components and elements by default, but also is available as a set of classes which can be applied to any of them to override their default values. Below, you can see the difference between a design with and without block included.</p>
+          <p>Because the <code class="chip is-info is-quiet">block</code> component is an SCSS mixin, it is built into many components and elements by default, but also is available as a set of classes which can be applied to any of them to override their default values. Below, you can see the difference between a design with and without block included.</p>
 
           <div class="columns gap-large">
             <div>
@@ -281,11 +412,11 @@
             </div>
           </div>
 
-          <p>Because this is a spacing tool, and we are designers, the spacing is not necessarily consistent. Some elements and components want more space away from other elements than others. To that end, there are multiple <code class="chip is-warning is-quiet">block</code> sizes available, shown below.</p>
+          <p>Because this is a spacing tool, and we are designers, the spacing is not necessarily consistent. Some elements and components want more space away from other elements than others. To that end, there are multiple <code class="chip is-info is-quiet">block</code> sizes available, shown below.</p>
 
           <div class="columns gap-large">
             <div>
-              <p class="chip">Example</p>
+              <p class="chip is-element">Example</p>
               <div class="card block-none">block-none (0)</div>
               <div class="card block-xs">block-xs <code class="dropdown is-tooltip">
                 <span>(0.25rem)</span>
@@ -330,7 +461,7 @@
               <div class="card">Just here to show the XL block above it.</div>
             </div>
             <div>
-              <pre><code class="language-html">&lt;div class=&quot;card block-none&quot;&gt;
+              <pre><code class="language-html dark">&lt;div class=&quot;card block-none&quot;&gt;
   block-none (0)
 &lt;/div&gt;
 &lt;div class=&quot;card block-xs&quot;&gt;
@@ -354,11 +485,11 @@
             </div>
           </div>
 
-          <p>Finally, there is the sister tool <code class="chip is-warning is-quiet">pre</code> which functions exactly the same way, except it uses <code class="chip is-danger is-quiet">margin-top</code> instead if it is not the first sibling element. Only a few elements and components use it by default, usually subtly, but it is another spacing tool in your arsenal.</p>
+          <p>Finally, there is the sister tool <code class="chip is-info is-quiet">pre</code> which functions exactly the same way, except it uses <code class="chip is-danger is-quiet">margin-top</code> instead if it is not the first sibling element. Only a few elements and components use it by default, usually subtly, but it is another spacing tool in your arsenal.</p>
 
           <div class="columns gap-large">
             <div>
-              <p class="chip">Example</p>
+              <p class="chip is-element">Example</p>
               <div class="card block-none">Just here to show the none pre below it.</div>
               <div class="card block-none pre-none">pre-none (0)</div>
               <div class="card block-none pre-xs">pre-xs <code class="dropdown is-tooltip">
@@ -404,7 +535,7 @@
               
             </div>
             <div>
-              <pre><code class="language-html">&lt;div class=&quot;card block-none&quot;&gt;
+              <pre><code class="language-html dark">&lt;div class=&quot;card block-none&quot;&gt;
   Just here to show the none pre below it.
 &lt;/div&gt;
 &lt;div class=&quot;card block-none pre-none&quot;&gt;
@@ -429,6 +560,92 @@
           </div>
         </section>
 
+        <!-- #endregion -->
+
+        <!-- #region Group -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Icon -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Card -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Button -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Chip -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Input -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Textarea -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Select -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Checkbox / Radio -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region File -->
+
+        
+
+        <!-- #endregion -->
+
+        <section id="integrations" class="section content is-xs is-align-center" x-show="['integrations', 'kitchen'].includes(current)">
+          <h1>Integrations</h1>
+        </section>
+
+        <!-- #region Tabler -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Choices -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Highlight.js -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Template -->
+
         <!--
 
         <section id="template" class="section container content" x-show="['template', 'kitchen'].includes(current)">
@@ -436,18 +653,18 @@
             <h2>Block</h2>
             <h5>A basic spacing tool</h5>
           </hgroup>
-          <p>The <code class="chip is-warning is-quiet">block</code> is a basic spacing tool that allows sibling HTML elements to be spaced apart.</p>
+          <p>The <code class="chip is-info is-quiet">block</code> is a basic spacing tool that allows sibling HTML elements to be spaced apart.</p>
           <p>If it is not the final sibling element, it gives the element a <code class="chip is-danger is-quiet">margin-bottom</code>.</p>
 
           <div class="columns gap-large">
             <div>
-              <p class="chip">Example</p>
+              <p class="chip is-element">Example</p>
               <div class="block">This top text is in a block.</div>
               <div class="block">This middle text is also in a block, which you can see there is a gap between this text and the text below.</div>
               <div class="block">This final text is also in a block, but because it's the final sibling, there is no additional margin below it.</div>
             </div>
             <div>
-              <pre><code class="language-html">&lt;div class=&quot;block&quot;&gt;
+              <pre><code class="language-html dark">&lt;div class=&quot;block&quot;&gt;
   This top text is in a block.
 &lt;/div&gt;
 &lt;div class=&quot;block&quot;&gt;
@@ -460,1925 +677,9 @@
           </div>
         </section>
 
-        <section id="input" class="section container content" x-show="['input', 'form', 'kitchen'].includes(current)">
-          <h1>Input</h1>
-          <pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;title&gt;Title&lt;/title&gt;
-
-&lt;style&gt;body {width: 500px;}&lt;/style&gt;
-
-&lt;script type=&quot;application/javascript&quot;&gt;
-  function $init() {return true;}
-&lt;/script&gt;
-
-&lt;body&gt;
-  &lt;p checked class=&quot;title&quot; id=&#39;title&#39;&gt;Title&lt;/p&gt;
-  &lt;!-- here goes the rest of the page --&gt;
-&lt;/body&gt;</code></pre>
-        </section>
-
-        <section id="textarea" class="section container content" x-show="['textarea', 'form', 'kitchen'].includes(current)">
-          <h1>Textarea</h1>
-        </section>
-        
-        <section class="section">
-          <div class="container">
-            <h1>Heading 1</h1>
-            <h2>Heading 2</h2>
-            <h3>Heading 3</h3>
-            <h4>Heading 4</h4>
-            <h5>Heading 5</h5>
-            <h6>Heading 6</h6>
-            <p>Paragraph with <strong>bold</strong> and <em>emphasis</em> and <strong><em>bold emphasis</em></strong>.</p>
-            <p><small>Smaller, less important text</small></p>
-            <p>This paragraph has a <a href="#">Link</a>.</p>
-            <hr>
-            <p>This documentation site was built with raw CSSIsInUse, with <a href="alpinejs.dev/" target="_blank">apline.js</a> for interactivity and <a href="https://highlightjs.org" target="_blank">highlight.js</a> for displaying code blocks.</p>
-            <p>Everything you see comes without any modifications. If you like the way it looks, awesome. If you don't, it's highly customizable, and I think you'll still like some of the features.
-          </div>
-        </section>
-
-        <section class="section">
-          <div class="container is-large">
-            <h3>Generated Color Groups</h3>
-            <div class="block" style="display:grid; grid-template-columns: repeat(8, 1fr); gap: var(--padding-xs); overflow-x:auto;">
-              <span class="paint" style="background-color: var(--base-base); color: var(--base-strong);">Base Base</span>
-              <span class="paint" style="background-color: var(--base-menu); color: var(--base-strong);">Base Menu</span>
-              <span class="paint" style="background-color: var(--base-element); color: var(--base-strong);">Base Element</span>
-              <span class="paint" style="background-color: var(--base-top); color: var(--base-strong);">Base Top</span>
-              <span class="paint" style="background-color: var(--base-color); color: var(--base-100);">Base Color</span>
-              <span class="paint" style="background-color: var(--base-weak); color: var(--base-base);">Base Weak</span>
-              <span class="paint" style="background-color: var(--base-text); color: var(--base-base);">Base Text</span>
-              <span class="paint" style="background-color: var(--base-strong); color: var(--base-base);">Base Strong</span>
-
-              <span class="paint" style="background-color: var(--primary-base); color: var(--primary-strong);">Primary Base</span>
-              <span class="paint" style="background-color: var(--primary-menu); color: var(--primary-strong);">Primary Menu</span>
-              <span class="paint" style="background-color: var(--primary-element); color: var(--primary-strong);">Primary Element</span>
-              <span class="paint" style="background-color: var(--primary-top); color: var(--primary-strong);">Primary Top</span>
-              <span class="paint" style="background-color: var(--primary-color); color: var(--primary-100);">Primary Color</span>
-              <span class="paint" style="background-color: var(--primary-weak); color: var(--primary-base);">Primary Weak</span>
-              <span class="paint" style="background-color: var(--primary-text); color: var(--primary-base);">Primary Text</span>
-              <span class="paint" style="background-color: var(--primary-strong); color: var(--primary-base);">Primary Strong</span>
-
-              <span class="paint" style="background-color: var(--info-base); color: var(--info-strong);">Info Base</span>
-              <span class="paint" style="background-color: var(--info-menu); color: var(--info-strong);">Info Menu</span>
-              <span class="paint" style="background-color: var(--info-element); color: var(--info-strong);">Info Element</span>
-              <span class="paint" style="background-color: var(--info-top); color: var(--info-strong);">Info Top</span>
-              <span class="paint" style="background-color: var(--info-color); color: var(--info-100);">Info Color</span>
-              <span class="paint" style="background-color: var(--info-weak); color: var(--info-base);">Info Weak</span>
-              <span class="paint" style="background-color: var(--info-text); color: var(--info-base);">Info Text</span>
-              <span class="paint" style="background-color: var(--info-strong); color: var(--info-base);">Info Strong</span>
-
-              <span class="paint" style="background-color: var(--warning-base); color: var(--warning-strong);">Warning Base</span>
-              <span class="paint" style="background-color: var(--warning-menu); color: var(--warning-strong);">Warning Menu</span>
-              <span class="paint" style="background-color: var(--warning-element); color: var(--warning-strong);">Warning Element</span>
-              <span class="paint" style="background-color: var(--warning-top); color: var(--warning-strong);">Warning Top</span>
-              <span class="paint" style="background-color: var(--warning-color); color: var(--warning-100);">Warning Color</span>
-              <span class="paint" style="background-color: var(--warning-weak); color: var(--warning-base);">Warning Weak</span>
-              <span class="paint" style="background-color: var(--warning-text); color: var(--warning-base);">Warning Text</span>
-              <span class="paint" style="background-color: var(--warning-strong); color: var(--warning-base);">Warning Strong</span>
-
-              <span class="paint" style="background-color: var(--danger-base); color: var(--danger-strong);">Danger Base</span>
-              <span class="paint" style="background-color: var(--danger-menu); color: var(--danger-strong);">Danger Menu</span>
-              <span class="paint" style="background-color: var(--danger-element); color: var(--danger-strong);">Danger Element</span>
-              <span class="paint" style="background-color: var(--danger-top); color: var(--danger-strong);">Danger Top</span>
-              <span class="paint" style="background-color: var(--danger-color); color: var(--danger-100);">Danger Color</span>
-              <span class="paint" style="background-color: var(--danger-weak); color: var(--danger-base);">Danger Weak</span>
-              <span class="paint" style="background-color: var(--danger-text); color: var(--danger-base);">Danger Text</span>
-              <span class="paint" style="background-color: var(--danger-strong); color: var(--danger-base);">Danger Strong</span>
-
-              <span class="paint" style="background-color: var(--success-base); color: var(--success-strong);">Success Base</span>
-              <span class="paint" style="background-color: var(--success-menu); color: var(--success-strong);">Success Menu</span>
-              <span class="paint" style="background-color: var(--success-element); color: var(--success-strong);">Success Element</span>
-              <span class="paint" style="background-color: var(--success-top); color: var(--success-strong);">Success Top</span>
-              <span class="paint" style="background-color: var(--success-color); color: var(--success-100);">Success Color</span>
-              <span class="paint" style="background-color: var(--success-weak); color: var(--success-base);">Success Weak</span>
-              <span class="paint" style="background-color: var(--success-text); color: var(--success-base);">Success Text</span>
-              <span class="paint" style="background-color: var(--success-strong); color: var(--success-base);">Success Strong</span>
-
-              <span class="paint" style="background-color: var(--greyscale-base); color: var(--greyscale-strong);">Greyscale Base</span>
-              <span class="paint" style="background-color: var(--greyscale-menu); color: var(--greyscale-strong);">Greyscale Menu</span>
-              <span class="paint" style="background-color: var(--greyscale-element); color: var(--greyscale-strong);">Greyscale Element</span>
-              <span class="paint" style="background-color: var(--greyscale-top); color: var(--greyscale-strong);">Greyscale Top</span>
-              <span class="paint" style="background-color: var(--greyscale-color); color: var(--greyscale-100);">Greyscale Color</span>
-              <span class="paint" style="background-color: var(--greyscale-weak); color: var(--greyscale-base);">Greyscale Weak</span>
-              <span class="paint" style="background-color: var(--greyscale-text); color: var(--greyscale-base);">Greyscale Text</span>
-              <span class="paint" style="background-color: var(--greyscale-strong); color: var(--greyscale-base);">Greyscale Strong</span>
-            </div>
-            <h3>Hardcoded Variable Colors</h3>
-            <div class="block" style="display:grid; grid-template-columns: repeat(8, 1fr); gap: var(--padding-xs); overflow-x:auto;">
-              <span class="paint" style="background-color: var(--black); color: var(--white);">Black</span>
-              <span class="paint" style="background-color: var(--white); color: var(--black);">White</span>
-            </div>
-            <h3>Unused Generated Colors</h3>
-            <div class="block" style="display:grid; grid-template-columns: repeat(8, 1fr); gap: var(--padding-xs); overflow-x:auto;">
-              <span class="paint" style="background-color: var(--base-muted); color: var(--base-strong);">Base Muted</span>
-              <span class="paint" style="background-color: var(--base-vivid); color: var(--base-base);">Base Vivid</span>
-              <span class="paint" style="background-color: var(--primary-muted); color: var(--primary-strong);">Primary Muted</span>
-              <span class="paint" style="background-color: var(--primary-vivid); color: var(--primary-base);">Primary Vivid</span>
-              <span class="paint" style="background-color: var(--info-muted); color: var(--info-strong);">Info Muted</span>
-              <span class="paint" style="background-color: var(--info-vivid); color: var(--info-base);">Info Vivid</span>
-              <span class="paint" style="background-color: var(--warning-muted); color: var(--warning-strong);">Warning Muted</span>
-              <span class="paint" style="background-color: var(--warning-vivid); color: var(--warning-base);">Warning Vivid</span>
-              <span class="paint" style="background-color: var(--danger-muted); color: var(--danger-strong);">Danger Muted</span>
-              <span class="paint" style="background-color: var(--danger-vivid); color: var(--danger-base);">Danger Vivid</span>
-              <span class="paint" style="background-color: var(--success-muted); color: var(--success-strong);">Success Muted</span>
-              <span class="paint" style="background-color: var(--success-vivid); color: var(--success-base);">Success Vivid</span>
-              <span class="paint" style="background-color: var(--greyscale-muted); color: var(--greyscale-strong);">Greyscale Muted</span>
-              <span class="paint" style="background-color: var(--greyscale-vivid); color: var(--greyscale-base);">Greyscale Vivid</span>
-            </div>
-          </div>
-        </section>
-        
-        
-
-        <section class="section is-small">
-          <h3>Cards</h3>
-          <div class="container">
-            <h4>Colored</h4>
-            <div class="columns">
-              <div class="card">
-                <p>This is a card</p>
-              </div>
-              <div class="card is-top">
-                <p>This is a card</p>
-              </div>
-              <div class="card is-primary">
-                <p>This is a card</p>
-              </div>
-              <div class="card is-primary is-top">
-                <p>This is a card</p>
-              </div>
-              <div class="card is-info">
-                <p>This is a card</p>
-              </div>
-              <div class="card is-info is-top">
-                <p>This is a card</p>
-              </div>
-              <div class="card is-warning">
-                <p>This is a card</p>
-              </div>
-              <div class="card is-warning is-top">
-                <p>This is a card</p>
-              </div>
-              <div class="card is-danger">
-                <p>This is a card</p>
-              </div>
-              <div class="card is-danger is-top">
-                <p>This is a card</p>
-              </div>
-              <div class="card is-success">
-                <p>This is a card</p>
-              </div>
-              <div class="card is-success is-top">
-                <p>This is a card</p>
-              </div>
-              <div class="card is-greyscale">
-                <p>This is a card</p>
-              </div>
-              <div class="card is-greyscale is-top">
-                <p>This is a card</p>
-              </div>
-            </div>
-            <h4>XS Padding</h4>
-            <div class="card is-info is-top is-xs">
-              <p>A card can have any element inside of it</p>
-            </div>
-            <h4>Small Padding</h4>
-            <div class="card is-success is-small group is-centered">
-              <p>Including a </p> <button class="button">Button</button>
-            </div>
-            <h4>Large Padding</h4>
-            <div class="card is-warning is-top is-large group">
-              <p>Or a </p> <span class="chip is-danger">Chip</span>
-            </div>
-            <h4>XL Padding</h4>
-            <div class="card is-primary is-xl">
-              <p>Or whatever else!</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="section is-small">
-          <h3>Icons</h3>
-          <div class="container is-min">
-            <h4>Inherit/Strong/Text/Weak/Color</h4>
-            <div class="group">
-              <div class="icon"><i class="ti ti-user-filled"></i></div>
-              <div class="icon is-strong"><i class="ti ti-user-filled"></i></div>
-              <div class="icon is-text"><i class="ti ti-user-filled"></i></div>
-              <div class="icon is-weak"><i class="ti ti-user-filled"></i></div>
-              <div class="icon is-color"><i class="ti ti-user-filled"></i></div>
-            </div>
-            <h4>Colors</h4>
-            <div class="group">
-              <div class="icon is-info is-weak"><i class="ti ti-user-filled"></i></div>
-              <div class="icon is-primary is-strong"><i class="ti ti-user-filled"></i></div>
-              <div class="icon is-warning is-text"><i class="ti ti-user-filled"></i></div>
-              <div class="icon is-danger is-weak"><i class="ti ti-user-filled"></i></div>
-              <div class="icon is-success is-color"><i class="ti ti-user-filled"></i></div>
-            </div>
-            <h4>Small</h4>
-            <div class="group">
-              <div class="icon is-primary is-color is-small"><i class="ti ti-user-filled"></i></div>
-              <div class="icon is-warning is-text is-small"><i class="ti ti-user-filled"></i></div>
-              <div class="icon is-success is-weak is-small"><i class="ti ti-user-filled"></i></div>
-              <div class="icon is-info is-color is-small"><i class="ti ti-user-filled"></i></div>
-            </div>
-            <h4>Large</h4>
-            <div class="group">
-              <div class="icon is-primary is-color is-large"><i class="ti ti-user-filled"></i></div>
-              <div class="icon is-warning is-text is-large"><i class="ti ti-user-filled"></i></div>
-              <div class="icon is-success is-weak is-large"><i class="ti ti-user-filled"></i></div>
-              <div class="icon is-info is-color is-large"><i class="ti ti-user-filled"></i></div>
-            </div>
-            <h4>XL</h4>
-            <div class="group">
-              <div class="icon is-primary is-color is-xl"><i class="ti ti-user-filled"></i></div>
-              <div class="icon is-warning is-text is-xl"><i class="ti ti-user-filled"></i></div>
-              <div class="icon is-success is-weak is-xl"><i class="ti ti-user-filled"></i></div>
-              <div class="icon is-info is-color is-xl"><i class="ti ti-user-filled"></i></div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section is-small">
-          <h3>Buttons</h3>
-          <div class="container">
-            <h4>Colored</h4>
-            <div class="group">
-              <button class="button">Button</button>
-              <button class="button" disabled>Button</button>
-
-              <button class="button is-primary">Button</button>
-              <button class="button is-primary" disabled>Button</button>
-
-              <button class="button is-info">Button</button>
-              <button class="button is-info" disabled>Button</button>
-
-              <button class="button is-warning">Button</button>
-              <button class="button is-warning" disabled>Button</button>
-
-              <button class="button is-danger">Button</button>
-              <button class="button is-danger" disabled>Button</button>
-
-              <button class="button is-success">Button</button>
-              <button class="button is-success" disabled>Button</button>
-
-              <button class="button is-greyscale">Button</button>
-              <button class="button is-greyscale" disabled>Button</button>
-            </div>
-            <h4>Ghost</h4>
-            <div class="group">
-              <button class="button is-ghost">Button</button>
-              <button class="button is-ghost" disabled>Button</button>
-              <button class="button is-ghost is-info">Button</button>
-            </div>
-            <h4>Hoverable</h4>
-            <div class="group">
-              <button class="button is-hoverable">Button</button>
-              <button class="button is-hoverable is-info" disabled>Button</button>
-              <button class="button is-hoverable is-primary">Button</button>
-            </div>
-            <h4>Active</h4>
-            <div class="group">
-              <button class="button is-active">Button</button>
-              <button class="button is-active is-warning" disabled>Button</button>
-              <button class="button is-active is-success">Button</button>
-              <button class="button is-ghost is-info is-active">Button</button>
-            </div>
-            <h4>Small</h4>
-            <div class="group">
-              <button class="button is-small">Button</button>
-              <button class="button is-small" disabled>Button</button>
-              <button class="button is-small is-primary">Button</button>
-              <button class="button is-small is-ghost is-danger">Button</button>
-              <button class="button is-small is-hoverable is-greyscale">Button</button>
-              <button class="button is-small is-active is-success">Button</button>
-            </div>
-            <h4>Large</h4>
-            <div class="group">
-              <button class="button is-large">Button</button>
-              <button class="button is-large" disabled>Button</button>
-              <button class="button is-large is-primary">Button</button>
-              <button class="button is-large is-ghost is-danger">Button</button>
-              <button class="button is-large is-hoverable is-greyscale">Button</button>
-              <button class="button is-large is-active is-success">Button</button>
-            </div>
-            <h4>XL</h4>
-            <div class="group">
-              <button class="button is-xl">Button</button>
-              <button class="button is-xl" disabled>Button</button>
-              <button class="button is-xl is-primary">Button</button>
-              <button class="button is-xl is-ghost is-danger">Button</button>
-              <button class="button is-xl is-hoverable is-greyscale">Button</button>
-              <button class="button is-xl is-active is-success">Button</button>
-            </div>
-            <h4>Addons</h4>
-            <div class="group has-addons">
-              <button class="button">Button</button>
-              <button class="button is-primary">Button</button>
-              <button class="button is-warning" disabled>Button</button>
-              <button class="button is-info is-ghost">Button</button>
-              <button class="button is-success light">Button</button>
-            </div>
-            <h4>With Icon</h4>
-            <div class="group">
-              <button class="button"><span class=""><i class="ti ti-info-circle"></i></span> No .icon</button>
-              <button class="button is-warning"><span class="icon"><i class="ti ti-info-circle"></i></span> No .group</button>
-              <button class="button is-info"><span class="group"><span class="icon"><i class="ti ti-info-circle"></i></span>Has both!</span></button>
-              <button class="button">
-                <span class="group">
-                  <span class="icon text-warning-500"><i class="ti ti-info-circle"></i>
-                  </span>
-                  <span>Custom Color</span>
-                </span>
-              </button>
-            </div>
-            <h4>Dark/Light Mode Switcher</h4>
-            <div class="group has-addons">
-              <button class="button is-small is-active"><span class="icon"><i class="ti ti-circle ti-dark"></i></span></button>
-              <button class="button is-small is-hoverable"><span class="icon"><i class="ti ti-brightness-filled"></i></span></button>
-              <button class="button is-small is-hoverable"><span class="icon"><i class="ti ti-circle-filled ti-light"></i></span></button>
-            </div>
-          </div>
-        </section>
-
-        <section class="section is-small">
-          <h3>Inputs</h3>
-          <div class="container is-small">
-            <div class="field">
-              <label for="example1" class="label">Default</label>
-              <input id="example1" class="input">
-            </div>
-            <div class="field">
-              <label for="example2" class="label">Disabled</label>
-              <input id="example2" class="input" disabled>
-            </div>
-            <div class="field is-info">
-              <label for="example3" class="label">Colored</label>
-              <input id="example3" class="input">
-            </div>
-            <div class="field is-warning">
-              <label for="example4" class="label">Notification</label>
-              <input id="example4" class="input">
-              <div class="notification quiet">
-                <p>Some Warning</p>
-              </div>
-            </div>
-            <div class="field is-primary">
-              <label for="example5" class="label">Small</label>
-              <input id="example5" class="input is-small">
-            </div>
-            <div class="field">
-              <label for="example6" class="label">Password</label>
-              <input id="example6" class="input" type="password">
-            </div>
-            <div class="field">
-              <label for="example7" class="label">Addons</label>
-              <div class="group has-addons no-wrap">
-                <input id="example7" class="input" placeholder="First Name">
-                <input id="example7" class="input" placeholder="Last Name">
-                <button class="button is-info is-hoverable">Submit</button>
-              </div>
-            </div>
-            <div class="field">
-              <label for="ta-example-1" class="label">Textarea</label>
-              <textarea id="ta-example-1" class="textarea"></textarea>
-            </div>
-            <div class="field is-info">
-              <label for="ta-example-2" class="label">Textarea Small</label>
-              <textarea id="ta-example-2" class="textarea is-small" placeholder="Placeholder Text"></textarea>
-            </div>
-            <div class="field">
-              <label for="ta-example-3" class="label">Textarea Large</label>
-              <textarea id="ta-example-3" class="textarea is-large" disabled>Already filled in text</textarea>
-            </div>
-            <div class="field">
-              <label class="label" for="choices-multiple-remove-button">With remove button</label>
-              <select
-                class="form-control"
-                name="choices-multiple-remove-button"
-                id="choices-multiple-remove-button"
-                placeholder="This is a placeholder"
-                multiple
-              >
-                <option value="Choice 1" selected>Choice 1</option>
-                <option value="Choice 2">Choice 2</option>
-                <option value="Choice 3">Choice 3</option>
-                <option value="Choice 4">Choice 4</option>
-              </select>
-            </div>
-            <div class="field is-info">
-              <label class="label" for="choices-multiple-groups">Option groups</label>
-              <select
-                class="form-control"
-                name="choices-multiple-groups"
-                id="choices-multiple-groups"
-                placeholder="This is a placeholder"
-                multiple
-              >
-                <option value="">Choose a city</option>
-                <optgroup label="UK">
-                  <option value="London">London</option>
-                  <option value="Manchester">Manchester</option>
-                  <option value="Liverpool">Liverpool</option>
-                </optgroup>
-                <optgroup label="FR">
-                  <option value="Paris">Paris</option>
-                  <option value="Lyon">Lyon</option>
-                  <option value="Marseille">Marseille</option>
-                </optgroup>
-                <optgroup label="DE" disabled>
-                  <option value="Hamburg">Hamburg</option>
-                  <option value="Munich">Munich</option>
-                  <option value="Berlin">Berlin</option>
-                </optgroup>
-                <optgroup label="US">
-                  <option value="New York">New York</option>
-                  <option value="Washington" disabled>Washington</option>
-                  <option value="Michigan">Michigan</option>
-                </optgroup>
-                <optgroup label="SP">
-                  <option value="Madrid">Madrid</option>
-                  <option value="Barcelona">Barcelona</option>
-                  <option value="Malaga">Malaga</option>
-                </optgroup>
-                <optgroup label="CA">
-                  <option value="Montreal">Montreal</option>
-                  <option value="Toronto">Toronto</option>
-                  <option value="Vancouver">Vancouver</option>
-                </optgroup>
-              </select>
-            </div>
-            <div class="field">
-              <label class="label" id="choices-single-default-label" for="choices-single-default">Default</label>
-              <select
-                class="form-control"
-                data-trigger
-                name="choices-single-default"
-                id="choices-single-default"
-                placeholder="This is a search placeholder"
-              >
-                <option value="">This is a placeholder</option>
-                <option value="Choice 1">Choice 1</option>
-                <option value="Choice 2">Choice 2</option>
-                <option value="Choice 3">Choice 3</option>
-              </select>
-            </div>
-            <div class="field">
-              <label class="checkbox">
-                <input type="checkbox" />
-                Remember me
-              </label>
-            </div>
-            <div class="field">
-              <label class="radio">
-                <input type="radio" />
-                Don't Remember Me
-              </label>
-            </div>
-            <div class="field">
-              <div class="group is-large-gap">
-                <label class="checkbox is-primary">
-                  <input type="checkbox" checked/>
-                  Checkbox 1
-                </label>
-                <label class="checkbox" disabled>
-                  <input type="checkbox" checked disabled />
-                  Checkbox 2
-                </label>
-                <label class="checkbox is-info">
-                  <input type="checkbox" checked />
-                  Checkbox 3
-                </label>
-              </div>
-            </div>
-            <div class="field">
-              <div class="group is-large-gap">
-                <label class="radio is-primary">
-                  <input type="radio" name="barfoo" checked />
-                  Radio 1
-                </label>
-                <label class="radio" disabled>
-                  <input type="radio" name="barfoo" disabled />
-                  Radio 2
-                </label>
-                <label class="radio is-info">
-                  <input type="radio" name="barfoo" />
-                  Radio 3
-                </label>
-              </div>
-            </div>
-          </div>
-          <script>
-            document.addEventListener('DOMContentLoaded', function() {
-              var genericExamples = document.querySelectorAll('[data-trigger]');
-              for (i = 0; i < genericExamples.length; ++i) {
-                var element = genericExamples[i];
-                new Choices(element, {
-                  allowHTML: true,
-                  placeholderValue: 'This is a placeholder set in the config',
-                  searchPlaceholderValue: 'This is a search placeholder',
-                });
-              }
-
-              var multipleDefault = new Choices(
-                document.getElementById('choices-multiple-groups'),
-                { allowHTML: true }
-              );
-
-              var multipleCancelButton = new Choices(
-                '#choices-multiple-remove-button',
-                {
-                  allowHTML: true,
-                  removeItemButton: true,
-                }
-              );
-            });
-          </script>
-        </section>
-
-        <section class="section is-small">
-          <h3>Tables</h3>
-          <div class="container">
-            <h4>Colored</h4>
-            <div class="columns">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                    <th>Header 3</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td>Foot 1</td>
-                    <td>Foot 2</td>
-                    <td>Foot 3</td>
-                  </tr>
-                </tfoot>
-              </table>
-              
-              <table class="is-primary">
-                <thead>
-                  <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                    <th>Header 3</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td>Foot 1</td>
-                    <td>Foot 2</td>
-                    <td>Foot 3</td>
-                  </tr>
-                </tfoot>
-              </table>
-
-              <table class="is-info">
-                <thead>
-                  <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                    <th>Header 3</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td>Foot 1</td>
-                    <td>Foot 2</td>
-                    <td>Foot 3</td>
-                  </tr>
-                </tfoot>
-              </table>
-
-              <table class="is-warning">
-                <thead>
-                  <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                    <th>Header 3</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td>Foot 1</td>
-                    <td>Foot 2</td>
-                    <td>Foot 3</td>
-                  </tr>
-                </tfoot>
-              </table>
-
-              <table class="is-danger">
-                <thead>
-                  <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                    <th>Header 3</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td>Foot 1</td>
-                    <td>Foot 2</td>
-                    <td>Foot 3</td>
-                  </tr>
-                </tfoot>
-              </table>
-
-              <table class="is-success">
-                <thead>
-                  <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                    <th>Header 3</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td>Foot 1</td>
-                    <td>Foot 2</td>
-                    <td>Foot 3</td>
-                  </tr>
-                </tfoot>
-              </table>
-
-              <table class="is-greyscale">
-                <thead>
-                  <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                    <th>Header 3</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td>Foot 1</td>
-                    <td>Foot 2</td>
-                    <td>Foot 3</td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-            <h4>Striped</h4>
-            <div class="columns">
-              <table class="is-info is-striped">
-                <thead>
-                  <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                    <th>Header 3</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td>Foot 1</td>
-                    <td>Foot 2</td>
-                    <td>Foot 3</td>
-                  </tr>
-                </tfoot>
-              </table>
-
-              <table class="is-striped">
-                <thead>
-                  <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                    <th>Header 3</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td>Foot 1</td>
-                    <td>Foot 2</td>
-                    <td>Foot 3</td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-            <h4>Color/Active Cells and Rows</h4>
-            <div class="columns">
-              <table class="is-primary">
-                <thead>
-                  <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                    <th>Header 3</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td class="is-active">Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                  <tr class="is-active">
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td>Foot 1</td>
-                    <td>Foot 2</td>
-                    <td>Foot 3</td>
-                  </tr>
-                </tfoot>
-              </table>
-
-              <table>
-                <thead>
-                  <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                    <th>Header 3</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                  <tr class="is-active">
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                  <tr>
-                    <td>Test Data 1</td>
-                    <td>Test Data 2</td>
-                    <td>Test Data 3</td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td>Foot 1</td>
-                    <td>Foot 2</td>
-                    <td>Foot 3</td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-            <h4>No Table Head/Foot</h4>
-            <table>
-              <tbody>
-                <tr>
-                  <td>Test Data 1</td>
-                  <td>Test Data 2</td>
-                  <td>Test Data 3</td>
-                </tr>
-                <tr>
-                  <td>Test Data 1</td>
-                  <td>Test Data 2</td>
-                  <td>Test Data 3</td>
-                </tr>
-                <tr>
-                  <td>Test Data 1</td>
-                  <td>Test Data 2</td>
-                  <td>Test Data 3</td>
-                </tr>
-              </tbody>
-            </table>
-            <h4>Mixemup</h4>
-            <table class="is-success is-striped">
-              <thead>
-                <tr>
-                  <th>This is a header</th>
-                  <th class="is-active">This header is important</th>
-                  <th><abbr>WTF</abbr></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>This is some table data</td>
-                  <td><span class="group"><span class="icon"><i class="ti ti-crown"></i></span><span>Crown me</span></span></td>
-                  <td><button class="button">Woah!</button></td>
-                </tr>
-                <tr class="is-warning">
-                  <td>This is some table data</td>
-                  <td><span class="group"><span class="icon"><i class="ti ti-crown"></i></span><span>Crown me</span></span></td>
-                  <td><button class="button">Woah!</button></td>
-                </tr>
-                <tr class="is-base">
-                  <td class="is-danger">This is some table data</td>
-                  <td class="is-info is-color"><span class="group"><span class="icon"><i class="ti ti-crown"></i></span><span>Crown me</span></span></td>
-                  <td><button class="button is-primary">Woah!</button></td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td>Only one cell in the footer...</td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-        </section>
-
-        <section class="section is-small">
-          <h3>Modals</h3>
-          <div class="container is-small">
-            <div class="group">
-              <div x-data="{ active: false }">
-                <button
-                  class="button"
-                  @click="active = !active">
-                  Launch Modal</button>
-                <div class="modal" :class="{ 'is-active' : active }">
-                  <section class="section container is-element is-small">
-                    <h2>Modal!</h2>
-                    <button
-                      class="button"
-                      @click="active = !active">
-                      Close Modal</button>
-                  </section>
-                </div>
-              </div>
-              <div x-data="{ active: false }">
-                <button
-                  class="button"
-                  @click="active = !active">
-                  Nothing in it except for close button</button>
-                <div class="modal is-centered" :class="{ 'is-active' : active }">
-                  <button
-                    class="button is-icon is-primary is-active"
-                    aria-label="Close Modal"
-                    @click="active = !active">
-                    <i class="ti ti-x"></i></button>
-                </div>
-              </div>
-              <div x-data="{ active: false }">
-                <button
-                  class="button"
-                  @click="active = !active">
-                  Really long modal</button>
-                <div class="modal" :class="{ 'is-active' : active }">
-                  <section class="section container is-element is-small">
-                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h2>
-                    <button
-                      class="button is-icon is-primary is-active"
-                      aria-label="Close Modal"
-                      @click="active = !active">
-                      <i class="ti ti-x"></i></button>
-                  </section>
-                </div>
-              </div>
-
-              <div x-data="{ active: false }">
-                <button
-                  class="button"
-                  @click="active = !active">
-                  Pretty modal</button>
-                <div class="modal" :class="{ 'is-active' : active }">
-                  <section class="section container is-small is-transparent">
-                    <div class="card is-xl">
-                      <div class="group is-space-between is-aligned-start">
-                        <h3>Login</h3>
-                        <button
-                          class="button is-icon is-primary is-active"
-                          aria-label="Close Modal"
-                          @click="active = !active">
-                          <i class="ti ti-x"></i></button>
-                      </div>
-                      <form>
-                        <div class="field">
-                          <label for="username" class="label">Username</label>
-                          <input id="username" class="input">
-                        </div>
-                        <div class="field">
-                          <label for="password" class="label">Username</label>
-                          <input id="password" class="input" type="password">
-                        </div>
-                        <div class="field">
-                          <label class="checkbox">
-                            <input type="checkbox" />
-                            Remember me
-                          </label>
-                        </div>
-                        <input type="submit" class="button is-info" value="Login">
-                      </form>
-                    </div>
-                  </section>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section is-small">
-          <h3>Dropdowns</h3>
-          <div class="container">
-            <h4>Colored</h4>
-            <div class="group">
-
-              <div
-                class="dropdown"
-                x-data="{ active: false }"
-                :class="{ 'is-active' : active }"
-                @click.outside="active = false"
-                @keydown.escape.window="active = false"
-              >
-                <button
-                  class="dropdown-btn button"
-                  aria-haspopup="menu"
-                  aria-controls="drop-1"
-                  @click="active = !active"
-                  :class="{ 'is-active' : active }"
-                >
-                  <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
-                </button>
-                <div class="dropdown-menu" role="menu" id="drop-1">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item">Simple Dropdown</div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="dropdown is-primary"
-                x-data="{ active: false }"
-                :class="{ 'is-active' : active }"
-                @click.outside="active = false"
-                @keydown.escape.window="active = false"
-              >
-                <button
-                  class="dropdown-btn button"
-                  aria-haspopup="menu"
-                  aria-controls="drop-2"
-                  @click="active = !active"
-                  :class="{ 'is-active' : active }"
-                >
-                  <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
-                </button>
-                <div class="dropdown-menu" role="menu" id="drop-2">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item">Simple Dropdown</div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="dropdown is-info"
-                x-data="{ active: false }"
-                :class="{ 'is-active' : active }"
-                @click.outside="active = false"
-                @keydown.escape.window="active = false"
-              >
-                <button
-                  class="dropdown-btn button"
-                  aria-haspopup="menu"
-                  aria-controls="drop-3"
-                  @click="active = !active"
-                  :class="{ 'is-active' : active }"
-                >
-                  <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
-                </button>
-                <div class="dropdown-menu" role="menu" id="drop-3">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item">Simple Dropdown</div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="dropdown is-warning"
-                x-data="{ active: false }"
-                :class="{ 'is-active' : active }"
-                @click.outside="active = false"
-                @keydown.escape.window="active = false"
-              >
-                <button
-                  class="dropdown-btn button"
-                  aria-haspopup="menu"
-                  aria-controls="drop-4"
-                  @click="active = !active"
-                  :class="{ 'is-active' : active }"
-                >
-                  <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
-                </button>
-                <div class="dropdown-menu" role="menu" id="drop-4">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item">Simple Dropdown</div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="dropdown is-danger"
-                x-data="{ active: false }"
-                :class="{ 'is-active' : active }"
-                @click.outside="active = false"
-                @keydown.escape.window="active = false"
-              >
-                <button
-                  class="dropdown-btn button"
-                  aria-haspopup="menu"
-                  aria-controls="drop-5"
-                  @click="active = !active"
-                  :class="{ 'is-active' : active }"
-                >
-                  <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
-                </button>
-                <div class="dropdown-menu" role="menu" id="drop-5">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item">Simple Dropdown</div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="dropdown is-success"
-                x-data="{ active: false }"
-                :class="{ 'is-active' : active }"
-                @click.outside="active = false"
-                @keydown.escape.window="active = false"
-              >
-                <button
-                  class="dropdown-btn button"
-                  aria-haspopup="menu"
-                  aria-controls="drop-6"
-                  @click="active = !active"
-                  :class="{ 'is-active' : active }"
-                >
-                  <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
-                </button>
-                <div class="dropdown-menu" role="menu" id="drop-6">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item">Simple Dropdown</div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="dropdown is-greyscale"
-                x-data="{ active: false }"
-                :class="{ 'is-active' : active }"
-                @click.outside="active = false"
-                @keydown.escape.window="active = false"
-              >
-                <button
-                  class="dropdown-btn button"
-                  aria-haspopup="menu"
-                  aria-controls="drop-7"
-                  @click="active = !active"
-                  :class="{ 'is-active' : active }"
-                >
-                  <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
-                </button>
-                <div class="dropdown-menu" role="menu" id="drop-7">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item">Simple Dropdown</div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-            <h4>Hoverable</h4>
-
-            <div
-              class="dropdown is-hoverable is-success block"
-              x-data="{ active: false }"
-              :class="{ 'is-active' : active }"
-              @click.outside="active = false"
-                @keydown.escape.window="active = false"
-            >
-              <button
-                class="dropdown-btn button is-hoverable"
-                aria-haspopup="menu"
-                aria-controls="drop-8"
-                @click="active = !active"
-                :class="{ 'is-active' : active }"
-              >
-                <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
-              </button>
-              <div class="dropdown-menu" role="menu" id="drop-8">
-                <div class="dropdown-content">
-                  <div class="dropdown-item">Hoverable Dropdown</div>
-                </div>
-              </div>
-            </div>
-
-            <div style="margin-left: auto;">
-              <h4>Is Right</h4>
-
-              <div
-                class="dropdown is-hoverable is-right is-warning block"
-                x-data="{ active: false }"
-                :class="{ 'is-active' : active }"
-                @click.outside="active = false"
-                @keydown.escape.window="active = false"
-              >
-                <button
-                  class="dropdown-btn button is-hoverable"
-                  aria-haspopup="menu"
-                  aria-controls="drop-9"
-                  @click="active = !active"
-                  :class="{ 'is-active' : active }"
-                >
-                  <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
-                </button>
-                <div class="dropdown-menu" role="menu" id="drop-9">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item">Right aligned dropdown!</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <h4>Is Up</h4>
-
-            <div
-              class="dropdown is-hoverable is-up is-primary block"
-              x-data="{ active: false }"
-              :class="{ 'is-active' : active }"
-              @click.outside="active = false"
-              @keydown.escape.window="active = false"
-            >
-              <button
-                class="dropdown-btn button is-hoverable"
-                aria-haspopup="menu"
-                aria-controls="drop-10"
-                @click="active = !active"
-                :class="{ 'is-active' : active }"
-              >
-                <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
-              </button>
-              <div class="dropdown-menu" role="menu" id="drop-10">
-                <div class="dropdown-content">
-                  <div class="dropdown-item">Up aligned dropdown!</div>
-                </div>
-              </div>
-            </div>
-
-            <h4>Can be filled with whatever</h4>
-
-            <div
-              class="dropdown is-hoverable is-info block"
-              x-data="{ active: false }"
-              :class="{ 'is-active' : active }"
-              @click.outside="active = false"
-              @keydown.escape.window="active = false"
-            >
-              <button
-                class="dropdown-btn button is-hoverable"
-                aria-haspopup="menu"
-                aria-controls="drop-11"
-                @click="active = !active"
-                :class="{ 'is-active' : active }"
-              >
-                <span class="group">Test<span class="icon"><i class="ti ti-chevron-down"></i></span></span>
-              </button>
-              <div class="dropdown-menu" role="menu" id="drop-11">
-                <div class="dropdown-content">
-                  <a class="dropdown-item" href="#">1 Link</a>
-                  <a class="dropdown-item" href="#">2 Link</a>
-                  <a class="dropdown-item" href="#"><small>Small link?</small></a>
-                  <hr>
-                  <p class="dropdown-item">And a bunch of text!</p>
-                  <img src="https://www.perfect-fit.co.uk/sites/g/files/fnmzdf6431/files/2024-10/kitten-sitting-on-sofa_1685973713762.png">
-                  <h4 class="dropdown-item">Was that a picture?!</h4>
-                  <a class="dropdown-item" href="#">Link to the picture :)</a>
-                </div>
-              </div>
-            </div>
-
-            <h4>Small</h4>
-
-            <div
-              class="dropdown is-small is-danger block"
-              x-data="{ active: false }"
-              :class="{ 'is-active' : active }"
-              @click.outside="active = false"
-              @keydown.escape.window="active = false"
-            >
-              <button
-                class="dropdown-btn button is-small"
-                aria-haspopup="menu"
-                aria-controls="drop-12"
-                @click="active = !active"
-                :class="{ 'is-active' : active }"
-              >
-                <span class="group">Test<span class="icon is-small"><i class="ti ti-chevron-down"></i></span></span>
-              </button>
-              <div class="dropdown-menu" role="menu" id="drop-12">
-                <div class="dropdown-content">
-                  <div class="dropdown-item">Small Dropdown</div>
-                </div>
-              </div>
-            </div>
-
-            <h4>Different trigger</h4>
-
-            <div class="dropdown is-tooltip block">
-              <p id="drop-13">
-              Doesn't have to be a button
-              </p>
-              <div class="dropdown-menu" id="drop-13">
-                <div class="dropdown-content">
-                  <div class="dropdown-item">Take away the javascript and this is a hoverable and interactive tooltip you can place any element inside of!</div>
-                  <hr>
-                  <div class="dropdown-item"><span class="group align-start"><span class="icon is-warning is-weak"><i class="ti ti-exclamation-circle"></i></span>If there are any interactive elements including links or buttons, this is not a true "tooltip" for accessibility, and should still be considered an aria menu.</span></div>
-                </div>
-              </div>
-            </div>
-
-            <h4>Hamburger Menu</h4>
-
-            <div
-              class="dropdown block"
-              style="color: var(--color-text-strong);"
-              x-data="{ active: false }"
-              :class="{ 'is-active' : active }"
-              @click.outside="active = false"
-              @keydown.escape.window="active = false"
-            >
-              <button
-                class="dropdown-btn button is-ghost is-icon"
-                aria-haspopup="menu"
-                aria-controls="drop-14"
-                @click="active = !active"
-                :class="{ 'is-active' : active }"
-              >
-                <span class="icon is-large"><i class="ti ti-menu-2"></i></span>
-              </button>
-              <div class="dropdown-menu" role="menu" id="drop-14">
-                <div class="dropdown-content">
-                  <a class="dropdown-item" href="#">Whatever links are necessary!</a>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        <section class="section is-small">
-          <h3>Chips</h3>
-          <div class="container is-small">
-            <h4>Colored</h4>
-            <div class="group">
-              <span class="chip">Chip</span>
-              <span class="chip is-quiet">Chip</span>
-
-              <span class="chip is-primary">Chip</span>
-              <span class="chip is-primary is-quiet">Chip</span>
-
-              <span class="chip is-info">Chip</span>
-              <span class="chip is-info is-quiet">Chip</span>
-
-              <span class="chip is-warning">Chip</span>
-              <span class="chip is-warning is-quiet">Chip</span>
-
-              <span class="chip is-danger">Chip</span>
-              <span class="chip is-danger is-quiet">Chip</span>
-
-              <span class="chip is-success">Chip</span>
-              <span class="chip is-success is-quiet">Chip</span>
-
-              <span class="chip is-greyscale">Chip</span>
-              <span class="chip is-greyscale is-quiet">Chip</span>
-            </div>
-            <h4>Links</h4>
-            <div class="group">
-              <a href="#" class="chip">Chip</a>
-              <a href="#" class="chip is-primary is-quiet">Chip</a>
-              <a href="#" class="chip is-info disabled">Chip</a>
-            </div>
-            <h4>Addons</h4>
-            <div class="group has-addons">
-              <span href="#" class="chip">This Chip</span>
-              <span href="#" class="chip is-primary">Has Addons</span>
-              <a href="#" class="chip is-info is-quiet">Some are links</a>
-              <span href="#" class="chip is-success disabled">Some are disabled</span>
-            </div>
-            <h4>With Icon</h4>
-            <div class="group">
-              <span href="#" class="chip"><i class="ti ti-info-circle-filled"></i> No .icon</span>
-              <span href="#" class="chip is-warning"><span class="icon"><i class="ti ti-info-circle-filled"></i></span> No .group</span>
-              <a href="#" class="chip is-info is-quiet"><span class="group"><span class="icon"><i class="ti ti-info-circle-filled"></i></span>Has Both!</span></a>
-              <span href="#" class="chip"><span class="group"><span class="icon text-warning-500"><i class="ti ti-info-circle-filled"></i></span>Custom Color</span></span>
-            </div>
-          </div>
-        </section>
-
-        <section class="section is-small">
-          <h3>Notifications</h3>
-          <div class="container">
-            <h4>Colored</h4>
-            <div class="columns">
-              <div>
-                <div class="notification">
-                  <p>Base</p>
-                </div>
-                <div class="notification is-primary">
-                  <p>primary</p>
-                </div>
-                <div class="notification is-info">
-                  <p>info</p>
-                </div>
-                <div class="notification is-warning">
-                  <p>warning</p>
-                </div>
-                <div class="notification is-danger">
-                  <p>danger</p>
-                </div>
-                <div class="notification is-success">
-                  <p>success</p>
-                </div>
-                <div class="notification is-greyscale">
-                  <p>greyscale</p>
-                </div>
-              </div>
-              <div>
-                <div class="notification is-quiet">
-                  <p>Base</p>
-                </div>
-                <div class="notification is-quiet is-primary">
-                  <p>primary</p>
-                </div>
-                <div class="notification is-quiet is-info">
-                  <p>info</p>
-                </div>
-                <div class="notification is-quiet is-warning">
-                  <p>warning</p>
-                </div>
-                <div class="notification is-quiet is-danger">
-                  <p>danger</p>
-                </div>
-                <div class="notification is-quiet is-success">
-                  <p>success</p>
-                </div>
-                <div class="notification is-quiet is-greyscale">
-                  <p>greyscale</p>
-                </div>
-              </div>
-            </div>
-            <h4>With Icon</h4>
-            <div class="columns">
-              <div>
-                <div class="notification">
-                  <i class="ti ti-info-circle-filled"></i> No .icon
-                </div>
-                <div class="notification is-warning">
-                  <span class="icon"><i class="ti ti-info-circle-filled"></i></span> No .group
-                </div>
-                <div class="notification is-info">
-                  <span class="group"><span class="icon"><i class="ti ti-info-circle-filled"></i></span>Has Both!</span>
-                </div>
-                <div class="notification">
-                  <span class="group"><span class="icon text-warning-500"><i class="ti ti-info-circle-filled"></i></span>Custom Color</span>
-                </div>
-              </div>
-              <div>
-                <div class="notification quiet">
-                  <i class="ti ti-info-circle-filled"></i> No .icon
-                </div>
-                <div class="notification quiet is-warning">
-                  <span class="icon"><i class="ti ti-info-circle-filled"></i></span> No .group
-                </div>
-                <div class="notification quiet is-info">
-                  <span class="group"><span class="icon"><i class="ti ti-info-circle-filled"></i></span>Has Both!</span>
-                </div>
-                <div class="notification quiet">
-                  <span class="group"><span class="icon text-warning-500"><i class="ti ti-info-circle-filled"></i></span>Custom Color</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section is-small">
-          <h3>Menus</h3>
-          <div class="container is-small">
-            <h4>Colored</h4>
-            <div class="columns min-small">
-              <ul class="menu">
-                <li><button>These are</button></li>
-                <li><button>Some cool</button></li>
-                <li><button>Menu options!</button></li>
-              </ul>
-              <ul class="menu is-primary">
-                <li><button>These are</button></li>
-                <li><button>Some cool</button></li>
-                <li><button>Menu options!</button></li>
-              </ul>
-              <ul class="menu is-info">
-                <li><button>These are</button></li>
-                <li><button>Some cool</button></li>
-                <li><button>Menu options!</button></li>
-              </ul>
-              <ul class="menu is-warning">
-                <li><button>These are</button></li>
-                <li><button>Some cool</button></li>
-                <li><button>Menu options!</button></li>
-              </ul>
-              <ul class="menu is-danger">
-                <li><button>These are</button></li>
-                <li><button>Some cool</button></li>
-                <li><button>Menu options!</button></li>
-              </ul>
-              <ul class="menu is-success">
-                <li><button>These are</button></li>
-                <li><button>Some cool</button></li>
-                <li><button>Menu options!</button></li>
-              </ul>
-              <ul class="menu is-greyscale">
-                <li><button>These are</button></li>
-                <li><button>Some cool</button></li>
-                <li><button>Menu options!</button></li>
-              </ul>
-            </div>
-
-            <h4>In a Card</h4>
-            <div class="card block">
-              <h5 class="label">Menu</h5>
-              <ul class="menu">
-                <li><button>These are</button></li>
-                <li><button>Some cool</button></li>
-                <li><button>Menu options!</button></li>
-              </ul>
-            </div>
-
-            <h4>is-active</h4>
-            <div class="card block is-info">
-              <h5 class="label">Menu</h5>
-              <ul class="menu">
-                <li><button class="is-active">These are</button></li>
-                <li><button>Some cool</button></li>
-                <li><button>Menu options!</button></li>
-              </ul>
-            </div>
-
-            <h4>Multi-layered menus</h4>
-            <div class="card block is-success">
-              <h5 class="label">Menu</h5>
-              <ul class="menu">
-                <li><button>These are</button></li>
-                <li><button>Some cool</button></li>
-                <li>
-                  <ul>
-                    <li><button>Multi-layered</button></li>
-                    <li><button class="is-active">buttons!</button></li>
-                  </ul>
-                </li>
-                <li><button>Aint that cool?</button></li>
-              </ul>
-            </div>
-
-            <h4>Keep it goin'</h4>
-            <div class="card block is-warning">
-              <h5 class="label">Menu</h5>
-              <ul class="menu">
-                <li><button>Wow</button></li>
-                <li>
-                  <ul>
-                    <li><button>This</button></li>
-                    <li>
-                      <ul>
-                        <li><button>Just</button></li>
-                        <li>
-                          <ul>
-                            <li><button>Keeps</button></li>
-                          </ul>
-                        </li>
-                        <li><button>Going?</button></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-
-            <h4>Full Menu</h4>
-            <div class="card block">
-              <h5 class="label"><span class="group"><span class="icon"><i class="ti ti-adjustments-horizontal"></i></span><span>General</span></span></h5>
-              <ul class="menu">
-                <li><button class="group"><span class="icon"><i class="ti ti-user-filled"></span></i><span>Account</span></button></li>
-                <li><button class="group"><span class="icon"><i class="ti ti-settings-filled"></i></span><span>Preferences</span></button></li>
-                <li><button class="group"><span class="icon"><i class="ti ti-affiliate-filled"></i></span><span>Manage Groups</span></button></li>
-                <li>
-                  <ul>
-                    <li><button class="group">Marketing</button></li>
-                    <li><button class="group">Sales</button></li>
-                  </ul>
-                </li>
-              </ul>
-              <h5 class="label"><span class="group"><span class="icon"><i class="ti ti-adjustments"></i></span><span>Other</span></span></h5>
-              <ul class="menu">
-                <li><button class="group"><span class="icon"><i class="ti ti-trash-x-filled"></i></span><span>Delete Everything</span></button></li>
-              </ul>
-            </div>
-
-          </div>
-        </section>
-
-        <section class="section">
-          <h2>Layout</h2>
-        </section>
-
-        <section class="section">
-          <h3>Sections (Top/Bottom Spacing) & Containers (Side Spacing)</h3>
-          <div class="section is-min light">
-            <div class="container is-min">
-              <h4>Min</h4>
-              <img src="https://www.perfect-fit.co.uk/sites/g/files/fnmzdf6431/files/2024-10/kitten-sitting-on-sofa_1685973713762.png">
-            </div>
-          </div>
-          <div class="section is-small dark">
-            <div class="container is-small">
-              <h4>Small</h4>
-              <img src="https://www.perfect-fit.co.uk/sites/g/files/fnmzdf6431/files/2024-10/kitten-sitting-on-sofa_1685973713762.png">
-            </div>
-          </div>
-          <div class="section light">
-            <div class="container">
-              <h4>Medium / Default</h4>
-              <img src="https://www.perfect-fit.co.uk/sites/g/files/fnmzdf6431/files/2024-10/kitten-sitting-on-sofa_1685973713762.png">
-            </div>
-          </div>
-          <div class="section is-large dark">
-            <div class="container is-large">
-              <h4>Large</h4>
-              <img src="https://www.perfect-fit.co.uk/sites/g/files/fnmzdf6431/files/2024-10/kitten-sitting-on-sofa_1685973713762.png">
-            </div>
-          </div>
-          <div class="section is-full light">
-            <div class="container is-full">
-              <h4>Full</h4>
-              <img src="https://www.perfect-fit.co.uk/sites/g/files/fnmzdf6431/files/2024-10/kitten-sitting-on-sofa_1685973713762.png">
-            </div>
-          </div>
-        </section>
-
-        <section class="section is-small">
-          <h3>Section/Container Colors</h3>
-          <div class="section columns gap-0">
-            <div class="section is-small is-base">
-              <hgroup class="block">
-                <h4>base</h4>
-                <p>base base</p>
-                <p><small>Quiet Text</small></p>
-              </hgroup>
-              <button class="button">Button</button>
-            </div>
-            <div class="section is-small is-base is-element">
-              <hgroup class="block">
-                <h4>base</h4>
-                <p>base element</p>
-                <p><small>Quiet Text</small></p>
-              </hgroup>
-              <button class="button">Button</button>
-            </div>
-
-            <div class="section is-small is-primary">
-              <hgroup class="block">
-                <h4>primary</h4>
-                <p>primary base</p>
-                <p><small>Quiet Text</small></p>
-              </hgroup>
-              <button class="button">Button</button>
-            </div>
-            <div class="section is-small is-primary is-element">
-              <hgroup class="block">
-                <h4>primary</h4>
-                <p>primary element</p>
-                <p><small>Quiet Text</small></p>
-              </hgroup>
-              <button class="button">Button</button>
-            </div>
-
-            <div class="section is-small is-info">
-              <hgroup class="block">
-                <h4>info</h4>
-                <p>info base</p>
-                <p><small>Quiet Text</small></p>
-              </hgroup>
-              <button class="button">Button</button>
-            </div>
-            <div class="section is-small is-info is-element">
-              <hgroup class="block">
-                <h4>info</h4>
-                <p>info element</p>
-                <p><small>Quiet Text</small></p>
-              </hgroup>
-              <button class="button">Button</button>
-            </div>
-
-            <div class="section is-small is-warning">
-              <hgroup class="block">
-                <h4>warning</h4>
-                <p>warning base</p>
-                <p><small>Quiet Text</small></p>
-              </hgroup>
-              <button class="button">Button</button>
-            </div>
-            <div class="section is-small is-warning is-element">
-              <hgroup class="block">
-                <h4>warning</h4>
-                <p>warning element</p>
-                <p><small>Quiet Text</small></p>
-              </hgroup>
-              <button class="button">Button</button>
-            </div>
-
-            <div class="section is-small is-danger">
-              <hgroup class="block">
-                <h4>danger</h4>
-                <p>danger base</p>
-                <p><small>Quiet Text</small></p>
-              </hgroup>
-              <button class="button">Button</button>
-            </div>
-            <div class="section is-small is-danger is-element">
-              <hgroup class="block">
-                <h4>danger</h4>
-                <p>danger element</p>
-                <p><small>Quiet Text</small></p>
-              </hgroup>
-              <button class="button">Button</button>
-            </div>
-
-            <div class="section is-small is-success">
-              <hgroup class="block">
-                <h4>success</h4>
-                <p>success base</p>
-                <p><small>Quiet Text</small></p>
-              </hgroup>
-              <button class="button">Button</button>
-            </div>
-            <div class="section is-small is-success is-element">
-              <hgroup class="block">
-                <h4>success</h4>
-                <p>success element</p>
-                <p><small>Quiet Text</small></p>
-              </hgroup>
-              <button class="button">Button</button>
-            </div>
-
-            <div class="section is-small is-greyscale">
-              <hgroup class="block">
-                <h4>greyscale</h4>
-                <p>greyscale base</p>
-                <p><small>Quiet Text</small></p>
-              </hgroup>
-              <button class="button">Button</button>
-            </div>
-            <div class="section is-small is-greyscale is-element">
-              <hgroup class="block">
-                <h4>greyscale</h4>
-                <p>greyscale element</p>
-                <p><small>Quiet Text</small></p>
-              </hgroup>
-              <button class="button">Button</button>
-            </div>
-          </div>
-        </section>
-
-        <section class="section is-small">
-          <h3>Columns</h3>
-          <div class="container is-full">
-            
-            <h4>Default</h4>
-            <div class="columns">
-              <div class="section is-small is-radius-small is-primary is-element">
-                <strong>Default Column Settings</strong>
-              </div>
-              <div class="section is-small is-radius-small is-info is-element">
-                <strong>Default Column Settings</strong>
-              </div>
-              <div class="section is-small is-radius-small is-success is-element">
-                <strong>Default Column Settings</strong>
-              </div>
-            </div>
-
-            <h4>Small Min & Gap</h4>
-            <div class="columns min-small gap-small">
-              <div class="section is-small is-radius-small is-primary is-element">
-                <strong>Small Column Settings</strong>
-              </div>
-              <div class="section is-small is-radius-small is-info is-element">
-                <strong>Small Column Settings</strong>
-              </div>
-              <div class="section is-small is-radius-small is-success is-element">
-                <strong>Small Column Settings</strong>
-              </div>
-            </div>
-
-            <h4>Large Min & Gap</h4>
-            <div class="columns min-large gap-large">
-              <div class="section is-small is-radius-small is-primary is-element">
-                <strong>Large Column Settings</strong>
-              </div>
-              <div class="section is-small is-radius-small is-info is-element">
-                <strong>Large Column Settings</strong>
-              </div>
-              <div class="section is-small is-radius-small is-success is-element">
-                <strong>Large Column Settings</strong>
-              </div>
-            </div>
-
-            <h4>No Min & Gap</h4>
-            <div class="columns min-0 gap-0">
-              <div class="section is-small is-radius-small is-primary is-element">
-                <strong>0 Column Settings</strong>
-              </div>
-              <div class="section is-small is-radius-small is-info is-element">
-                <strong>0 Column Settings</strong>
-              </div>
-              <div class="section is-small is-radius-small is-success is-element">
-                <strong>0 Column Settings</strong>
-              </div>
-            </div>
-
-            <h4>Align Start</h4>
-            <div class="columns align-start">
-              <div class="section is-small is-radius-small is-primary is-element">
-                <strong>Not the same height, align start</strong>
-              </div>
-              <div class="section is-info is-radius-small is-element">
-                <strong>Not the same height, align start</strong>
-              </div>
-              <div class="section is-large is-radius-small is-success is-element">
-                <strong>Not the same height, align start</strong>
-              </div>
-            </div>
-
-            <h4>Align Center</h4>
-            <div class="columns align-center">
-              <div class="section is-small is-radius-small is-primary is-element">
-                <strong>Not the same height, align center</strong>
-              </div>
-              <div class="section is-info is-radius-small is-element">
-                <strong>Not the same height, align center</strong>
-              </div>
-              <div class="section is-large is-radius-small is-success is-element">
-                <strong>Not the same height, align center</strong>
-              </div>
-            </div>
-
-            <h4>Align End</h4>
-            <div class="columns align-end">
-              <div class="section is-small is-radius-small is-primary is-element">
-                <strong>Not the same height, align end</strong>
-              </div>
-              <div class="section is-info is-radius-small is-element">
-                <strong>Not the same height, align end</strong>
-              </div>
-              <div class="section is-large is-radius-small is-success is-element">
-                <strong>Not the same height, align end</strong>
-              </div>
-            </div>
-          </div>
-        </section>
-
         -->
+
+        <!-- #endregion -->
       </div>
     </main>
   </body>

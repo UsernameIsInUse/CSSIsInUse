@@ -1,32 +1,99 @@
-@use "../utilities/mixins" as m;
+@use "../tools/mixins" as m;
 
-.dropdown{
-  @include m.colors("dropdown","base","element","top","text","strong");
+.dropdown {
+  @include m.colors("dropdown","base","menu","element","top","text","strong");
 
-  --dropdown-background: var(--dropdown-color-element);
+  --dropdown-background: var(--dropdown-color-base);
+  --dropdown-background-hover: var(--dropdown-color-element);
   --dropdown-text: var(--dropdown-color-text);
   --dropdown-color: var(--dropdown-color-top);
   --dropdown-shadow: var(--dropdown-color-base);
-  --dropdown-button: var(--dropdown-color-element);
 
   --dropdown-size-text: var(--text-size-6);
+  --dropdown-size-shadow: var(--glow-size-large);
   --dropdown-size-content-padding: var(--padding-small) 0;
+  --dropdown-size-item-padding: var(--input-padding-base);
+
+  --dropdown-display: none;
 
   display: inline-flex;
   position: relative;
   width: fit-content;
   vertical-align: top;
 
+  &.is-base {
+    --dropdown-background: var(--dropdown-color-base);
+    --dropdown-background-hover: var(--dropdown-color-element);
+    --dropdown-color: var(--dropdown-color-top);
+  }
+
+  &.is-menu {
+    --dropdown-background: var(--dropdown-color-menu);
+    --dropdown-background-hover: var(--dropdown-color-element);
+    --dropdown-color: var(--dropdown-color-top);
+  }
+
+  &.is-element {
+    --dropdown-background: var(--dropdown-color-element);
+    --dropdown-background-hover: var(--dropdown-color-top);
+    --dropdown-color: var(--dropdown-color-top);
+  }
+
+  &.is-top {
+    --dropdown-background: var(--dropdown-color-top);
+    --dropdown-background-hover: var(--dropdown-color-element);
+    --dropdown-color: var(--dropdown-color-top);
+    --dropdown-text: var(--dropdown-color-strong);
+  }
+
+  &.is-quiet {
+    --dropdown-color: transparent;
+  }
+
+  &.is-tooltip {
+    --dropdown-color: transparent;
+    --dropdown-size-shadow: 0;
+    --dropdown-size-content-padding: var(--padding-xs) 0;
+  }
+
+  &.is-small {
+    --dropdown-size-text: var(--text-size-7);
+    --dropdown-size-content-padding: var(--padding-xs) 0;
+    --dropdown-size-item-padding: var(--input-padding-small);
+  }
+
+  &.is-right {
+    .dropdown-menu {
+      left:auto;
+      right:0;
+    }
+  }
+
+  &.is-up {
+    .dropdown-menu {
+      bottom: 100%;
+      padding-bottom: var(--padding-small);
+      padding-top: initial;
+      top: auto;
+    }
+  }
+
+  &.is-active, &.is-tooltip:hover, &.is-hoverable:hover {
+    .dropdown-menu {
+      --dropdown-display: block;
+    }
+  }
+
   .dropdown-btn.button {
     --btn-size-radius: var(--border-radius-small);
   }
 
   .dropdown-menu {
-    display:none;
+    display: var(--dropdown-display);
     position: absolute;
     width: max-content;
-    min-width: calc(var(--breakpoint-min) / 2);
-    max-width: var(--breakpoint-min);
+    min-width: calc(var(--breakpoint-xs) / 2);
+    max-width: var(--breakpoint-xs);
     padding-top: var(--padding-small);
     top: 100%;
     font-size: var(--dropdown-size-text);
@@ -34,7 +101,7 @@
   }
 
   .dropdown-content {
-    @include m.glow(var(--glow-size-large), var(--dropdown-shadow), 1);
+    @include m.glow(var(--dropdown-size-shadow), var(--dropdown-shadow), 1);
 
     padding: var(--dropdown-size-content-padding);
     border-radius: var(--border-radius-small);
@@ -48,69 +115,24 @@
     }
   }
 
-  &.is-active, &.is-hoverable:hover {
-    .dropdown-menu {
-      display:block;
-    }
-  }
-
-  &.is-right {
-    .dropdown-menu {
-      left:auto;
-      right:0;
-    }
-  }
-  &.is-up {
-    .dropdown-menu {
-      bottom: 100%;
-      padding-bottom: var(--padding-small);
-      padding-top: initial;
-      top: auto;
-    }
-  }
-
-  &.is-small {
-    --dropdown-size-text: var(--text-size-7);
-
-    .dropdown-content{
-      --dropdown-size-content-padding: var(--padding-xs) 0;
-    }
-    
-  }
-
-  &.is-tooltip {
-
-    &:hover {
-      .dropdown-menu {
-        display:block;
-      }
-    }
-    .dropdown-content {
-      --dropdown-size-content-padding: var(--padding-xs) 0;
-    }
-  }
-
   .dropdown-item {
     display: block;
-    padding: var(--padding-xs) var(--padding-small);
+    width: 100%;
+    padding: var(--dropdown-size-item-padding);
+    text-align: left;
   }
 
   a.dropdown-item, button.dropdown-item {
+    --dropdown-item-background: var(--dropdown-background);
+    --dropdown-item-background-hover: var(--dropdown-background-hover);
     --dropdown-text: var(--dropdown-color-strong);
-    @include m.transitions("background-color");
-    background-color: var(--dropdown-button);
+
+    background-color: var(--dropdown-item-background);
     color: var(--dropdown-text);
+    text-decoration: none;
 
-    &:hover, &:active {
-      --dropdown-button: var(--dropdown-color-top);
-    }
-
-    &.is-active {
-      --dropdown-button: var(--dropdown-color-top);
-
-      &:hover, &:active {
-        --dropdown-button: var(--dropdown-color-element);
-      }
+    &:hover, &:active, &.is-active {
+      --dropdown-item-background: var(--dropdown-item-background-hover);
     }
   }
 }

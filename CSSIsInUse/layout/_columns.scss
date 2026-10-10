@@ -1,9 +1,7 @@
-@use "../utilities/mixins" as m;
+@use "../tools/mixins" as m;
 
 .columns {
-  --column-flex-basis: var(--breakpoint-min);
-  --column-gap: var(--padding-base);
-  --column-align-items: initial;
+  --column-flex-basis: var(--breakpoint-xs);
 
   @include m.block("xl");
   @include m.pre("base");
@@ -11,38 +9,17 @@
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: var(--column-gap);
-  align-items: var(--column-align-items);
+  gap: var(--padding-base);
 
-  &.min-small {
+  &.is-min-small {
     --column-flex-basis: var(--padding-section-large);
   }
-  &.min-large {
+  &.is-min-large {
     --column-flex-basis: var(--breakpoint-sm);
   }
-  &.min-0 {
+  &.is-min-0 {
     --column-flex-basis: 0%;
-  }
-
-  &.gap-small {
-    --column-gap: var(--padding-small);
-  }
-  &.gap-large {
-    --column-gap: var(--padding-large);
-  }
-  &.gap-0 {
-    --column-gap: 0;
-  }
-
-  &.align-start {
-    --column-align-items: start;
-  }
-  &.align-center {
-    --column-align-items: center;
-  }
-  &.align-end {
-    --column-align-items: end;
-  }
+  }  
 
   & > * {
     flex-grow: 1;

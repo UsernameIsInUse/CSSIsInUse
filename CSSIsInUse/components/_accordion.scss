@@ -1,0 +1,12 @@
+@use "../tools/mixins" as m;
+
+.accordion {
+  
+
+  --dropdown-display: none;
+
+
+  .accordion-menu {
+    display: var(--dropdown-display);
+  }
+}

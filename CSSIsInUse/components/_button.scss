@@ -1,18 +1,21 @@
-@use "../utilities/mixins" as m;
+@use "../tools/mixins" as m;
 
 .button {
-  @include m.colors("btn","base","element","top","color","strong");
+  @include m.colors("btn","base","menu","element","top","muted","color","vivid","strong");
 
   --btn-background: var(--btn-color-base);
+  --btn-background-hover: var(--btn-color-element);
+  --btn-background-disabled: var(--btn-color-base);
   --btn-text: var(--btn-color-strong);
   --btn-color: var(--btn-color-color);
-  --btn-outline: var(--btn-color-weak);
 
   --btn-size-text: var(--text-size-6);
   --btn-size-padding: var(--input-padding-base);
   --btn-size-radius: var(--border-radius-rounded);
   --btn-size-glow: var(--glow-size-large);
+
   --btn-glow-alpha: var(--opacity-disabled);
+  --btn-glow-alpha-hover: var(--opacity-base);
   
   @include m.transitions("background-color", "box-shadow");
   @include m.no-select;
@@ -30,53 +33,74 @@
   border-radius: var(--btn-size-radius);
   cursor: pointer;
   text-decoration: none;
-  
-  &:hover {
-    --btn-glow-alpha: var(--opacity-base);
+
+  &.is-base {
+    --btn-background: var(--btn-color-base);
+    --btn-background-hover: var(--btn-color-element);
+    --btn-background-disabled: var(--btn-color-base);
   }
 
-  &:disabled, &.disabled {
-    --btn-glow-alpha: 0;
-    opacity: var(--opacity-disabled);
-    cursor: not-allowed;
+  &.is-menu {
+    --btn-background: var(--btn-color-menu);
+    --btn-background-hover: var(--btn-color-element);
+    --btn-background-disabled: var(--btn-color-menu);
   }
 
-  &.is-hoverable:hover {
+  &.is-element, &.is-active {
     --btn-background: var(--btn-color-element);
+    --btn-background-hover: var(--btn-color-top);
+    --btn-background-disabled: var(--btn-color-element);
+  }
 
-    &:disabled, &.disabled {
-      --btn-background: var(--btn-color-base);
-    }
+  &.is-top {
+    --btn-background: var(--btn-color-top);
+    --btn-background-hover: var(--btn-color-element);
+    --btn-background-disabled: var(--btn-color-top);
+  }
+
+  &.is-muted {
+    --btn-color: var(--btn-color-muted);
+  }
+
+  &.is-vivid {
+    --btn-color: var(--btn-color-vivid);
   }
 
   &.is-ghost {
+    --btn-background: transparent;
+    --btn-background-disabled: transparent;
     --btn-color: transparent;
-    --btn-background: transparent;
+    
     --btn-glow-alpha: 0;
-
-    &:hover {
-      --btn-background: var(--btn-color-element);
-    }
-
-    &:disabled, &.disabled {
-      --btn-background: transparent
-    }
+    --btn-glow-alpha-hover: 0;
   }
 
-  &.is-active {
-    --btn-background: var(--btn-color-element);
-
-    &:hover {
-      --btn-background: var(--btn-color-base);
-    }
-
-    &:disabled, &.disabled {
-      --btn-background: var(--btn-color-element);
-    }
+  .no-glow &, &.no-glow, &.is-quiet {
+    --btn-glow-alpha: 0;
+    --btn-glow-alpha-hover: 0;
   }
 
-  &.is-ghost.is-active:hover {
-    --btn-background: transparent;
+  &.is-icon {
+    --btn-size-padding: var(--padding-xs);
+    --btn-size-radius: var(--border-radius-small);
+    --btn-size-glow: var(--glow-size-small);
+    line-height: 1;
+
+    .icon {
+      display: flex;
+    }
+
+    &:has(.svg) {
+      padding: 0;
+    }
+
+    &.is-large {
+      --btn-size-padding: var(--padding-small);
+    }
+    &.is-xl {
+      --btn-size-padding: var(--padding-base);
+    }
+    
   }
 
   &.is-small {
@@ -93,18 +117,16 @@
     --btn-size-text: var(--text-size-xl);
   }
 
-  &.is-icon {
-    --btn-size-padding: var(--padding-xs);
-    --btn-size-radius: var(--border-radius-small);
-    --btn-size-glow: var(--glow-size-small);
-    line-height: 1;
-
-    .icon {
-      display: flex;
-    }
-
-    &:has(.svg) {
-      padding: 0;
-    }
+  &:hover, &:active {
+    --btn-background: var(--btn-background-hover);
+    --btn-glow-alpha: var(--btn-glow-alpha-hover);
   }
+
+  &:disabled, &.disabled {
+    --btn-background-hover: var(--btn-background-disabled);
+
+    --btn-glow-alpha: 0;
+    --btn-glow-alpha-hover: 0;
+  }
+
 }

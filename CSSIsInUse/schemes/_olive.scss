@@ -3,23 +3,23 @@
   --light: 0.98;
   --dark: 0.15;
 
-  // The base color should be something fairly desaturated and it should share the same brightness as the rest of the theme. the darkest and lightest versions will be used for ui elements. All colors are in OKLCH.
-  --base-l: 0.6;
-  --base-c: 0.05;
-  --base-h: 120;
-  --base-falloff: 0.5;
+  // The neutral color should be something fairly desaturated and it should share the same brightness as the rest of the theme. the darkest and lightest versions will be used for ui elements. All colors are in OKLCH.
+  --neutral-l: 0.6;
+  --neutral-c: 0.05;
+  --neutral-h: 120;
+  --neutral-falloff: 0.5;
 
-  --primary-l: var(--base-l);
+  --primary-l: var(--neutral-l);
   --primary-c: 0.1479;
   --primary-h: 74.24;
   --primary-falloff: 0.7;
 
-  --info-l: var(--base-l);
+  --info-l: var(--neutral-l);
   --info-c: 0.1617;
   --info-h: 115;
   --info-falloff: 0.7;
 
-  --success-l: var(--base-l);
+  --success-l: var(--neutral-l);
   --success-c: 0.1949;
   --success-h: 130;
   --success-falloff: 0.7;
@@ -29,7 +29,7 @@
   --warning-h: 85;
   --warning-falloff: 0.7;
 
-  --danger-l: var(--base-l);
+  --danger-l: var(--neutral-l);
   --danger-c: 0.181;
   --danger-h: 50;
   --danger-falloff: 0.7;

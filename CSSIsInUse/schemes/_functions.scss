@@ -1,5 +1,3 @@
-@use 'sass:math';
-
 @mixin generate-color-scale($name) {
   $steps: 100,125,200,300,400,500,600,700,800,875,900;
 
@@ -17,7 +15,7 @@
 
     @else if $step < 500 {
 
-      // Map 100–400 → 0–1 over 4 steps
+      // Map 100–400 > 0–1 over 4 steps
       $ratio: calc(($step - 100) / 400);
 
       --#{$name}-#{$step}: oklch(
@@ -36,7 +34,7 @@
 
     @else {
 
-      // Map 600–900 → 0–1 over 4 steps
+      // Map 600–900 > 0–1 over 4 steps
       $ratio: calc(($step - 500) / 400);
 
       --#{$name}-#{$step}: oklch(
@@ -50,61 +48,30 @@
         )
         var(--#{$name}-h)
       );
-
     }
-
   }
-  
 }
 
 @mixin generate-single-color-utilities($colors) {
-
   @each $color in $colors {
-
     .text-#{$color} {
       color: var(--#{$color}) !important;
     }
-
-    .hover\:text-#{$color}:hover {
-      color: oklch(from var(--#{$color}) l c h / var(--opacity-dark)) !important;
-    }
-
     .bg-#{$color} {
       background-color: var(--#{$color}) !important;
     }
-
-    .hover\:bg-#{$color}:hover {
-      background-color: oklch(from var(--#{$color}) l c h / var(--opacity-dark)) !important;
+    .border-#{$color} {
+      border-color: var(--#{$color}) !important;
     }
-    // BORDER COLORS
-    //.border-#{$color} {
-    //  border-color: var(--#{$color}) !important;
-    //}
-    //
-    //.hover\:border-#{$color}:hover {
-    //  border-color: oklch(from var(--#{$color}) l c h / var(--opacity-dark)) !important;
-    //}
-
   }
 }
 
 @mixin generate-color-utilities($colors) {
-  $steps: 100,125,200,300,400,500,600,700,800,875,900;
+  $steps: 'base', 'menu', 'element', 'top', 'muted', 'color', 'vivid', 'weak', 'text', 'strong';
 
   @each $color in $colors {
     @each $step in $steps {
-
       @include generate-single-color-utilities(#{$color}-#{$step});
-      //@include generate-single-color-utilities(#{$color}-soft-#{$step});
-
     }
   }
 }
-
-@function fluid-clamp($min, $max) {
-  $a: math.div(($max - $min), (90rem - 20rem));
-  $b: $min - ($a * 20rem);
-  $m: $a*100vw;
-  @return clamp($min, $m + $b, $max);
-}
-// this works with raw numbers like 1rem etc, but not css variables or scss variables. WTF!

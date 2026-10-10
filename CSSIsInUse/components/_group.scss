@@ -1,18 +1,17 @@
-@use "../utilities/mixins" as m;
+@use "../tools/mixins" as m;
 
 .group {
   --group-size-gap: var(--padding-small);
+
   --group-flex-flow: wrap;
-  --group-justify-content: flex-start;
-  --group-align-items: center;
   --group-addons-inline-end: var(--border-thickness-base);
 
   @include m.block("base");
-  align-items: var(--group-align-items);
+
   display:flex;
   flex-flow: var(--group-flex-flow);
   gap: var(--group-size-gap);
-  justify-content: var(--group-justify-content);
+  align-items: center;
 
   &.has-addons{
     --group-size-gap: 0;
@@ -31,29 +30,5 @@
       border-start-end-radius: 0;
       margin-inline-end: calc(0px - var(--group-addons-inline-end));
     }
-  }
-
-  &.is-large-gap {
-    --group-size-gap: var(--padding-base);
-  }
-
-  &.is-centered {
-    --group-justify-content: center;
-  }
-
-  &.is-end {
-    --group-justify-content: flex-end;
-  }
-
-  &.is-space-between {
-    --group-justify-content: space-between;
-  }
-
-  &.is-aligned-start {
-    --group-align-items: flex-start;
-  }
-
-  &.is-aligned-end {
-    --group-align-items: flex-end;
   }
 }

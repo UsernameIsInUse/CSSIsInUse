@@ -20,9 +20,16 @@
   }
 }
 
+@mixin fluid-clamp($name, $min, $max) {
+  --fluid-#{$name}-a: calc( calc(#{$max} - #{$min} ) / calc( var(--breakpoint-lg) - var(--breakpoint-xs) ) );
+  --fluid-#{$name}-b: calc( #{$min} - calc( var(--fluid-#{$name}-a) * var(--breakpoint-xs) ) ) ;
+  --fluid-#{$name}-m: calc( var(--fluid-#{$name}-a) * 100vw );
+  --fluid-#{$name}: clamp( #{$min}, calc(var(--fluid-#{$name}-m) + var(--fluid-#{$name}-b)), #{$max} );
+}
+
 @mixin transitions($properties...) {
-  -webkit-transition-duration: var(--transition-duration-base);
-  transition-duration: var(--transition-duration-base);
+  -webkit-transition-duration: var(--transition-duration);
+  transition-duration: var(--transition-duration);
   transition-timing-function: ease-out;
   transition-property: #{$properties};
 }
@@ -55,14 +62,16 @@
   }
 }
 
-@mixin scrollable($y: true, $x: false) {
-  @if $y{
+@mixin scrollable($y: true, $x: false, $overscroll: true) {
+  @if $y {
     overflow-y: auto;
   }
-  @if $x{
+  @if $x {
     overflow-x: auto;
   }
-  overscroll-behavior: contain;
+  @if $overscroll{
+    overscroll-behavior: contain;
+  }
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
 

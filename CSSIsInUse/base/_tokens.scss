@@ -1,68 +1,11 @@
-@use '../utilities/functions' as f;
+@use '../tools/functions' as f;
+@use '../tools/mixins' as m;
+@use '../schemes' as s;
 
-:root {
-  $text-size-1-max: 4rem;
-  $text-size-1-min: 2rem;
-  $text-size-2-max: 3rem;
-  $text-size-2-min: 1.75rem;
-  $text-size-3-max: 2.5rem;
-  $text-size-3-min: 1.5rem;
-  $text-size-4-max: 2rem;
-  $text-size-4-min: 1.25rem;
-  $text-size-5-max: 1.5rem;
-  $text-size-5-min: 1rem;
-  $text-size-6: 1rem;
-  $text-size-7: 0.8rem;
-  $text-size-logo-min: 1.75rem;
-  $text-size-logo-max: 2rem;
-
-  --text-size-1: #{f.fluid-clamp($text-size-1-min, $text-size-1-max)};
-  --text-size-2: #{f.fluid-clamp($text-size-2-min, $text-size-2-max)};
-  --text-size-3: #{f.fluid-clamp($text-size-3-min, $text-size-3-max)};
-  --text-size-4: #{f.fluid-clamp($text-size-4-min, $text-size-4-max)};
-  --text-size-5: #{f.fluid-clamp($text-size-5-min, $text-size-5-max)};
-  --text-size-6: #{$text-size-6};
-  --text-size-7: #{$text-size-7};
-  --text-size-logo: #{f.fluid-clamp($text-size-logo-min, $text-size-logo-max)};
-  --text-size-large: #{$text-size-4-min};
-  --text-size-xl: #{$text-size-5-max};
-
-  --icon-size-base: #{$text-size-4-min};
-  --icon-size-small: calc(var(--icon-size-base) * 0.8);
-  --icon-size-large: calc(var(--icon-size-base) * 1.5);
-  --icon-size-xl: calc(var(--icon-size-base) * 2);
-
+@mixin static-tokens {
   --line-height-base: 1.5;
   --line-height-small: 1.25;
   --line-height-large: 2;
-
-  --icon-size-base: #{$text-size-4-min};
-  --icon-size-small: #{$text-size-6};
-  --icon-size-large: var(--text-size-4);
-  --icon-size-xl: var(--text-size-3);
-
-  --breakpoint-min: 20rem; //320px
-  --breakpoint-sm: 30rem; //480px
-  --breakpoint-md: 60rem; //960px
-  --breakpoint-max: 90rem; //1440px
-
-  --padding-base: 1rem;
-  --padding-xs: calc(var(--padding-base) * 0.25);
-  --padding-small: calc(var(--padding-base) * 0.5);
-  --padding-large: calc(var(--padding-base) * 2);
-  --padding-xl: calc(var(--padding-base) * 3);
-  --padding-section: calc(var(--padding-base) * 4);
-  --padding-section-large: calc(var(--padding-base) * 8);
-  --padding-edge: #{f.fluid_clamp(1rem, 2rem)};
-
-  --input-padding-base: var(--padding-small) var(--padding-base);
-  --input-padding-small: var(--padding-xs) var(--padding-small);
-  --input-padding-large: var(--padding-base) var(--padding-large);
-
-  --sidebar-width: var(--breakpoint-min);
-  --navbar-height: 4rem;
-  
-  --icon-text-spacing: var(--padding-xs);
 
   --weight-light: 300;
   --weight-normal: 400;
@@ -71,40 +14,148 @@
   --weight-bold: 700;
   --weight-extrabold: 800;
   --weight-heavy: 900;
-  --weight-logo: var(--weight-semibold);
 
-  --border-radius-base: 1rem;
-  --border-radius-small: calc(var(--border-radius-base) * 0.5);
   --border-radius-rounded: 999px;
 
+  --black: black;
+  --white: white;
+}
+
+@mixin base-tokens {
+  --text-size-1-max: 4rem;
+  --text-size-1-min: 2rem;
+  --text-size-2-max: 3rem;
+  --text-size-2-min: 1.75rem;
+  --text-size-3-max: 2.5rem;
+  --text-size-3-min: 1.5rem;
+  --text-size-4-max: 2rem;
+  --text-size-4-min: 1.25rem;
+  --text-size-5-max: 1.5rem;
+  --text-size-5-min: 1rem;
+  --text-size-6-base: 1rem;
+  --text-size-7-base: 0.8rem;
+  --text-size-logo-min: 1.75rem;
+  --text-size-logo-max: 2rem;
+
+  --padding-base: 1rem;
+  --padding-xs-base: 0.25;
+  --padding-sm-base: 0.5;
+  --padding-lg-base: 2;
+  --padding-xl-base: 3;
+
+  --border-radius-base: 1rem;
+
   --opacity-base: 1;
+
+  --border-thickness-base: 2px;
+
+  --glow-size-base: 1rem;
+
+  --blur-size-base: 1rem;
+
+  --transition-duration: 0.2s;
+
+  --font-header: 'DM Sans', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-monospace: monospace;
+
+  --navbar-height-base: 4rem;
+
+  --breakpoint-xs-base: 20rem; //320px
+  --breakpoint-sm-base: 30rem; //480px
+  --breakpoint-md-base: 60rem; //960px
+  --breakpoint-lg-base: 90rem; //1440px
+}
+
+@mixin generative-tokens {
+  @include m.fluid-clamp("h1", var(--text-size-1-min), var(--text-size-1-max));
+  @include m.fluid-clamp("h2", var(--text-size-2-min), var(--text-size-2-max));
+  @include m.fluid-clamp("h3", var(--text-size-3-min), var(--text-size-3-max));
+  @include m.fluid-clamp("h4", var(--text-size-4-min), var(--text-size-4-max));
+  @include m.fluid-clamp("h5", var(--text-size-5-min), var(--text-size-5-max));
+  @include m.fluid-clamp("logo", var(--text-size-logo-min), var(--text-size-logo-max));
+
+  --text-size-1: var(--fluid-h1);
+  --text-size-2: var(--fluid-h2);
+  --text-size-3: var(--fluid-h3);
+  --text-size-4: var(--fluid-h4);
+  --text-size-5: var(--fluid-h5);
+  --text-size-6: var(--text-size-6-base);
+  --text-size-7: var(--text-size-7-base);
+  --text-size-logo: var(--fluid-logo);
+  --text-size-large: var(--text-size-4-min);
+  --text-size-xl: var(--text-size-5-max);
+
+  --icon-size-xs: var(--text-size-7);
+  --icon-size-small: var(--text-size-6-base);
+  --icon-size-base: var(--text-size-4-min);
+  --icon-size-large: var(--text-size-4);
+  --icon-size-xl: var(--text-size-3);
+
+  --padding-xs: calc(var(--padding-base) * var(--padding-xs-base));
+  --padding-small: calc(var(--padding-base) * var(--padding-sm-base));
+  --padding-md: var(--padding-base);
+  --padding-large: calc(var(--padding-base) * var(--padding-lg-base));
+  --padding-xl: calc(var(--padding-base) * var(--padding-xl-base));
+  --padding-section: calc(var(--padding-base) * 4);
+  --padding-section-large: calc(var(--padding-base) * 8);
+
+  @include m.fluid-clamp("padding-edge", var(--padding-base), calc(var(--padding-base) * var(--padding-lg-base)));
+
+  --padding-edge: var(--fluid-padding-edge);
+
+  --input-padding-base: calc(var(--padding-base) * var(--padding-sm-base)) var(--padding-base);
+  --input-padding-small: calc(var(--padding-base) * var(--padding-xs-base)) calc(var(--padding-base) * var(--padding-sm-base));
+  --input-padding-large: var(--padding-base) calc(var(--padding-base) * var(--padding-lg-base));
+
+  --sidebar-width: var(--breakpoint-xs);
+
+  --icon-text-spacing: var(--padding-xs);
+
+  --weight-logo: var(--weight-bold);
+
+  --border-radius-md: var(--border-radius-base);
+  --border-radius-small: calc(var(--border-radius-base) * 0.5);
+
   --opacity-light: calc(var(--opacity-base) * 0.25);
   --opacity-disabled: calc(var(--opacity-base) * 0.7);
   --opacity-dark: calc(var(--opacity-base) * 0.8);
 
-  --border-thickness-base: 2px;
   --border-thickness-light: calc(var(--border-thickness-base) * 0.5);
+  --border-thickness-md: var(--border-thickness-base);
   --border-thickness-heavy: calc(var(--border-thickness-base) * 2);
 
-  --glow-size-base: 1rem;
-  --glow-size-xl: calc(var(--glow-size-base) * 2);
-  --glow-size-large: calc(var(--glow-size-base) * 1.5);
-  --glow-size-small: calc(var(--glow-size-base) * 0.8);
   --glow-size-xs: calc(var(--glow-size-base) * 0.5);
-
-  --black: black;
-  --white: white;
-
-  --blur-size-base: 1rem;
-  --blur-size-large: calc(var(--blur-size-base) * 1.5);
+  --glow-size-small: calc(var(--glow-size-base) * 0.8);
+  --glow-size-md: var(--glow-size-base);
+  --glow-size-large: calc(var(--glow-size-base) * 1.5);
+  --glow-size-xl: calc(var(--glow-size-base) * 2);
+  
   --blur-size-small: calc(var(--blur-size-base) * 0.5);
+  --blur-size-md: var(--blur-size-base);
+  --blur-size-large: calc(var(--blur-size-base) * 1.5);
 
-  --font-header: proxima-nova, sans-serif;
-  --font-body: var(--font-header);
-  --font-monospace: monospace;
   --font-logo: var(--font-header);
 
-  --transition-duration-base: 0.2s;
+  --breakpoint-xs: var(--breakpoint-xs-base);
+  --breakpoint-sm: var(--breakpoint-sm-base);
+  --breakpoint-md: var(--breakpoint-md-base);
+  --breakpoint-lg: var(--breakpoint-lg-base);
+
+  --navbar-height: var(--navbar-height-base);
+}
+
+:root {
+  @include static-tokens;
+  @include base-tokens;
+}
+
+:root {
+  @include generative-tokens;
+}
+
+#{s.$scheme-selectors}, #{s.$scheme-classes} {
+  @include generative-tokens;
 }
 
 @media screen and (prefers-reduced-motion) {
@@ -115,7 +166,8 @@
 
 @media screen and (prefers-reduced-transparency) {
   :root {
-    --opacity-light: calc(var(--opacity-base) * 0.5);
-    --opacity-disabled: var(--opacity-dark);
+    --opacity-light: 0.5;
+    --opacity-disabled: 0.8
+    --opacity-dark: 1;
   }
 }

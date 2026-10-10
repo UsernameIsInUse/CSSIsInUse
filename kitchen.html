@@ -6,13 +6,16 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Kitchen Sink</title>
-      <link rel="preconnect" href="https://use.typekit.net">
-      <link rel="preload" href="https://use.typekit.net/jfz2jeu.css" as="style">
-      <link rel="stylesheet" href="https://use.typekit.net/jfz2jeu.css">
+
       <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
       <link rel="stylesheet" href="main.css">
       <link rel="stylesheet" href="integrations.css">
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 
       <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -28,8 +31,10 @@
       </style>
   </head>
   <body
-    x-data="{ theme: 'dark', scheme: 'default', sidebarOpen: false, sidebarFull: false, current: window.location.hash.substring(1) || 'home' }"
-    x-init="sidebarFull = window.innerWidth < 608; if ( sidebarOpen && window.innerWidth < 608 ) { sidebarOpen = false }"
+    x-data="{ theme: '', scheme: 'default', sidebarOpen: false, sidebarFull: false, current: window.location.hash.substring(1) || 'home' }"
+    x-init="sidebarFull = window.innerWidth < 608;
+            if ( sidebarOpen && window.innerWidth < 608 ) { sidebarOpen = false };
+            if (theme === '') { theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }"
     @resize.window="sidebarFull = window.innerWidth < 608"
     :data-theme="theme"
     :data-scheme="scheme"
@@ -94,21 +99,25 @@
         <section class="section">
           <div class="container is-large">
             <h3>Generated Color Groups</h3>
-            <div class="block" style="display:grid; grid-template-columns: repeat(8, 1fr); gap: var(--padding-xs); overflow-x:auto;">
-              <span class="paint" style="background-color: var(--base-base); color: var(--base-strong);">Base Base</span>
-              <span class="paint" style="background-color: var(--base-menu); color: var(--base-strong);">Base Menu</span>
-              <span class="paint" style="background-color: var(--base-element); color: var(--base-strong);">Base Element</span>
-              <span class="paint" style="background-color: var(--base-top); color: var(--base-strong);">Base Top</span>
-              <span class="paint" style="background-color: var(--base-color); color: var(--base-100);">Base Color</span>
-              <span class="paint" style="background-color: var(--base-weak); color: var(--base-base);">Base Weak</span>
-              <span class="paint" style="background-color: var(--base-text); color: var(--base-base);">Base Text</span>
-              <span class="paint" style="background-color: var(--base-strong); color: var(--base-base);">Base Strong</span>
+            <div class="block" style="display:grid; grid-template-columns: repeat(10, 1fr); gap: var(--padding-xs); overflow-x:auto;">
+              <span class="paint" style="background-color: var(--neutral-base); color: var(--neutral-strong);">Neutral Base</span>
+              <span class="paint" style="background-color: var(--neutral-menu); color: var(--neutral-strong);">Neutral Menu</span>
+              <span class="paint" style="background-color: var(--neutral-element); color: var(--neutral-strong);">Neutral Element</span>
+              <span class="paint" style="background-color: var(--neutral-top); color: var(--neutral-strong);">Neutral Top</span>
+              <span class="paint" style="background-color: var(--neutral-muted); color: var(--neutral-strong);">Neutral Muted</span>
+              <span class="paint" style="background-color: var(--neutral-color); color: var(--neutral-100);">Neutral Color</span>
+              <span class="paint" style="background-color: var(--neutral-vivid); color: var(--neutral-base);">Neutral Vivid</span>
+              <span class="paint" style="background-color: var(--neutral-weak); color: var(--neutral-base);">Neutral Weak</span>
+              <span class="paint" style="background-color: var(--neutral-text); color: var(--neutral-base);">Neutral Text</span>
+              <span class="paint" style="background-color: var(--neutral-strong); color: var(--neutral-base);">Neutral Strong</span>
 
               <span class="paint" style="background-color: var(--primary-base); color: var(--primary-strong);">Primary Base</span>
               <span class="paint" style="background-color: var(--primary-menu); color: var(--primary-strong);">Primary Menu</span>
               <span class="paint" style="background-color: var(--primary-element); color: var(--primary-strong);">Primary Element</span>
               <span class="paint" style="background-color: var(--primary-top); color: var(--primary-strong);">Primary Top</span>
+              <span class="paint" style="background-color: var(--primary-muted); color: var(--primary-strong);">Primary Muted</span>
               <span class="paint" style="background-color: var(--primary-color); color: var(--primary-100);">Primary Color</span>
+              <span class="paint" style="background-color: var(--primary-vivid); color: var(--primary-base);">Primary Vivid</span>
               <span class="paint" style="background-color: var(--primary-weak); color: var(--primary-base);">Primary Weak</span>
               <span class="paint" style="background-color: var(--primary-text); color: var(--primary-base);">Primary Text</span>
               <span class="paint" style="background-color: var(--primary-strong); color: var(--primary-base);">Primary Strong</span>
@@ -117,7 +126,9 @@
               <span class="paint" style="background-color: var(--info-menu); color: var(--info-strong);">Info Menu</span>
               <span class="paint" style="background-color: var(--info-element); color: var(--info-strong);">Info Element</span>
               <span class="paint" style="background-color: var(--info-top); color: var(--info-strong);">Info Top</span>
+              <span class="paint" style="background-color: var(--info-muted); color: var(--info-strong);">Info Muted</span>
               <span class="paint" style="background-color: var(--info-color); color: var(--info-100);">Info Color</span>
+              <span class="paint" style="background-color: var(--info-vivid); color: var(--info-base);">Info Vivid</span>
               <span class="paint" style="background-color: var(--info-weak); color: var(--info-base);">Info Weak</span>
               <span class="paint" style="background-color: var(--info-text); color: var(--info-base);">Info Text</span>
               <span class="paint" style="background-color: var(--info-strong); color: var(--info-base);">Info Strong</span>
@@ -126,7 +137,9 @@
               <span class="paint" style="background-color: var(--warning-menu); color: var(--warning-strong);">Warning Menu</span>
               <span class="paint" style="background-color: var(--warning-element); color: var(--warning-strong);">Warning Element</span>
               <span class="paint" style="background-color: var(--warning-top); color: var(--warning-strong);">Warning Top</span>
+              <span class="paint" style="background-color: var(--warning-muted); color: var(--warning-strong);">Warning Muted</span>
               <span class="paint" style="background-color: var(--warning-color); color: var(--warning-100);">Warning Color</span>
+              <span class="paint" style="background-color: var(--warning-vivid); color: var(--warning-base);">Warning Vivid</span>
               <span class="paint" style="background-color: var(--warning-weak); color: var(--warning-base);">Warning Weak</span>
               <span class="paint" style="background-color: var(--warning-text); color: var(--warning-base);">Warning Text</span>
               <span class="paint" style="background-color: var(--warning-strong); color: var(--warning-base);">Warning Strong</span>
@@ -135,7 +148,9 @@
               <span class="paint" style="background-color: var(--danger-menu); color: var(--danger-strong);">Danger Menu</span>
               <span class="paint" style="background-color: var(--danger-element); color: var(--danger-strong);">Danger Element</span>
               <span class="paint" style="background-color: var(--danger-top); color: var(--danger-strong);">Danger Top</span>
+              <span class="paint" style="background-color: var(--danger-muted); color: var(--danger-strong);">Danger Muted</span>
               <span class="paint" style="background-color: var(--danger-color); color: var(--danger-100);">Danger Color</span>
+              <span class="paint" style="background-color: var(--danger-vivid); color: var(--danger-base);">Danger Vivid</span>
               <span class="paint" style="background-color: var(--danger-weak); color: var(--danger-base);">Danger Weak</span>
               <span class="paint" style="background-color: var(--danger-text); color: var(--danger-base);">Danger Text</span>
               <span class="paint" style="background-color: var(--danger-strong); color: var(--danger-base);">Danger Strong</span>
@@ -144,7 +159,9 @@
               <span class="paint" style="background-color: var(--success-menu); color: var(--success-strong);">Success Menu</span>
               <span class="paint" style="background-color: var(--success-element); color: var(--success-strong);">Success Element</span>
               <span class="paint" style="background-color: var(--success-top); color: var(--success-strong);">Success Top</span>
+              <span class="paint" style="background-color: var(--success-muted); color: var(--success-strong);">Success Muted</span>
               <span class="paint" style="background-color: var(--success-color); color: var(--success-100);">Success Color</span>
+              <span class="paint" style="background-color: var(--success-vivid); color: var(--success-base);">Success Vivid</span>
               <span class="paint" style="background-color: var(--success-weak); color: var(--success-base);">Success Weak</span>
               <span class="paint" style="background-color: var(--success-text); color: var(--success-base);">Success Text</span>
               <span class="paint" style="background-color: var(--success-strong); color: var(--success-base);">Success Strong</span>
@@ -153,7 +170,9 @@
               <span class="paint" style="background-color: var(--greyscale-menu); color: var(--greyscale-strong);">Greyscale Menu</span>
               <span class="paint" style="background-color: var(--greyscale-element); color: var(--greyscale-strong);">Greyscale Element</span>
               <span class="paint" style="background-color: var(--greyscale-top); color: var(--greyscale-strong);">Greyscale Top</span>
+              <span class="paint" style="background-color: var(--greyscale-muted); color: var(--greyscale-strong);">Greyscale Muted</span>
               <span class="paint" style="background-color: var(--greyscale-color); color: var(--greyscale-100);">Greyscale Color</span>
+              <span class="paint" style="background-color: var(--greyscale-vivid); color: var(--greyscale-base);">Greyscale Vivid</span>
               <span class="paint" style="background-color: var(--greyscale-weak); color: var(--greyscale-base);">Greyscale Weak</span>
               <span class="paint" style="background-color: var(--greyscale-text); color: var(--greyscale-base);">Greyscale Text</span>
               <span class="paint" style="background-color: var(--greyscale-strong); color: var(--greyscale-base);">Greyscale Strong</span>
@@ -162,23 +181,6 @@
             <div class="block" style="display:grid; grid-template-columns: repeat(8, 1fr); gap: var(--padding-xs); overflow-x:auto;">
               <span class="paint" style="background-color: var(--black); color: var(--white);">Black</span>
               <span class="paint" style="background-color: var(--white); color: var(--black);">White</span>
-            </div>
-            <h3>Unused Generated Colors</h3>
-            <div class="block" style="display:grid; grid-template-columns: repeat(8, 1fr); gap: var(--padding-xs); overflow-x:auto;">
-              <span class="paint" style="background-color: var(--base-muted); color: var(--base-strong);">Base Muted</span>
-              <span class="paint" style="background-color: var(--base-vivid); color: var(--base-base);">Base Vivid</span>
-              <span class="paint" style="background-color: var(--primary-muted); color: var(--primary-strong);">Primary Muted</span>
-              <span class="paint" style="background-color: var(--primary-vivid); color: var(--primary-base);">Primary Vivid</span>
-              <span class="paint" style="background-color: var(--info-muted); color: var(--info-strong);">Info Muted</span>
-              <span class="paint" style="background-color: var(--info-vivid); color: var(--info-base);">Info Vivid</span>
-              <span class="paint" style="background-color: var(--warning-muted); color: var(--warning-strong);">Warning Muted</span>
-              <span class="paint" style="background-color: var(--warning-vivid); color: var(--warning-base);">Warning Vivid</span>
-              <span class="paint" style="background-color: var(--danger-muted); color: var(--danger-strong);">Danger Muted</span>
-              <span class="paint" style="background-color: var(--danger-vivid); color: var(--danger-base);">Danger Vivid</span>
-              <span class="paint" style="background-color: var(--success-muted); color: var(--success-strong);">Success Muted</span>
-              <span class="paint" style="background-color: var(--success-vivid); color: var(--success-base);">Success Vivid</span>
-              <span class="paint" style="background-color: var(--greyscale-muted); color: var(--greyscale-strong);">Greyscale Muted</span>
-              <span class="paint" style="background-color: var(--greyscale-vivid); color: var(--greyscale-base);">Greyscale Vivid</span>
             </div>
           </div>
         </section>
@@ -238,7 +240,7 @@
               <p>A card can have any element inside of it</p>
             </div>
             <h4>Small Padding</h4>
-            <div class="card is-success is-small group is-centered">
+            <div class="card is-success is-small group is-justify-center">
               <p>Including a </p> <button class="button">Button</button>
             </div>
             <h4>Large Padding</h4>
@@ -254,7 +256,7 @@
 
         <section class="section is-small">
           <h3>Icons</h3>
-          <div class="container is-min">
+          <div class="container is-xs">
             <h4>Inherit/Strong/Text/Weak/Color</h4>
             <div class="group">
               <div class="icon"><i class="ti ti-user-filled"></i></div>
@@ -321,7 +323,7 @@
               <button class="button is-greyscale">Button</button>
               <button class="button is-greyscale" disabled>Button</button>
             </div>
-            <h4>Ghost</h4>
+            <h4>Quiet</h4>
             <div class="group">
               <button class="button is-ghost">Button</button>
               <button class="button is-ghost" disabled>Button</button>
@@ -345,7 +347,7 @@
               <button class="button is-small">Button</button>
               <button class="button is-small" disabled>Button</button>
               <button class="button is-small is-primary">Button</button>
-              <button class="button is-small is-ghost is-danger">Button</button>
+              <button class="button is-small is-quiet is-danger">Button</button>
               <button class="button is-small is-hoverable is-greyscale">Button</button>
               <button class="button is-small is-active is-success">Button</button>
             </div>
@@ -354,7 +356,7 @@
               <button class="button is-large">Button</button>
               <button class="button is-large" disabled>Button</button>
               <button class="button is-large is-primary">Button</button>
-              <button class="button is-large is-ghost is-danger">Button</button>
+              <button class="button is-large is-quiet is-danger">Button</button>
               <button class="button is-large is-hoverable is-greyscale">Button</button>
               <button class="button is-large is-active is-success">Button</button>
             </div>
@@ -363,7 +365,7 @@
               <button class="button is-xl">Button</button>
               <button class="button is-xl" disabled>Button</button>
               <button class="button is-xl is-primary">Button</button>
-              <button class="button is-xl is-ghost is-danger">Button</button>
+              <button class="button is-xl is-quiet is-danger">Button</button>
               <button class="button is-xl is-hoverable is-greyscale">Button</button>
               <button class="button is-xl is-active is-success">Button</button>
             </div>
@@ -372,7 +374,7 @@
               <button class="button">Button</button>
               <button class="button is-primary">Button</button>
               <button class="button is-warning" disabled>Button</button>
-              <button class="button is-info is-ghost">Button</button>
+              <button class="button is-info is-quiet">Button</button>
               <button class="button is-success light">Button</button>
             </div>
             <h4>With Icon</h4>
@@ -390,9 +392,9 @@
             </div>
             <h4>Dark/Light Mode Switcher</h4>
             <div class="group has-addons">
-              <button class="button is-small is-active"><span class="icon"><i class="ti ti-circle ti-dark"></i></span></button>
-              <button class="button is-small is-hoverable"><span class="icon"><i class="ti ti-brightness-filled"></i></span></button>
-              <button class="button is-small is-hoverable"><span class="icon"><i class="ti ti-circle-filled ti-light"></i></span></button>
+              <button class="button is-icon is-large is-active"><span class="icon"><i class="ti ti-circle ti-dark"></i></span></button>
+              <button class="button is-icon is-large is-hoverable"><span class="icon"><i class="ti ti-brightness-filled"></i></span></button>
+              <button class="button is-icon is-large is-hoverable"><span class="icon"><i class="ti ti-circle-filled ti-light"></i></span></button>
             </div>
           </div>
         </section>
@@ -415,7 +417,7 @@
             <div class="field is-warning">
               <label for="example4" class="label">Notification</label>
               <input id="example4" class="input">
-              <div class="notification quiet">
+              <div class="notification is-quiet">
                 <p>Some Warning</p>
               </div>
             </div>
@@ -1039,7 +1041,7 @@
                   class="button"
                   @click="active = !active">
                   Nothing in it except for close button</button>
-                <div class="modal is-centered" :class="{ 'is-active' : active }">
+                <div class="modal is-justify-center" :class="{ 'is-active' : active }">
                   <button
                     class="button is-icon is-primary is-active"
                     aria-label="Close Modal"
@@ -1072,7 +1074,7 @@
                 <div class="modal" :class="{ 'is-active' : active }">
                   <section class="section container is-small is-transparent">
                     <div class="card is-xl">
-                      <div class="group is-space-between is-aligned-start">
+                      <div class="group is-justify-between is-align-start">
                         <h3>Login</h3>
                         <button
                           class="button is-icon is-primary is-active"
@@ -1418,7 +1420,7 @@
                 <div class="dropdown-content">
                   <div class="dropdown-item">Take away the javascript and this is a hoverable and interactive tooltip you can place any element inside of!</div>
                   <hr>
-                  <div class="dropdown-item"><span class="group align-start"><span class="icon is-warning is-weak"><i class="ti ti-exclamation-circle"></i></span>If there are any interactive elements including links or buttons, this is not a true "tooltip" for accessibility, and should still be considered an aria menu.</span></div>
+                  <div class="dropdown-item"><span class="group is-align-start"><span class="icon is-warning is-weak"><i class="ti ti-exclamation-circle"></i></span>If there are any interactive elements including links or buttons, this is not a true "tooltip" for accessibility, and should still be considered an aria menu.</span></div>
                 </div>
               </div>
             </div>
@@ -1508,48 +1510,48 @@
             <div class="columns">
               <div>
                 <div class="notification">
-                  <p>Base</p>
+                  Base
                 </div>
                 <div class="notification is-primary">
-                  <p>primary</p>
+                  primary
                 </div>
                 <div class="notification is-info">
-                  <p>info</p>
+                  info
                 </div>
                 <div class="notification is-warning">
-                  <p>warning</p>
+                  warning
                 </div>
                 <div class="notification is-danger">
-                  <p>danger</p>
+                  danger
                 </div>
                 <div class="notification is-success">
-                  <p>success</p>
+                  success
                 </div>
                 <div class="notification is-greyscale">
-                  <p>greyscale</p>
+                  greyscale
                 </div>
               </div>
               <div>
                 <div class="notification is-quiet">
-                  <p>Base</p>
+                  Base
                 </div>
                 <div class="notification is-quiet is-primary">
-                  <p>primary</p>
+                  primary
                 </div>
                 <div class="notification is-quiet is-info">
-                  <p>info</p>
+                  info
                 </div>
                 <div class="notification is-quiet is-warning">
-                  <p>warning</p>
+                  warning
                 </div>
                 <div class="notification is-quiet is-danger">
-                  <p>danger</p>
+                  danger
                 </div>
                 <div class="notification is-quiet is-success">
-                  <p>success</p>
+                  success
                 </div>
                 <div class="notification is-quiet is-greyscale">
-                  <p>greyscale</p>
+                  greyscale
                 </div>
               </div>
             </div>
@@ -1570,16 +1572,16 @@
                 </div>
               </div>
               <div>
-                <div class="notification quiet">
+                <div class="notification is-quiet">
                   <i class="ti ti-info-circle-filled"></i> No .icon
                 </div>
-                <div class="notification quiet is-warning">
+                <div class="notification is-quiet is-warning">
                   <span class="icon"><i class="ti ti-info-circle-filled"></i></span> No .group
                 </div>
-                <div class="notification quiet is-info">
+                <div class="notification is-quiet is-info">
                   <span class="group"><span class="icon"><i class="ti ti-info-circle-filled"></i></span>Has Both!</span>
                 </div>
-                <div class="notification quiet">
+                <div class="notification is-quiet">
                   <span class="group"><span class="icon text-warning-500"><i class="ti ti-info-circle-filled"></i></span>Custom Color</span>
                 </div>
               </div>
@@ -1718,9 +1720,9 @@
 
         <section class="section">
           <h3>Sections (Top/Bottom Spacing) & Containers (Side Spacing)</h3>
-          <div class="section is-min light">
-            <div class="container is-min">
-              <h4>Min</h4>
+          <div class="section is-xs light">
+            <div class="container is-xs">
+              <h4>XS</h4>
               <img src="https://www.perfect-fit.co.uk/sites/g/files/fnmzdf6431/files/2024-10/kitten-sitting-on-sofa_1685973713762.png">
             </div>
           </div>
@@ -1742,17 +1744,15 @@
               <img src="https://www.perfect-fit.co.uk/sites/g/files/fnmzdf6431/files/2024-10/kitten-sitting-on-sofa_1685973713762.png">
             </div>
           </div>
-          <div class="section is-full light">
-            <div class="container is-full">
-              <h4>Full</h4>
+          <div class="section is-xl light">
+              <h4>XL</h4>
               <img src="https://www.perfect-fit.co.uk/sites/g/files/fnmzdf6431/files/2024-10/kitten-sitting-on-sofa_1685973713762.png">
-            </div>
           </div>
         </section>
 
         <section class="section is-small">
           <h3>Section/Container Colors</h3>
-          <div class="section columns gap-0">
+          <div class="section columns is-gap-0">
             <div class="section is-small is-base">
               <hgroup class="block">
                 <h4>base</h4>
@@ -1876,7 +1876,6 @@
 
         <section class="section is-small">
           <h3>Columns</h3>
-          <div class="container is-full">
             
             <h4>Default</h4>
             <div class="columns">
@@ -1892,7 +1891,7 @@
             </div>
 
             <h4>Small Min & Gap</h4>
-            <div class="columns min-small gap-small">
+            <div class="columns min-small is-gap-small">
               <div class="section is-small is-radius-small is-primary is-element">
                 <strong>Small Column Settings</strong>
               </div>
@@ -1905,7 +1904,7 @@
             </div>
 
             <h4>Large Min & Gap</h4>
-            <div class="columns min-large gap-large">
+            <div class="columns min-large is-gap-large">
               <div class="section is-small is-radius-small is-primary is-element">
                 <strong>Large Column Settings</strong>
               </div>
@@ -1918,7 +1917,7 @@
             </div>
 
             <h4>No Min & Gap</h4>
-            <div class="columns min-0 gap-0">
+            <div class="columns min-0 is-gap-0">
               <div class="section is-small is-radius-small is-primary is-element">
                 <strong>0 Column Settings</strong>
               </div>
@@ -1931,7 +1930,7 @@
             </div>
 
             <h4>Align Start</h4>
-            <div class="columns align-start">
+            <div class="columns is-align-start">
               <div class="section is-small is-radius-small is-primary is-element">
                 <strong>Not the same height, align start</strong>
               </div>
@@ -1944,7 +1943,7 @@
             </div>
 
             <h4>Align Center</h4>
-            <div class="columns align-center">
+            <div class="columns is-align-center">
               <div class="section is-small is-radius-small is-primary is-element">
                 <strong>Not the same height, align center</strong>
               </div>
@@ -1957,7 +1956,7 @@
             </div>
 
             <h4>Align End</h4>
-            <div class="columns align-end">
+            <div class="columns is-align-end">
               <div class="section is-small is-radius-small is-primary is-element">
                 <strong>Not the same height, align end</strong>
               </div>
@@ -1968,7 +1967,6 @@
                 <strong>Not the same height, align end</strong>
               </div>
             </div>
-          </div>
         </section>
 
       </div>

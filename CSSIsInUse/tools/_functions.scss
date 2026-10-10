@@ -1,0 +1,8 @@
+@use 'sass:math';
+
+@function fluid-clamp($min, $max) {
+  $a: math.div(($max - $min), (90rem - 20rem));
+  $b: $min - ($a * 20rem);
+  $m: $a*100vw;
+  @return clamp($min, $m + $b, $max);
+}

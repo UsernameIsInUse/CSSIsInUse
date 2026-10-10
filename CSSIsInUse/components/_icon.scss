@@ -1,7 +1,7 @@
-@use "../utilities/mixins" as m;
+@use "../tools/mixins" as m;
 
 .icon {
-  @include m.colors("icon","color","weak","text","strong");
+  @include m.colors("icon","muted","color","vivid","weak","text","strong",);
 
   --icon-color: inherit;
 
@@ -28,29 +28,26 @@
   &.is-weak {
     --icon-color: var(--icon-color-weak);
   }
+  &.is-vivid {
+    --icon-color: var(--icon-color-vivid);
+  }
   &.is-color {
     --icon-color: var(--icon-color-color);
   }
+  &.is-muted {
+    --icon-color: var(--icon-color-muted);
+  }
 
+  &.is-xs {
+    --icon-size: var(--icon-size-xs);
+  }
   &.is-small {
     --icon-size: var(--icon-size-small);
   }
-
   &.is-large {
     --icon-size: var(--icon-size-large);
   }
-
   &.is-xl {
     --icon-size: var(--icon-size-xl);
   }
-}
-
-// Tabler Icons Integration
-
-.ti-dark::before {
-  content: var(--ti-dark-circle) !important;
-}
-
-.ti-light::before {
-  content: var(--ti-light-circle) !important;
 }

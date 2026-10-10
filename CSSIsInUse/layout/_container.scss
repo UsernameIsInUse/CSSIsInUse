@@ -1,13 +1,12 @@
-@use "../utilities/mixins" as m;
+@use "../tools/mixins" as m;
 
 .container {
-  @include m.colors("container","base","element","text");
+  @include m.colors("container","base","menu","element","top","text");
 
   --container-background: var(--container-color-base);
   --container-text: var(--container-color-text);
 
   --container-max: var(--breakpoint-md);
-  --container-align-items: initial;
 
   display: flex;
   width: 100%;
@@ -16,19 +15,30 @@
   background-color: var(--container-background);
   color: var(--container-text);
   flex-direction: column;
-  align-items: var(--container-align-items);
   overflow-wrap: break-word;
+
+  &.is-base {
+    --container-background: var(--container-color-base);
+  }
+
+  &.is-menu {
+    --container-background: var(--container-color-menu);
+  }
 
   &.is-element {
     --container-background: var(--container-color-element);
   }
 
-  &.is-transparent {
+  &.is-top {
+    --container-background: var(--container-color-top);
+  }
+
+  &.is-ghost {
     --container-background: transparent;
   }
 
-  &.is-min {
-    --container-max: var(--breakpoint-min);
+  &.is-xs {
+    --container-max: var(--breakpoint-xs);
   }
 
   &.is-small {
@@ -36,16 +46,6 @@
   }
 
   &.is-large {
-    --container-max: var(--breakpoint-max);
-  }
-  
-  &.align-start {
-    --container-align-items: start;
-  }
-  &.align-center {
-    --container-align-items: center;
-  }
-  &.align-end {
-    --container-align-items: end;
+    --container-max: var(--breakpoint-lg);
   }
 }

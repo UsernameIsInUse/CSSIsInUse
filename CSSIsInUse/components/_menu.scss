@@ -1,20 +1,50 @@
-@use "../utilities/mixins" as m;
+@use "../tools/mixins" as m;
 
 .menu {
   @include m.colors("menu","menu","element","top","strong");
 
   --menu-background: var(--menu-color-element);
+  --menu-background-hover: var(--menu-color-top);
   --menu-text: var(--menu-color-strong);
   --menu-color: var(--menu-color-top);
 
-  @include m.block("small");
+  @include m.block("base");
 
   width: calc(100% + 1rem);
   margin-left: -0.5rem;
   list-style: none;
   padding: 0;
 
+  &.is-base {
+    --menu-background: var(--menu-color-base);
+    --menu-background-hover: var(--menu-color-element);
+    --menu-color: var(--menu-color-element);
+  }
+
+  &.is-menu {
+    --menu-background: var(--menu-color-menu);
+    --menu-background-hover: var(--menu-color-element);
+    --menu-color: var(--menu-color-element);
+  }
+
+  &.is-element {
+    --menu-background: var(--menu-color-element);
+    --menu-background-hover: var(--menu-color-top);
+    --menu-color: var(--menu-color-top);
+  }
+
+  &.is-top {
+    --menu-background: var(--menu-color-top);
+    --menu-background-hover: var(--menu-color-element);
+    --menu-color: var(--menu-color-element);
+  }
+
+  &.is-ghost {
+    --menu-background: transparent;
+  }
+
   a, button, .menu-item {
+    @include m.transitions("background-color");
     
     display: block;
     width: 100%;
@@ -22,23 +52,12 @@
     background-color: var(--menu-background);
     color: var(--menu-text);
     border-radius: var(--border-radius-small);
-    text-align: justify;
+    text-align: left;
     text-decoration: none;
 
-    &:hover {
-      @include m.transitions("background-color");
-      --menu-background: var(--menu-color);
+    &:hover, &:active, &.is-active {
+      --menu-background: var(--menu-background-hover);
     }
-
-    &.is-active {
-      @include m.transitions("background-color");
-      --menu-background: var(--menu-color);
-    }
-  }
-
-  &.is-menu {
-    --menu-background: var(--menu-color-menu);
-    --menu-color: var(--menu-color-element);
   }
 
   ul {

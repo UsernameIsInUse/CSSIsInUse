@@ -1,0 +1,53 @@
+@use '../tools/functions' as f;
+
+.slate, [data-scheme=slate] {
+  --light: 0.98;
+  --dark: 0.15;
+
+  --neutral-l: 0.6;
+  --neutral-c: 0.015;
+  --neutral-h: 50;
+  --neutral-falloff: 0.9;
+
+  --primary-l: var(--neutral-l);
+  --primary-c: 0.07;
+  --primary-h: 50;
+  --primary-falloff: 0.7;
+
+  --info-l: var(--neutral-l);
+  --info-c: 0.05;
+  --info-h: 256;
+  --info-falloff: 0.7;
+
+  --success-l: var(--neutral-l);
+  --success-c: 0.07;
+  --success-h: 120;
+  --success-falloff: 0.7;
+
+  --warning-l: 0.7;
+  --warning-c: 0.07;
+  --warning-h: 70;
+  --warning-falloff: 0.7;
+
+  --danger-l: var(--neutral-l);
+  --danger-c: 0.07;
+  --danger-h: 32;
+  --danger-falloff: 0.7;
+
+  --font-header: 'DM Serif Display', serif;
+  --font-body: 'Commissioner', 'DM Sans', sans-serif;
+  --glow-size-base: 0;
+  --padding-base: 1.5rem;
+  --border-radius-base: 0.5rem;
+  --border-radius-rounded: 0.5rem;
+  --text-size-6-base: 1.1rem;
+  --icon-size-small: 1.1rem;
+}
+
+ol, ul {
+  padding-left: var(--padding-large);
+}
+
+.menu li ul {
+  margin-left: 1rem !important;
+}

@@ -1,0 +1,117 @@
+@forward 'block';
+@forward 'non-core';
+
+.is-radius-small {
+  border-radius: var(--border-radius-small);
+}
+.is-radius-base {
+  border-radius: var(--border-radius-base);
+}
+.is-radius-rounded {
+  border-radius: var(--border-radius-rounded);
+}
+
+.is-hidden {
+  display:none !important;
+}
+
+.is-align-start {
+  align-items: start;
+}
+.is-align-center {
+  align-items: center;
+}
+.is-align-end {
+  align-items: end;
+}
+
+.is-justify-start {
+  justify-content: start;
+}
+.is-justify-center {
+  justify-content: center;
+}
+.is-justify-end {
+  justify-content: end;
+}
+.is-justify-around {
+  justify-content: space-around;
+}
+.is-justify-between {
+  justify-content: space-between;
+}
+.is-justify-evenly {
+  justify-content: space-evenly;
+}
+
+.is-align-items-baseline {
+  align-items: baseline;
+}
+.is-align-items-center {
+  align-items: center;
+}
+.is-align-items-start {
+  align-items: start;
+}
+.is-align-items-end {
+  align-items: end;
+}
+
+.is-flex-flow-column {
+  flex-flow: column;
+}
+.is-flex-flow-column-reverse {
+  flex-flow: column-reverse;
+}
+.is-flex-flow-nowrap {
+  flex-flow: nowrap;
+}
+.is-flex-flow-row {
+  flex-flow: row;
+}
+.is-flex-flow-row-reverse {
+  flex-flow: row-reverse;
+}
+.is-flex-flow-wrap {
+  flex-flow: wrap;
+}
+.is-flex-flow-wrap-reverse {
+  flex-flow: wrap-reverse;
+}
+
+.is-text-left {
+  text-align: left;
+}
+.is-text-center {
+  text-align: center;
+}
+.is-text-right {
+  text-align: right;
+}
+.is-text-justify {
+  text-align: justify;
+}
+
+.is-gap-0 {
+  gap: 0;
+}
+.is-gap-xs {
+  gap: var(--padding-xs);
+}
+.is-gap-small {
+  gap: var(--padding-small);
+}
+.is-gap-base {
+  gap: var(--padding-base);
+}
+.is-gap-large {
+  gap: var(--padding-large);
+}
+.is-gap-xl {
+  gap: var(--padding-xl);
+}
+
+:disabled, [disabled], .disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}

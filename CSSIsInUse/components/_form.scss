@@ -1,4 +1,4 @@
-@use "../utilities/mixins" as m;
+@use "../tools/mixins" as m;
 
 .field {
   @include m.block("base");
@@ -45,6 +45,7 @@
   --input-size-height: calc(var(--padding-base) * 6);
   
   @include m.no-select;
+  @include m.focus;
 
   position: relative;
   width: 100%;
@@ -55,18 +56,9 @@
   border-radius: var(--border-radius-small);
   font-size: var(--input-size-text);
 
-  &:focus {
-    @include m.focus;
-  }
-
   &.is-small {
     --input-size-text: var(--text-size-7);
     --input-size-padding: var(--input-padding-small);
-  }
-
-  &[disabled], &.disabled {
-    opacity: var(--opacity-disabled);
-    cursor: not-allowed;
   }
 }
 
@@ -97,16 +89,4 @@
   accent-color: var(--cb-color);
   line-height: 1.25;
   cursor: pointer;
-
-  input {
-    cursor: pointer;
-  }
-
-  &:disabled, &.disabled,
-  &[disabled],
-  fieldset[disabled] &,
-  input[disabled] {
-    opacity: var(--opacity-disabled);
-    cursor: not-allowed;
-  }
 }

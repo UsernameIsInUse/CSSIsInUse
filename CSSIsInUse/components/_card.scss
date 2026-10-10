@@ -1,35 +1,85 @@
-@use "../utilities/mixins" as m;
+@use "../tools/mixins" as m;
 
 .card {
-  @include m.colors("card","element","top","text","strong");
+  @include m.colors("card","base","menu","element","top","text","strong");
 
   --card-background: var(--card-color-element);
+  --card-background-hover: var(--card-color-top);
+  --card-background-disabled: var(--card-color-element);
   --card-text: var(--card-color-text);
+  --card-color: transparent;
 
   --card-size-padding: var(--padding-base);
+
+  @include m.transitions("background-color");
 
   width:100%;
   padding: var(--card-size-padding);
   background-color: var(--card-background);
   color: var(--card-text);
+  border: var(--border-thickness-base) solid var(--card-color);
   border-radius: var(--border-radius-small);
+
+  &.is-base {
+    --card-background: var(--card-color-base);
+    --card-background-hover: var(--card-color-element);
+    --card-background-disabled: var(--card-color-base);
+  }
+
+  &.is-menu {
+    --card-background: var(--card-color-menu);
+    --card-background-hover: var(--card-color-element);
+    --card-background-disabled: var(--card-color-menu);
+  }
+
+  &.is-element {
+    --card-background: var(--card-color-element);
+    --card-background-hover: var(--card-color-top);
+    --card-background-disabled: var(--card-color-element);
+  }
 
   &.is-top {
     --card-background: var(--card-color-top);
+    --card-background-hover: var(--card-color-element);
+    --card-background-disabled: var(--card-color-top);
     --card-text: var(--card-color-strong);
+  }
+
+  &.is-quiet {
+    --card-background: var(--card-color-base);
+    --card-background-hover: var(--card-color-element);
+    --card-background-disabled: var(--card-color-base);
+    --card-color: var(--card-color-top);
+  }
+
+  &.is-ghost {
+    --card-background: transparent;
+    --card-background-disabled: transparent;
+    --card-color: transparent;
   }
 
   &.is-xs {
     --card-size-padding: var(--padding-xs);
   }
+
   &.is-small {
     --card-size-padding: var(--padding-small);
   }
+
   &.is-large {
     --card-size-padding: var(--padding-large);
   }
+
   &.is-xl {
     --card-size-padding: var(--padding-xl);
+  }
+
+  &.is-hoverable:hover {
+    --card-background: var(--card-background-hover);
+  }
+
+  &:disabled, &.disabled {
+    --card-background-hover: var(--card-background-disabled);
   }
 
 }
