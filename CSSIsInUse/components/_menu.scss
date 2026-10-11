@@ -1,7 +1,7 @@
 @use "../tools/mixins" as m;
 
 .menu {
-  @include m.colors("menu","menu","element","top","strong");
+  @include m.colors("menu","menu","element","top","weak","text","strong");
 
   --menu-background: var(--menu-color-element);
   --menu-background-hover: var(--menu-color-top);
@@ -37,6 +37,18 @@
     --menu-background: var(--menu-color-top);
     --menu-background-hover: var(--menu-color-element);
     --menu-color: var(--menu-color-element);
+  }
+
+  &.is-weak {
+    --menu-text: var(--menu-color-weak);
+  }
+
+  &.is-text {
+    --menu-text: var(--menu-color-text);
+  }
+
+  &.is-strong {
+    --menu-text: var(--menu-color-strong);
   }
 
   &.is-ghost {

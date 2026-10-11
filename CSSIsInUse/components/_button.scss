@@ -1,12 +1,13 @@
 @use "../tools/mixins" as m;
 
 .button {
-  @include m.colors("btn","base","menu","element","top","muted","color","vivid","strong");
+  @include m.colors("btn","base","menu","element","top","muted","color","vivid","weak","text","strong");
 
   --btn-background: var(--btn-color-base);
   --btn-background-hover: var(--btn-color-element);
   --btn-background-disabled: var(--btn-color-base);
   --btn-text: var(--btn-color-strong);
+  --btn-glow: var(--btn-color-color);
   --btn-color: var(--btn-color-color);
 
   --btn-size-text: var(--text-size-6);
@@ -19,7 +20,7 @@
   
   @include m.transitions("background-color", "box-shadow");
   @include m.no-select;
-  @include m.glow(var(--btn-size-glow), var(--btn-color), var(--btn-glow-alpha));
+  @include m.glow(var(--btn-size-glow), var(--btn-glow), var(--btn-glow-alpha));
   @include m.focus;
 
   display: block;
@@ -62,8 +63,24 @@
     --btn-color: var(--btn-color-muted);
   }
 
+  &.is-color {
+    --btn-color: var(--btn-color-color);
+  }
+
   &.is-vivid {
     --btn-color: var(--btn-color-vivid);
+  }
+
+  &.is-weak {
+    --btn-text: var(--btn-color-weak);
+  }
+
+  &.is-text {
+    --btn-text: var(--btn-color-text);
+  }
+
+  &.is-strong {
+    --btn-text: var(--btn-color-strong);
   }
 
   &.is-ghost {
@@ -78,6 +95,10 @@
   .no-glow &, &.no-glow, &.is-quiet {
     --btn-glow-alpha: 0;
     --btn-glow-alpha-hover: 0;
+  }
+
+  .no-border &, &.no-border {
+    --btn-color: transparent;
   }
 
   &.is-icon {

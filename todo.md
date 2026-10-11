@@ -106,3 +106,4 @@ Setup & Installation > explain that it's a css library that provides classes to 
 
 
 on mobile, close sidebar on item click
+center on xl section

@@ -1,12 +1,13 @@
 @use "../tools/mixins" as m;
 
 .dropdown {
-  @include m.colors("dropdown","base","menu","element","top","text","strong");
+  @include m.colors("dropdown","base","menu","element","top","muted","color","vivid","weak""text","strong");
 
   --dropdown-background: var(--dropdown-color-base);
   --dropdown-background-hover: var(--dropdown-color-element);
   --dropdown-text: var(--dropdown-color-text);
   --dropdown-color: var(--dropdown-color-top);
+  --dropdown-hr: var(--dropdown-color-top);
   --dropdown-shadow: var(--dropdown-color-base);
 
   --dropdown-size-text: var(--text-size-6);
@@ -46,7 +47,31 @@
     --dropdown-text: var(--dropdown-color-strong);
   }
 
-  &.is-quiet {
+  &.is-muted {
+    --dropdown-color: var(--dropdown-color-muted);
+  }
+
+  &.is-color {
+    --dropdown-color: var(--dropdown-color-color);
+  }
+
+  &.is-vivid {
+    --dropdown-color: var(--dropdown-color-vivid);
+  }
+
+  &.is-weak {
+    --dropdown-text: var(--dropdown-color-weak);
+  }
+
+  &.is-text {
+    --dropdown-text: var(--dropdown-color-text);
+  }
+
+  &.is-strong {
+    --dropdown-text: var(--dropdown-color-strong);
+  }
+
+  .no-border &, &.no-border, &.is-quiet {
     --dropdown-color: transparent;
   }
 
@@ -111,7 +136,7 @@
     
     hr {
       margin: var(--padding-small) 0;
-      background-color: var(--dropdown-color);
+      background-color: var(--dropdown-hr);
     }
   }
 

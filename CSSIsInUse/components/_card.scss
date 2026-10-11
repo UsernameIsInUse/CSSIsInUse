@@ -1,7 +1,7 @@
 @use "../tools/mixins" as m;
 
 .card {
-  @include m.colors("card","base","menu","element","top","text","strong");
+  @include m.colors("card","base","menu","element","top","muted","color","vivid","weak","text","strong");
 
   --card-background: var(--card-color-element);
   --card-background-hover: var(--card-color-top);
@@ -45,6 +45,30 @@
     --card-text: var(--card-color-strong);
   }
 
+  &.is-muted {
+    --card-color: var(--card-color-muted);
+  }
+
+  &.is-color {
+    --card-color: var(--card-color-color);
+  }
+
+  &.is-vivid {
+    --card-color: var(--card-color-vivid);
+  }
+
+  &.is-weak {
+    --card-text: var(--card-color-weak);
+  }
+
+  &.is-text {
+    --card-text: var(--card-color-text);
+  }
+
+  &.is-strong {
+    --card-text: var(--card-color-strong);
+  }
+
   &.is-quiet {
     --card-background: var(--card-color-base);
     --card-background-hover: var(--card-color-element);
@@ -55,6 +79,10 @@
   &.is-ghost {
     --card-background: transparent;
     --card-background-disabled: transparent;
+    --card-color: transparent;
+  }
+
+  .no-border &, &.no-border {
     --card-color: transparent;
   }
 

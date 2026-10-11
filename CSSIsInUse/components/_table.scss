@@ -1,7 +1,7 @@
 @use "../tools/mixins" as m;
 
 table {
-  @include m.colors("table","base","menu","element","top","color","strong");
+  @include m.colors("table","base","menu","element","top","muted","color","vivid","weak","text","strong");
 
   --table-background: var(--table-color-base);
   --table-background-striped: var(--table-color-element);
@@ -44,6 +44,30 @@ table {
       --table-background: var(--table-color-top);
       --table-background-striped: var(--table-color-element);
       --table-border: var(--table-color-color);
+    }
+
+    &.is-muted {
+      --table-border: var(--table-color-muted);
+    }
+
+    &.is-color {
+      --table-border: var(--table-color-color);
+    }
+
+    &.is-vivid {
+      --table-border: var(--table-color-vivid);
+    }
+
+    &.is-weak {
+      --table-text: var(--table-color-weak);
+    }
+
+    &.is-text {
+      --table-text: var(--table-color-text);
+    }
+
+    &.is-strong {
+      --table-text: var(--table-color-strong);
     }
 
   }

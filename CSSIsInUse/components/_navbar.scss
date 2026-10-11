@@ -8,7 +8,7 @@
 }
 
 .nav {
-  @include m.colors("nav","base","menu","element","top","strong");
+  @include m.colors("nav","base","menu","element","top","weak","text","strong");
 
   --nav-background: var(--nav-color-base);
   --nav-text: var(--nav-color-strong);
@@ -40,6 +40,18 @@
 
   &.is-top {
     --nav-background: var(--nav-color-top);
+  }
+
+  &.is-weak {
+    --nav-text: var(--nav-color-weak);
+  }
+
+  &.is-text {
+    --nav-text: var(--nav-color-text);
+  }
+
+  &.is-strong {
+    --nav-text: var(--nav-color-strong);
   }
 
   &.is-translucent {

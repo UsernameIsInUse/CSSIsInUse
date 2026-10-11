@@ -34,7 +34,7 @@
 }
 
 .input, .textarea {
-  @include m.colors("input","base","top","color","text");
+  @include m.colors("input","base","menu","element","top","muted","color","vivid","weak","text","strong");
 
   --input-background: var(--input-color-base);
   --input-text: var(--input-color-text);
@@ -55,6 +55,50 @@
   border: var(--border-thickness-base) solid var(--input-color);
   border-radius: var(--border-radius-small);
   font-size: var(--input-size-text);
+
+  &.is-base {
+    --input-background: var(--input-color-base);
+  }
+
+  &.is-menu {
+    --input-background: var(--input-color-menu);
+  }
+
+  &.is-element, &.is-active {
+    --input-background: var(--input-color-element);
+  }
+
+  &.is-top {
+    --input-background: var(--input-color-top);
+  }
+
+  &.is-muted {
+    --input-color: var(--input-color-muted);
+  }
+
+  &.is-color {
+    --input-color: var(--input-color-color);
+  }
+
+  &.is-vivid {
+    --input-color: var(--input-color-vivid);
+  }
+
+  &.is-weak {
+    --input-text: var(--input-color-weak);
+  }
+
+  &.is-text {
+    --input-text: var(--input-color-text);
+  }
+
+  &.is-strong {
+    --input-text: var(--input-color-strong);
+  }
+
+  .no-border &, &.no-border {
+    --input-color: transparent;
+  }
 
   &.is-small {
     --input-size-text: var(--text-size-7);

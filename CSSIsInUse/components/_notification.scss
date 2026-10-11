@@ -37,12 +37,13 @@
 }
 
 .notification {
-  @include m.colors("notif","base","menu","element","top","color","weak","text","strong");
+  @include m.colors("notif","base","menu","element","top","muted","color","vivid","weak","text","strong");
 
   --notif-background: var(--notif-color-base);
   --notif-background-hover: var(--notif-color-element);
   --notif-text: var(--notif-color-text);
   --notif-color: var(--notif-color-color);
+  --notif-glow: var(--notif-color-color);
   --notif-color-quiet: var(--notif-color-top);
 
   --notif-size-text: var(--text-size-6);
@@ -55,7 +56,7 @@
 
   @include m.transitions("background","box-shadow");
   @include m.block("base");
-  @include m.glow(var(--notif-size-glow), var(--notif-color), var(--notif-glow-alpha));
+  @include m.glow(var(--notif-size-glow), var(--notif-glow), var(--notif-glow-alpha));
 
   position: relative;
   width: 100%;
@@ -86,6 +87,30 @@
     --notif-background-hover: var(--notif-color-element);
   }
 
+  &.is-muted {
+    --notif-color: var(--notif-color-muted);
+  }
+
+  &.is-color {
+    --notif-color: var(--notif-color-color);
+  }
+
+  &.is-vivid {
+    --notif-color: var(--notif-color-vivid);
+  }
+
+  &.is-weak {
+    --notif-text: var(--notif-color-weak);
+  }
+
+  &.is-text {
+    --notif-text: var(--notif-color-text);
+  }
+
+  &.is-strong {
+    --notif-text: var(--notif-color-strong);
+  }
+
   &.is-quiet {
     --notif-text: var(--notif-color-weak);
     --notif-color: var(--notif-color-quiet);
@@ -109,6 +134,10 @@
   .no-glow &, &.no-glow {
     --notif-glow-alpha: 0;
     --notif-glow-alpha-hover: 0;
+  }
+
+  .no-border &, &.no-border {
+    --notif-color: transparent;
   }
 
   &.is-hoverable:hover, &.is-hoverable:active {

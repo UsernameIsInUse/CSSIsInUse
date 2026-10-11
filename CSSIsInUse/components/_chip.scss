@@ -1,7 +1,7 @@
 @use "../tools/mixins" as m;
 
 .chip {
-  @include m.colors("chip","base","menu","element","top","weak","strong");
+  @include m.colors("chip","base","menu","element","top","muted","color","vivid","weak","text","strong");
 
   --chip-background: var(--chip-color-top);
   --chip-background-hover: var(--chip-color-element);
@@ -51,6 +51,30 @@
     --chip-color: var(--chip-color-top);
   }
 
+  &.is-muted {
+    --chip-color: var(--chip-color-muted);
+  }
+
+  &.is-color {
+    --chip-color: var(--chip-color-color);
+  }
+
+  &.is-vivid {
+    --chip-color: var(--chip-color-vivid);
+  }
+
+  &.is-weak {
+    --chip-text: var(--chip-color-weak);
+  }
+
+  &.is-text {
+    --chip-text: var(--chip-color-text);
+  }
+
+  &.is-strong {
+    --chip-text: var(--chip-color-strong);
+  }
+
   &.is-quiet {
     --chip-text: var(--chip-color-weak);
     --chip-background: var(--chip-color-base);
@@ -68,6 +92,10 @@
   .no-glow &, &.no-glow {
     --chip-glow-alpha: 0;
     --chip-glow-alpha-hover: 0;
+  }
+
+  .no-border &, &.no-border {
+    --chip-color: transparent;
   }
 
   &.is-hoverable:hover, &.is-hoverable:active {
