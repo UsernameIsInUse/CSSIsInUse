@@ -12,7 +12,7 @@
   --component-background-hover: var(--component-color-element);
 
   --component-size-text: var(--text-size-6);
-  --component-size-padding: var(--padding-base);
+  --component-size-padding: var(--padding-md);
 
   // Mixins
   @include m.glow(...)
@@ -31,7 +31,7 @@
   
   &.is-small {
     --component-size-text: var(--text-size-7);
-    --component-size-padding: var(--padding-small);
+    --component-size-padding: var(--padding-sm);
   }
   
   // State Variants (hover, active, disabled, is-hoverable, is-active)

@@ -1,10 +1,10 @@
 @use "../tools/mixins" as m;
 
 .group {
-  --group-size-gap: var(--padding-small);
+  --group-size-gap: var(--padding-sm);
 
   --group-flex-flow: wrap;
-  --group-addons-inline-end: var(--border-thickness-base);
+  --group-addons-inline-end: var(--border-thickness-md);
 
   @include m.block("base");
 

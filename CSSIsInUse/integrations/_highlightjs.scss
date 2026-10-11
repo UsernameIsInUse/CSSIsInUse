@@ -7,10 +7,10 @@ pre code.hljs {
   @include m.scrollable($y: false, $x: true, $overscroll: false);
 
   display: block;
-  padding: var(--padding-base);
+  padding: var(--padding-md);
   font-family: var(--font-monospace);
   font-size: var(--text-size-6);
-  border-radius: var(--border-radius-small);
+  border-radius: var(--border-radius-sm);
 }
 code.hljs {
   padding: var(--padding-xs);

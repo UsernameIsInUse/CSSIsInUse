@@ -11,9 +11,9 @@
   --dropdown-shadow: var(--dropdown-color-base);
 
   --dropdown-size-text: var(--text-size-6);
-  --dropdown-size-shadow: var(--glow-size-large);
-  --dropdown-size-content-padding: var(--padding-small) 0;
-  --dropdown-size-item-padding: var(--input-padding-base);
+  --dropdown-size-shadow: var(--glow-size-lg);
+  --dropdown-size-content-padding: var(--padding-sm) 0;
+  --dropdown-size-item-padding: var(--input-padding-md);
 
   --dropdown-display: none;
 
@@ -97,7 +97,7 @@
   &.is-up {
     .dropdown-menu {
       bottom: 100%;
-      padding-bottom: var(--padding-small);
+      padding-bottom: var(--padding-sm);
       padding-top: initial;
       top: auto;
     }
@@ -110,7 +110,7 @@
   }
 
   .dropdown-btn.button {
-    --btn-size-radius: var(--border-radius-small);
+    --btn-size-radius: var(--border-radius-sm);
   }
 
   .dropdown-menu {
@@ -119,7 +119,7 @@
     width: max-content;
     min-width: calc(var(--breakpoint-xs) / 2);
     max-width: var(--breakpoint-xs);
-    padding-top: var(--padding-small);
+    padding-top: var(--padding-sm);
     top: 100%;
     font-size: var(--dropdown-size-text);
     z-index: var(--z-index-dropdown);
@@ -129,13 +129,13 @@
     @include m.glow(var(--dropdown-size-shadow), var(--dropdown-shadow), 1);
 
     padding: var(--dropdown-size-content-padding);
-    border-radius: var(--border-radius-small);
-    border: var(--border-thickness-base) solid var(--dropdown-color);
+    border-radius: var(--border-radius-sm);
+    border: var(--border-thickness-md) solid var(--dropdown-color);
     background-color: var(--dropdown-background);
     color: var(--dropdown-text);
     
     hr {
-      margin: var(--padding-small) 0;
+      margin: var(--padding-sm) 0;
       background-color: var(--dropdown-hr);
     }
   }

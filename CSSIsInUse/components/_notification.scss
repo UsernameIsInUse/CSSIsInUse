@@ -1,17 +1,28 @@
-@use '../tools/functions' as f;
 @use "../tools/mixins" as m;
 
 .notifications {
-  position:fixed;
-  z-index: var(--z-index-notifications);
-  top: f.fluid_clamp(4.5rem,5rem);
-  padding-left:1rem;
-  padding-right:f.fluid-clamp(1rem,2rem);
-  right: 0;
+  --notifs-top: var(--fluid-notifs-top);
+  --notifs-right: 0;
+  --notifs-bottom: auto;
+  --notifs-left: auto;
+  --notifs-padding-right: var(--padding-edge);
+  --notifs-padding-left: var(--padding-md);
+
+  @include m.fluid-clamp("notifs-top", calc(var(--navbar-height) + var(--padding-sm)), calc(var(--navbar-height) + var(--padding-md)));
+  @include m.fluid-clamp("notifs-bottom", var(--padding-lg), var(--padding-xl));
+
   display:flex;
+  position:fixed;
+  top: var(--notifs-top);
+  right: var(--notifs-right);
+  bottom: var(--notifs-bottom);
+  left: var(--notifs-left);
+  width: min(100%, var(--breakpoint-sm));
+  padding-left: var(--notifs-padding-left);
+  padding-right: var(--notifs-padding-right);
+  z-index: var(--z-index-notifications);
   flex-direction: column;
   align-items: end;
-  width: min(100%, 30rem);
   pointer-events: none;
   list-style-type: none;
 
@@ -24,15 +35,15 @@
   }
 
   &.is-bottom{
-    top:auto;
-    bottom:f.fluid_clamp(2rem,4rem);
+    --notifs-top: auto;
+    --notifs-bottom: var(--fluid-notifs-bottom);
   }
 
   &.is-left{
-    right:auto;
-    left:0;
-    padding-left:f.fluid-clamp(1rem,2rem);
-    padding-right:1rem;
+    --notifs-right: auto;
+    --notifs-left: 0;
+    --notifs-padding-right: var(--padding-md);
+    --notifs-padding-left: var(--padding-edge);
   }
 }
 
@@ -47,12 +58,12 @@
   --notif-color-quiet: var(--notif-color-top);
 
   --notif-size-text: var(--text-size-6);
-  --notif-size-padding: var(--padding-base);
-  --notif-size-radius: var(--border-radius-base);
-  --notif-size-glow: var(--glow-size-large);
+  --notif-size-padding: var(--padding-md);
+  --notif-size-radius: var(--border-radius-md);
+  --notif-size-glow: var(--glow-size-lg);
 
-  --notif-glow-alpha: var(--opacity-disabled);
-  --notif-glow-alpha-hover: var(--opacity-base);
+  --notif-glow-alpha: var(--opacity-glow);
+  --notif-glow-alpha-hover: var(--opacity-dark);
 
   @include m.transitions("background","box-shadow");
   @include m.block("base");
@@ -63,7 +74,7 @@
   padding: var(--notif-size-padding);
   background-color: var(--notif-background);
   color: var(--notif-text);
-  border: var(--border-thickness-base) solid var(--notif-color);
+  border: var(--border-thickness-md) solid var(--notif-color);
   border-radius: var(--notif-size-radius);
   font-size: var(--notif-size-text);
 
@@ -115,8 +126,8 @@
     --notif-text: var(--notif-color-weak);
     --notif-color: var(--notif-color-quiet);
 
-    --notif-size-padding: var(--padding-small);
-    --notif-size-radius: var(--border-radius-small);
+    --notif-size-padding: var(--padding-sm);
+    --notif-size-radius: var(--border-radius-sm);
     --notif-size-text: var(--text-size-7);
 
     --notif-glow-alpha: 0;
@@ -131,7 +142,7 @@
     --notif-glow-alpha-hover: 0;
   }
 
-  .no-glow &, &.no-glow {
+  &:disabled, &[disabled], &.disabled, .no-glow &, &.no-glow {
     --notif-glow-alpha: 0;
     --notif-glow-alpha-hover: 0;
   }

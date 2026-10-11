@@ -3,9 +3,9 @@
 @use '../schemes' as s;
 
 @mixin static-tokens {
-  --line-height-base: 1.5;
-  --line-height-small: 1.25;
-  --line-height-large: 2;
+  --line-height-md: 1.5;
+  --line-height-sm: 1.25;
+  --line-height-lg: 2;
 
   --weight-light: 300;
   --weight-normal: 400;
@@ -51,14 +51,27 @@
   --padding-section-lg-min: 4rem;
 
   --border-radius-base: 1rem;
+  --border-radius-sm-base: 0.5;
 
   --opacity-base: 1;
+  --opacity-light-base: 0.25;
+  --opacity-disabled-base: 0.5;
+  --opacity-glow-base: 0.5;
+  --opacity-dark-base: 0.8;
 
   --border-thickness-base: 2px;
+  --border-thickness-light-base: 0.5;
+  --border-thickness-heavy-base: 2;
 
   --glow-size-base: 1rem;
-
+  --glow-size-xs-base: 0.5;
+  --glow-size-sm-base: 0.8;
+  --glow-size-lg-base: 1.5;
+  --glow-size-xl-base: 2;
+  
   --blur-size-base: 1rem;
+  --blur-size-sm-base: 0.5;
+  --blur-size-lg-base: 1.5;
 
   --transition-duration: 0.2s;
 
@@ -74,7 +87,7 @@
   --breakpoint-lg-base: 90rem; //1440px
 }
 
-@mixin generative-tokens {
+@mixin derivative-tokens {
   @include m.fluid-clamp("h1", var(--text-size-1-min), var(--text-size-1-max));
   @include m.fluid-clamp("h2", var(--text-size-2-min), var(--text-size-2-max));
   @include m.fluid-clamp("h3", var(--text-size-3-min), var(--text-size-3-max));
@@ -90,19 +103,19 @@
   --text-size-6: var(--text-size-6-base);
   --text-size-7: var(--text-size-7-base);
   --text-size-logo: var(--fluid-logo);
-  --text-size-large: var(--text-size-4-min);
+  --text-size-lg: var(--text-size-4-min);
   --text-size-xl: var(--text-size-5-max);
 
   --icon-size-xs: var(--text-size-7);
-  --icon-size-small: var(--text-size-6-base);
-  --icon-size-base: var(--text-size-4-min);
-  --icon-size-large: var(--text-size-4);
+  --icon-size-sm: var(--text-size-6-base);
+  --icon-size-md: var(--text-size-4-min);
+  --icon-size-lg: var(--text-size-4);
   --icon-size-xl: var(--text-size-3);
 
   --padding-xs: calc(var(--padding-base) * var(--padding-xs-base));
-  --padding-small: calc(var(--padding-base) * var(--padding-sm-base));
+  --padding-sm: calc(var(--padding-base) * var(--padding-sm-base));
   --padding-md: var(--padding-base);
-  --padding-large: calc(var(--padding-base) * var(--padding-lg-base));
+  --padding-lg: calc(var(--padding-base) * var(--padding-lg-base));
   --padding-xl: calc(var(--padding-base) * var(--padding-xl-base));
 
   @include m.fluid-clamp("padding-section-md", var(--padding-section-md-min), var(--padding-section-md-max));
@@ -113,13 +126,13 @@
   --padding-section-md: var(--fluid-padding-section-md);
   --padding-section-lg: var(--fluid-padding-section-lg);
 
-  @include m.fluid-clamp("padding-edge", var(--padding-base), calc(var(--padding-base) * var(--padding-lg-base)));
+  @include m.fluid-clamp("padding-edge", var(--padding-md), var(--padding-lg));
 
   --padding-edge: var(--fluid-padding-edge);
 
-  --input-padding-base: calc(var(--padding-base) * var(--padding-sm-base)) var(--padding-base);
-  --input-padding-small: calc(var(--padding-base) * var(--padding-xs-base)) calc(var(--padding-base) * var(--padding-sm-base));
-  --input-padding-large: var(--padding-base) calc(var(--padding-base) * var(--padding-lg-base));
+  --input-padding-small: var(--padding-xs) var(--padding-sm);
+  --input-padding-md: var(--padding-sm) var(--padding-md);
+  --input-padding-lg: var(--padding-md) var(--padding-lg);
 
   --sidebar-width: var(--breakpoint-xs);
 
@@ -128,25 +141,26 @@
   --weight-logo: var(--weight-bold);
 
   --border-radius-md: var(--border-radius-base);
-  --border-radius-small: calc(var(--border-radius-base) * 0.5);
+  --border-radius-sm: calc(var(--border-radius-base) * var(--border-radius-sm-base));
 
-  --opacity-light: calc(var(--opacity-base) * 0.25);
-  --opacity-disabled: calc(var(--opacity-base) * 0.7);
-  --opacity-dark: calc(var(--opacity-base) * 0.8);
+  --opacity-light: calc(var(--opacity-base) * var(--opacity-light-base));
+  --opacity-disabled: calc(var(--opacity-base) * var(--opacity-disabled-base));
+  --opacity-glow: calc(var(--opacity-base) * var(--opacity-glow-base));
+  --opacity-dark: calc(var(--opacity-base) * var(--opacity-dark-base));
 
-  --border-thickness-light: calc(var(--border-thickness-base) * 0.5);
+  --border-thickness-light: calc(var(--border-thickness-base) * var(--border-thickness-light-base));
   --border-thickness-md: var(--border-thickness-base);
-  --border-thickness-heavy: calc(var(--border-thickness-base) * 2);
+  --border-thickness-heavy: calc(var(--border-thickness-base) * var(--border-thickness-heavy-base));
 
-  --glow-size-xs: calc(var(--glow-size-base) * 0.5);
-  --glow-size-small: calc(var(--glow-size-base) * 0.8);
+  --glow-size-xs: calc(var(--glow-size-base) * var(--glow-size-xs-base));
+  --glow-size-sm: calc(var(--glow-size-base) * var(--glow-size-sm-base));
   --glow-size-md: var(--glow-size-base);
-  --glow-size-large: calc(var(--glow-size-base) * 1.5);
-  --glow-size-xl: calc(var(--glow-size-base) * 2);
+  --glow-size-lg: calc(var(--glow-size-base) * var(--glow-size-lg-base));
+  --glow-size-xl: calc(var(--glow-size-base) * var(--glow-size-xl-base));
   
-  --blur-size-small: calc(var(--blur-size-base) * 0.5);
+  --blur-size-sm: calc(var(--blur-size-base) * var(--blur-size-sm-base));
   --blur-size-md: var(--blur-size-base);
-  --blur-size-large: calc(var(--blur-size-base) * 1.5);
+  --blur-size-lg: calc(var(--blur-size-base) * var(--blur-size-lg-base));
 
   --font-logo: var(--font-header);
 
@@ -163,24 +177,20 @@
   @include base-tokens;
 }
 
-:root {
-  @include generative-tokens;
-}
-
-#{s.$scheme-selectors}, #{s.$scheme-classes} {
-  @include generative-tokens;
+:root, #{s.$scheme-selectors}, #{s.$scheme-classes} {
+  @include derivative-tokens;
 }
 
 @media screen and (prefers-reduced-motion) {
   :root {
-    --transition-duration-base: 0s;
+    --transition-duration: 0s;
   }
 }
 
 @media screen and (prefers-reduced-transparency) {
-  :root {
-    --opacity-light: 0.5;
-    --opacity-disabled: 0.8
-    --opacity-dark: 1;
+  :root, #{s.$scheme-selectors}, #{s.$scheme-classes} {
+    --opacity-light: 0.7 !important;
+    --opacity-dark: 1 !important;
+    --glow-size-base: 0 !important;
   }
 }

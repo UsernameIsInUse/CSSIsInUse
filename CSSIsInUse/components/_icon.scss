@@ -5,7 +5,7 @@
 
   --icon-color: inherit;
 
-  --icon-size: var(--icon-size-base);
+  --icon-size: var(--icon-size-md);
 
   @include m.transitions("color");
   @include m.no-select;
@@ -42,10 +42,10 @@
     --icon-size: var(--icon-size-xs);
   }
   &.is-small {
-    --icon-size: var(--icon-size-small);
+    --icon-size: var(--icon-size-sm);
   }
   &.is-large {
-    --icon-size: var(--icon-size-large);
+    --icon-size: var(--icon-size-lg);
   }
   &.is-xl {
     --icon-size: var(--icon-size-xl);

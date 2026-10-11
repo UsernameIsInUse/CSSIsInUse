@@ -11,12 +11,12 @@
   --btn-color: var(--btn-color-color);
 
   --btn-size-text: var(--text-size-6);
-  --btn-size-padding: var(--input-padding-base);
+  --btn-size-padding: var(--input-padding-md);
   --btn-size-radius: var(--border-radius-rounded);
-  --btn-size-glow: var(--glow-size-large);
+  --btn-size-glow: var(--glow-size-lg);
 
-  --btn-glow-alpha: var(--opacity-disabled);
-  --btn-glow-alpha-hover: var(--opacity-base);
+  --btn-glow-alpha: var(--opacity-glow);
+  --btn-glow-alpha-hover: var(--opacity-dark);
   
   @include m.transitions("background-color", "box-shadow");
   @include m.no-select;
@@ -30,7 +30,7 @@
   background-color: var(--btn-background);
   color: var(--btn-text);
   font-size: var(--btn-size-text);
-  border: var(--border-thickness-base) solid var(--btn-color);
+  border: var(--border-thickness-md) solid var(--btn-color);
   border-radius: var(--btn-size-radius);
   cursor: pointer;
   text-decoration: none;
@@ -103,8 +103,8 @@
 
   &.is-icon {
     --btn-size-padding: var(--padding-xs);
-    --btn-size-radius: var(--border-radius-small);
-    --btn-size-glow: var(--glow-size-small);
+    --btn-size-radius: var(--border-radius-sm);
+    --btn-size-glow: var(--glow-size-sm);
     line-height: 1;
 
     .icon {
@@ -116,10 +116,10 @@
     }
 
     &.is-large {
-      --btn-size-padding: var(--padding-small);
+      --btn-size-padding: var(--padding-sm);
     }
     &.is-xl {
-      --btn-size-padding: var(--padding-base);
+      --btn-size-padding: var(--padding-md);
     }
     
   }
@@ -127,11 +127,11 @@
   &.is-small {
     --btn-size-padding: var(--input-padding-small);
     --btn-size-text: var(--text-size-7);
-    --btn-size-glow: var(--glow-size-small);
+    --btn-size-glow: var(--glow-size-sm);
   }
 
   &.is-large {
-    --btn-size-text: var(--text-size-large);
+    --btn-size-text: var(--text-size-lg);
   }
 
   &.is-xl {
@@ -143,7 +143,7 @@
     --btn-glow-alpha: var(--btn-glow-alpha-hover);
   }
 
-  &:disabled, &.disabled {
+  &:disabled, &[disabled], &.disabled {
     --btn-background-hover: var(--btn-background-disabled);
 
     --btn-glow-alpha: 0;

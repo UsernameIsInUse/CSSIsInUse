@@ -9,8 +9,8 @@
   --chip-text: var(--chip-color-strong);
   --chip-color: var(--chip-color-top);
 
-  --chip-glow-alpha: var(--opacity-disabled);
-  --chip-glow-alpha-hover: 1;
+  --chip-glow-alpha: var(--opacity-glow);
+  --chip-glow-alpha-hover: var(--opacity-dark);
 
   @include m.transitions("background-color", "box-shadow");
 
@@ -20,8 +20,8 @@
   background-color: var(--chip-background);
   color: var(--chip-text);
   font-size: var(--text-size-7);
-  border: var(--border-thickness-base) solid var(--chip-color);
-  border-radius: var(--border-radius-small);
+  border: var(--border-thickness-md) solid var(--chip-color);
+  border-radius: var(--border-radius-sm);
 
   &.is-base {
     --chip-background: var(--chip-color-base);
@@ -102,7 +102,7 @@
     --chip-background: var(--chip-background-hover);
   }
 
-  &:disabled, &.disabled {
+  &:disabled, &[disabled], &.disabled {
     --chip-background-hover: var(--chip-background-disabled);
 
     --chip-glow-alpha: 0;
@@ -112,7 +112,7 @@
 
 a.chip, button.chip {
   @include m.focus;
-  @include m.glow(var(--glow-size-small), var(--chip-color), var(--chip-glow-alpha));
+  @include m.glow(var(--glow-size-sm), var(--chip-color), var(--chip-glow-alpha));
 
   text-decoration: none;
 

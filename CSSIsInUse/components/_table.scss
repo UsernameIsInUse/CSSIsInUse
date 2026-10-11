@@ -8,7 +8,7 @@ table {
   --table-text: var(--table-color-strong);
   --table-border: var(--table-color-top);
 
-  --table-cell-padding: var(--input-padding-base);
+  --table-cell-padding: var(--input-padding-md);
 
   @include m.block("base");
   
@@ -76,7 +76,7 @@ table {
     --table-cell-padding: var(--input-padding-small);
   }
   &.is-large {
-    --table-cell-padding: var(--input-padding-large);
+    --table-cell-padding: var(--input-padding-lg);
   }
 
   th, td {
@@ -90,11 +90,11 @@ table {
   }
 
   th {
-    border-bottom: var(--border-thickness-base) solid var(--table-border);
+    border-bottom: var(--border-thickness-md) solid var(--table-border);
   }
 
   tfoot tr:first-child td {
-    border-top: var(--border-thickness-base) solid var(--table-border);
+    border-top: var(--border-thickness-md) solid var(--table-border);
   }
 
   td {

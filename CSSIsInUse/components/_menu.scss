@@ -63,7 +63,7 @@
     padding: var(--input-padding-small);
     background-color: var(--menu-background);
     color: var(--menu-text);
-    border-radius: var(--border-radius-small);
+    border-radius: var(--border-radius-sm);
     text-align: left;
     text-decoration: none;
 
@@ -83,9 +83,9 @@
 
   li ul {
     width: auto;
-    margin-left: var(--padding-base);
-    border-left: var(--border-thickness-base) solid var(--menu-color);
-    padding-left: var(--padding-small);
+    margin-left: var(--padding-md);
+    border-left: var(--border-thickness-md) solid var(--menu-color);
+    padding-left: var(--padding-sm);
     list-style: none;
   }
 }

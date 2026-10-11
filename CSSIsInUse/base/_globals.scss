@@ -51,7 +51,7 @@ h1, h2, h3, h4, h5, h6 {
 hgroup {
   @include m.block('xl');
 
-  line-height: var(--line-height-small);
+  line-height: var(--line-height-sm);
 
   h1, h2, h3, h4, h5, h6 {
     @include m.block('xs');
@@ -85,7 +85,7 @@ h6 {
 
 p {
   font-size: var(--text-size-6);
-  line-height: var(--line-height-base);
+  line-height: var(--line-height-md);
 }
 
 ol, ul {
@@ -155,6 +155,6 @@ hr{
   background-color: var(--hr-background);
   border: none;
   display: block;
-  height: var(--border-thickness-base);
-  margin: var(--padding-large) 0;
+  height: var(--border-thickness-md);
+  margin: var(--padding-lg) 0;
 }

@@ -85,6 +85,12 @@
       </nav>
     </header>
 
+    <div class="notifications is-hidden">
+      <div class="notification">Test</div>
+      <div class="notification is-primary">Test</div>
+      <div class="notification is-quiet is-top">Test</div>
+    </div>
+
     <main
       class="has-sidebar"
       :class="{ 'open': sidebarOpen, 'full': sidebarFull }"
@@ -95,33 +101,36 @@
           <h5 class="text-primary-vivid"><span class="group"><span class="icon"><i class="ti ti-click-filled"></i></span><span>CSSIsInUse</span></span></h5>
           <ul class="menu is-primary is-ghost">
             <li><ul>
-              <li><a href="#home" @click="current = 'home'" :class="{ 'is-active' : current === 'home' }">Home</a></li>
-              <li><a href="#overview" @click="current = 'overview'" :class="{ 'is-active' : current === 'overview' }">Overview</a></li>
-              <li><a href="#about" @click="current = 'about'" :class="{ 'is-active' : current === 'about' }">About</a></li>
-              <li><a href="#installation" @click="current = 'installation'" :class="{ 'is-active' : current === 'installation' }">Installation</a></li>
-              <li><a href="#kitchen" @click="current = 'kitchen'" :class="{ 'is-active' : current === 'kitchen' }">Kitchen Sink</a></li>
+              <li><a href="#home" @click="current = 'home'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'home' }">Home</a></li>
+              <li><a href="#about" @click="current = 'about'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'about' }">About</a></li>
+              <li><a href="#installation" @click="current = 'installation'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'installation' }">Setup & Installation</a></li>
+              <li><a href="#kitchen" @click="current = 'kitchen'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'kitchen' }">Kitchen Sink</a></li>
             </ul></li>
           </ul>
 
           <h5 class="text-info-vivid"><span class="group"><span class="icon"><i class="ti ti-list-details-filled"></i></span><span>Features</span></span></h5>
           <ul class="menu is-info is-ghost">
             <li><ul>
-              <li><a href="#tokens" @click="current = 'tokens'" :class="{ 'is-active' : current === 'tokens' }">Tokens</a></li>
-              <li><a href="#base" @click="current = 'base'" :class="{ 'is-active' : current === 'base' }">Base Styles</a></li>
-              <li><a href="#color" @click="current = 'color'" :class="{ 'is-active' : current === 'color' }">Color System</a></li>
-              <li><a href="#accessibility" @click="current = 'accessibility'" :class="{ 'is-active' : current === 'accessibility' }">Accessibility & Preferences</a></li>
-              <li><a href="#tools" @click="current = 'tools'" :class="{ 'is-active' : current === 'tools' }">Tools</a></li>
+              <li><a href="#heirarchy" @click="current = 'heirarchy'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'heirarchy' }">Framework Heirarchy</a></li>
+              <li><ul>
+                <li><a href="#tokens" @click="current = 'tokens'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'tokens' }">Genetic Tokens</a></li>
+                <li><a href="#tools" @click="current = 'tools'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'tools' }">Tools</a></li>
+                <li><a href="#layout" @click="current = 'layout'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'layout' }">Layout</a></li>
+                <li><a href="#components" @click="current = 'components'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'components' }">Components</a></li>
+                <li><a href="#utilities" @click="current = 'utilities'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'utilities' }">Utilities</a></li>
+              </ul></li>
+              <li><a href="#color" @click="current = 'color'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'color' }">Color System</a></li>
+              <li><a href="#accessibility" @click="current = 'accessibility'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'accessibility' }">Accessibility & Preferences</a></li>
             </ul></li>
           </ul>
 
           <h5 class="text-success-vivid"><span class="group"><span class="icon"><i class="ti ti-layout-filled"></i></span><span>Layout</span></span></h5>
           <ul class="menu is-success is-ghost">
             <li><ul>
-              <li><a href="#stack" @click="current = 'stack'" :class="{ 'is-active' : current === 'stack' }">Stack</a></li>
-              <li><a href="#sidebar" @click="current = 'sidebar'" :class="{ 'is-active' : current === 'sidebar' }">Main & Sidebar</a></li>
-              <li><a href="#section" @click="current = 'section'" :class="{ 'is-active' : current === 'section' }">Section & Container</a></li>
-              <li><a href="#columns" @click="current = 'columns'" :class="{ 'is-active' : current === 'columns' }">Columns</a></li>
-              <li><a href="#grid" @click="current = 'grid'" :class="{ 'is-active' : current === 'grid' }">Grid</a></li>
+              <li><a href="#stack" @click="current = 'stack'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'stack' }">Stack</a></li>
+              <li><a href="#sidebar" @click="current = 'sidebar'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'sidebar' }">Main & Sidebar</a></li>
+              <li><a href="#section" @click="current = 'section'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'section' }">Section & Container</a></li>
+              <li><a href="#columns" @click="current = 'columns'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'columns' }">Columns</a></li>
             </ul></li>
           </ul>
 
@@ -129,41 +138,42 @@
           <ul class="menu is-warning is-ghost">
             <li><ul>
               
-              <li><a href="#group" @click="current = 'group'" :class="{ 'is-active' : current === 'group' }">Group</a></li>
-              <li><a href="#icon" @click="current = 'icon'" :class="{ 'is-active' : current === 'icon' }">Icon</a></li>
-              <li><a href="#card" @click="current = 'card'" :class="{ 'is-active' : current === 'card' }">Card</a></li>
-              <li><a href="#button" @click="current = 'button'" :class="{ 'is-active' : current === 'button' }">Button</a></li>
-              <li><a href="#chip" @click="current = 'chip'" :class="{ 'is-active' : current === 'chip' }">Chip</a></li>
-              <li><a href="#form" @click="current = 'form'" :class="{ 'is-active' : current === 'form' }">Form</a></li>
+              <li><a href="#icon" @click="current = 'icon'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'icon' }">Icon</a></li>
+              <li><a href="#card" @click="current = 'card'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'card' }">Card</a></li>
+              <li><a href="#button" @click="current = 'button'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'button' }">Button</a></li>
+              <li><a href="#chip" @click="current = 'chip'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'chip' }">Chip</a></li>
+              <li><a href="#form" @click="current = 'form'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'form' }">Form</a></li>
               <li><ul>
-                <li><a href="#input" @click="current = 'input'" :class="{ 'is-active' : current === 'input' }">Input</a></li>
-                <li><a href="#textarea" @click="current = 'textarea'" :class="{ 'is-active' : current === 'textarea' }">Textarea</a></li>
-                <li><a href="#select" @click="current = 'select'" :class="{ 'is-active' : current === 'select' }">Select</a></li>
-                <li><a href="#checkbox" @click="current = 'checkbox'" :class="{ 'is-active' : current === 'checkbox' }">Checkbox & Radio</a></li>
-                <li><a href="#file" @click="current = 'file'" :class="{ 'is-active' : current === 'file' }">File</a></li>
+                <li><a href="#input" @click="current = 'input'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'input' }">Input</a></li>
+                <li><a href="#textarea" @click="current = 'textarea'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'textarea' }">Textarea</a></li>
+                <li><a href="#select" @click="current = 'select'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'select' }">Select</a></li>
+                <li><a href="#checkbox" @click="current = 'checkbox'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'checkbox' }">Checkbox & Radio</a></li>
+                <li><a href="#file" @click="current = 'file'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'file' }">File</a></li>
               </ul></li>
-              <li><a href="#table" @click="current = 'table'" :class="{ 'is-active' : current === 'table' }">Table</a></li>
-              <li><a href="#dropdown" @click="current = 'dropdown'" :class="{ 'is-active' : current === 'dropdown' }">Dropdown</a></li>
-              <li><a href="#menu" @click="current = 'menu'" :class="{ 'is-active' : current === 'menu' }">Menu</a></li>
-              <li><a href="#accordion" @click="current = 'accordion'" :class="{ 'is-active' : current === 'accordion' }">Accordion</a></li>
-              <li><a href="#modal" @click="current = 'modal'" :class="{ 'is-active' : current === 'modal' }">Modal</a></li>
-              <li><a href="#notification" @click="current = 'notification'" :class="{ 'is-active' : current === 'notification' }">Notification</a></li>
+              <li><a href="#table" @click="current = 'table'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'table' }">Table</a></li>
+              <li><a href="#dropdown" @click="current = 'dropdown'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'dropdown' }">Dropdown</a></li>
+              <li><a href="#menu" @click="current = 'menu'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'menu' }">Menu</a></li>
+              <li><a href="#accordion" @click="current = 'accordion'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'accordion' }">Accordion</a></li>
+              <li><a href="#modal" @click="current = 'modal'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'modal' }">Modal</a></li>
+              <li><a href="#notification" @click="current = 'notification'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'notification' }">Notification</a></li>
             </ul></li>
           </ul>
 
           <h5 class="text-info-vivid"><span class="group"><span class="icon"><i class="ti ti-list-details-filled"></i></span><span>Utilities</span></span></h5>
           <ul class="menu is-info is-ghost">
             <li><ul>
-              <li><a href="#block" @click="current = 'block'" :class="{ 'is-active' : current === 'block' }">Block</a></li>
+              <li><a href="#block" @click="current = 'block'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'block' }">Block</a></li>
+              <li><a href="#group" @click="current = 'group'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'group' }">Group</a></li>
+              <li><a href="#other-utils" @click="current = 'other-utils'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'other-utils' }">Other Utils</a></li>
             </ul></li>
           </ul>
 
           <h5 class="text-danger-vivid"><span class="group"><span class="icon"><i class="ti ti-puzzle-filled"></i></span><span>Integrations</span></span></h5>
           <ul class="menu is-danger is-ghost">
             <li><ul>
-              <li><a href="#tabler" @click="current = 'tabler'" :class="{ 'is-active' : current === 'tabler' }">Tabler</a></li>
-              <li><a href="#choices" @click="current = 'choices'" :class="{ 'is-active' : current === 'choices' }">Choices</a></li>
-              <li><a href="#highlight" @click="current = 'highlight'" :class="{ 'is-active' : current === 'highlight' }">Highlight.js</a></li>
+              <li><a href="#tabler" @click="current = 'tabler'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'tabler' }">Tabler</a></li>
+              <li><a href="#choices" @click="current = 'choices'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'choices' }">Choices</a></li>
+              <li><a href="#highlight" @click="current = 'highlight'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'highlight' }">Highlight.js</a></li>
             </ul></li>
           </ul>
 
@@ -172,13 +182,15 @@
 
       <div class="main">
 
+        <!-- #region Home -->
+
         <section id="home" class="section container content" x-show="current === 'home'">
           <h1>Test</h1>
         </section>
 
-        <section id="overview" class="section container content" x-show="current === 'overview'">
-          <h1>Overview</h1>
-        </section>
+        <!-- #endregion -->
+
+        <!-- #region About -->
 
         <section id="about" class="section container content" x-show="current === 'about'">
           <hgroup>
@@ -211,17 +223,19 @@
           <p>Even if you hate how this site looks, because you can change it fairly quickly by just modifying a few base variables, it's a great starting point for any project.</p>
         </section>
 
+        <!-- #endregion -->
+
+        <!-- #region Installation -->
+
         <section id="installation" class="section container content" x-show="current === 'installation'">
           <h1>Installation</h1>
         </section>
 
-        <section id="features" class="section content is-xs is-align-center" x-show="['features', 'kitchen'].includes(current)">
-          <h1>Features</h1>
-        </section>
+        <!-- #endregion -->
 
         <!-- #region Tokens -->
 
-        <section id="tokens" class="section container content" x-show="['tokens', 'kitchen'].includes(current)">
+        <section id="tokens" class="section container content" x-show="['tokens', 'heirarchy'].includes(current)">
           <hgroup>
             <h2>Tokens</h2>
             <h5></h5>
@@ -252,7 +266,25 @@
 
         <!-- #endregion -->
 
-        <!-- #region Base -->
+        <!-- #region Tools -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Layout -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Components -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Utilities -->
 
         
 
@@ -270,13 +302,7 @@
 
         <!-- #endregion -->
 
-        <!-- #region Tools -->
-
-        
-
-        <!-- #endregion -->
-
-        <section id="features" class="section content is-xs is-align-center" x-show="['features', 'kitchen'].includes(current)">
+        <section id="layout" class="section content is-xs is-align-center" x-show="current === 'kitchen'">
           <h1>Layout</h1>
         </section>
 
@@ -304,14 +330,102 @@
 
         <!-- #endregion -->
 
-        <!-- #region Grid -->
+        <section id="components" class="section content is-xs is-align-center" x-show="current === 'kitchen'">
+          <h1>Components</h1>
+        </section>
+
+        <!-- #region Icon -->
 
         
 
         <!-- #endregion -->
 
-        <section id="components" class="section content is-xs is-align-center" x-show="['components', 'kitchen'].includes(current)">
-          <h1>Components</h1>
+        <!-- #region Card -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Button -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Chip -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Input -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Textarea -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Select -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Checkbox / Radio -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region File -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Table -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Dropdown -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Menu -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Accordion -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Modal -->
+
+        
+
+        <!-- #endregion -->
+
+        <!-- #region Notification -->
+
+        
+
+        <!-- #endregion -->
+
+        <section id="utilities" class="section content is-xs is-align-center" x-show="current === 'kitchen'">
+          <h1>Utilities</h1>
         </section>
 
         <!-- #region Block -->
@@ -418,7 +532,7 @@
                 <span>(0.25rem)</span>
                 <div class="dropdown-menu">
                   <div class="dropdown-content">
-                    <div class="dropdown-item">--padding-xs: calc(var(--padding-base) * 0.25);</div>
+                    <div class="dropdown-item">--padding-xs: calc(var(--padding-md) * 0.25);</div>
                   </div>
                 </div>
               </code></div>
@@ -426,7 +540,7 @@
                 <span>(0.5rem)</span>
                 <div class="dropdown-menu">
                   <div class="dropdown-content">
-                    <div class="dropdown-item">--padding-small: calc(var(--padding-base) * 0.5);</div>
+                    <div class="dropdown-item">--padding-sm: calc(var(--padding-md) * 0.5);</div>
                   </div>
                 </div>
               </code></div>
@@ -434,7 +548,7 @@
                 <span>(1rem)</span>
                 <div class="dropdown-menu">
                   <div class="dropdown-content">
-                    <div class="dropdown-item">--padding-base: 1rem;</div>
+                    <div class="dropdown-item">--padding-md: 1rem;</div>
                   </div>
                 </div>
               </code></div>
@@ -442,7 +556,7 @@
                 <span>(2rem)</span>
                 <div class="dropdown-menu">
                   <div class="dropdown-content">
-                    <div class="dropdown-item">--padding-large: calc(var(--padding-base) * 2);</div>
+                    <div class="dropdown-item">--padding-lg: calc(var(--padding-md) * 2);</div>
                   </div>
                 </div>
               </code></div>
@@ -450,7 +564,7 @@
                 <span>(3rem)</span>
                 <div class="dropdown-menu">
                   <div class="dropdown-content">
-                    <div class="dropdown-item">--padding-xl: calc(var(--padding-base) * 3);</div>
+                    <div class="dropdown-item">--padding-xl: calc(var(--padding-md) * 3);</div>
                   </div>
                 </div>
               </code></div>
@@ -492,7 +606,7 @@
                 <span>(0.25rem)</span>
                 <div class="dropdown-menu">
                   <div class="dropdown-content">
-                    <div class="dropdown-item">--padding-xs: calc(var(--padding-base) * 0.25);</div>
+                    <div class="dropdown-item">--padding-xs: calc(var(--padding-md) * 0.25);</div>
                   </div>
                 </div>
               </code></div>
@@ -500,7 +614,7 @@
                 <span>(0.5rem)</span>
                 <div class="dropdown-menu">
                   <div class="dropdown-content">
-                    <div class="dropdown-item">--padding-small: calc(var(--padding-base) * 0.5);</div>
+                    <div class="dropdown-item">--padding-sm: calc(var(--padding-md) * 0.5);</div>
                   </div>
                 </div>
               </code></div>
@@ -508,7 +622,7 @@
                 <span>(1rem)</span>
                 <div class="dropdown-menu">
                   <div class="dropdown-content">
-                    <div class="dropdown-item">--padding-base: 1rem;</div>
+                    <div class="dropdown-item">--padding-md: 1rem;</div>
                   </div>
                 </div>
               </code></div>
@@ -516,7 +630,7 @@
                 <span>(2rem)</span>
                 <div class="dropdown-menu">
                   <div class="dropdown-content">
-                    <div class="dropdown-item">--padding-large: calc(var(--padding-base) * 2);</div>
+                    <div class="dropdown-item">--padding-lg: calc(var(--padding-md) * 2);</div>
                   </div>
                 </div>
               </code></div>
@@ -524,7 +638,7 @@
                 <span>(3rem)</span>
                 <div class="dropdown-menu">
                   <div class="dropdown-content">
-                    <div class="dropdown-item">--padding-xl: calc(var(--padding-base) * 3);</div>
+                    <div class="dropdown-item">--padding-xl: calc(var(--padding-md) * 3);</div>
                   </div>
                 </div>
               </code></div>
@@ -564,61 +678,13 @@
 
         <!-- #endregion -->
 
-        <!-- #region Icon -->
+        <!-- #region Other -->
 
         
 
         <!-- #endregion -->
 
-        <!-- #region Card -->
-
-        
-
-        <!-- #endregion -->
-
-        <!-- #region Button -->
-
-        
-
-        <!-- #endregion -->
-
-        <!-- #region Chip -->
-
-        
-
-        <!-- #endregion -->
-
-        <!-- #region Input -->
-
-        
-
-        <!-- #endregion -->
-
-        <!-- #region Textarea -->
-
-        
-
-        <!-- #endregion -->
-
-        <!-- #region Select -->
-
-        
-
-        <!-- #endregion -->
-
-        <!-- #region Checkbox / Radio -->
-
-        
-
-        <!-- #endregion -->
-
-        <!-- #region File -->
-
-        
-
-        <!-- #endregion -->
-
-        <section id="integrations" class="section content is-xs is-align-center" x-show="['integrations', 'kitchen'].includes(current)">
+        <section id="integrations" class="section content is-xs is-align-center" x-show="current === 'kitchen'">
           <h1>Integrations</h1>
         </section>
 
@@ -676,6 +742,7 @@
         -->
 
         <!-- #endregion -->
+         
       </div>
     </main>
   </body>

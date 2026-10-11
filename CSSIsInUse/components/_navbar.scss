@@ -18,11 +18,11 @@
   display: flex;
   width: 100%;
   height: var(--navbar-height);
-  padding: var(--padding-small) var(--padding-edge);
+  padding: var(--padding-sm) var(--padding-edge);
   background-color: oklch(from var(--nav-background) l c h / var(--nav-opacity));
   color: var(--nav-text);
   flex-direction: row;
-  gap: var(--padding-base);
+  gap: var(--padding-md);
   align-items: center;
   justify-content: space-between;
 
@@ -56,13 +56,13 @@
 
   &.is-translucent {
     --nav-opacity: var(--opacity-dark);
-    backdrop-filter: blur(var(--blur-size-small));
+    backdrop-filter: blur(var(--blur-size-sm));
   }
 
   .nav-item {
     display: flex;
     flex-direction: row;
-    gap: var(--padding-base);
+    gap: var(--padding-md);
     align-items: center;
     justify-content: space-between;
   }

@@ -19,9 +19,9 @@
   --choices-font-size-lg: var(--text-size-6);
   --choices-font-size-md: var(--text-size-6);
   --choices-font-size-sm: var(--text-size-7);
-  --choices-guttering: var(--padding-small);
-  --choices-border-radius: var(--border-radius-small);
-  --choices-border-radius-item: var(--border-radius-small);
+  --choices-guttering: var(--padding-sm);
+  --choices-border-radius: var(--border-radius-sm);
+  --choices-border-radius-item: var(--border-radius-sm);
 
   --choices-button-dimension: 0.8rem;
   --choices-button-offset: 8px;
@@ -35,7 +35,7 @@
   --choices-z-index: 1;
   --choices-input-height: 2.625rem;
   --choices-width: 100%;
-  --choices-base-border: var(--border-thickness-base) solid;
+  --choices-base-border: var(--border-thickness-md) solid;
   --choices-multiple-item-margin: 3.75px;
   --choices-multiple-item-padding: 4px 10px;
   --choices-dropdown-item-padding: 10px;
@@ -60,7 +60,7 @@
   .is-open &,
   &:focus {
     border-color: var(--choices-keyline-color);
-    outline: solid var(--border-thickness-base) var(--choices-text-color);
+    outline: solid var(--border-thickness-md) var(--choices-text-color);
   }
 }
 

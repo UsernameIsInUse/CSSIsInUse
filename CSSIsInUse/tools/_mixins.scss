@@ -58,7 +58,7 @@
 
 @mixin focus{
   &:focus-visible {
-    outline: solid var(--border-thickness-base) currentColor;
+    outline: solid var(--border-thickness-md) currentColor;
   }
 }
 

@@ -39,21 +39,29 @@
   --glow-size-base: 0;
   --padding-base: 1.5rem;
   --border-radius-base: 0.25rem;
-  --border-radius-md: 0.25rem !important;
-  --border-radius-small: 0.25rem !important;
+  --border-radius-sm: 0.25rem !important;
   --border-radius-rounded: 0.25rem !important;
   --text-size-6-base: 1.1rem;
-  --icon-size-small: 1.1rem;
+  --icon-size-sm: 1.1rem;
 
-  --line-height-base: 2;
-  --line-height-small: 1.5;
-  --line-height-large: 3;
-}
+  --line-height-md: 2;
+  --line-height-sm: 1.5;
+  --line-height-lg: 3;
 
-ol, ul {
-  padding-left: var(--padding-large);
-}
+  ol, ul {
+    padding-left: var(--padding-lg);
+  }
 
-.menu li ul {
-  margin-left: 1rem !important;
+  .menu {
+    padding-left: 0;
+
+    li ul {
+      margin-left: 1rem !important;
+    }
+  }
+  
+
+  .textarea.is-small {
+    --input-size-height: 3.125rem;
+  }
 }

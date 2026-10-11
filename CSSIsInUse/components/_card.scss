@@ -9,7 +9,7 @@
   --card-text: var(--card-color-text);
   --card-color: transparent;
 
-  --card-size-padding: var(--padding-base);
+  --card-size-padding: var(--padding-md);
 
   @include m.transitions("background-color");
 
@@ -17,8 +17,8 @@
   padding: var(--card-size-padding);
   background-color: var(--card-background);
   color: var(--card-text);
-  border: var(--border-thickness-base) solid var(--card-color);
-  border-radius: var(--border-radius-small);
+  border: var(--border-thickness-md) solid var(--card-color);
+  border-radius: var(--border-radius-sm);
 
   &.is-base {
     --card-background: var(--card-color-base);
@@ -91,11 +91,11 @@
   }
 
   &.is-small {
-    --card-size-padding: var(--padding-small);
+    --card-size-padding: var(--padding-sm);
   }
 
   &.is-large {
-    --card-size-padding: var(--padding-large);
+    --card-size-padding: var(--padding-lg);
   }
 
   &.is-xl {
@@ -106,7 +106,7 @@
     --card-background: var(--card-background-hover);
   }
 
-  &:disabled, &.disabled {
+  &:disabled, &[disabled], &.disabled {
     --card-background-hover: var(--card-background-disabled);
   }
 

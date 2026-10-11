@@ -1,11 +1,12 @@
 @forward 'block';
+@forward 'group';
 @forward 'non-core';
 
 .is-radius-small {
-  border-radius: var(--border-radius-small);
+  border-radius: var(--border-radius-sm);
 }
 .is-radius-base {
-  border-radius: var(--border-radius-base);
+  border-radius: var(--border-radius-md);
 }
 .is-radius-rounded {
   border-radius: var(--border-radius-rounded);
@@ -89,13 +90,13 @@
   gap: var(--padding-xs);
 }
 .is-gap-small {
-  gap: var(--padding-small);
+  gap: var(--padding-sm);
 }
 .is-gap-base {
-  gap: var(--padding-base);
+  gap: var(--padding-md);
 }
 .is-gap-large {
-  gap: var(--padding-large);
+  gap: var(--padding-lg);
 }
 .is-gap-xl {
   gap: var(--padding-xl);

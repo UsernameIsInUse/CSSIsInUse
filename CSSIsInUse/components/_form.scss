@@ -6,7 +6,7 @@
   width: 100%;
 
   & > *:not(:last-child) {
-    margin-bottom: var(--padding-small);
+    margin-bottom: var(--padding-sm);
   }
 }
 
@@ -41,8 +41,8 @@
   --input-color: var(--input-color-color);
 
   --input-size-text: var(--text-size-6);
-  --input-size-padding: var(--input-padding-base);
-  --input-size-height: calc(var(--padding-base) * 6);
+  --input-size-padding: var(--input-padding-md);
+  --input-size-height: calc(var(--padding-md) * 6);
   
   @include m.no-select;
   @include m.focus;
@@ -52,8 +52,8 @@
   padding: var(--input-size-padding);
   background-color: var(--input-background);
   color: var(--input-text);
-  border: var(--border-thickness-base) solid var(--input-color);
-  border-radius: var(--border-radius-small);
+  border: var(--border-thickness-md) solid var(--input-color);
+  border-radius: var(--border-radius-sm);
   font-size: var(--input-size-text);
 
   &.is-base {
@@ -112,7 +112,7 @@
 
   &.is-small {
     --input-size-height: 2.625rem;
-    --input-size-padding: var(--input-padding-base);
+    --input-size-padding: var(--input-padding-md);
     --input-size-text: var(--text-size-6);
   }
 
