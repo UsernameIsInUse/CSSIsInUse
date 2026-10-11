@@ -43,6 +43,13 @@
   --padding-lg-base: 2;
   --padding-xl-base: 3;
 
+  --padding-section-xs-base: 1rem;
+  --padding-section-sm-base: 2rem;
+  --padding-section-md-max: 4rem;
+  --padding-section-md-min: 3rem;
+  --padding-section-lg-max: 8rem;
+  --padding-section-lg-min: 4rem;
+
   --border-radius-base: 1rem;
 
   --opacity-base: 1;
@@ -97,8 +104,14 @@
   --padding-md: var(--padding-base);
   --padding-large: calc(var(--padding-base) * var(--padding-lg-base));
   --padding-xl: calc(var(--padding-base) * var(--padding-xl-base));
-  --padding-section: calc(var(--padding-base) * 4);
-  --padding-section-large: calc(var(--padding-base) * 8);
+
+  @include m.fluid-clamp("padding-section-md", var(--padding-section-md-min), var(--padding-section-md-max));
+  @include m.fluid-clamp("padding-section-lg", var(--padding-section-lg-min), var(--padding-section-lg-max));
+
+  --padding-section-xs: var(--padding-section-xs-base);
+  --padding-section-sm: var(--padding-section-sm-base);
+  --padding-section-md: var(--fluid-padding-section-md);
+  --padding-section-lg: var(--fluid-padding-section-lg);
 
   @include m.fluid-clamp("padding-edge", var(--padding-base), calc(var(--padding-base) * var(--padding-lg-base)));
 

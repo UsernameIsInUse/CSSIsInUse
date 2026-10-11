@@ -103,3 +103,6 @@ about > in a world filled with new and old css frameworks and front end tools, w
 
 Setup & Installation > explain that it's a css library that provides classes to help you style your html. you can use a precompiled css file or install the scss file to customize it. use a meta viewport tag to make it responsive. css & scss installation options. starter template html file
 
+
+
+on mobile, close sidebar on item click

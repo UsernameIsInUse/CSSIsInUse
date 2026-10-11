@@ -6,7 +6,7 @@
   --section-background: var(--section-color-base);
   --section-text: var(--section-color-text);
 
-  --section-padding-vertical: var(--padding-section);
+  --section-padding-vertical: var(--padding-section-md);
   --section-padding-horizontal: var(--padding-edge);
   --section-padding: var(--section-padding-vertical) var(--section-padding-horizontal);
 
@@ -39,19 +39,19 @@
   }
 
   &.is-xs {
-    --section-padding-vertical: var(--padding-base);
+    --section-padding-vertical: var(--padding-section-xs);
   }
 
   &.is-small {
-    --section-padding-vertical: var(--padding-large);
+    --section-padding-vertical: var(--padding-section-sm);
   }
 
   &.is-large {
-    --section-padding-vertical: var(--padding-section-large);
+    --section-padding-vertical: var(--padding-section-lg);
   }
 
   &.is-xl {
-    --section-padding-vertical: var(--padding-section-large);
+    --section-padding-vertical: var(--padding-section-lg);
 
     min-height:100vh;
   }
