@@ -12,7 +12,7 @@
 
   --sb-background: var(--sb-color-menu);
 
-  --sb-height: calc(100vh - var(--navbar-height));
+  --sb-height: calc(100dvh - var(--navbar-height));
   --sb-width: var(--sidebar-width);
 
   @include m.transitions("margin-left");
@@ -56,17 +56,20 @@
 .main {
   @include m.colors("main","base","menu","element","top");
 
+  --main-margin-left: 0;
+
   @include m.transitions("margin-left");
   
   width:100%;
   min-inline-size: var(--sidebar-width);
-  margin-left: 0;
+  margin-left: var(--main-margin-left);
 
   .has-sidebar.open & {
-    margin-left: var(--sidebar-width);
+    --main-margin-left: var(--sidebar-width);
   }
 
   .has-sidebar.full & {
+    --main-margin-left: 0;
     @include m.no-transitions;
   }
 }
