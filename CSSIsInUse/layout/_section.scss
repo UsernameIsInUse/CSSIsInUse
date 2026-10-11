@@ -53,7 +53,8 @@
   &.is-xl {
     --section-padding-vertical: var(--padding-section-lg);
 
-    min-height:100vh;
+    min-height:100dvh;
+    justify-content: center;
   }
 
   &.is-full-width, &.is-full {

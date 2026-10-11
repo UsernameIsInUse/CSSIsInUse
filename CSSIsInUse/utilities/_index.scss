@@ -15,6 +15,9 @@
   display:none !important;
 }
 
+.is-align-baseline {
+  align-items: baseline;
+}
 .is-align-start {
   align-items: start;
 }
@@ -42,19 +45,6 @@
 }
 .is-justify-evenly {
   justify-content: space-evenly;
-}
-
-.is-align-items-baseline {
-  align-items: baseline;
-}
-.is-align-items-center {
-  align-items: center;
-}
-.is-align-items-start {
-  align-items: start;
-}
-.is-align-items-end {
-  align-items: end;
 }
 
 .is-flex-flow-column {
