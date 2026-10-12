@@ -8,7 +8,7 @@
   --menu-text: var(--menu-color-strong);
   --menu-color: var(--menu-color-top);
 
-  @include m.block("base");
+  @include m.block("md");
 
   width: calc(100% + 1rem);
   margin-left: -0.5rem;

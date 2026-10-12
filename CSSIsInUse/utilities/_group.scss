@@ -6,7 +6,7 @@
   --group-flex-flow: wrap;
   --group-addons-inline-end: var(--border-thickness-md);
 
-  @include m.block("base");
+  @include m.block("md");
 
   display:flex;
   flex-flow: var(--group-flex-flow);

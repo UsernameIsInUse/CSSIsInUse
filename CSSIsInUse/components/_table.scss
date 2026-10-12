@@ -10,7 +10,7 @@ table {
 
   --table-cell-padding: var(--input-padding-md);
 
-  @include m.block("base");
+  @include m.block("md");
   
   width: 100%;
   border-spacing: 0;

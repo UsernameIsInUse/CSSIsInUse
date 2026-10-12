@@ -3,11 +3,11 @@
 .content {
 
   p {
-    @include m.block('base');
+    @include m.block("md");
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @include m.pre('base');
+    @include m.pre("md");
   }
 
   hgroup {

@@ -1,5 +1,9 @@
 @use "../tools/mixins" as m;
 
+.containers .container {
+  @include m.block("xl");
+}
+
 .container {
   @include m.colors("container","base","menu","element","top","text");
 

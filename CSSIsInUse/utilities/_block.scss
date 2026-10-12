@@ -5,15 +5,15 @@
 }
 
 .block-large {
-  @include m.block("large");
+  @include m.block("lg");
 }
 
 .block {
-  @include m.block("base");
+  @include m.block("md");
 }
 
 .block-small {
-  @include m.block("small");
+  @include m.block("sm");
 }
 
 .block-xs {
@@ -29,15 +29,15 @@
 }
 
 .pre-large {
-  @include m.pre("large");
+  @include m.pre("lg");
 }
 
 .pre {
-  @include m.pre("base");
+  @include m.pre("md");
 }
 
 .pre-small {
-  @include m.pre("small");
+  @include m.pre("sm");
 }
 
 .pre-xs {

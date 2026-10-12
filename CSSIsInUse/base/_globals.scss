@@ -42,7 +42,7 @@ h1, h2, h3, h4, h5, h6, button, input[type="submit"], .button, a {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @include m.block('base');
+  @include m.block("md");
 
   font-family: var(--font-header);
   font-weight: var(--weight-bold);
@@ -89,13 +89,13 @@ p {
 }
 
 ol, ul {
-  @include m.block('base');
+  @include m.block("md");
 
   padding-left: var(--padding-xl);
 }
 
 li {
-  @include m.block('small');
+  @include m.block("sm");
 }
 
 small {
