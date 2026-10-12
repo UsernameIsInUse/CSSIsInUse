@@ -1,6 +1,9 @@
 code {
-  background-color: var(--neutral-100);
+  --code-size-text: var(--text-size-7);
+
+  background-color: var(--neutral-200);
   color: var(--neutral-900);
-  padding: var(--padding-xs);
+  padding: var(--input-padding-sm);
   border-radius: var(--border-radius-sm);
+  font-size: var(--code-size-text);
 }

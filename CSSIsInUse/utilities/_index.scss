@@ -48,6 +48,20 @@
   justify-content: space-evenly;
 }
 
+.is-flex-column {
+  flex-direction: column;
+}
+.is-flex-column-reverse {
+  flex-direction: column-reverse;
+}
+.is-flex-row {
+  flex-direction: row;
+}
+.is-flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+
 .is-flex-flow-column {
   flex-flow: column;
 }

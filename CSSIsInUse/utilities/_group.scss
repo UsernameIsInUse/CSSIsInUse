@@ -6,9 +6,10 @@
   --group-flex-flow: wrap;
   --group-addons-inline-end: var(--border-thickness-md);
 
-  @include m.block("md");
+  
 
   display:flex;
+  flex-direction: column;
   flex-flow: var(--group-flex-flow);
   gap: var(--group-size-gap);
   align-items: center;

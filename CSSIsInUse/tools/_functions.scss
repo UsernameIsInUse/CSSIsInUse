@@ -1,5 +1,6 @@
 @use 'sass:math';
 
+// Sassy version of the fluid-clamp mixin, unused
 @function fluid-clamp($min, $max) {
   $a: math.div(($max - $min), (90rem - 20rem));
   $b: $min - ($a * 20rem);

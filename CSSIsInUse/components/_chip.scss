@@ -16,12 +16,14 @@
 
   position: relative;
   width: fit-content;
-  padding: var(--input-padding-small);
+  padding: var(--input-padding-sm);
   background-color: var(--chip-background);
   color: var(--chip-text);
   font-size: var(--text-size-7);
   border: var(--border-thickness-md) solid var(--chip-color);
   border-radius: var(--border-radius-sm);
+  line-height: var(--line-height-normal);
+  white-space: nowrap;
 
   &.is-base {
     --chip-background: var(--chip-color-base);

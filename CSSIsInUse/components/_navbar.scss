@@ -25,6 +25,7 @@
   gap: var(--padding-md);
   align-items: center;
   justify-content: space-between;
+  line-height: var(--line-height-normal);
 
   &.is-base {
     --nav-background: var(--nav-color-base);

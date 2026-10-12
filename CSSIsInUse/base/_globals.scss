@@ -17,6 +17,7 @@ body {
   margin: 0px;
   padding: 0px;
   overflow-x: hidden; 
+  line-height: var(--line-height-normal);
 }
 
 body {
@@ -85,7 +86,6 @@ h6 {
 
 p {
   font-size: var(--text-size-6);
-  line-height: var(--line-height-md);
 }
 
 ol, ul {

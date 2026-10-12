@@ -102,7 +102,7 @@
 
   &.is-small {
     --input-size-text: var(--text-size-7);
-    --input-size-padding: var(--input-padding-small);
+    --input-size-padding: var(--input-padding-sm);
   }
 }
 
@@ -131,6 +131,6 @@
   position: relative;
   color: var(--cb-text);
   accent-color: var(--cb-color);
-  line-height: 1.25;
+  line-height: var(--line-height-md);
   cursor: pointer;
 }

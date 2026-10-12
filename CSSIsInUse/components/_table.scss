@@ -73,7 +73,7 @@ table {
   }
 
   &.is-small {
-    --table-cell-padding: var(--input-padding-small);
+    --table-cell-padding: var(--input-padding-sm);
   }
   &.is-large {
     --table-cell-padding: var(--input-padding-lg);

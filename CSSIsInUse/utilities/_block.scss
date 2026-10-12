@@ -4,7 +4,7 @@
   @include m.block("xl");
 }
 
-.block-large {
+.block-lg {
   @include m.block("lg");
 }
 
@@ -12,7 +12,7 @@
   @include m.block("md");
 }
 
-.block-small {
+.block-sm {
   @include m.block("sm");
 }
 
@@ -28,7 +28,7 @@
   @include m.pre("xl");
 }
 
-.pre-large {
+.pre-lg {
   @include m.pre("lg");
 }
 
@@ -36,7 +36,7 @@
   @include m.pre("md");
 }
 
-.pre-small {
+.pre-sm {
   @include m.pre("sm");
 }
 

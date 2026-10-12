@@ -10,6 +10,7 @@
   --card-color: transparent;
 
   --card-size-padding: var(--padding-md);
+  --card-size-radius: var(--border-radius-sm);
 
   @include m.transitions("background-color");
 
@@ -18,7 +19,7 @@
   background-color: var(--card-background);
   color: var(--card-text);
   border: var(--border-thickness-md) solid var(--card-color);
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--card-size-radius);
 
   &.is-base {
     --card-background: var(--card-color-base);
@@ -102,7 +103,7 @@
     --card-size-padding: var(--padding-xl);
   }
 
-  &.is-hoverable:hover {
+  &.is-hoverable:hover, &.is-active {
     --card-background: var(--card-background-hover);
   }
 

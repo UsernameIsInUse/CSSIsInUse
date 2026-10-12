@@ -34,6 +34,7 @@
   border-radius: var(--btn-size-radius);
   cursor: pointer;
   text-decoration: none;
+  line-height: var(--line-height-normal);
 
   &.is-base {
     --btn-background: var(--btn-color-base);
@@ -105,7 +106,7 @@
     --btn-size-padding: var(--padding-xs);
     --btn-size-radius: var(--border-radius-sm);
     --btn-size-glow: var(--glow-size-sm);
-    line-height: 1;
+    line-height: 0;
 
     .icon {
       display: flex;
@@ -125,7 +126,7 @@
   }
 
   &.is-small {
-    --btn-size-padding: var(--input-padding-small);
+    --btn-size-padding: var(--input-padding-sm);
     --btn-size-text: var(--text-size-7);
     --btn-size-glow: var(--glow-size-sm);
   }

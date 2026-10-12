@@ -111,17 +111,17 @@ $scheme-classes: ();
   );
 }
 
-:root, #{$scheme-selectors}, #{$scheme-classes} {
+:root, .recalculate, #{$scheme-selectors}, #{$scheme-classes} {
   @include generate-all-scales;
   @include color-tokens;
 }
 @media (prefers-contrast: more) {
-  :root, #{$scheme-selectors}, #{$scheme-classes} {
+  :root, .recalculate, #{$scheme-selectors}, #{$scheme-classes} {
     @include high-contrast-color-tokens;
   }
 }
 @media (prefers-contrast: less) {
-  :root, #{$scheme-selectors}, #{$scheme-classes} {
+  :root, .recalculate, #{$scheme-selectors}, #{$scheme-classes} {
     @include low-contrast-color-tokens;
   }
 }

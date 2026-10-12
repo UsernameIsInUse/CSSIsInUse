@@ -14,6 +14,7 @@
   margin-left: -0.5rem;
   list-style: none;
   padding: 0;
+  line-height: var(--line-height-normal);
 
   &.is-base {
     --menu-background: var(--menu-color-base);
@@ -60,7 +61,7 @@
     
     display: block;
     width: 100%;
-    padding: var(--input-padding-small);
+    padding: var(--input-padding-sm);
     background-color: var(--menu-background);
     color: var(--menu-text);
     border-radius: var(--border-radius-sm);

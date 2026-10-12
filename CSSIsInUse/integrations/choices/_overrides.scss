@@ -25,7 +25,7 @@
 
   --choices-button-dimension: 0.8rem;
   --choices-button-offset: 8px;
-  --choices-button-line-height: 1;
+  --choices-button-line-height: var(--line-height-1);
   --choices-button-border-radius: 0;
   --choices-button-opacity: 0.75;
   --choices-button-opacity-hover: 1;

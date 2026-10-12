@@ -1,12 +1,25 @@
 @use "../tools/mixins" as m;
 
+
 .accordion {
-  
+  --accordion-display: none;
 
-  --dropdown-display: none;
+  @include m.block("xl");
+  @include m.transitions("background-color, border-radius");
 
+  &.is-active {
+    --accordion-display:block;
 
-  .accordion-menu {
-    display: var(--dropdown-display);
+    :first-child.card {
+      border-bottom-left-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+    :last-child.card {
+      border-top-left-radius: 0 !important;
+      border-top-right-radius: 0 !important;
+    }
+  }
+  > :last-child {
+    display: var(--accordion-display);
   }
 }

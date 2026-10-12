@@ -117,40 +117,10 @@ Setup & Installation > explain that it's a css library that provides classes to 
 Kitchen Sink > quick display of every single element in every possible configuration, like a macy's showroom floor.
 
 
-features:
-
-Heirarchy >
-  genetic tokens > 
-  
-  tools > 
-
-  layout > 
-
-  components > 
-
-  utilities > 
-
-color system > 
-
-accessibility & preferences > 
+features and utilities are info
+layouts are success
+components are warning
+css are danger
 
 
-layout:
-
-stack > 
-
-main & sidebar > 
-
-section & container > 
-
-columns >
-
-
-components:
-...
-
-utilities: 
-...
-
-integrations:
-...
+figure out line height cause im definitely doing it weirdly

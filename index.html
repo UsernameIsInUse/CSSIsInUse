@@ -95,6 +95,7 @@
       class="has-sidebar"
       :class="{ 'open': sidebarOpen, 'full': sidebarFull }"
     >
+
       <aside id="main-sidebar" class="sidebar">
         <nav>
 
@@ -159,7 +160,7 @@
             </ul></li>
           </ul>
 
-          <h5 class="text-info-vivid"><span class="group"><span class="icon"><i class="ti ti-list-details-filled"></i></span><span>Utilities</span></span></h5>
+          <h5 class="text-info-vivid"><span class="group"><span class="icon"><i class="ti ti-adjustments-horizontal-filled"></i></span><span>Utilities</span></span></h5>
           <ul class="menu is-info is-ghost">
             <li><ul>
               <li><a href="#block" @click="current = 'block'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'block' }">Block</a></li>
@@ -238,30 +239,120 @@
         <section id="tokens" class="section container content" x-show="['tokens', 'heirarchy'].includes(current)">
           <hgroup>
             <h2>Genetic Tokens</h2>
-            <h5>The base layer of CSSIsInUse</h5>
+            <h5>Cascading modifiable variables</h5>
           </hgroup>
-          <p><code class="chip is-info is-quiet">tokens</code> are the variables of CSSIsInUse, and determine the look of every component and color in the framework.</p>
-          <p>They are defined as CSS variables, </p>
+
+          <p>The heirarchy of CSSIsInUse begins at the <code class="chip is-info is-quiet">token</code> layer, where values are defined as CSS variables.</p>
+          <p>These variables are the basis for the look and feel of the entire webapp. This includes the color variables derived from schemes, as well as the miscellaneous variables defined in <code class="chip is-danger is-quiet">:root</code>. They are called genetic because most of them are calculated from a few base-level variables, which are themselves are used to calculate component-level variables.</p>
+          <p>Changing one base level variable will often cascade into changes across the entire webapp, including text and icon sizes, container widths and section heights, paddings and margins, border radii, opacities, glows, blurs, fonts, color schemes, and much more.</p>
+          <p>There are three types of <code class="chip is-info is-quiet">tokens</code>: static, base, and derivative.</p>
+
+          <h4>Static Tokens</h4>
+
+          <p>Static <code class="chip is-info is-quiet">tokens</code> are variables which have no derivatives. Modifying a static variable only modifies that value and no others. An example would be <code class="chip is-info is-quiet">--border-radius-rounded</code> which by default is defined as <code class="chip is-danger is-quiet">999px</code> and isn't used in any calculations. If you change it's value, you're only modifying elements and components which use it directly.
+          </p>
 
           <div class="columns gap-large">
             <div>
-              <p class="chip is-element">Example</p>
-              <div class="block">This top text is in a block.</div>
-              <div class="block">This middle text is also in a block, which you can see there is a gap between this text and the text below.</div>
-              <div class="block">This final text is also in a block, but because it's the final sibling, there is no additional margin below it.</div>
+              <p class="chip is-element ">Example</p>
+              <div class="group is-flex-column">
+                <button class="button">Default Button</button>
+                <button class="button" style="--border-radius-rounded: 0px;">Border Radius Rounded Changed</button>
+              </div>
             </div>
             <div>
-              <pre><code class="language-html dark">&lt;div class=&quot;block&quot;&gt;
-  This top text is in a block.
-&lt;/div&gt;
-&lt;div class=&quot;block&quot;&gt;
-  This middle text is also in a block, which you can see there is a gap between this text and the text below.
-&lt;/div&gt;
-&lt;div class=&quot;block&quot;&gt;
-  This final text is also in a block, but because it&#39;s the final sibling, there is no additional margin below it.
+              <pre><code class="language-html dark">&lt;div class=&quot;group is-flex-column&quot;&gt;
+  &lt;button class=&quot;button&quot;&gt;Default Button&lt;/button&gt;
+  &lt;button class=&quot;button&quot; style=&quot;--border-radius-rounded: 0px;&quot;&gt;Border Radius Rounded Changed&lt;/button&gt;
 &lt;/div&gt;</code></pre>
             </div>
           </div>
+
+          <h4>Base Tokens</h4>
+
+          <p>Base <code class="chip is-info is-quiet">tokens</code> are variables which have derivatives. Modifying a base variable modifies any derivative variables which use it, modifying all elements and components which use those. One of the most dramatic examples would be <code class="chip is-info is-quiet">--padding-base</code> which by default is defined as <code class="chip is-danger is-quiet">1rem</code> and is used in the calculation of all padding variables for all elements and components. Changing it's value to something smaller or larger will modify the look of the entire webapp. You can test this yourself by changing the scheme of the documentation to slate, which changes <code class="chip is-info is-quiet">--padding-base</code> to <code class="chip is-danger is-quiet">1.5rem</code>, among many other changes.</p>
+
+          <div class="columns gap-large">
+            <div>
+              <p class="chip is-element ">Example</p>
+              <div class="card block">
+                <h5>This is a default card.</h5>
+                <p>It has default padding, colors, and roundnesses.</p>
+                <button class="button is-primary">This is a primary colored button</button>
+              </div>
+              <div class="card recalculate" style="--primary-h: 150; --padding-base: 2rem; --border-radius-base: 4rem;">
+                <h5>This is a modified card.</h5>
+                <p>Paddings, colors, and roundnesses are changed.</p>
+                <button class="button is-primary">This is a modified primary color</button>
+              </div>
+            </div>
+            <div>
+              <pre><code class="language-html dark">&lt;div class=&quot;card block&quot;&gt;
+  &lt;h5&gt;This is a default card.&lt;/h5&gt;
+  &lt;p&gt;It has default text styles, as well as default components.&lt;/p&gt;
+  &lt;button class=&quot;button is-primary&quot;&gt;This is a primary colored button&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class=&quot;card recalculate&quot; style=&quot;--primary-h: 150; --padding-base: 2rem; --border-radius-base: 4rem;&quot;&gt;
+  &lt;h5&gt;This is a modified card.&lt;/h5&gt;
+  &lt;p&gt;Paddings, roundnesses, and colors are changed.&lt;/p&gt;
+  &lt;button class=&quot;button is-primary&quot;&gt;This is a modified primary color&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="accordion" x-data="{ active: false }" :class="{ 'is-active' : active }">
+            <button
+              @click="active = !active"
+              class="card is-hoverable group is-justify-between"
+              :class="{ 'is-active' : active }"
+              :aria-expanded="active"
+              aria-controls="tokens-accordion-1"
+            >
+              <h6 class="group block-none"><span class="icon"><i class="ti ti-info-circle-filled"></i></span> What is recalculate?</h6>
+              <span class="icon"><i class="ti" :class="{ 'ti-chevron-up' : active, 'ti-chevron-down' : !active }"></i></span></button>
+            <div id="tokens-accordion-1" class="card">
+              <p>Because of the way that browsers calculate CSS variables, if you modify a variable that is used in a calculation in another variable, the other variable will not change because it is only calculated once. For example, if you changed <code class="chip is-info is-quiet">--padding-base</code> to <code class="chip is-danger is-quiet">2rem</code>, you would notice that all of the medium paddings would change because it references the base variable directly, but the xs, sm, lg, and xl paddings wouldn't. They were calulated using the original base variable, and will not recalculate when the base is modified.</p>
+              <p><code class="chip is-info is-quiet">recalculate</code> is a utility class which allows derivative tokens which use calculation to re-calculate any changes. All scheme classes also serve as recalculations, but also modify colors and other tokens, while <code class="chip is-info is-quiet">recalculate</code> doesn't make any other changes itself. It's primarily useful when you're modifying a base <code class="chip is-info is-quiet">token</code> through inline styles, which is not recommended.</p>
+              <div class="group">
+                <div class="chip is-primary is-hoverable" style="--padding-base: 4rem; --primary-h: 300; --border-radius-base: 4rem;">Without Recalculate</div>
+                <div class="chip is-primary is-hoverable recalculate" style="--padding-base: 4rem; --primary-h: 300; --border-radius-base: 2rem;">With Recalculate</div>
+              </div>
+            </div>
+          </div>
+
+          <h4>Derivative Tokens</h4>
+
+          <p>Derivative <code class="chip is-info is-quiet">tokens</code> are variables derived from base variables. Modifying a derivative variable modifies that value and any other derivative values which use it. An example would be <code class="chip is-info is-quiet">--padding-sm</code> which by default is defined as the multiplication of <code class="chip is-info is-quiet">--padding-base</code> and <code class="chip is-info is-quiet">--padding-sm-base</code>. They can be modified either by modifying their base variable, or by overriding their value directly.</p>
+
+          <div class="columns gap-large">
+            <div>
+              <p class="chip is-element ">Example</p>
+              <div class="card block">
+                <h5>This is a default card.</h5>
+                <p>It has default padding, colors, and roundnesses.</p>
+                <button class="button is-primary">This is a primary colored button</button>
+              </div>
+              <div class="card recalculate" style="--primary-h: 150; --padding-base: 2rem; --border-radius-base: 4rem;">
+                <h5>This is a modified card.</h5>
+                <p>Paddings, colors, and roundnesses are changed.</p>
+                <button class="button is-primary">This is a modified primary color</button>
+              </div>
+            </div>
+            <div>
+              <pre><code class="language-html dark">&lt;div class=&quot;card block&quot;&gt;
+  &lt;h5&gt;This is a default card.&lt;/h5&gt;
+  &lt;p&gt;It has default text styles, as well as default components.&lt;/p&gt;
+  &lt;button class=&quot;button is-primary&quot;&gt;This is a primary colored button&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class=&quot;card recalculate&quot; style=&quot;--primary-h: 150; --padding-base: 2rem; --border-radius-base: 4rem;&quot;&gt;
+  &lt;h5&gt;This is a modified card.&lt;/h5&gt;
+  &lt;p&gt;Paddings, roundnesses, and colors are changed.&lt;/p&gt;
+  &lt;button class=&quot;button is-primary&quot;&gt;This is a modified primary color&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+
+
         </section>
 
         <!-- #endregion -->
@@ -527,67 +618,32 @@
           <div class="columns gap-large">
             <div>
               <p class="chip is-element">Example</p>
-              <div class="card block-none">block-none (0)</div>
-              <div class="card block-xs">block-xs <code class="dropdown is-tooltip">
-                <span>(0.25rem)</span>
-                <div class="dropdown-menu">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item">--padding-xs: calc(var(--padding-md) * 0.25);</div>
-                  </div>
-                </div>
-              </code></div>
-              <div class="card block-small">block-small <code class="dropdown is-tooltip">
-                <span>(0.5rem)</span>
-                <div class="dropdown-menu">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item">--padding-sm: calc(var(--padding-md) * 0.5);</div>
-                  </div>
-                </div>
-              </code></div>
-              <div class="card block">block <code class="dropdown is-tooltip">
-                <span>(1rem)</span>
-                <div class="dropdown-menu">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item">--padding-md: 1rem;</div>
-                  </div>
-                </div>
-              </code></div>
-              <div class="card block-large">block-large <code class="dropdown is-tooltip">
-                <span>(2rem)</span>
-                <div class="dropdown-menu">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item">--padding-lg: calc(var(--padding-md) * 2);</div>
-                  </div>
-                </div>
-              </code></div>
-              <div class="card block-xl">block-xl <code class="dropdown is-tooltip">
-                <span>(3rem)</span>
-                <div class="dropdown-menu">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item">--padding-xl: calc(var(--padding-md) * 3);</div>
-                  </div>
-                </div>
-              </code></div>
+              <div class="card block-none">block-none</div>
+              <div class="card block-xs">block-xs</div>
+              <div class="card block-sm">block-sm</div>
+              <div class="card block">block</div>
+              <div class="card block-lg">block-lg</div>
+              <div class="card block-xl">block-xl</div>
               <div class="card">Just here to show the XL block above it.</div>
             </div>
             <div>
               <pre><code class="language-html dark">&lt;div class=&quot;card block-none&quot;&gt;
-  block-none (0)
+  block-none
 &lt;/div&gt;
 &lt;div class=&quot;card block-xs&quot;&gt;
-  block-xs (0.25rem)
+  block-xs
 &lt;/div&gt;
-&lt;div class=&quot;card block-small&quot;&gt;
-  block-small (0.5rem)
+&lt;div class=&quot;card block-sm&quot;&gt;
+  block-sm
 &lt;/div&gt;
 &lt;div class=&quot;card block&quot;&gt;
-  block (1rem)
+  block
 &lt;/div&gt;
-&lt;div class=&quot;card block-large&quot;&gt;
-  block-large (2rem)
+&lt;div class=&quot;card block-lg&quot;&gt;
+  block-lg
 &lt;/div&gt;
 &lt;div class=&quot;card block-xl&quot;&gt;
-  block-xl (3rem)
+  block-xl
 &lt;/div&gt;
 &lt;div class=&quot;card&quot;&gt;
   Just here to show the XL block above it.
@@ -601,47 +657,12 @@
             <div>
               <p class="chip is-element">Example</p>
               <div class="card block-none">Just here to show the none pre below it.</div>
-              <div class="card block-none pre-none">pre-none (0)</div>
-              <div class="card block-none pre-xs">pre-xs <code class="dropdown is-tooltip">
-                <span>(0.25rem)</span>
-                <div class="dropdown-menu">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item">--padding-xs: calc(var(--padding-md) * 0.25);</div>
-                  </div>
-                </div>
-              </code></div>
-              <div class="card block-none pre-small">pre-small <code class="dropdown is-tooltip">
-                <span>(0.5rem)</span>
-                <div class="dropdown-menu">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item">--padding-sm: calc(var(--padding-md) * 0.5);</div>
-                  </div>
-                </div>
-              </code></div>
-              <div class="card block-none pre">pre <code class="dropdown is-tooltip">
-                <span>(1rem)</span>
-                <div class="dropdown-menu">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item">--padding-md: 1rem;</div>
-                  </div>
-                </div>
-              </code></div>
-              <div class="card block-none pre-large">pre-large <code class="dropdown is-tooltip">
-                <span>(2rem)</span>
-                <div class="dropdown-menu">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item">--padding-lg: calc(var(--padding-md) * 2);</div>
-                  </div>
-                </div>
-              </code></div>
-              <div class="card block-none pre-xl">pre-xl <code class="dropdown is-tooltip">
-                <span>(3rem)</span>
-                <div class="dropdown-menu">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item">--padding-xl: calc(var(--padding-md) * 3);</div>
-                  </div>
-                </div>
-              </code></div>
+              <div class="card block-none pre-none">pre-none</div>
+              <div class="card block-none pre-xs">pre-xs</div>
+              <div class="card block-none pre-sm">pre-sm</div>
+              <div class="card block-none pre">pre</div>
+              <div class="card block-none pre-lg">pre-lg</div>
+              <div class="card block-none pre-xl">pre-xl</div>
               
             </div>
             <div>
@@ -649,22 +670,22 @@
   Just here to show the none pre below it.
 &lt;/div&gt;
 &lt;div class=&quot;card block-none pre-none&quot;&gt;
-  pre-none (0)
+  pre-none
 &lt;/div&gt;
 &lt;div class=&quot;card block-none pre-xs&quot;&gt;
-  pre-xs (0.25rem)
+  pre-xs
 &lt;/div&gt;
-&lt;div class=&quot;card block-none pre-small&quot;&gt;
-  pre-small (0.5rem)
+&lt;div class=&quot;card block-none pre-sm&quot;&gt;
+  pre-sm
 &lt;/div&gt;
 &lt;div class=&quot;card block-none pre&quot;&gt;
-  pre (1rem)
+  pre
 &lt;/div&gt;
-&lt;div class=&quot;card block-none pre-large&quot;&gt;
-  pre-large (2rem)
+&lt;div class=&quot;card block-none pre-lg&quot;&gt;
+  pre-lg
 &lt;/div&gt;
 &lt;div class=&quot;card block-none pre-xl&quot;&gt;
-  pre-xl (3rem)
+  pre-xl
 &lt;/div&gt;</code></pre>
             </div>
           </div>

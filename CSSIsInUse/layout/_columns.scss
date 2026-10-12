@@ -4,7 +4,7 @@
   --column-flex-basis: var(--breakpoint-xs);
 
   @include m.block("xl");
-  @include m.pre("md");
+  @include m.pre("lg");
 
   display:flex;
   flex-direction: row;

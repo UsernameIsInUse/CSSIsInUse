@@ -3,9 +3,11 @@
 @use '../schemes' as s;
 
 @mixin static-tokens {
-  --line-height-md: 1.5;
+  --line-height-md: 1.61803;
   --line-height-sm: 1.25;
   --line-height-lg: 2;
+  --line-height-1: 1;
+  --line-height-normal: normal;
 
   --weight-light: 300;
   --weight-normal: 400;
@@ -130,7 +132,7 @@
 
   --padding-edge: var(--fluid-padding-edge);
 
-  --input-padding-small: var(--padding-xs) var(--padding-sm);
+  --input-padding-sm: var(--padding-xs) var(--padding-sm);
   --input-padding-md: var(--padding-sm) var(--padding-md);
   --input-padding-lg: var(--padding-md) var(--padding-lg);
 
@@ -177,7 +179,7 @@
   @include base-tokens;
 }
 
-:root, #{s.$scheme-selectors}, #{s.$scheme-classes} {
+:root, .recalculate, #{s.$scheme-selectors}, #{s.$scheme-classes} {
   @include derivative-tokens;
 }
 
