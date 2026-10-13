@@ -112,7 +112,7 @@ code {
 }
 
 a {
-  --element-text: var(--info-weak);
+  --element-text: var(--info-vivid);
 
   &[href] {
     @include m.focus;

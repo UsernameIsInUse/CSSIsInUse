@@ -311,7 +311,7 @@
               <h6 class="group block-none"><span class="icon"><i class="ti ti-info-circle-filled"></i></span> What is recalculate?</h6>
               <span class="icon"><i class="ti" :class="{ 'ti-chevron-up' : active, 'ti-chevron-down' : !active }"></i></span></button>
             <div id="tokens-accordion-1" class="card">
-              <p>Because of the way that browsers calculate CSS variables, if you modify a variable that is used in a calculation in another variable, the other variable will not change because it is only calculated once. For example, if you changed <code class="chip is-info is-quiet">--padding-base</code> to <code class="chip is-danger is-quiet">2rem</code>, you would notice that all of the medium paddings would change because it references the base variable directly, but the xs, sm, lg, and xl paddings wouldn't. They were calulated using the original base variable, and will not recalculate when the base is modified.</p>
+              <p>Because of the way that browsers calculate CSS variables, if you modify a variable that is used in a calculation in another variable, the other variable will not change because it is only calculated once. For example, if you modified <code class="chip is-info is-quiet">--padding-base</code> to <code class="chip is-danger is-quiet">2rem</code>, you would notice that all of the medium paddings would change because it references the base variable directly, but the xs, sm, lg, and xl paddings wouldn't. They were calulated using the original base variable, and will not recalculate when the base is modified.</p>
               <p><code class="chip is-info is-quiet">recalculate</code> is a utility class which allows derivative tokens which use calculation to re-calculate any changes. All scheme classes also serve as recalculations, but also modify colors and other tokens, while <code class="chip is-info is-quiet">recalculate</code> doesn't make any other changes itself. It's primarily useful when you're modifying a base <code class="chip is-info is-quiet">token</code> through inline styles, which is not recommended.</p>
               <div class="group">
                 <div class="chip is-primary is-hoverable" style="--padding-base: 4rem; --primary-h: 300; --border-radius-base: 4rem;">Without Recalculate</div>
@@ -322,32 +322,32 @@
 
           <h4>Derivative Tokens</h4>
 
-          <p>Derivative <code class="chip is-info is-quiet">tokens</code> are variables derived from base variables. Modifying a derivative variable modifies that value and any other derivative values which use it. An example would be <code class="chip is-info is-quiet">--padding-sm</code> which by default is defined as the multiplication of <code class="chip is-info is-quiet">--padding-base</code> and <code class="chip is-info is-quiet">--padding-sm-base</code>. They can be modified either by modifying their base variable, or by overriding their value directly.</p>
+          <p>Derivative <code class="chip is-info is-quiet">tokens</code> are variables derived from base variables. Modifying a derivative variable modifies that value and any other derivative values which use it. An example would be <code class="chip is-info is-quiet">--opacity-disabled</code> which by default is defined as the multiplication of <code class="chip is-info is-quiet">--opacity-base</code> and <code class="chip is-info is-quiet">--opacity-disabled-base</code>. They can be modified either by modifying their base variable, or by overriding their value directly.</p>
 
           <div class="columns gap-large">
             <div>
               <p class="chip is-element ">Example</p>
-              <div class="card block">
-                <h5>This is a default card.</h5>
-                <p>It has default padding, colors, and roundnesses.</p>
-                <button class="button is-primary">This is a primary colored button</button>
+              <h5>Unmodified Buttons</h5>
+              <div class="group">
+                <button class="button is-info">Button</button>
+                <button class="button is-warning" disabled>Disabled</button>
               </div>
-              <div class="card recalculate" style="--primary-h: 150; --padding-base: 2rem; --border-radius-base: 4rem;">
-                <h5>This is a modified card.</h5>
-                <p>Paddings, colors, and roundnesses are changed.</p>
-                <button class="button is-primary">This is a modified primary color</button>
+              <h5>Modified Buttons</h5>
+              <div class="group recalculate" style="--opacity-base: 2; --opacity-disabled: 0.25;">
+                <button class="button is-info">Button</button>
+                <button class="button is-warning" disabled>Disabled</button>
               </div>
             </div>
             <div>
-              <pre><code class="language-html dark">&lt;div class=&quot;card block&quot;&gt;
-  &lt;h5&gt;This is a default card.&lt;/h5&gt;
-  &lt;p&gt;It has default text styles, as well as default components.&lt;/p&gt;
-  &lt;button class=&quot;button is-primary&quot;&gt;This is a primary colored button&lt;/button&gt;
+              <pre><code class="language-html dark">&lt;h5&gt;Unmodified Buttons&lt;/h5&gt;
+&lt;div class=&quot;group&quot;&gt;
+  &lt;button class=&quot;button is-info&quot;&gt;Button&lt;/button&gt;
+  &lt;button class=&quot;button is-warning&quot; disabled&gt;Disabled&lt;/button&gt;
 &lt;/div&gt;
-&lt;div class=&quot;card recalculate&quot; style=&quot;--primary-h: 150; --padding-base: 2rem; --border-radius-base: 4rem;&quot;&gt;
-  &lt;h5&gt;This is a modified card.&lt;/h5&gt;
-  &lt;p&gt;Paddings, roundnesses, and colors are changed.&lt;/p&gt;
-  &lt;button class=&quot;button is-primary&quot;&gt;This is a modified primary color&lt;/button&gt;
+&lt;h5&gt;Modified Buttons&lt;/h5&gt;
+&lt;div class=&quot;group recalculate&quot; style=&quot;--opacity-base: 2; --opacity-disabled: 0.25;&quot;&gt;
+  &lt;button class=&quot;button is-info&quot;&gt;Button&lt;/button&gt;
+  &lt;button class=&quot;button is-warning&quot; disabled&gt;Disabled&lt;/button&gt;
 &lt;/div&gt;</code></pre>
             </div>
           </div>

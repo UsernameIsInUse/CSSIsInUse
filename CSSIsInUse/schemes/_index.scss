@@ -30,6 +30,7 @@ $scheme-classes: ();
 
 @mixin color-tokens {
   @each $color in $color-groups {
+    --#{$color}-dark: var(--#{$color}-100);
     --#{$color}-base: light-dark(var(--#{$color}-900), var(--#{$color}-100));
     --#{$color}-menu: light-dark(var(--#{$color}-875), var(--#{$color}-125));
     --#{$color}-element: light-dark(var(--#{$color}-800), var(--#{$color}-200));
@@ -40,8 +41,10 @@ $scheme-classes: ();
     --#{$color}-weak: light-dark(var(--#{$color}-300), var(--#{$color}-700));
     --#{$color}-text: light-dark(var(--#{$color}-200), var(--#{$color}-800));
     --#{$color}-strong: light-dark(var(--#{$color}-100), var(--#{$color}-900));
+    --#{$color}-light: var(--#{$color}-900);
   }
 
+  --color-dark: var(--neutral-dark);
   --color-base: var(--neutral-base);
   --color-menu: var(--neutral-menu);
   --color-element: var(--neutral-element);
@@ -52,11 +55,13 @@ $scheme-classes: ();
   --color-weak: var(--neutral-weak);
   --color-text: var(--neutral-text);
   --color-strong: var(--neutral-strong);
+  --color-light: var(--neutral-light);
 
   // technically should be in utilities
 
   @each $color in $color-groups {
     .is-#{$color} {
+      --color-dark: var(--#{$color}-dark);
       --color-base: var(--#{$color}-base);
       --color-menu: var(--#{$color}-menu);
       --color-element: var(--#{$color}-element);
@@ -67,6 +72,7 @@ $scheme-classes: ();
       --color-weak: var(--#{$color}-weak);
       --color-text: var(--#{$color}-text);
       --color-strong: var(--#{$color}-strong);
+      --color-light: var(--#{$color}-light);
     }
   }
 
