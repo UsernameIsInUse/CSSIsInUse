@@ -42,11 +42,11 @@
     --section-padding-vertical: var(--padding-section-xs);
   }
 
-  &.is-small {
+  &.is-sm {
     --section-padding-vertical: var(--padding-section-sm);
   }
 
-  &.is-large {
+  &.is-lg {
     --section-padding-vertical: var(--padding-section-lg);
   }
 

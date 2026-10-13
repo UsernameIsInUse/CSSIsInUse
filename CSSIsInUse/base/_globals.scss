@@ -90,8 +90,9 @@ p {
 
 ol, ul {
   @include m.block("md");
+  @include m.fluid-clamp('ul', 'var(--padding-lg)', 'var(--padding-xl)');
 
-  padding-left: var(--padding-xl);
+  padding-left: var(--fluid-ul);
 }
 
 li {

@@ -1,6 +1,7 @@
 @forward 'block';
 @forward 'group';
 @forward 'non-core';
+@use "../tools/mixins" as m;
 
 .is-radius-small {
   border-radius: var(--border-radius-sm);
@@ -114,6 +115,10 @@
 }
 .is-gap-xl {
   gap: var(--padding-xl);
+}
+
+.no-transitions {
+  @include m.no-transitions;
 }
 
 :disabled, [disabled], .disabled {

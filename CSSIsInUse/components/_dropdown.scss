@@ -1,17 +1,16 @@
 @use "../tools/mixins" as m;
 
 .dropdown {
-  @include m.colors("dropdown","base","menu","element","top","muted","color","vivid","weak""text","strong");
+  @include m.colors("dropdown","dark","base","menu","element","top","muted","color","vivid","weak""text","strong");
 
   --dropdown-background: var(--dropdown-color-base);
   --dropdown-background-hover: var(--dropdown-color-element);
   --dropdown-text: var(--dropdown-color-text);
   --dropdown-color: var(--dropdown-color-top);
   --dropdown-hr: var(--dropdown-color-top);
-  --dropdown-shadow: var(--dropdown-color-base);
+  --dropdown-shadow: var(--dropdown-color-dark);
 
   --dropdown-size-text: var(--text-size-6);
-  --dropdown-size-shadow: var(--glow-size-lg);
   --dropdown-size-content-padding: var(--padding-sm) 0;
   --dropdown-size-item-padding: var(--input-padding-md);
   --dropdown-size-padding-top: var(--padding-sm);
@@ -84,9 +83,13 @@
     --dropdown-color: transparent;
     --dropdown-size-shadow: 0;
     --dropdown-size-content-padding: var(--padding-xs) 0;
+
+    .dropdown-content {
+      @include m.shadow(var(--dropdown-shadow));
+    }
   }
 
-  &.is-small {
+  &.is-sm {
     --dropdown-size-text: var(--text-size-7);
     --dropdown-size-content-padding: var(--padding-xs) 0;
     --dropdown-size-item-padding: var(--input-padding-sm);
@@ -137,8 +140,6 @@
   }
 
   .dropdown-content {
-    @include m.glow(var(--dropdown-size-shadow), var(--dropdown-shadow), 1);
-
     padding: var(--dropdown-size-content-padding);
     border-radius: var(--border-radius-sm);
     border: var(--border-thickness-md) solid var(--dropdown-color);

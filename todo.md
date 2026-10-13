@@ -65,7 +65,7 @@
 you already applied the style guide to the components, do it to the layouts and clean up choices/tabler/schemes/utilities before doing the following and then calling it good:
 
 global is-element/top/etc system so that things like menus don't only have to be on element backgrounds.
-global sizing system? is-xs, is-small, etc?
+global sizing system? is-xs, is-sm, etc?
 global positional system? is-centered, is-end, is-aligned-end, etc?
 blur navbar bg?
 more usage of fluid-clamp, especially for positioning?
@@ -101,6 +101,20 @@ Static tokens are tokens which have no derivatives. Altering a static token only
 Base tokens are tokens which have derivatives. Altering a base token alters any derivative token which uses it. An example would be `--padding-base` which is used in the calculation of all padding tokens for all elements and components, including xs-xl, page edge, and inputs. Changing it's value to something smaller or larger will alter the look of the entire webapp. You can test this yourself by changing the theme of this documentation to "slate", which alters the color scheme, `--padding-base`, `--glow-size-base`, `--text-size-6-base`, and other tokens.
 
 Derivative tokens are tokens derived from base tokens and calculations using them. Altering a derivative token only alters that value and no others. An example would be `--border-radius-sm` which is defined as a base token divided in half. They can be altered either by altering their base token, or by overriding their value directly.
+
+
+Next are `tools`, which are mixins used to create components, layouts, and utilities. These functions and mixins allow for things like transitions, glows, focus, whether something is scrollable, the fluid clamp system to remove the need for breakpoint media queries, etc. 
+
+The second layer of the CSSIsInUse heirarchy is the tools layer.
+
+These are reusable mixins used to style elements, layouts, components, and utilities.
+
+This includes color mixins for generating scales and utilities, the `block` system, transitions, glows, making an element scrollable, easily generating a set of component-level color tokens, the fluid-clamp system, and so on.
+
+This section will not include all of the tools, as some are expanded on in other sections.
+
+
+
 
 
 Accordion

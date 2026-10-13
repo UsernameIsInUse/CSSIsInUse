@@ -45,11 +45,11 @@
     --container-max: var(--breakpoint-xs);
   }
 
-  &.is-small {
+  &.is-sm {
     --container-max: var(--breakpoint-sm);
   }
 
-  &.is-large {
+  &.is-lg {
     --container-max: var(--breakpoint-lg);
   }
 }

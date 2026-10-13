@@ -100,7 +100,7 @@
     --input-color: transparent;
   }
 
-  &.is-small {
+  &.is-sm {
     --input-size-text: var(--text-size-7);
     --input-size-padding: var(--input-padding-sm);
   }
@@ -110,13 +110,13 @@
   height: var(--input-size-height);
   min-height: var(--input-size-height);
 
-  &.is-small {
+  &.is-sm {
     --input-size-height: 2.625rem;
     --input-size-padding: var(--input-padding-md);
     --input-size-text: var(--text-size-6);
   }
 
-  &.is-large {
+  &.is-lg {
     --input-size-height: 12rem;
   }
 }

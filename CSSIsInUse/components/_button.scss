@@ -116,7 +116,7 @@
       padding: 0;
     }
 
-    &.is-large {
+    &.is-lg {
       --btn-size-padding: var(--padding-sm);
     }
     &.is-xl {
@@ -125,13 +125,13 @@
     
   }
 
-  &.is-small {
+  &.is-sm {
     --btn-size-padding: var(--input-padding-sm);
     --btn-size-text: var(--text-size-7);
     --btn-size-glow: var(--glow-size-sm);
   }
 
-  &.is-large {
+  &.is-lg {
     --btn-size-text: var(--text-size-lg);
   }
 

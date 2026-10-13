@@ -77,7 +77,6 @@
                 <template x-for="(value, index) in schemes">
                   <button class="dropdown-item" :class="{ 'is-active' : scheme === index }" @click="scheme = index" x-text="value"></button>
                 </template>
-                
               </div>
             </div>
           </div>
@@ -121,6 +120,7 @@
                 <li><a href="#utilities" @click="current = 'utilities'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'utilities' }">Utilities</a></li>
               </ul></li>
               <li><a href="#color" @click="current = 'color'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'color' }">Color System</a></li>
+              <li><a href="#fluid" @click="current = 'fluid'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'fluid' }">Fluid Design</a></li>
               <li><a href="#accessibility" @click="current = 'accessibility'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'accessibility' }">Accessibility & Preferences</a></li>
             </ul></li>
           </ul>
@@ -359,7 +359,173 @@
 
         <!-- #region Tools -->
 
-        
+        <section id="tools" class="section container content" x-show="['tools', 'heirarchy'].includes(current)">
+          <hgroup>
+            <h2>Tools</h2>
+            <h5>Resuable Mixins</h5>
+          </hgroup>
+          <p>The second layer of the CSSIsInUse heirarchy is the <code class="chip is-info is-quiet">tools</code> layer.</p>
+          <p>These are reusable mixins used to style elements, layouts, components, and utilities.</p>
+          <p>This includes color mixins for generating scales and utilities, the block system, transitions, glows, making an element scrollable, the fluid-clamp system, and so on.</p>
+          <p>This section will not include all available tools, such as color generation, fluid-clamp, and blocks, as they are expanded on in other sections.</p>
+
+          <h4>Transitions</h4>
+
+          <p>The <code class="chip is-info is-quiet">transitions</code> and <code class="chip is-info is-quiet">no-transitions</code> mixins allow you to quickly set up transitions on any given CSS attribute.</p>
+
+          <div class="columns gap-large">
+            <div>
+              <p class="chip is-element">Example</p>
+              <h6>With Transitions</h6>
+              <div class="group">
+                <button class="button is-primary">Button</button>
+                <span class="chip is-hoverable">Hoverable Chip</span>
+                <span class="icon is-hoverable is-success is-vivid is-xl"><i class="ti ti-square-check-filled"></i></span>
+              </div>
+              <h6>Without Transitions</h6>
+              <div class="group no-transitions">
+                <button class="button is-primary">Button</button>
+                <span class="chip is-hoverable">Hoverable Chip</span>
+                <span class="icon is-hoverable is-success is-vivid is-xl"><i class="ti ti-square-check-filled"></i></span>
+              </div>
+            </div>
+            <div>
+              <pre><code class="language-scss dark">@mixin transitions($properties...) {
+  -webkit-transition-duration: var(--transition-duration);
+  transition-duration: var(--transition-duration);
+  transition-timing-function: ease-out;
+  transition-property: #{$properties};
+}
+
+@mixin no-transitions {
+  --transition-duration: 0s;
+  -webkit-transition-duration: 0s;
+  transition-duration: 0s;
+}</code></pre>
+            </div>
+          </div>
+
+          <h4>Glow & Shadow</h4>
+
+          <p>The <code class="chip is-info is-quiet">glow</code> mixin allows you to add a glow to any component.</p>
+
+          <p>By default, only the <code class="chip is-warning is-quiet">dropdown</code> component with the <code class="chip is-info is-quiet">is-tooltip</code> modifier currently uses the <code class="chip is-info is-quiet">shadow</code> mixin, and is best viewed in light mode.</p>
+
+          <div class="columns gap-large">
+            <div>
+              <p class="chip is-element">Example</p>
+              <div class="group">
+                <button class="button is-primary">Button</button>
+                <a href="#" class="chip is-info">Anchor Tag Chip</a>
+                <span class="notification is-hoverable is-warning">Notification</span>
+                <div class="dropdown is-tooltip is-up block">
+                  <p id="tooltip-shadow">Hover Me</p>
+                  <div class="dropdown-menu" id="tooltip-shadow">
+                    <div class="dropdown-content">
+                      <div class="dropdown-item">This is a hoverable tooltip!</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <pre><code class="language-scss dark">@mixin glow($size, $color, $alpha) {
+  box-shadow: 0 0 #{$size} oklch(from #{$color} l c h / #{$alpha});
+}
+
+@mixin shadow($color) {
+  box-shadow: oklch(from #{$color} l c h / var(--opacity-light)) 0px 6px 12px -2px, oklch(from #{$color} l c h / var(--opacity-light)) 0px 3px 7px -3px;
+}</code></pre>
+            </div>
+          </div>
+
+          <h4>No Select</h4>
+
+          <p>The <code class="chip is-info is-quiet">no-select</code> mixin allows you to set <code class="chip is-danger is-quiet">user-select: none;</code> to any component across browsers.</p>
+
+          <div class="columns gap-large">
+            <div>
+              <p class="chip is-element">Example</p>
+              <div class="group">
+                <button class="button">Button</button>
+                <input class="input" placeholder="Input">
+                <span class="icon is-xl"><i class="ti ti-heart-filled"></i></span>
+              </div>
+            </div>
+            <div>
+              <pre><code class="language-scss dark">@mixin no-select {
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}</code></pre>
+            </div>
+          </div>
+
+          <p>Attempts to highlight the above elements will fail thanks to <code class="chip is-info is-quiet">no-select</code>.</p>
+          <div class="notification is-warning is-quiet">This is not intended as a security feature and will not prevent users from accessing or copying content from your webapp.</div>
+
+          <h4>Focus</h4>
+
+          <p>The <code class="chip is-info is-quiet">focus</code> mixin allows for consistent focus rings around focusable elements.</p>
+
+          <div class="columns gap-large">
+            <div>
+              <p class="chip is-element">Example</p>
+              <div class="group">
+                <button class="button">Button</button>
+                <a href="#">Anchor Tag Link</a>
+                <input class="input" placeholder="Input">
+                <textarea class="textarea" placeholder="Textarea"></textarea>
+                <label class="checkbox">
+                  <input type="checkbox" />
+                  Checkbox
+                </label>
+              </div>
+            </div>
+            <div>
+              <pre><code class="language-scss dark">@@mixin focus{
+  &:focus-visible {
+    outline: solid var(--border-thickness-md) currentColor;
+  }
+}</code></pre>
+            </div>
+          </div>
+
+          <h4>Scrollable</h4>
+
+          <p>The <code class="chip is-info is-quiet">scrollable</code> mixin allows for elements to be made scrollable in the x or y direction.</p>
+
+          <p>By default there are only two components which use this, the <code class="chip is-warning is-quiet">sidebar</code> and the <code class="chip is-warning is-quiet">highlightjs</code> integration, which consists of all of the colored code blocks on this documentation site.</p>
+
+          <div class="columns gap-large">
+            <div>
+              <p class="chip is-element">Example</p>
+              <pre><code class="language-scss dark">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</code></pre>
+            </div>
+            <div>
+              <pre><code class="language-scss dark">@mixin scrollable($y: true, $x: false, $overscroll: true) {
+  @if $y {
+    overflow-y: auto;
+  }
+  @if $x {
+    overflow-x: auto;
+  }
+  @if $overscroll{
+    overscroll-behavior: contain;
+  }
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+
+  &:hover{
+    @include colors("scrollbar","weak");
+    scrollbar-color: var(--scrollbar-color-weak) transparent;
+  }
+}</code></pre>
+            </div>
+          </div>
+
+        </section>
 
         <!-- #endregion -->
 
@@ -384,6 +550,73 @@
         <!-- #region Color -->
 
         
+
+        <!-- #endregion -->
+
+        <!-- #region Fluid Design -->
+
+        <section id="fluid" class="section container content" x-show="['fluid'].includes(current)">
+          <hgroup>
+            <h2>Fluid Design</h2>
+            <h5>No @media queries + fluid-clamp</h5>
+          </hgroup>
+
+          <p>A philosophy for CSSIsInUse is the idea of an entirely fluid design that uses no @media sizing queries (see <a href="https://dev.to/kathryngrayson/you-probably-dont-need-media-queries-anymore-a4j" target="_blank">You Probably Don't Need Media Queries Anymore </a> and <a href="https://robmc.dev/blog/look-mum-no-breakpoints/" target="_blank">Look Mum, No Breakpoints!</a>).</p>
+          <p>This was acheived in two ways: non-traditional use of breakpoints, and the <code class="chip is-info is-quiet">fluid-clamp</code> tool.</p>
+
+          <h4>Breakpoints</h4>
+
+          <p>Breakpoints in CSSIsInUse do not determine the sizing of elements and components at specific intervals in the traditional sense. There are no <code class="chip is-danger is-quiet">@media (min-width: 768px)</code> queries, and it was not designed mobile-first.</p>
+          <p>There are 4 breakpoints:</p>
+          <ul>
+            <li><code class="chip is-info is-quiet">--breakpoint-xs</code> which by default is defined as 20rem, or 320px</li>
+            <li><code class="chip is-info is-quiet">--breakpoint-sm</code> which by default is defined as 30rem, or 480px</li>
+            <li><code class="chip is-info is-quiet">--breakpoint-md</code> which by default is defined as 60rem, or 960px</li>
+            <li><code class="chip is-info is-quiet">--breakpoint-lg</code> which by default is defined as 90rem, or 1440px</li>
+          </ul>
+          <p>The main purpose of these breakpoints are to provide a standard set of widths for elements and components, and to use as the min and max in the <code class="chip is-info is-quiet">fluid-clamp</code> tool. For example, dropdowns and sidebars use <code class="chip is-info is-quiet">--breakpoint-xs</code> to calculate their width. Notifications use <code class="chip is-info is-quiet">--breakpoint-sm</code> to determine the width of the floating container. Columns use a few breakpoints to determine it's <code class="chip is-danger is-quiet">flex-basis</code>, which when it reaches that, wraps to sack vertically. Containers use all of them to determine their maximum width.</p>
+
+          <div class="container is-xs block">
+            <div class="card">
+              <p>This card is in a <code class="chip is-info is-quiet">.is-xs</code> container.</p>
+            </div>
+          </div>
+          <div class="container is-sm block">
+            <div class="card">
+              <p>This card is in a <code class="chip is-info is-quiet">.is-sm</code> container.</p>
+            </div>
+          </div>
+
+          <p>This creates a fluid layout system with consistent and predictable widths able to support devices as small as 320px (older android phones) and up.</p>
+
+          <h4>fluid-clamp</h4>
+
+          <p>The <code class="chip is-info is-quiet">fluid-clamp</code> tool is a mixin which allows elements and components to calculate their size at any given screen width by providing a minimum and maximum size.</p>
+          <p>Instead of providing sizes at determined breakpoints for mobile, tablet, laptop, desktop, and larger, which text and padding snaps to at said breakpoints, instead you determine what size you want an attribute to be at the minimum and maximum breakpoints, and the mixin creates a token for you which uses linear algebra and the CSS <code class="chip is-danger is-quiet">clamp</code> feature to determine the size at any width between.</p>
+          <p><code class="chip is-info is-quiet">fluid-clamp</code> is used in all elements and components which have a minimum and maximum size, including text sizes, lists, and page edge and section paddings.</p>
+
+          <div class="columns gap-large">
+            <div>
+              <p class="chip is-element">Example</p>
+              <hgroup class="is-text-center">
+                <h1>Header 1</h1>
+                <h3>Header 3</h3>
+                <h5>Header 5</h5>
+              </hgroup>
+            </div>
+            <div>
+              <pre><code class="language-scss dark">@mixin fluid-clamp($name, $min, $max, $breakpoint-min: 'var(--breakpoint-xs)', $breakpoint-max: 'var(--breakpoint-lg)') {
+  --fluid-#{$name}-a: calc( calc( #{$max} - #{$min} ) / calc( #{$breakpoint-max} - #{$breakpoint-min} ) );
+  --fluid-#{$name}-b: calc( #{$min} - calc( var(--fluid-#{$name}-a) * #{$breakpoint-min}) ) ;
+  --fluid-#{$name}-m: calc( var(--fluid-#{$name}-a) * 100vw );
+  --fluid-#{$name}: clamp( #{$min}, calc(var(--fluid-#{$name}-m) + var(--fluid-#{$name}-b)), #{$max} );
+}</code></pre>
+            </div>
+          </div>
+
+          <p>This is easiest to see on desktop by changing the size of your browser. The header text above will smoothly get smaller until you hit <code class="chip is-info is-quiet">--breakpoint-xs</code>.</p>
+          <p>What you sacrifice in pixel-perfect exact sizing at specific breakpoints you make up for in fluid sizing you don't have to think about anymore. There are a billion devices on the planet with a billion widths and heights. The fluid design system is designed to look good on all of them, while all breakpoint-based systems are more work to make, make look good, and maintain.</p>
+        </section>
 
         <!-- #endregion -->
 

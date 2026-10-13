@@ -9,8 +9,7 @@ $schemes: default, olive, slate;
 // THE REST IS HANDLED AUTOMATICALLY
 // This includes light and dark mode, you do not need to make a separate light and dark mode for your scheme.
 
-@use 'functions' as f;
-@use '../tools/mixins' as m;
+@use '../tools/colors' as c;
 @use 'sass:list';
 
 // If you want to make a custom color, eg secondary, add it to this list and add --secondary-l, secondary-c, secondary-h, and secondary-falloff to the default scheme and custom variations to any other scheme.
@@ -24,7 +23,7 @@ $scheme-classes: ();
 
 @mixin generate-all-scales {
   @each $group in $color-groups {
-    @include f.generate-color-scale($group);
+    @include c.generate-color-scale($group);
   }
 }
 
@@ -131,5 +130,5 @@ $scheme-classes: ();
     @include low-contrast-color-tokens;
   }
 }
-//@include f.generate-color-utilities($color-groups);
-//@include f.generate-single-color-utilities('black' 'white');
+//@include c.generate-color-utilities($color-groups);
+//@include c.generate-single-color-utilities('black' 'white');

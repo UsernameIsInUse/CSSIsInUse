@@ -20,9 +20,9 @@
   }
 }
 
-@mixin fluid-clamp($name, $min, $max) {
-  --fluid-#{$name}-a: calc( calc(#{$max} - #{$min} ) / calc( var(--breakpoint-lg) - var(--breakpoint-xs) ) );
-  --fluid-#{$name}-b: calc( #{$min} - calc( var(--fluid-#{$name}-a) * var(--breakpoint-xs) ) ) ;
+@mixin fluid-clamp($name, $min, $max, $breakpoint-min: 'var(--breakpoint-xs)', $breakpoint-max: 'var(--breakpoint-lg)') {
+  --fluid-#{$name}-a: calc( calc( #{$max} - #{$min} ) / calc( #{$breakpoint-max} - #{$breakpoint-min} ) );
+  --fluid-#{$name}-b: calc( #{$min} - calc( var(--fluid-#{$name}-a) * #{$breakpoint-min}) ) ;
   --fluid-#{$name}-m: calc( var(--fluid-#{$name}-a) * 100vw );
   --fluid-#{$name}: clamp( #{$min}, calc(var(--fluid-#{$name}-m) + var(--fluid-#{$name}-b)), #{$max} );
 }
@@ -35,12 +35,17 @@
 }
 
 @mixin no-transitions {
+  --transition-duration: 0s;
   -webkit-transition-duration: 0s;
   transition-duration: 0s;
 }
 
 @mixin glow($size, $color, $alpha) {
   box-shadow: 0 0 #{$size} oklch(from #{$color} l c h / #{$alpha});
+}
+
+@mixin shadow($color) {
+  box-shadow: oklch(from #{$color} l c h / var(--opacity-light)) 0px 6px 12px -2px, oklch(from #{$color} l c h / var(--opacity-light)) 0px 3px 7px -3px;
 }
 
 @mixin colors($prefix, $colors...) {

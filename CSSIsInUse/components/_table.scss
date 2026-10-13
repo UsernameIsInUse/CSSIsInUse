@@ -72,10 +72,10 @@ table {
 
   }
 
-  &.is-small {
+  &.is-sm {
     --table-cell-padding: var(--input-padding-sm);
   }
-  &.is-large {
+  &.is-lg {
     --table-cell-padding: var(--input-padding-lg);
   }
 

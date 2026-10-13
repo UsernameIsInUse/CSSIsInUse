@@ -191,6 +191,7 @@
 
 @media screen and (prefers-reduced-transparency) {
   :root, #{s.$scheme-selectors}, #{s.$scheme-classes} {
+    --opacity-disabled: 0.5 !important;
     --opacity-light: 0.7 !important;
     --opacity-dark: 1 !important;
     --glow-size-base: 0 !important;

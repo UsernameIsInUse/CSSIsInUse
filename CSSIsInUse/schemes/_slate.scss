@@ -1,5 +1,3 @@
-@use '../tools/functions' as f;
-
 .slate, [data-scheme=slate] {
   --light: 0.98;
   --dark: 0.15;
@@ -61,7 +59,7 @@
   }
   
 
-  .textarea.is-small {
+  .textarea.is-sm {
     --input-size-height: 3.125rem;
   }
 }

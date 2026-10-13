@@ -1,5 +1,5 @@
 @use "../../schemes" as s;
-@use '../../schemes/functions' as f;
+@use '../../tools/colors' as c;
 
-@include f.generate-color-utilities(s.$color-groups);
-@include f.generate-single-color-utilities('black' 'white');
+@include c.generate-color-utilities(s.$color-groups);
+@include c.generate-single-color-utilities('black' 'white');
