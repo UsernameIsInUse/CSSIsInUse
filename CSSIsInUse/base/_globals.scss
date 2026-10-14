@@ -108,6 +108,7 @@ code {
 
 a {
   --element-text: var(--info-vivid);
+  @include m.transitions('color');
 
   &[href] {
     @include m.focus;
