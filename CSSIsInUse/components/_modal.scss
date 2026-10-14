@@ -1,9 +1,7 @@
 @use "../tools/mixins" as m;
 
 .modal {
-  @include m.colors("modal","base");
-
-  --modal-background: var(--modal-color-base);
+  --modal-background: var(--color-base);
 
   --modal-backdrop-filter: blur(var(--blur-size-sm));
 

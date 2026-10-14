@@ -21,11 +21,9 @@ body {
 }
 
 body {
-  @include m.colors("body","base","text","weak");
-
-  --body-background: var(--body-color-base);
-  --body-text: var(--body-color-text);
-  --body-scrollbar: var(--body-color-weak);
+  --body-background: var(--color-base);
+  --body-text: var(--color-text);
+  --body-scrollbar: var(--color-weak);
 
   font-family: var(--font-body);
   background: var(--body-background);
@@ -35,9 +33,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, button, input[type="submit"], .button, a {
-  @include m.colors("element","strong");
-
-  --element-text: var(--element-color-strong);
+  --element-text: var(--color-strong);
   
   color: var(--element-text);
 }
@@ -99,10 +95,8 @@ li {
   @include m.block("sm");
 }
 
-small {
-  @include m.colors("small","weak");
-  
-  --small-text: var(--small-color-weak);
+small {  
+  --small-text: var(--color-weak);
 
   font-size: var(--text-size-7);
   color:var(--small-text);
@@ -124,13 +118,11 @@ a {
   }
 
   &.is-quiet {
-    @include m.colors("a","weak","strong");
-
-    --element-text: var(--a-color-strong);
+    --element-text: var(--color-strong);
     text-decoration: none;
 
     &:hover {
-      --element-text: var(--a-color-weak);
+      --element-text: var(--color-weak);
     }
   }
 }
@@ -149,9 +141,7 @@ label {
 }
 
 hr{
-  @include m.colors("hr","top");
-
-  --hr-background: var(--hr-color-top);
+  --hr-background: var(--color-top);
 
   background-color: var(--hr-background);
   border: none;

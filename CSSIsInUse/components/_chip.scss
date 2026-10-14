@@ -1,13 +1,11 @@
 @use "../tools/mixins" as m;
 
 .chip {
-  @include m.colors("chip","base","menu","element","top","muted","color","vivid","weak","text","strong");
-
-  --chip-background: var(--chip-color-top);
-  --chip-background-hover: var(--chip-color-element);
-  --chip-background-disabled: var(--chip-color-top);
-  --chip-text: var(--chip-color-strong);
-  --chip-color: var(--chip-color-top);
+  --chip-background: var(--color-top);
+  --chip-background-hover: var(--color-element);
+  --chip-background-disabled: var(--color-top);
+  --chip-text: var(--color-strong);
+  --chip-color: var(--color-top);
 
   --chip-glow-alpha: var(--opacity-glow);
   --chip-glow-alpha-hover: var(--opacity-dark);
@@ -26,61 +24,61 @@
   white-space: nowrap;
 
   &.is-base {
-    --chip-background: var(--chip-color-base);
-    --chip-background-hover: var(--chip-color-element);
-    --chip-background-disabled: var(--chip-color-base);
-    --chip-color: var(--chip-color-base);
+    --chip-background: var(--color-base);
+    --chip-background-hover: var(--color-element);
+    --chip-background-disabled: var(--color-base);
+    --chip-color: var(--color-base);
   }
 
   &.is-menu {
-    --chip-background: var(--chip-color-menu);
-    --chip-background-hover: var(--chip-color-element);
-    --chip-background-disabled: var(--chip-color-menu);
-    --chip-color: var(--chip-color-menu);
+    --chip-background: var(--color-menu);
+    --chip-background-hover: var(--color-element);
+    --chip-background-disabled: var(--color-menu);
+    --chip-color: var(--color-menu);
   }
 
   &.is-element, &.is-active {
-    --chip-background: var(--chip-color-element);
-    --chip-background-hover: var(--chip-color-top);
-    --chip-background-disabled: var(--chip-color-element);
-    --chip-color: var(--chip-color-element);
+    --chip-background: var(--color-element);
+    --chip-background-hover: var(--color-top);
+    --chip-background-disabled: var(--color-element);
+    --chip-color: var(--color-element);
   }
 
   &.is-top {
-    --chip-background: var(--chip-color-top);
-    --chip-background-hover: var(--chip-color-element);
-    --chip-background-disabled: var(--chip-color-top);
-    --chip-color: var(--chip-color-top);
+    --chip-background: var(--color-top);
+    --chip-background-hover: var(--color-element);
+    --chip-background-disabled: var(--color-top);
+    --chip-color: var(--color-top);
   }
 
   &.is-muted {
-    --chip-color: var(--chip-color-muted);
+    --chip-color: var(--color-muted);
   }
 
   &.is-color {
-    --chip-color: var(--chip-color-color);
+    --chip-color: var(--color-color);
   }
 
   &.is-vivid {
-    --chip-color: var(--chip-color-vivid);
+    --chip-color: var(--color-vivid);
   }
 
   &.is-weak {
-    --chip-text: var(--chip-color-weak);
+    --chip-text: var(--color-weak);
   }
 
   &.is-text {
-    --chip-text: var(--chip-color-text);
+    --chip-text: var(--color-text);
   }
 
   &.is-strong {
-    --chip-text: var(--chip-color-strong);
+    --chip-text: var(--color-strong);
   }
 
   &.is-quiet {
-    --chip-text: var(--chip-color-weak);
-    --chip-background: var(--chip-color-base);
-    --chip-background-disabled: var(--chip-color-base);
+    --chip-text: var(--color-weak);
+    --chip-background: var(--color-base);
+    --chip-background-disabled: var(--color-base);
   }
 
   &.is-ghost {

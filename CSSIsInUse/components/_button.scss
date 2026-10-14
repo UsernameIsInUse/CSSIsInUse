@@ -1,14 +1,12 @@
 @use "../tools/mixins" as m;
 
 .button {
-  @include m.colors("btn","base","menu","element","top","muted","color","vivid","weak","text","strong");
-
-  --btn-background: var(--btn-color-base);
-  --btn-background-hover: var(--btn-color-element);
-  --btn-background-disabled: var(--btn-color-base);
-  --btn-text: var(--btn-color-strong);
-  --btn-glow: var(--btn-color-color);
-  --btn-color: var(--btn-color-color);
+  --btn-background: var(--color-base);
+  --btn-background-hover: var(--color-element);
+  --btn-background-disabled: var(--color-base);
+  --btn-text: var(--color-strong);
+  --btn-glow: var(--color-color);
+  --btn-color: var(--color-color);
 
   --btn-size-text: var(--text-size-6);
   --btn-size-padding: var(--input-padding-md);
@@ -37,51 +35,51 @@
   line-height: var(--line-height-normal);
 
   &.is-base {
-    --btn-background: var(--btn-color-base);
-    --btn-background-hover: var(--btn-color-element);
-    --btn-background-disabled: var(--btn-color-base);
+    --btn-background: var(--color-base);
+    --btn-background-hover: var(--color-element);
+    --btn-background-disabled: var(--color-base);
   }
 
   &.is-menu {
-    --btn-background: var(--btn-color-menu);
-    --btn-background-hover: var(--btn-color-element);
-    --btn-background-disabled: var(--btn-color-menu);
+    --btn-background: var(--color-menu);
+    --btn-background-hover: var(--color-element);
+    --btn-background-disabled: var(--color-menu);
   }
 
   &.is-element, &.is-active {
-    --btn-background: var(--btn-color-element);
-    --btn-background-hover: var(--btn-color-top);
-    --btn-background-disabled: var(--btn-color-element);
+    --btn-background: var(--color-element);
+    --btn-background-hover: var(--color-top);
+    --btn-background-disabled: var(--color-element);
   }
 
   &.is-top {
-    --btn-background: var(--btn-color-top);
-    --btn-background-hover: var(--btn-color-element);
-    --btn-background-disabled: var(--btn-color-top);
+    --btn-background: var(--color-top);
+    --btn-background-hover: var(--color-element);
+    --btn-background-disabled: var(--color-top);
   }
 
   &.is-muted {
-    --btn-color: var(--btn-color-muted);
+    --btn-color: var(--color-muted);
   }
 
   &.is-color {
-    --btn-color: var(--btn-color-color);
+    --btn-color: var(--color-color);
   }
 
   &.is-vivid {
-    --btn-color: var(--btn-color-vivid);
+    --btn-color: var(--color-vivid);
   }
 
   &.is-weak {
-    --btn-text: var(--btn-color-weak);
+    --btn-text: var(--color-weak);
   }
 
   &.is-text {
-    --btn-text: var(--btn-color-text);
+    --btn-text: var(--color-text);
   }
 
   &.is-strong {
-    --btn-text: var(--btn-color-strong);
+    --btn-text: var(--color-strong);
   }
 
   &.is-ghost {

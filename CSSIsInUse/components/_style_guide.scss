@@ -4,12 +4,9 @@
 
 // Main Element
 .component {
-  // Color References
-  @include m.colors('component', 'base', 'element',  'top', ...);
-
   // Component Semantic Values / Defaults (Color -> Size -> Misc)
-  --component-background: var(--component-color-base);
-  --component-background-hover: var(--component-color-element);
+  --component-background: var(--color-base);
+  --component-background-hover: var(--color-element);
 
   --component-size-text: var(--text-size-6);
   --component-size-padding: var(--padding-md);
@@ -25,8 +22,8 @@
 
   // is-* Variants Modify Semantic Tokens (Color -> Size -> Misc)
   &.is-element {
-    --component-background: var(--component-color-element);
-    --component-background-hover: var(--component-color-top);
+    --component-background: var(--color-element);
+    --component-background-hover: var(--color-top);
   }
   
   &.is-sm {

@@ -1,20 +1,18 @@
 @use "../../tools/mixins" as m;
 
 .choices {
-  @include m.colors("choices","base","element","top","color","weak","text","strong");
-
-  --choices-bg-color: var(--choices-color-base);
-  --choices-bg-color-disabled: var(--choices-color-base);
-  --choices-bg-color-dropdown: var(--choices-color-base);
-  --choices-text-color: var(--choices-color-strong);
-  --choices-item-color: var(--choices-color-strong);
-  --choices-keyline-color: var(--choices-color-color);
-  --choices-primary-color: var(--choices-color-top);
-  --choices-disabled-color: var(--choices-color-element);
-  --choices-item-disabled-color: var(--choices-color-weak);
+  --choices-bg-color: var(--color-base);
+  --choices-bg-color-disabled: var(--color-base);
+  --choices-bg-color-dropdown: var(--color-base);
+  --choices-text-color: var(--color-strong);
+  --choices-item-color: var(--color-strong);
+  --choices-keyline-color: var(--color-color);
+  --choices-primary-color: var(--color-top);
+  --choices-disabled-color: var(--color-element);
+  --choices-item-disabled-color: var(--color-weak);
   --choices-invalid-color: var(--danger-color-color);
-  --choices-highlighted-color: var(--choices-color-element);
-  --choices-highlight-color: var(--choices-color-color);
+  --choices-highlighted-color: var(--color-element);
+  --choices-highlight-color: var(--color-color);
 
   --choices-font-size-lg: var(--text-size-6);
   --choices-font-size-md: var(--text-size-6);

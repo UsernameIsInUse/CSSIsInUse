@@ -32,19 +32,21 @@
   --danger-h: 32;
   --danger-falloff: 0.7;
 
-  --font-header: 'DM Serif Display', serif;
-  --font-body: 'Commissioner', 'DM Sans', sans-serif;
-  --glow-size-base: 0;
-  --padding-base: 1.5rem;
-  --border-radius-base: 0.25rem;
+  // Any 
+
+  --font-header: 'DM Serif Display', serif !important;
+  --font-body: 'Commissioner', 'DM Sans', sans-serif !important;
+  --glow-size-base: 0 !important;
+  --padding-base: 1.5rem !important;
+  --border-radius-base: 0.25rem !important;
   --border-radius-sm: 0.25rem !important;
   --border-radius-rounded: 0.25rem !important;
-  --text-size-6-base: 1.1rem;
-  --icon-size-sm: 1.1rem;
+  --text-size-6-base: 1.1rem !important;
+  --icon-size-sm: 1.1rem !important;
 
-  --line-height-md: 2;
-  --line-height-sm: 1.5;
-  --line-height-lg: 3;
+  --line-height-md: 2 !important;
+  --line-height-sm: 1.5 !important;
+  --line-height-lg: 3 !important;
 
   ol, ul {
     padding-left: var(--padding-lg);

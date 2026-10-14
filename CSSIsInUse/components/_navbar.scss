@@ -8,10 +8,8 @@
 }
 
 .nav {
-  @include m.colors("nav","base","menu","element","top","weak","text","strong");
-
-  --nav-background: var(--nav-color-base);
-  --nav-text: var(--nav-color-strong);
+  --nav-background: var(--color-base);
+  --nav-text: var(--color-strong);
 
   --nav-opacity: var(--opacity-base);
 
@@ -28,31 +26,31 @@
   line-height: var(--line-height-normal);
 
   &.is-base {
-    --nav-background: var(--nav-color-base);
+    --nav-background: var(--color-base);
   }
 
   &.is-menu {
-    --nav-background: var(--nav-color-menu);
+    --nav-background: var(--color-menu);
   }
 
   &.is-element {
-    --nav-background: var(--nav-color-element);
+    --nav-background: var(--color-element);
   }
 
   &.is-top {
-    --nav-background: var(--nav-color-top);
+    --nav-background: var(--color-top);
   }
 
   &.is-weak {
-    --nav-text: var(--nav-color-weak);
+    --nav-text: var(--color-weak);
   }
 
   &.is-text {
-    --nav-text: var(--nav-color-text);
+    --nav-text: var(--color-text);
   }
 
   &.is-strong {
-    --nav-text: var(--nav-color-strong);
+    --nav-text: var(--color-strong);
   }
 
   &.is-translucent {
@@ -71,7 +69,7 @@
   .logo {
     @include m.transitions("opacity");
     font-size: var(--text-size-logo);
-    color: var(--nav-color-strong);
+    color: var(--color-strong);
 
     &:hover {
       opacity: var(--opacity-dark);

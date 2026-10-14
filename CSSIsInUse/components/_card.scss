@@ -1,12 +1,10 @@
 @use "../tools/mixins" as m;
 
 .card {
-  @include m.colors("card","base","menu","element","top","muted","color","vivid","weak","text","strong");
-
-  --card-background: var(--card-color-element);
-  --card-background-hover: var(--card-color-top);
-  --card-background-disabled: var(--card-color-element);
-  --card-text: var(--card-color-text);
+  --card-background: var(--color-element);
+  --card-background-hover: var(--color-top);
+  --card-background-disabled: var(--color-element);
+  --card-text: var(--color-text);
   --card-color: transparent;
 
   --card-size-padding: var(--padding-md);
@@ -22,59 +20,59 @@
   border-radius: var(--card-size-radius);
 
   &.is-base {
-    --card-background: var(--card-color-base);
-    --card-background-hover: var(--card-color-element);
-    --card-background-disabled: var(--card-color-base);
+    --card-background: var(--color-base);
+    --card-background-hover: var(--color-element);
+    --card-background-disabled: var(--color-base);
   }
 
   &.is-menu {
-    --card-background: var(--card-color-menu);
-    --card-background-hover: var(--card-color-element);
-    --card-background-disabled: var(--card-color-menu);
+    --card-background: var(--color-menu);
+    --card-background-hover: var(--color-element);
+    --card-background-disabled: var(--color-menu);
   }
 
   &.is-element {
-    --card-background: var(--card-color-element);
-    --card-background-hover: var(--card-color-top);
-    --card-background-disabled: var(--card-color-element);
+    --card-background: var(--color-element);
+    --card-background-hover: var(--color-top);
+    --card-background-disabled: var(--color-element);
   }
 
   &.is-top {
-    --card-background: var(--card-color-top);
-    --card-background-hover: var(--card-color-element);
-    --card-background-disabled: var(--card-color-top);
-    --card-text: var(--card-color-strong);
+    --card-background: var(--color-top);
+    --card-background-hover: var(--color-element);
+    --card-background-disabled: var(--color-top);
+    --card-text: var(--color-strong);
   }
 
   &.is-muted {
-    --card-color: var(--card-color-muted);
+    --card-color: var(--color-muted);
   }
 
   &.is-color {
-    --card-color: var(--card-color-color);
+    --card-color: var(--color-color);
   }
 
   &.is-vivid {
-    --card-color: var(--card-color-vivid);
+    --card-color: var(--color-vivid);
   }
 
   &.is-weak {
-    --card-text: var(--card-color-weak);
+    --card-text: var(--color-weak);
   }
 
   &.is-text {
-    --card-text: var(--card-color-text);
+    --card-text: var(--color-text);
   }
 
   &.is-strong {
-    --card-text: var(--card-color-strong);
+    --card-text: var(--color-strong);
   }
 
   &.is-quiet {
-    --card-background: var(--card-color-base);
-    --card-background-hover: var(--card-color-element);
-    --card-background-disabled: var(--card-color-base);
-    --card-color: var(--card-color-top);
+    --card-background: var(--color-base);
+    --card-background-hover: var(--color-element);
+    --card-background-disabled: var(--color-base);
+    --card-color: var(--color-top);
   }
 
   &.is-ghost {

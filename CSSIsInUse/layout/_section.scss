@@ -1,10 +1,8 @@
 @use "../tools/mixins" as m;
 
 .section {
-  @include m.colors("section","base","menu","element","top","text");
-
-  --section-background: var(--section-color-base);
-  --section-text: var(--section-color-text);
+  --section-background: var(--color-base);
+  --section-text: var(--color-text);
 
   --section-padding-vertical: var(--padding-section-md);
   --section-padding-horizontal: var(--padding-edge);
@@ -19,19 +17,19 @@
   overflow-wrap: break-word;
 
   &.is-base {
-    --section-background: var(--section-color-base);
+    --section-background: var(--color-base);
   }
 
   &.is-menu {
-    --section-background: var(--section-color-menu);
+    --section-background: var(--color-menu);
   }
 
   &.is-element {
-    --section-background: var(--section-color-element);
+    --section-background: var(--color-element);
   }
 
   &.is-top {
-    --section-background: var(--section-color-top);
+    --section-background: var(--color-top);
   }
 
   &.is-ghost {

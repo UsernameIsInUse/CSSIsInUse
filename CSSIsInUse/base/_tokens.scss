@@ -174,7 +174,7 @@
   --navbar-height: var(--navbar-height-base);
 }
 
-:root {
+:root, #{s.$scheme-selectors}, #{s.$scheme-classes} {
   @include static-tokens;
   @include base-tokens;
 }

@@ -1,12 +1,10 @@
 @use "../tools/mixins" as m;
 
 table {
-  @include m.colors("table","base","menu","element","top","muted","color","vivid","weak","text","strong");
-
-  --table-background: var(--table-color-base);
-  --table-background-striped: var(--table-color-element);
-  --table-text: var(--table-color-strong);
-  --table-border: var(--table-color-top);
+  --table-background: var(--color-base);
+  --table-background-striped: var(--color-element);
+  --table-text: var(--color-strong);
+  --table-border: var(--color-top);
 
   --table-cell-padding: var(--input-padding-md);
 
@@ -26,48 +24,48 @@ table {
     height: fit-content;
 
     &.is-base {
-      --table-background: var(--table-color-base);
-      --table-background-striped: var(--table-color-element);
-      --table-border: var(--table-color-top);
+      --table-background: var(--color-base);
+      --table-background-striped: var(--color-element);
+      --table-border: var(--color-top);
     }
     &.is-menu {
-      --table-background: var(--table-color-menu);
-      --table-background-striped: var(--table-color-element);
-      --table-border: var(--table-color-top);
+      --table-background: var(--color-menu);
+      --table-background-striped: var(--color-element);
+      --table-border: var(--color-top);
     }
     &.is-element {
-      --table-background: var(--table-color-element);
-      --table-background-striped: var(--table-color-top);
-      --table-border: var(--table-color-color);
+      --table-background: var(--color-element);
+      --table-background-striped: var(--color-top);
+      --table-border: var(--color-color);
     }
     &.is-top, &.is-active {
-      --table-background: var(--table-color-top);
-      --table-background-striped: var(--table-color-element);
-      --table-border: var(--table-color-color);
+      --table-background: var(--color-top);
+      --table-background-striped: var(--color-element);
+      --table-border: var(--color-color);
     }
 
     &.is-muted {
-      --table-border: var(--table-color-muted);
+      --table-border: var(--color-muted);
     }
 
     &.is-color {
-      --table-border: var(--table-color-color);
+      --table-border: var(--color-color);
     }
 
     &.is-vivid {
-      --table-border: var(--table-color-vivid);
+      --table-border: var(--color-vivid);
     }
 
     &.is-weak {
-      --table-text: var(--table-color-weak);
+      --table-text: var(--color-weak);
     }
 
     &.is-text {
-      --table-text: var(--table-color-text);
+      --table-text: var(--color-text);
     }
 
     &.is-strong {
-      --table-text: var(--table-color-strong);
+      --table-text: var(--color-strong);
     }
 
   }

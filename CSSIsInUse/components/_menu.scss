@@ -1,12 +1,10 @@
 @use "../tools/mixins" as m;
 
 .menu {
-  @include m.colors("menu","menu","element","top","weak","text","strong");
-
-  --menu-background: var(--menu-color-element);
-  --menu-background-hover: var(--menu-color-top);
-  --menu-text: var(--menu-color-strong);
-  --menu-color: var(--menu-color-top);
+  --menu-background: var(--color-element);
+  --menu-background-hover: var(--color-top);
+  --menu-text: var(--color-strong);
+  --menu-color: var(--color-top);
 
   @include m.block("md");
 
@@ -17,39 +15,39 @@
   line-height: var(--line-height-normal);
 
   &.is-base {
-    --menu-background: var(--menu-color-base);
-    --menu-background-hover: var(--menu-color-element);
-    --menu-color: var(--menu-color-element);
+    --menu-background: var(--color-base);
+    --menu-background-hover: var(--color-element);
+    --menu-color: var(--color-element);
   }
 
   &.is-menu {
-    --menu-background: var(--menu-color-menu);
-    --menu-background-hover: var(--menu-color-element);
-    --menu-color: var(--menu-color-element);
+    --menu-background: var(--color-menu);
+    --menu-background-hover: var(--color-element);
+    --menu-color: var(--color-element);
   }
 
   &.is-element {
-    --menu-background: var(--menu-color-element);
-    --menu-background-hover: var(--menu-color-top);
-    --menu-color: var(--menu-color-top);
+    --menu-background: var(--color-element);
+    --menu-background-hover: var(--color-top);
+    --menu-color: var(--color-top);
   }
 
   &.is-top {
-    --menu-background: var(--menu-color-top);
-    --menu-background-hover: var(--menu-color-element);
-    --menu-color: var(--menu-color-element);
+    --menu-background: var(--color-top);
+    --menu-background-hover: var(--color-element);
+    --menu-color: var(--color-element);
   }
 
   &.is-weak {
-    --menu-text: var(--menu-color-weak);
+    --menu-text: var(--color-weak);
   }
 
   &.is-text {
-    --menu-text: var(--menu-color-text);
+    --menu-text: var(--color-text);
   }
 
   &.is-strong {
-    --menu-text: var(--menu-color-strong);
+    --menu-text: var(--color-strong);
   }
 
   &.is-ghost {

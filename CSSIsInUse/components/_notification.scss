@@ -48,14 +48,12 @@
 }
 
 .notification {
-  @include m.colors("notif","base","menu","element","top","muted","color","vivid","weak","text","strong");
-
-  --notif-background: var(--notif-color-base);
-  --notif-background-hover: var(--notif-color-element);
-  --notif-text: var(--notif-color-text);
-  --notif-color: var(--notif-color-color);
-  --notif-glow: var(--notif-color-color);
-  --notif-color-quiet: var(--notif-color-top);
+  --notif-background: var(--color-base);
+  --notif-background-hover: var(--color-element);
+  --notif-text: var(--color-text);
+  --notif-color: var(--color-color);
+  --notif-glow: var(--color-color);
+  --color-quiet: var(--color-top);
 
   --notif-size-text: var(--text-size-6);
   --notif-size-padding: var(--padding-md);
@@ -80,52 +78,52 @@
   line-height: var(--line-height-normal);
 
   &.is-base {
-    --notif-background: var(--notif-color-base);
-    --notif-background-hover: var(--notif-color-element);
+    --notif-background: var(--color-base);
+    --notif-background-hover: var(--color-element);
   }
 
   &.is-menu {
-    --notif-background: var(--notif-color-menu);
-    --notif-background-hover: var(--notif-color-element);
+    --notif-background: var(--color-menu);
+    --notif-background-hover: var(--color-element);
   }
 
   &.is-element, &.is-active {
-    --notif-background: var(--notif-color-element);
-    --notif-background-hover: var(--notif-color-top);
+    --notif-background: var(--color-element);
+    --notif-background-hover: var(--color-top);
   }
 
   &.is-top {
-    --notif-background: var(--notif-color-top);
-    --notif-background-hover: var(--notif-color-element);
+    --notif-background: var(--color-top);
+    --notif-background-hover: var(--color-element);
   }
 
   &.is-muted {
-    --notif-color: var(--notif-color-muted);
+    --notif-color: var(--color-muted);
   }
 
   &.is-color {
-    --notif-color: var(--notif-color-color);
+    --notif-color: var(--color-color);
   }
 
   &.is-vivid {
-    --notif-color: var(--notif-color-vivid);
+    --notif-color: var(--color-vivid);
   }
 
   &.is-weak {
-    --notif-text: var(--notif-color-weak);
+    --notif-text: var(--color-weak);
   }
 
   &.is-text {
-    --notif-text: var(--notif-color-text);
+    --notif-text: var(--color-text);
   }
 
   &.is-strong {
-    --notif-text: var(--notif-color-strong);
+    --notif-text: var(--color-strong);
   }
 
   &.is-quiet {
-    --notif-text: var(--notif-color-weak);
-    --notif-color: var(--notif-color-quiet);
+    --notif-text: var(--color-weak);
+    --notif-color: var(--color-quiet);
 
     --notif-size-padding: var(--padding-sm);
     --notif-size-radius: var(--border-radius-sm);

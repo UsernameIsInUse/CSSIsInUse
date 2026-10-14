@@ -8,9 +8,7 @@
 }
 
 .sidebar {
-  @include m.colors("sb","base","menu","element","top");
-
-  --sb-background: var(--sb-color-menu);
+  --sb-background: var(--color-menu);
 
   --sb-height: calc(100dvh - var(--navbar-height));
   --sb-width: var(--sidebar-width);
@@ -28,19 +26,19 @@
   z-index: var(--z-index-sidebar);
 
   &.is-base {
-    --sb-background: var(--sb-color-base);
+    --sb-background: var(--color-base);
   }
 
   &.is-menu {
-    --sb-background: var(--sb-color-menu);
+    --sb-background: var(--color-menu);
   }
 
   &.is-element {
-    --sb-background: var(--sb-color-element);
+    --sb-background: var(--color-element);
   }
 
   &.is-top {
-    --sb-background: var(--sb-color-top);
+    --sb-background: var(--color-top);
   }
   
   .has-sidebar.open & {
@@ -54,8 +52,6 @@
   
 }
 .main {
-  @include m.colors("main","base","menu","element","top");
-
   --main-margin-left: 0;
 
   @include m.transitions("margin-left");

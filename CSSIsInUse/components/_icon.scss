@@ -1,10 +1,8 @@
 @use "../tools/mixins" as m;
 
 .icon {
-  @include m.colors("icon","muted","color","vivid","weak","text","strong",);
-
   --icon-color: inherit;
-  --icon-color-hover: inherit;
+  --color-hover: inherit;
 
   --icon-size: var(--icon-size-md);
 
@@ -21,28 +19,28 @@
   font-size: var(--icon-size);
 
   &.is-strong {
-    --icon-color: var(--icon-color-strong);
-    --icon-color-hover: var(--icon-color-text);
+    --icon-color: var(--color-strong);
+    --color-hover: var(--color-text);
   }
   &.is-text {
-    --icon-color: var(--icon-color-text);
-    --icon-color-hover: var(--icon-color-strong);
+    --icon-color: var(--color-text);
+    --color-hover: var(--color-strong);
   }
   &.is-weak {
-    --icon-color: var(--icon-color-weak);
-    --icon-color-hover: var(--icon-color-text);
+    --icon-color: var(--color-weak);
+    --color-hover: var(--color-text);
   }
   &.is-vivid {
-    --icon-color: var(--icon-color-vivid);
-    --icon-color-hover: var(--icon-color-weak);
+    --icon-color: var(--color-vivid);
+    --color-hover: var(--color-weak);
   }
   &.is-color {
-    --icon-color: var(--icon-color-color);
-    --icon-color-hover: var(--icon-color-vivid);
+    --icon-color: var(--color-color);
+    --color-hover: var(--color-vivid);
   }
   &.is-muted {
-    --icon-color: var(--icon-color-muted);
-    --icon-color-hover: var(--icon-color-color);
+    --icon-color: var(--color-muted);
+    --color-hover: var(--color-color);
   }
 
   &.is-xs {
@@ -59,6 +57,6 @@
   }
 
   &.is-hoverable:hover {
-    --icon-color: var(--icon-color-hover);
+    --icon-color: var(--color-hover);
   }
 }

@@ -5,10 +5,8 @@
 }
 
 .container {
-  @include m.colors("container","base","menu","element","top","text");
-
-  --container-background: var(--container-color-base);
-  --container-text: var(--container-color-text);
+  --container-background: var(--color-base);
+  --container-text: var(--color-text);
 
   --container-max: var(--breakpoint-md);
 
@@ -22,19 +20,19 @@
   overflow-wrap: break-word;
 
   &.is-base {
-    --container-background: var(--container-color-base);
+    --container-background: var(--color-base);
   }
 
   &.is-menu {
-    --container-background: var(--container-color-menu);
+    --container-background: var(--color-menu);
   }
 
   &.is-element {
-    --container-background: var(--container-color-element);
+    --container-background: var(--color-element);
   }
 
   &.is-top {
-    --container-background: var(--container-color-top);
+    --container-background: var(--color-top);
   }
 
   &.is-ghost {

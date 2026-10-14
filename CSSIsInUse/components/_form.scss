@@ -12,33 +12,30 @@
 
 .label {
   @include m.block("sm");
-  @include m.colors("label","color","weak","text","strong");
 
-  --label-text: var(--label-color-strong);
+  --label-text: var(--color-strong);
 
   color: var(--label-text);
   font-weight: var(--weight-bold);
 
   &.is-strong {
-    --label-text: var(--label-color-strong);
+    --label-text: var(--color-strong);
   }
   &.is-text {
-    --label-text: var(--label-color-text);
+    --label-text: var(--color-text);
   }
   &.is-weak {
-    --label-text: var(--label-color-weak);
+    --label-text: var(--color-weak);
   }
   &.is-color {
-    --label-text: var(--label-color-color);
+    --label-text: var(--color-color);
   }
 }
 
 .input, .textarea {
-  @include m.colors("input","base","menu","element","top","muted","color","vivid","weak","text","strong");
-
-  --input-background: var(--input-color-base);
-  --input-text: var(--input-color-text);
-  --input-color: var(--input-color-color);
+  --input-background: var(--color-base);
+  --input-text: var(--color-text);
+  --input-color: var(--color-color);
 
   --input-size-text: var(--text-size-6);
   --input-size-padding: var(--input-padding-md);
@@ -57,43 +54,43 @@
   font-size: var(--input-size-text);
 
   &.is-base {
-    --input-background: var(--input-color-base);
+    --input-background: var(--color-base);
   }
 
   &.is-menu {
-    --input-background: var(--input-color-menu);
+    --input-background: var(--color-menu);
   }
 
   &.is-element, &.is-active {
-    --input-background: var(--input-color-element);
+    --input-background: var(--color-element);
   }
 
   &.is-top {
-    --input-background: var(--input-color-top);
+    --input-background: var(--color-top);
   }
 
   &.is-muted {
-    --input-color: var(--input-color-muted);
+    --input-color: var(--color-muted);
   }
 
   &.is-color {
-    --input-color: var(--input-color-color);
+    --input-color: var(--color-color);
   }
 
   &.is-vivid {
-    --input-color: var(--input-color-vivid);
+    --input-color: var(--color-vivid);
   }
 
   &.is-weak {
-    --input-text: var(--input-color-weak);
+    --input-text: var(--color-weak);
   }
 
   &.is-text {
-    --input-text: var(--input-color-text);
+    --input-text: var(--color-text);
   }
 
   &.is-strong {
-    --input-text: var(--input-color-strong);
+    --input-text: var(--color-strong);
   }
 
   .no-border &, &.no-border {
@@ -122,10 +119,8 @@
 }
 
 .checkbox, .radio {
-  @include m.colors("cb","color","strong");
-
-  --cb-text: var(--cb-color-strong);
-  --cb-color: var(--cb-color-color);
+  --cb-text: var(--color-strong);
+  --cb-color: var(--color-color);
 
   display: inline-block;
   position: relative;
