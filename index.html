@@ -132,7 +132,7 @@
       <aside id="main-sidebar" class="sidebar">
         <nav>
 
-          <h5 class="text-primary-vivid"><span class="group"><span class="icon"><i class="ti ti-click-filled"></i></span><span>CSSIsInUse</span></span></h5>
+          <h5 class="text-primary-vivid"><span class="group"><span class="icon"><i class="ti ti-click-filled"></i></span><span>Framework</span></span></h5>
           <ul class="menu is-primary is-ghost">
             <li><ul>
               <li><a href="#home" @click="current = 'home'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'home' }">Home</a></li>
@@ -338,7 +338,7 @@
             </div>
           </div>
 
-          <div class="accordion" x-data="{ active: false }" :class="{ 'is-active' : active }">
+          <h6 class="accordion" x-data="{ active: false }" :class="{ 'is-active' : active }">
             <button
               @click="active = !active"
               class="card is-hoverable group is-justify-between"
@@ -356,7 +356,7 @@
                 <div class="chip is-primary is-hoverable recalculate" style="--padding-base: 4rem; --primary-h: 300; --border-radius-base: 2rem;">With Recalculate</div>
               </div>
             </div>
-          </div>
+          </h6>
 
           <h4>Derivative Tokens</h4>
 

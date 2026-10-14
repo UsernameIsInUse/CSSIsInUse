@@ -16,7 +16,7 @@
   display: flex;
   width: 100%;
   height: var(--navbar-height);
-  padding: var(--padding-sm) var(--padding-edge);
+  padding: var(--padding-xs) var(--padding-edge);
   background-color: oklch(from var(--nav-background) l c h / var(--nav-opacity));
   color: var(--nav-text);
   flex-direction: row;
