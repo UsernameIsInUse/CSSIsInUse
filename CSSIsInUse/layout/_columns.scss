@@ -11,10 +11,10 @@
   flex-wrap: wrap;
   gap: var(--padding-md);
 
-  &.is-min-small {
-    --column-flex-basis: var(--padding-section-large);
+  &.is-min-sm {
+    --column-flex-basis: var(--padding-section-lg);
   }
-  &.is-min-large {
+  &.is-min-lg {
     --column-flex-basis: var(--breakpoint-sm);
   }
   &.is-min-0 {

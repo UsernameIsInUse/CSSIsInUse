@@ -12,11 +12,9 @@ $schemes: default, olive, slate;
 @use '../tools/colors' as c;
 @use 'sass:list';
 
-// If you want to make a custom color, eg secondary, add it to this list and add --secondary-l, secondary-c, secondary-h, and secondary-falloff to the default scheme and custom variations to any other scheme.
+// If you want to make a custom color group, eg secondary, add it to this list and add --secondary-l, secondary-c, secondary-h, and secondary-falloff to the default scheme and custom variations to any other scheme.
 // Any colors you create will automatically be an option in all colored components attribute.
 $color-groups: 'neutral', 'primary', 'info', 'warning', 'danger', 'success', 'greyscale';
-
-$color-semantics: 'base', 'menu', 'element', 'top', 'muted', 'color', 'vivid', 'weak', 'text', 'strong';
 
 $scheme-selectors: ();
 $scheme-classes: ();

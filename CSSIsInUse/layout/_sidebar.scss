@@ -5,6 +5,20 @@
   flex-wrap: wrap;
   flex-direction: row;
   align-items: flex-start;
+  overflow: hidden;
+
+  &.is-right {
+    flex-direction: row-reverse;
+
+    > .sidebar {
+      margin-left: 0;
+      margin-right: var(--sb-margin);
+    }
+    > .main {
+      margin-left: 0;
+      margin-right: var(--main-margin);
+    }
+  }
 }
 
 .sidebar {
@@ -12,15 +26,16 @@
 
   --sb-height: calc(100dvh - var(--navbar-height));
   --sb-width: var(--sidebar-width);
+  --sb-margin: calc(0px - var(--sb-width));
 
-  @include m.transitions("margin-left");
+  @include m.transitions("margin-left", "margin-right");
   @include m.scrollable;
 
   position:fixed;
   width: var(--sb-width);
   height: var(--sb-height);
   max-height: var(--sb-height);
-  margin-left: calc(0px - var(--sb-width));
+  margin-left: var(--sb-margin);
   padding: var(--padding-md);
   background-color: var(--sb-background);
   z-index: var(--z-index-sidebar);
@@ -42,7 +57,7 @@
   }
   
   .has-sidebar.open & {
-    margin-left: 0px;
+    --sb-margin: 0px;
   }
 
   .has-sidebar.full & {
@@ -52,20 +67,20 @@
   
 }
 .main {
-  --main-margin-left: 0;
+  --main-margin: 0;
 
-  @include m.transitions("margin-left");
+  @include m.transitions("margin-left", "margin-right");
   
   width:100%;
   min-inline-size: var(--sidebar-width);
-  margin-left: var(--main-margin-left);
+  margin-left: var(--main-margin);
 
   .has-sidebar.open & {
-    --main-margin-left: var(--sidebar-width);
+    --main-margin: var(--sidebar-width);
   }
 
   .has-sidebar.full & {
-    --main-margin-left: 0;
+    --main-margin: 0;
     @include m.no-transitions;
   }
 }

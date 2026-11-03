@@ -2,4 +2,5 @@
 @use '../../tools/colors' as c;
 
 @include c.generate-color-utilities(s.$color-groups);
+@include c.generate-color-utilities('color');
 @include c.generate-single-color-utilities('black' 'white');

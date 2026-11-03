@@ -12,7 +12,9 @@
   &.is-active {
     --accordion-display:block;
 
-    :first-child.card {
+    :nth-child(1 of .card) {
+      @include m.block(false);
+
       border-bottom-left-radius: 0 !important;
       border-bottom-right-radius: 0 !important;
     }

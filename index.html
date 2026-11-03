@@ -162,10 +162,10 @@
           <h5 class="text-success-vivid"><span class="group"><span class="icon"><i class="ti ti-layout-filled"></i></span><span>Layout</span></span></h5>
           <ul class="menu is-success is-ghost">
             <li><ul>
-              <li><a href="#stack" @click="current = 'stack'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'stack' }">Stack</a></li>
               <li><a href="#sidebar" @click="current = 'sidebar'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'sidebar' }">Main & Sidebar</a></li>
               <li><a href="#section" @click="current = 'section'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'section' }">Section & Container</a></li>
               <li><a href="#columns" @click="current = 'columns'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'columns' }">Columns</a></li>
+              <li><a href="#stack" @click="current = 'stack'; if ( sidebarFull ) { sidebarOpen = false };" :class="{ 'is-active' : current === 'stack' }">Stack</a></li>
             </ul></li>
           </ul>
 
@@ -290,7 +290,7 @@
           <p>Static <code class="chip is-info is-quiet">tokens</code> are variables which have no derivatives. Modifying a static variable only modifies that value and no others. An example would be <code class="chip is-info is-quiet">--border-radius-rounded</code> which by default is defined as <code class="chip is-danger is-quiet">999px</code> and isn't used in any calculations. If you change it's value, you're only modifying elements and components which use it directly.
           </p>
 
-          <div class="columns gap-large">
+          <div class="columns is-gap-lg">
             <div>
               <p class="chip is-element ">Example</p>
               <div class="group is-flex-column">
@@ -310,7 +310,7 @@
 
           <p>Base <code class="chip is-info is-quiet">tokens</code> are variables which have derivatives. Modifying a base variable modifies any derivative variables which use it, modifying all elements and components which use those. One of the most dramatic examples would be <code class="chip is-info is-quiet">--padding-base</code> which by default is defined as <code class="chip is-danger is-quiet">1rem</code> and is used in the calculation of all padding variables for all elements and components. Changing it's value to something smaller or larger will modify the look of the entire page. You can test this yourself by changing the scheme of the documentation to slate, which changes <code class="chip is-info is-quiet">--padding-base</code> to <code class="chip is-danger is-quiet">1.5rem</code>, among many other changes.</p>
 
-          <div class="columns gap-large">
+          <div class="columns is-gap-lg">
             <div>
               <p class="chip is-element ">Example</p>
               <div class="card block">
@@ -338,17 +338,19 @@
             </div>
           </div>
 
-          <h6 class="accordion" x-data="{ active: false }" :class="{ 'is-active' : active }">
-            <button
+          <details class="accordion" x-data="{ active: false }" :class="{ 'is-active' : active }">
+            <summary
               @click="active = !active"
+              id="tokens-accordion-button-1"
               class="card is-hoverable group is-justify-between"
               :class="{ 'is-active' : active }"
               :aria-expanded="active"
               aria-controls="tokens-accordion-1"
             >
-              <h6 class="group block-none"><span class="icon"><i class="ti ti-info-circle-filled"></i></span> What is recalculate?</h6>
-              <span class="icon"><i class="ti" :class="{ 'ti-chevron-up' : active, 'ti-chevron-down' : !active }"></i></span></button>
-            <div id="tokens-accordion-1" class="card">
+              <strong class="group block-none"><span class="icon"><i class="ti ti-info-circle-filled"></i></span> What is recalculate?</strong>
+              <span class="icon"><i class="ti" :class="{ 'ti-chevron-up' : active, 'ti-chevron-down' : !active }"></i></span>
+            </summary>
+            <div id="tokens-accordion-1" class="card" aria-labelledby="tokens-accordion-button-1">
               <p>Because of the way that browsers calculate CSS variables, if you modify a variable that is used in a calculation in another variable, the other variable will not change because it is only calculated once. For example, if you modified <code class="chip is-info is-quiet">--padding-base</code> to <code class="chip is-danger is-quiet">2rem</code>, you would notice that all of the medium paddings would change because it references the base variable directly, but the xs, sm, lg, and xl paddings wouldn't. They were calulated using the original base variable, and will not recalculate when the base is modified.</p>
               <p><code class="chip is-info is-quiet">recalculate</code> is a utility class which allows derivative tokens which use calculation to re-calculate any changes. All scheme classes also serve as recalculations, but also modify colors and other tokens, while <code class="chip is-info is-quiet">recalculate</code> doesn't make any other changes itself. It's primarily useful when you're modifying a base <code class="chip is-info is-quiet">token</code> through inline styles, which is not recommended.</p>
               <div class="group">
@@ -356,13 +358,13 @@
                 <div class="chip is-primary is-hoverable recalculate" style="--padding-base: 4rem; --primary-h: 300; --border-radius-base: 2rem;">With Recalculate</div>
               </div>
             </div>
-          </h6>
+          </details>
 
           <h4>Derivative Tokens</h4>
 
           <p>Derivative <code class="chip is-info is-quiet">tokens</code> are variables derived from base variables. Modifying a derivative variable modifies that value and any other derivative values which use it. An example would be <code class="chip is-info is-quiet">--opacity-disabled</code> which by default is defined as the multiplication of <code class="chip is-info is-quiet">--opacity-base</code> and <code class="chip is-info is-quiet">--opacity-disabled-base</code>. They can be modified either by modifying their base variable, or by overriding their value directly.</p>
 
-          <div class="columns gap-large">
+          <div class="columns is-gap-lg">
             <div>
               <p class="chip is-element ">Example</p>
               <h5>Unmodified Buttons</h5>
@@ -411,7 +413,7 @@
 
           <p>The <code class="chip is-info is-quiet">transitions</code> and <code class="chip is-info is-quiet">no-transitions</code> mixins allow you to quickly set up transitions on any given CSS attribute.</p>
 
-          <div class="columns gap-large">
+          <div class="columns is-gap-lg">
             <div>
               <p class="chip is-element">Example</p>
               <h6>With Transitions</h6>
@@ -449,7 +451,7 @@
 
           <p>By default, only the <code class="chip is-warning is-quiet">dropdown</code> component with the <code class="chip is-info is-quiet">is-tooltip</code> modifier currently uses the <code class="chip is-info is-quiet">shadow</code> mixin, and is best viewed in light mode.</p>
 
-          <div class="columns gap-large">
+          <div class="columns is-gap-lg">
             <div>
               <p class="chip is-element">Example</p>
               <div class="group">
@@ -481,7 +483,7 @@
 
           <p>The <code class="chip is-info is-quiet">no-select</code> mixin allows you to set <code class="chip is-danger is-quiet">user-select: none;</code> to any component across browsers.</p>
 
-          <div class="columns gap-large">
+          <div class="columns is-gap-lg">
             <div>
               <p class="chip is-element">Example</p>
               <div class="group">
@@ -507,7 +509,7 @@
 
           <p>The <code class="chip is-info is-quiet">focus</code> mixin allows for consistent focus rings around focusable elements.</p>
 
-          <div class="columns gap-large">
+          <div class="columns is-gap-lg">
             <div>
               <p class="chip is-element">Example</p>
               <div class="group">
@@ -536,7 +538,7 @@
 
           <p>By default there are only two components which use this, the <code class="chip is-warning is-quiet">sidebar</code> and the <code class="chip is-warning is-quiet">highlightjs</code> integration, which consists of all of the colored code blocks on this documentation site.</p>
 
-          <div class="columns gap-large">
+          <div class="columns is-gap-lg">
             <div>
               <p class="chip is-element">Example</p>
               <pre><code class="language-scss dark">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</code></pre>
@@ -612,7 +614,282 @@
 
         <!-- #region Color -->
 
-        
+        <section id="color" class="section container content" x-show="['color'].includes(current)">
+          <hgroup>
+            <h2>Color System</h2>
+            <h5>Powerful, hard to explain</h5>
+          </hgroup>
+
+          <p>To summarize the global color system:</p>
+          <ul>
+            <li>Base <code class="chip is-info is-quiet">tokens</code> are created for each color group (neutral, primary, info, etc).</li>
+            <li>Those base <code class="chip is-info is-quiet">tokens</code> are sent through a few <code class="chip is-info is-quiet">tools</code> to create derivative semantic <code class="chip is-info is-quiet">tokens</code> (--neutral-base, warning-color, danger-strong, etc).</li>
+            <li>Each element and component use the generic --color-{semantic} <code class="chip is-info is-quiet">tokens</code>, which means you can use color group <code class="chip is-info is-quiet">utilities</code> to override the colors of each component (.is-neutral, .is-primary, .is-greyscale, etc).</li>
+          </ul>
+
+          <p>To summarize the local color system:</p>
+          <ul>
+            <li>Each element and component use the generic --color-{semantic} <code class="chip is-info is-quiet">tokens</code> to define their own semantic colors (--card-background, --button-text, --chip-border, etc)</li>
+            <li>They handle their own color and state variants (.is-element redefining --dropdown-background to be a different color semantic, changing --chip-background on hover, etc)</li>
+          </ul>
+
+          <p>The following is kind of confusing, this system is hard to explain. I'll be re-writing this later to better explain it.</p>
+
+          <details class="accordion" x-data="{ active: false }" :class="{ 'is-active' : active }">
+            <summary
+              @click="active = !active"
+              id="color-accordion-button-1"
+              :class="{ 'is-active' : active }"
+              :aria-expanded="active"
+              aria-controls="color-accordion-1"
+              class="button">Show complicated explanation</summary>
+
+            <div id="color-accordion-1" aria-labelledby="color-accordion-button-1">
+              <hr>
+
+              <p>A philosophy for CSSIsInUse is the idea of an infinitely themeable design, one that relies on semantic naming conventions and uses genetic <code class="chip is-info is-quiet">tokens</code> to allow designers to be able to very quickly made the framework look however they wish. In my own projects, I use this system to allow users to pick between different schemes for their own profiles.</p>
+              <p>The color system relies heavily on the <code class="chip is-info is-quiet">token</code> layer to function, but is distinct from it because it has it's own <code class="chip is-info is-quiet">tokens</code>, <code class="chip is-info is-quiet">tools</code>, and <code class="chip is-info is-quiet">utilities</code>.</p>
+
+              <h4>Color Tokens</h4>
+
+              <p>The color system, which are called "schemes" to differentiate them from light and dark mode, begins at the <code class="chip is-info is-quiet">token</code> layer. All colors are in OKLCH, and a few base level <code class="chip is-info is-quiet">tokens</code> are created to set the boundaries for every color:</p>
+              <ul>
+                <li><code class="chip is-info is-quiet">--light</code> and <code class="chip is-info is-quiet">--dark</code> determine the lightest and darkest values for every color group.</li>
+                <li><code class="chip is-info is-quiet">--{group}-l</code> determines the medium lightness value for the given color group.</li>
+                <li><code class="chip is-info is-quiet">--{group}-c</code> determines the medium chroma value for the given color group.</li>
+                <li><code class="chip is-info is-quiet">--{group}-h</code> determines the hue for the given color group.</li>
+                <li><code class="chip is-info is-quiet">--{group}-falloff</code> determines the chroma falloff as you get closer to the lightest and darkest ends of the group color scale.</li>
+              </ul>
+              <p>By default, there are 7 color groups: the default color group <span class="chip is-neutral">Neutral</span>, the semantic color groups <span class="chip is-primary">Primary</span>, <span class="chip is-info">Info</span>, <span class="chip is-success">Success</span>, <span class="chip is-warning">Warning</span>, and <span class="chip is-danger">Danger</span>, and the non-semantic color gorup <span class="chip is-greyscale">Greyscale</span>.</p>
+              <p>The color <code class="chip is-info is-quiet">tools</code> use these base level <code class="chip is-info is-quiet">tokens</code> to generate a lot more <code class="chip is-info is-quiet">tokens</code>, including 100-900 lightness and light/dark semantic lightness tokens.</p>
+
+              <h4>Color Tools</h4>
+
+              <p>From the base color <code class="chip is-info is-quiet">tokens</code>, there are several <code class="chip is-info is-quiet">tools</code> which transform the base variables into usable OKLCH <code class="chip is-info is-quiet">tokens</code> and <code class="chip is-info is-quiet">utilities</code>.</p>
+              <p>First, the color scale for each group is generated, 100-900, with 100 being the darkest version of the group, 500 being the most pure version of the color that just uses the l c and h values without any modifications, and 900 being the lightest version of the group. There are two non 00 values, 125 and 875, to provide a better transition from the darkest and lightest colors.</p>
+
+              <div class="block-lg" style="display:grid; grid-template-columns: repeat(2, 1fr); gap: var(--padding-md); overflow-x:auto;">
+                <strong class="card" style="background-color: var(--neutral-100); color: var(--neutral-900)">--neutral-100</strong>
+                <strong class="card" style="background-color: var(--neutral-125); color: var(--neutral-900)">--neutral-125</strong>
+                <strong class="card" style="background-color: var(--neutral-200); color: var(--neutral-900)">--neutral-200</strong>
+                <strong class="card" style="background-color: var(--neutral-300); color: var(--neutral-900)">--neutral-300</strong>
+                <strong class="card" style="background-color: var(--neutral-400); color: var(--neutral-900)">--neutral-400</strong>
+                <strong class="card" style="background-color: var(--neutral-500); color: var(--neutral-100)">--neutral-500</strong>
+                <strong class="card" style="background-color: var(--neutral-600); color: var(--neutral-100)">--neutral-600</strong>
+                <strong class="card" style="background-color: var(--neutral-700); color: var(--neutral-100)">--neutral-700</strong>
+                <strong class="card" style="background-color: var(--neutral-800); color: var(--neutral-100)">--neutral-800</strong>
+                <strong class="card" style="background-color: var(--neutral-875); color: var(--neutral-100)">--neutral-875</strong>
+                <strong class="card" style="background-color: var(--neutral-900); color: var(--neutral-100)">--neutral-900</strong>
+              </div>
+
+              <p>Next, the color scales for each group are given semantic names, and automatic light/dark mode functionality using <code class="chip is-danger is-quiet">light-dark()</code>. Switch between light and dark mode to test yourself.</p>
+
+              <div class="block-lg" style="display:grid; grid-template-columns: repeat(2, 1fr); gap: var(--padding-md); overflow-x:auto;">
+                <strong class="card bg-neutral-base text-neutral-strong">--neutral-base</strong>
+                <strong class="card bg-neutral-menu text-neutral-strong">--neutral-menu</strong>
+                <strong class="card bg-neutral-element text-neutral-strong">--neutral-element</strong>
+                <strong class="card bg-neutral-top text-neutral-strong">--neutral-top</strong>
+                <strong class="card bg-neutral-muted text-neutral-strong">--neutral-muted</strong>
+                <strong class="card bg-neutral-color text-neutral-base">--neutral-color</strong>
+                <strong class="card bg-neutral-vivid text-neutral-base">--neutral-vivid</strong>
+                <strong class="card bg-neutral-weak text-neutral-base">--neutral-weak</strong>
+                <strong class="card bg-neutral-text text-neutral-base">--neutral-text</strong>
+                <strong class="card bg-neutral-strong text-neutral-base">--neutral-strong</strong>
+              </div>
+
+              <p>Most components and elements do not use any of the previous tokens directly, with a few exceptions such as anchor tags which use <code class="chip is-info is-quiet">--info-vivid</code>, as well as color utility classes.</p>
+              <p>The bulk of all elements and components use a generic token, <code class="chip is-info is-quiet">--color-{semantic}</code>, which is defined by default as <code class="chip is-info is-quiet">--neutral-{semantic}</code> and is redefined using the <code class="chip is-info is-quiet">.is-{group}</code> utility class.</p>
+
+              <div class="columns is-gap-lg">
+                <div>
+                  <p class="chip is-element">Example</p>
+                  <div class="card block">
+                    <p>This is a default card. By default, it uses <code class="chip is-info is-quiet">--color-base</code> and <code class="chip is-info is-quiet">--color-text</code> for it's background and text colors.</p>
+                  </div>
+                  <div class="card block is-primary">
+                    <p>This is a primary card. It overrides <code class="chip is-info is-quiet">--color-base</code> and <code class="chip is-info is-quiet">--color-text</code> to use primary colors instead.</p>
+                  </div>
+                </div>
+                <div>
+                  <pre><code class="language-xml dark">&lt;div class=&quot;card block&quot;&gt;
+      &lt;p&gt;This is a default card. By default, it uses &lt;code class=&quot;chip is-info is-quiet&quot;&gt;--color-base&lt;/code&gt; and &lt;code class=&quot;chip is-info is-quiet&quot;&gt;--color-text&lt;/code&gt; for it&#39;s background and text colors.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card block is-primary&quot;&gt;
+      &lt;p&gt;This is a primary card. It overrides &lt;code class=&quot;chip is-info is-quiet&quot;&gt;--color-base&lt;/code&gt; and &lt;code class=&quot;chip is-info is-quiet&quot;&gt;--color-text&lt;/code&gt; to use primary colors instead.&lt;/p&gt;
+    &lt;/div&gt;</code></pre>
+                </div>
+              </div>
+
+              <h4>Color Utilities</h4>
+
+              <p>Because all components use the generic <code class="chip is-info is-quiet">--color-{semantic}</code> tokens to determine their own color, and <code class="chip is-info is-quiet">.is-{group}</code> utilities change those color tokens, that means that color groups cascade down to affect all components which do not themselves specify which color group they belong to.</p>
+
+              <div class="columns is-gap-lg">
+                <div>
+                  <p class="chip is-element">Example</p>
+                  <p>This card does not specify a color, which means all of it's <code class="chip is-info is-quiet">--color-{semantic}</code> tokens use <code class="chip is-info is-quiet">--neutral-{semantic}</code>.</p>
+                  <div class="card block">
+                    <p>This paragraph does not define it's own color.</p>
+                    <button class="button block">This is a default button</button>
+                    <p>This is a default color <span class="chip is-quiet">chip</span></p>
+                  </div>
+                  <p>This card uses <code class="chip is-info is-quiet">.is-primary</code>, which means all of it's <code class="chip is-info is-quiet">--color-{semantic}</code> tokens use <code class="chip is-info is-quiet">--primary-{semantic}</code>, cascading down into every element which does not specify it's own color group.</p>
+                  <div class="card block is-primary">
+                    <p>This paragraph does not define it's own color.</p>
+                    <button class="button block">This is a default button</button>
+                    <p>This is a default color <span class="chip is-quiet">chip</span></p>
+                  </div>
+                </div>
+                <div>
+                  <pre><code class="language-xml dark">&lt;p&gt;This card does not specify a color, which means all of it&#39;s &lt;code class=&quot;chip is-info is-quiet&quot;&gt;--color-{semantic}&lt;/code&gt; tokens use &lt;code class=&quot;chip is-info is-quiet&quot;&gt;--neutral-{semantic}&lt;/code&gt;.&lt;/p&gt;
+    &lt;div class=&quot;card block&quot;&gt;
+      &lt;p&gt;This paragraph does not define it&#39;s own color.&lt;/p&gt;
+      &lt;button class=&quot;button block&quot;&gt;This is a default button&lt;/button&gt;
+      &lt;p&gt;This is a default color &lt;span class=&quot;chip is-quiet&quot;&gt;chip&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;This card uses &lt;code class=&quot;chip is-info is-quiet&quot;&gt;.is-primary&lt;/code&gt;, which means all of it&#39;s &lt;code class=&quot;chip is-info is-quiet&quot;&gt;--color-{semantic}&lt;/code&gt; tokens use &lt;code class=&quot;chip is-info is-quiet&quot;&gt;--primary-{semantic}&lt;/code&gt;, cascading down into every element which does not specify it&#39;s own color group.&lt;/p&gt;
+    &lt;div class=&quot;card block is-primary&quot;&gt;
+      &lt;p&gt;This paragraph does not define it&#39;s own color.&lt;/p&gt;
+      &lt;button class=&quot;button block&quot;&gt;This is a default button&lt;/button&gt;
+      &lt;p&gt;This is a default color &lt;span class=&quot;chip is-quiet&quot;&gt;chip&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;</code></pre>
+                </div>
+              </div>
+
+              <p>The same is true for applying color themes (light/dark mode) and color schemes. You can change the look of an entire page by simply adding the class or data-theme / data-scheme value to <code class="chip is-danger is-quiet">body</code>, but you can also do so to any element and it will cascade.</p>
+
+              <div class="columns is-gap-lg">
+                <div>
+                  <p class="chip is-element">Example</p>
+                  <p>This card uses <code class="chip is-info is-quiet">.dark</code> and so will always use dark mode colors.</p>
+                  <div class="card block dark">
+                    <p>This paragraph does not define it's own color.</p>
+                    <button class="button block">This is a default button</button>
+                    <p>This is a default color <span class="chip is-quiet">chip</span></p>
+                  </div>
+                  <p>This card uses <code class="chip is-info is-quiet">.light</code> and so will always use light mode colors.</p>
+                  <div class="card block light">
+                    <p>This paragraph does not define it's own color.</p>
+                    <button class="button block">This is a default button</button>
+                    <p>This is a default color <span class="chip is-quiet">chip</span></p>
+                  </div>
+                  <p>This card uses <code class="chip is-info is-quiet">.slate</code> and so will use the slate scheme.</p>
+                  <div class="card block slate">
+                    <p>This paragraph does not define it's own color.</p>
+                    <button class="button block">This is a default button</button>
+                    <p>This is a default color <span class="chip is-quiet">chip</span></p>
+                  </div>
+                </div>
+                <div>
+                  <pre><code class="language-xml dark">&lt;p&gt;This card uses &lt;code class=&quot;chip is-info is-quiet&quot;&gt;.dark&lt;/code&gt; and so will always use dark mode colors.&lt;/p&gt;
+    &lt;div class=&quot;card block dark&quot;&gt;
+      &lt;p&gt;This paragraph does not define it&#39;s own color.&lt;/p&gt;
+      &lt;button class=&quot;button block&quot;&gt;This is a default button&lt;/button&gt;
+      &lt;p&gt;This is a default color &lt;span class=&quot;chip is-quiet&quot;&gt;chip&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;This card uses &lt;code class=&quot;chip is-info is-quiet&quot;&gt;.light&lt;/code&gt; and so will always use light mode colors.&lt;/p&gt;
+    &lt;div class=&quot;card block light&quot;&gt;
+      &lt;p&gt;This paragraph does not define it&#39;s own color.&lt;/p&gt;
+      &lt;button class=&quot;button block&quot;&gt;This is a default button&lt;/button&gt;
+      &lt;p&gt;This is a default color &lt;span class=&quot;chip is-quiet&quot;&gt;chip&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;This card uses &lt;code class=&quot;chip is-info is-quiet&quot;&gt;.slate&lt;/code&gt; and so will use the slate scheme.&lt;/p&gt;
+    &lt;div class=&quot;card block slate&quot;&gt;
+      &lt;p&gt;This paragraph does not define it&#39;s own color.&lt;/p&gt;
+      &lt;button class=&quot;button block&quot;&gt;This is a default button&lt;/button&gt;
+      &lt;p&gt;This is a default color &lt;span class=&quot;chip is-quiet&quot;&gt;chip&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;</code></pre>
+                </div>
+              </div>
+            </div>
+          </details>
+
+        </section>
+
+        <section class="section is-xs" x-show="['color'].includes(current)">
+          <h4>All Generated Colors</h4>
+          <div class="block" style="display:grid; grid-template-columns: repeat(10, 1fr); gap: var(--padding-xs); overflow-x:auto;">
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--neutral-base); color: var(--neutral-strong);">Neutral Base</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--neutral-menu); color: var(--neutral-strong);">Neutral Menu</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--neutral-element); color: var(--neutral-strong);">Neutral Element</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--neutral-top); color: var(--neutral-strong);">Neutral Top</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--neutral-muted); color: var(--neutral-strong);">Neutral Muted</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--neutral-color); color: var(--neutral-base);">Neutral Color</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--neutral-vivid); color: var(--neutral-base);">Neutral Vivid</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--neutral-weak); color: var(--neutral-base);">Neutral Weak</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--neutral-text); color: var(--neutral-base);">Neutral Text</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--neutral-strong); color: var(--neutral-base);">Neutral Strong</span>
+
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--primary-base); color: var(--primary-strong);">Primary Base</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--primary-menu); color: var(--primary-strong);">Primary Menu</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--primary-element); color: var(--primary-strong);">Primary Element</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--primary-top); color: var(--primary-strong);">Primary Top</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--primary-muted); color: var(--primary-strong);">Primary Muted</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--primary-color); color: var(--primary-base);">Primary Color</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--primary-vivid); color: var(--primary-base);">Primary Vivid</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--primary-weak); color: var(--primary-base);">Primary Weak</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--primary-text); color: var(--primary-base);">Primary Text</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--primary-strong); color: var(--primary-base);">Primary Strong</span>
+
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--info-base); color: var(--info-strong);">Info Base</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--info-menu); color: var(--info-strong);">Info Menu</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--info-element); color: var(--info-strong);">Info Element</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--info-top); color: var(--info-strong);">Info Top</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--info-muted); color: var(--info-strong);">Info Muted</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--info-color); color: var(--info-base);">Info Color</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--info-vivid); color: var(--info-base);">Info Vivid</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--info-weak); color: var(--info-base);">Info Weak</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--info-text); color: var(--info-base);">Info Text</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--info-strong); color: var(--info-base);">Info Strong</span>
+
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--warning-base); color: var(--warning-strong);">Warning Base</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--warning-menu); color: var(--warning-strong);">Warning Menu</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--warning-element); color: var(--warning-strong);">Warning Element</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--warning-top); color: var(--warning-strong);">Warning Top</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--warning-muted); color: var(--warning-strong);">Warning Muted</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--warning-color); color: var(--warning-base);">Warning Color</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--warning-vivid); color: var(--warning-base);">Warning Vivid</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--warning-weak); color: var(--warning-base);">Warning Weak</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--warning-text); color: var(--warning-base);">Warning Text</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--warning-strong); color: var(--warning-base);">Warning Strong</span>
+
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--danger-base); color: var(--danger-strong);">Danger Base</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--danger-menu); color: var(--danger-strong);">Danger Menu</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--danger-element); color: var(--danger-strong);">Danger Element</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--danger-top); color: var(--danger-strong);">Danger Top</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--danger-muted); color: var(--danger-strong);">Danger Muted</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--danger-color); color: var(--danger-base);">Danger Color</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--danger-vivid); color: var(--danger-base);">Danger Vivid</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--danger-weak); color: var(--danger-base);">Danger Weak</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--danger-text); color: var(--danger-base);">Danger Text</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--danger-strong); color: var(--danger-base);">Danger Strong</span>
+
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--success-base); color: var(--success-strong);">Success Base</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--success-menu); color: var(--success-strong);">Success Menu</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--success-element); color: var(--success-strong);">Success Element</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--success-top); color: var(--success-strong);">Success Top</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--success-muted); color: var(--success-strong);">Success Muted</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--success-color); color: var(--success-base);">Success Color</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--success-vivid); color: var(--success-base);">Success Vivid</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--success-weak); color: var(--success-base);">Success Weak</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--success-text); color: var(--success-base);">Success Text</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--success-strong); color: var(--success-base);">Success Strong</span>
+
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--greyscale-base); color: var(--greyscale-strong);">Greyscale Base</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--greyscale-menu); color: var(--greyscale-strong);">Greyscale Menu</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--greyscale-element); color: var(--greyscale-strong);">Greyscale Element</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--greyscale-top); color: var(--greyscale-strong);">Greyscale Top</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--greyscale-muted); color: var(--greyscale-strong);">Greyscale Muted</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--greyscale-color); color: var(--greyscale-base);">Greyscale Color</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--greyscale-vivid); color: var(--greyscale-base);">Greyscale Vivid</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--greyscale-weak); color: var(--greyscale-base);">Greyscale Weak</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--greyscale-text); color: var(--greyscale-base);">Greyscale Text</span>
+            <span style="padding: var(--padding-md); font-weight: bold; background-color: var(--greyscale-strong); color: var(--greyscale-base);">Greyscale Strong</span>
+          </div>
+        </section>
 
         <!-- #endregion -->
 
@@ -629,7 +906,7 @@
 
           <h4>Breakpoints</h4>
 
-          <p>Breakpoints in CSSIsInUse do not determine the sizing of elements and components at specific intervals in the traditional sense. There are no <code class="chip is-danger is-quiet">@media (min-width: 768px)</code> queries, and it was not designed mobile-first.</p>
+          <p>Breakpoints in CSSIsInUse do not determine the sizing of elements and components at specific intervals in the traditional sense. There are no <code class="chip is-danger is-quiet">@media (min-width: 768px)</code> queries, and the framework was not designed mobile-first.</p>
           <p>There are 4 breakpoints:</p>
           <ul>
             <li><code class="chip is-info is-quiet">--breakpoint-xs</code> which by default is defined as 20rem, or 320px</li>
@@ -637,7 +914,7 @@
             <li><code class="chip is-info is-quiet">--breakpoint-md</code> which by default is defined as 60rem, or 960px</li>
             <li><code class="chip is-info is-quiet">--breakpoint-lg</code> which by default is defined as 90rem, or 1440px</li>
           </ul>
-          <p>The main purpose of these breakpoints are to provide a standard set of widths for elements and components, and to use as the min and max in the <code class="chip is-info is-quiet">fluid-clamp</code> tool. For example, dropdowns and sidebars use <code class="chip is-info is-quiet">--breakpoint-xs</code> to calculate their width. Notifications use <code class="chip is-info is-quiet">--breakpoint-sm</code> to determine the width of the floating container. Columns use a few breakpoints to determine it's <code class="chip is-danger is-quiet">flex-basis</code>, which when it reaches that, wraps to sack vertically. Containers use all of them to determine their maximum width.</p>
+          <p>The main purpose of these breakpoints are to provide a standard set of widths for elements and components, and to use as the min and max in the <code class="chip is-info is-quiet">fluid-clamp</code> tool. For example, dropdowns and sidebars use <code class="chip is-info is-quiet">--breakpoint-xs</code> to calculate their width. Notifications use <code class="chip is-info is-quiet">--breakpoint-sm</code> to determine the width of the floating container. Columns use a few breakpoints to determine their <code class="chip is-danger is-quiet">flex-basis</code>, which when it reaches that, wraps to sack vertically. Containers use all of them to determine their maximum width.</p>
 
           <div class="container is-xs block">
             <div class="card">
@@ -655,10 +932,10 @@
           <h4>fluid-clamp</h4>
 
           <p>The <code class="chip is-info is-quiet">fluid-clamp</code> tool is a mixin which allows elements and components to calculate their size at any given screen width by providing a minimum and maximum size.</p>
-          <p>Instead of providing sizes at determined breakpoints for mobile, tablet, laptop, desktop, and larger, which text and padding snaps to at said breakpoints, instead you determine what size you want an attribute to be at the minimum and maximum breakpoints, and the mixin creates a token for you which uses linear algebra and the CSS <code class="chip is-danger is-quiet">clamp</code> feature to determine the size at any width between.</p>
+          <p>Instead of providing sizes at determined breakpoints for mobile, tablet, laptop, desktop, and larger, which text and padding snap to at said breakpoints, you determine what size you want an attribute to be at the minimum and maximum breakpoints, and the mixin creates a token for you which uses linear algebra and the CSS <code class="chip is-danger is-quiet">clamp</code> feature to determine the size at any width between.</p>
           <p><code class="chip is-info is-quiet">fluid-clamp</code> is used in all elements and components which have a minimum and maximum size, including text sizes, lists, and page edge and section paddings.</p>
 
-          <div class="columns gap-large">
+          <div class="columns is-gap-lg">
             <div>
               <p class="chip is-element">Example</p>
               <hgroup class="is-text-center">
@@ -670,7 +947,7 @@
             <div>
               <pre><code class="language-scss dark">@mixin fluid-clamp($name, $min, $max, $breakpoint-min: 'var(--breakpoint-xs)', $breakpoint-max: 'var(--breakpoint-lg)') {
   --fluid-#{$name}-a: calc( calc( #{$max} - #{$min} ) / calc( #{$breakpoint-max} - #{$breakpoint-min} ) );
-  --fluid-#{$name}-b: calc( #{$min} - calc( var(--fluid-#{$name}-a) * #{$breakpoint-min}) ) ;
+  --fluid-#{$name}-b: calc( #{$min} - calc( var(--fluid-#{$name}-a) * #{$breakpoint-min}) );
   --fluid-#{$name}-m: calc( var(--fluid-#{$name}-a) * 100vw );
   --fluid-#{$name}: clamp( #{$min}, calc(var(--fluid-#{$name}-m) + var(--fluid-#{$name}-b)), #{$max} );
 }</code></pre>
@@ -693,15 +970,36 @@
           <h1>Layout</h1>
         </section>
 
-        <!-- #region Stack -->
+        <!-- #region Main/Sidebar -->
 
-        
+        <section id="sidebar" class="section container content" x-show="['sidebar', 'kitchen'].includes(current)">
+          <hgroup>
+            <h2>Main & Sidebar</h2>
+            <h5>Easy single-sidebar page layout</h5>
+          </hgroup>
+          <p>Creating a single sidebar page layout is super easy.</p>
+          <p>If it is not the final sibling element, it gives the element a <code class="chip is-danger is-quiet">margin-bottom</code>.</p>
 
-        <!-- #endregion -->
-
-        <!-- #region Main -->
-
-        
+          <div class="columns is-gap-lg">
+            <div>
+              <p class="chip is-element">Example</p>
+              <div class="block">This top text is in a block.</div>
+              <div class="block">This middle text is also in a block, which you can see there is a gap between this text and the text below.</div>
+              <div class="block">This final text is also in a block, but because it's the final sibling, there is no additional margin below it.</div>
+            </div>
+            <div>
+              <pre><code class="language-html dark">&lt;div class=&quot;block&quot;&gt;
+  This top text is in a block.
+&lt;/div&gt;
+&lt;div class=&quot;block&quot;&gt;
+  This middle text is also in a block, which you can see there is a gap between this text and the text below.
+&lt;/div&gt;
+&lt;div class=&quot;block&quot;&gt;
+  This final text is also in a block, but because it&#39;s the final sibling, there is no additional margin below it.
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </section>
 
         <!-- #endregion -->
 
@@ -714,6 +1012,39 @@
         <!-- #region Columns -->
 
         
+
+        <!-- #endregion -->
+
+        <!-- #region Stack -->
+
+        <section id="stack" class="section container content" x-show="['stack', 'kitchen'].includes(current)">
+          <hgroup>
+            <h2>Stack</h2>
+            <h5>Z-indexing made easy</h5>
+          </hgroup>
+          <p>The <code class="chip is-success is-quiet">stack</code> is a basic z-indexing tool for stacking elements in the z direction.</p>
+          <p>It generates a set of z-index layers for other components which require it, including <code class="chip is-success is-quiet">layouts</code> and <code class="chip is-warning is-quiet">components</code>, such as the sidebar, the header, dropdowns, and notifications.</p>
+
+          <div class="columns is-gap-lg">
+            <div>
+              <p class="chip is-element">Example</p>
+              <p>Dropdowns are given a z-index of 1, meaning in a stacking context, they appear above other elements, including buttons, inputs, etc.</p>
+              <p>The further you go down the list, the higher the z-index, meaning modals will appear over dropdowns, sidebars, and headers, which is appropriate.</p>
+              <p>Components will continue to be added to the list as appropriate.</p>
+            </div>
+            <div>
+              <pre><code class="language-scss dark">$stacks: "dropdown","sidebar","header","version","modal","notifications";
+$i: 0;
+
+:root {
+  @each $stack in $stacks {
+    $i: $i + 1;
+    --z-index-#{$stack}: #{$i};
+  }
+}</code></pre>
+            </div>
+          </div>
+        </section>
 
         <!-- #endregion -->
 
@@ -825,7 +1156,7 @@
           <p>The <code class="chip is-info is-quiet">block</code> is a basic spacing tool that allows sibling HTML elements to be spaced apart.</p>
           <p>If it is not the final sibling element, it gives the element a <code class="chip is-danger is-quiet">margin-bottom</code>.</p>
 
-          <div class="columns gap-large">
+          <div class="columns is-gap-lg">
             <div>
               <p class="chip is-element">Example</p>
               <div class="block">This top text is in a block.</div>
@@ -847,7 +1178,7 @@
 
           <p>Without a <code class="chip is-info is-quiet">block</code>, there would be no margin between the text.</p>
           
-          <div class="columns gap-large">
+          <div class="columns is-gap-lg">
             <div>
               <p class="chip is-element">Example</p>
               <div>This top text is not in a block.</div>
@@ -869,7 +1200,7 @@
 
           <p>Because the <code class="chip is-info is-quiet">block</code> component is an SCSS mixin, it is built into many components and elements by default, but also is available as a set of classes which can be applied to any of them to override their default values. Below, you can see the difference between a design with and without block included.</p>
 
-          <div class="columns gap-large">
+          <div class="columns is-gap-lg">
             <div>
               <h5 class="block-none">Form Without Block</h5>
               <div class="field block-none">
@@ -911,7 +1242,7 @@
 
           <p>Because this is a spacing tool, and we are designers, the spacing is not necessarily consistent. Some elements and components want more space away from other elements than others. To that end, there are multiple <code class="chip is-info is-quiet">block</code> sizes available, shown below.</p>
 
-          <div class="columns gap-large">
+          <div class="columns is-gap-lg">
             <div>
               <p class="chip is-element">Example</p>
               <div class="card block-none">block-none</div>
@@ -949,7 +1280,7 @@
 
           <p>Finally, there is the sister tool <code class="chip is-info is-quiet">pre</code> which functions exactly the same way, except it uses <code class="chip is-danger is-quiet">margin-top</code> instead if it is not the first sibling element. Only a few elements and components use it by default, usually subtly, but it is another spacing tool in your arsenal.</p>
 
-          <div class="columns gap-large">
+          <div class="columns is-gap-lg">
             <div>
               <p class="chip is-element">Example</p>
               <div class="card block-none">Just here to show the none pre below it.</div>
@@ -1035,7 +1366,7 @@
           <p>The <code class="chip is-info is-quiet">block</code> is a basic spacing tool that allows sibling HTML elements to be spaced apart.</p>
           <p>If it is not the final sibling element, it gives the element a <code class="chip is-danger is-quiet">margin-bottom</code>.</p>
 
-          <div class="columns gap-large">
+          <div class="columns is-gap-lg">
             <div>
               <p class="chip is-element">Example</p>
               <div class="block">This top text is in a block.</div>

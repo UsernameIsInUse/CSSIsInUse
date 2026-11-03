@@ -3,10 +3,10 @@
 @forward 'non-core';
 @use "../tools/mixins" as m;
 
-.is-radius-small {
+.is-radius-sm {
   border-radius: var(--border-radius-sm);
 }
-.is-radius-base {
+.is-radius-md {
   border-radius: var(--border-radius-md);
 }
 .is-radius-rounded {
@@ -104,13 +104,13 @@
 .is-gap-xs {
   gap: var(--padding-xs);
 }
-.is-gap-small {
+.is-gap-sm {
   gap: var(--padding-sm);
 }
-.is-gap-base {
+.is-gap-md {
   gap: var(--padding-md);
 }
-.is-gap-large {
+.is-gap-lg {
   gap: var(--padding-lg);
 }
 .is-gap-xl {

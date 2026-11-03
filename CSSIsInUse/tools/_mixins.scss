@@ -22,7 +22,7 @@
 
 @mixin fluid-clamp($name, $min, $max, $breakpoint-min: 'var(--breakpoint-xs)', $breakpoint-max: 'var(--breakpoint-lg)') {
   --fluid-#{$name}-a: calc( calc( #{$max} - #{$min} ) / calc( #{$breakpoint-max} - #{$breakpoint-min} ) );
-  --fluid-#{$name}-b: calc( #{$min} - calc( var(--fluid-#{$name}-a) * #{$breakpoint-min}) ) ;
+  --fluid-#{$name}-b: calc( #{$min} - calc( var(--fluid-#{$name}-a) * #{$breakpoint-min}) );
   --fluid-#{$name}-m: calc( var(--fluid-#{$name}-a) * 100vw );
   --fluid-#{$name}: clamp( #{$min}, calc(var(--fluid-#{$name}-m) + var(--fluid-#{$name}-b)), #{$max} );
 }

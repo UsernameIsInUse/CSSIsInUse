@@ -67,11 +67,11 @@
 }
 
 @mixin generate-color-utilities($colors) {
-  $steps: 'base', 'menu', 'element', 'top', 'muted', 'color', 'vivid', 'weak', 'text', 'strong';
+  $color-semantics: 'base', 'menu', 'element', 'top', 'muted', 'color', 'vivid', 'weak', 'text', 'strong';
 
   @each $color in $colors {
-    @each $step in $steps {
-      @include generate-single-color-utilities(#{$color}-#{$step});
+    @each $semantic in $color-semantics {
+      @include generate-single-color-utilities(#{$color}-#{$semantic});
     }
   }
 }
