@@ -67,13 +67,19 @@
   }
 
   .logo {
+    --logo-text: var(--color-strong);
+
     @include m.transitions("opacity");
     font-size: var(--text-size-logo);
-    color: var(--color-strong);
+    color: var(--logo-text);
 
     &:hover {
       opacity: var(--opacity-dark);
     }
+  }
+
+  a {
+    text-decoration: none;
   }
 }
 

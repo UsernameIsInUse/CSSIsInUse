@@ -121,6 +121,12 @@
   @include m.no-transitions;
 }
 
+.disable-transitions {
+  --transition-duration: 0s;
+  -webkit-transition-duration: 0s;
+  transition-duration: 0s;
+}
+
 :disabled, [disabled], .disabled {
   opacity: var(--opacity-disabled);
   cursor: not-allowed;

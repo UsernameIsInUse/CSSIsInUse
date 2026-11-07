@@ -1,5 +1,9 @@
 @use "../tools/mixins" as m;
 
+form {
+  @include m.block("lg");
+}
+
 .field {
   @include m.block("md");
   display: flex;

@@ -59,9 +59,10 @@
   </head>
 
   <body
-    x-data="{ theme: '', scheme: '', sidebarOpen: true, sidebarFull: false, current: window.location.hash.substring(1) || 'home' }"
+    x-data="{ theme: '', scheme: '', sidebarOpen: true, sidebarFull: false, initialized: false, current: window.location.hash.substring(1) || 'home' }"
     x-init="sidebarFull = window.innerWidth < 608;
             if ( sidebarOpen && window.innerWidth < 608 ) { sidebarOpen = false };
+            $nextTick(() => initialized = true);
             if (theme === '' && checkCookie('theme') ) { theme = getCookie('theme') } else if (theme === '') { theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; };
             if (scheme === '' && checkCookie('scheme') ) { scheme = getCookie('scheme') } else if (scheme === '') { scheme = 'default' }"
     @resize.window="sidebarFull = window.innerWidth < 608"
@@ -118,18 +119,18 @@
       </nav>
     </header>
 
-    <div class="notifications is-hidden">
-      <div class="notification">Test</div>
-      <div class="notification is-primary">Test</div>
-      <div class="notification is-quiet is-top">Test</div>
-    </div>
+    <ul class="notifications is-hidden">
+      <li class="notification">Test</li>
+      <li class="notification is-primary">Test</li>
+      <li class="notification is-quiet is-top">Test</li>
+    </ul>
 
     <main
       class="has-sidebar"
-      :class="{ 'open': sidebarOpen, 'full': sidebarFull }"
+      :class="{ 'open': sidebarOpen, 'full': sidebarFull, 'absolutely-no-transitions': !initialized }"
     >
 
-      <aside id="main-sidebar" class="sidebar">
+      <aside class="sidebar">
         <nav>
 
           <h5 class="text-primary-vivid"><span class="group"><span class="icon"><i class="ti ti-click-filled"></i></span><span>Framework</span></span></h5>

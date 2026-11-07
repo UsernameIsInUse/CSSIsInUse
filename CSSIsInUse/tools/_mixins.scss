@@ -35,9 +35,7 @@
 }
 
 @mixin no-transitions {
-  --transition-duration: 0s;
-  -webkit-transition-duration: 0s;
-  transition-duration: 0s;
+  transition-property: none;
 }
 
 @mixin glow($size, $color, $alpha) {

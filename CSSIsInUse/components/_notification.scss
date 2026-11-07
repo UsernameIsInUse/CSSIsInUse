@@ -26,14 +26,6 @@
   pointer-events: none;
   list-style-type: none;
 
-  li {
-    pointer-events: auto;
-  }
-
-  a {
-    pointer-events: auto;
-  }
-
   &.is-bottom{
     --notifs-top: auto;
     --notifs-bottom: var(--fluid-notifs-bottom);
@@ -44,6 +36,20 @@
     --notifs-left: 0;
     --notifs-padding-right: var(--padding-md);
     --notifs-padding-left: var(--padding-edge);
+  }
+
+  > li, > a {
+    @include m.block("md");
+    width: 100%;
+  }
+
+  li {
+    pointer-events: auto;
+  }
+
+  a {
+    pointer-events: auto;
+    text-decoration: none;
   }
 }
 
