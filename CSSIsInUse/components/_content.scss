@@ -1,18 +1,24 @@
 @use "../tools/mixins" as m;
 
 .content {
-  line-height: var(--line-height-md);
-
   p {
     @include m.block("md");
+
+    line-height: var(--line-height-md);
+  }
+
+  pre {
+    line-height: var(--line-height-md);
   }
   
   h1, h2, h3, h4, h5, h6 {
+    @include m.block("lg");
     @include m.pre("md");
   }
 
   hgroup {
-    h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6, p {
+      @include m.block('sm');
       @include m.pre('xs');
     }
   }

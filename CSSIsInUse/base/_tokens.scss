@@ -141,8 +141,6 @@
 
   --icon-text-spacing: var(--padding-xs);
 
-  --weight-logo: var(--weight-bold);
-
   --border-radius-md: var(--border-radius-base);
   --border-radius-sm: calc(var(--border-radius-base) * var(--border-radius-sm-base));
 
@@ -166,6 +164,7 @@
   --blur-size-lg: calc(var(--blur-size-base) * var(--blur-size-lg-base));
 
   --font-logo: var(--font-header);
+  --weight-logo: var(--weight-bold);
 
   --breakpoint-xs: var(--breakpoint-xs-base);
   --breakpoint-sm: var(--breakpoint-sm-base);
